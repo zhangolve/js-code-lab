@@ -1,0 +1,35 @@
+<!--this is a demo to test unload event -->
+<!--2017.03.29-->
+<!--when click the a target ,and will toggle the event -->
+<!Doctype html>
+<html>
+  <head>
+    <title>Parent Frame</title>
+
+    <script>
+      window.addEventListener('beforeunload', function(event) {
+       return "Did you save your stuff?"
+      });
+      //beforeunload 的情况是在卸载之前触发，当做出判断以后，我们是可以停留在页面当中的。
+      //而unload并不是这样的，他出发一定是页面已经卸载掉，关掉了。
+      window.onbeforeunload = function(e) {
+	  var dialogText = 'Dialog text here';
+	  e.returnValue = dialogText;
+	  // 在这里使用  window.alert('are you ok?'); 是无效的。
+	  return dialogText;
+	  //这个值其实是任意设置的，基本上提示信息是浏览器统一的。
+	};
+      window.addEventListener('unload', function(event) {
+      	//这里的 alert('are you ready?') 是无效的，因为unload已经触发了，我们也看不到了。
+        console.log('I am the 3rd one.');
+      });
+      //在已经完全卸载了页面dom之后，我们将能够在控制台看到日志，在这里能够看到3，4日志，
+      //需要注意的是，如果直接点击右上角的关闭窗口，很显然，我们看不到打印日志，因为已经关闭了要打印日志的窗口
+      //但是，我们加上一个a标签之后，就能够保存这个窗口了，在卸载完dom之后，我们就能够看到日志了。
+    </script>
+  </head>
+  <body>
+  	<a href="http://hktkdy.com">hktkdy</a>
+    <iframe src="child-frame.html"></iframe>
+  </body>
+</html>
