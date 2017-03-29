@@ -1,0 +1,11 @@
+/*this is css3 solution */
+.cuble{
+	height: 100px;
+	width: 100px;
+	background-color: blue;
+	/* transition: all 3s ease-in-out; */
+}
+
+/* .cuble:hover{
+	transform: translateX(500px);
+} */
