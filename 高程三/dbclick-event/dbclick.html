@@ -1,0 +1,30 @@
+<!Doctype html>
+<html>
+<title>dbclick demo  </title>
+<style type="text/css">
+	button{
+		color: red;
+		width: 100px;
+		height: 100px;
+	}
+</style>
+<body>
+
+<button id="btn"> click here</button>
+
+<script type="text/javascript">
+	var btn=document.getElementById('btn');
+		btn.onclick=function(){
+			console.log('click');
+			//alert('fef');
+		}
+
+		//当同时有click单击事件的时候，dblclick事件正常起作用，但是如果在click的监听中有alert由于他对整个事件流造成了阻塞，因此并不会触发dblclick事件，这一点要注意。
+		btn.ondblclick=function(){
+			console.log('dblclick');
+		}
+		// 另外注意这个事件的拼写，是dblclick，而不是dbclick
+</script>
+
+
+</body>

@@ -1,0 +1,24 @@
+<!Doctype html>
+<html>
+<title> key board event demo</title>
+<style type="text/css">
+	input{
+		width: 200px;
+		height: 30px;
+	}
+</style>
+<body>
+<h1>key board</h1>
+<div id="input">
+<input placeholder="please input something" />
+</div>
+<script >
+	var input=document.getElementById('input');
+	console.log(input);
+		input.onkeypress=function(e){
+			console.log(e);
+			console.log(e.key);
+		}
+
+</script>
+</body>

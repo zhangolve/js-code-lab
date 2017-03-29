@@ -1,0 +1,34 @@
+<!Doctype html>
+<html>
+<title> remove element and popup </title>
+
+<body>
+<h1>key board</h1>
+<div id="popup">
+<div>
+1111111111111
+<button  id="0">click and remove </button>
+</div>
+<div >
+2222222222222
+<button id="1">click and remove </button>
+</div>
+<div >
+333333333333
+<button id="2">click and remove </button>
+</div>
+<div >
+444444444444
+<button id="3">click and remove </button>
+</div>
+</div>
+<script >
+	var popup=document.getElementById('popup');
+		popup.onclick=function(e){
+			var chosedEl=Number(e.target.id); //被选中的元素数字
+		    var removeIt=popup.children[chosedEl]; //要删除的元素
+		    popup.removeChild(removeIt);			
+		}
+
+</script>
+</body>
