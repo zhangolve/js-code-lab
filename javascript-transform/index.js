@@ -29,3 +29,4 @@ function delay(t, pixels) {
     setTimeout(function() { resolve(pixels); }, t)
   });
 };
+
