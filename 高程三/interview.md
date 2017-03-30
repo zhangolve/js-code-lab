@@ -18,6 +18,7 @@
 
 而如果是下面的情况呢?
 
+
 	var test='window';
 	var b=1;
 	function a(){
