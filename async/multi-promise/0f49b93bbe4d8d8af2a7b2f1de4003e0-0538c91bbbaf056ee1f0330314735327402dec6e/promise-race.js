@@ -56,4 +56,11 @@ Promise.resolve(value);
 Promise.resolve(promise);
 Promise.resolve(thenable);
 
+https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout
+
+
+var timeoutID = scope.setTimeout(func[, delay, param1, param2, ...]);
+var timeoutID = scope.setTimeout(code[, delay]);
+var timeoutID = scope.setTimeout(function, milliseconds);
+
 */

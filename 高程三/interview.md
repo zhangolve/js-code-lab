@@ -180,6 +180,46 @@ Ecmascript识别出来这种语法，将之认为是一个Array。
 webpack两大特色
 
 * code spliting
+
+	var a = require("a");
+	var b = require("b");
+	require.ensure(["c"], function(require) {
+	    require("b").xyz();
+	    var d = require("d");
+	});
+
+
+/* es6+的方式  */
+
+Dynamic import
+Currently, a "function-like" import() module loading syntax proposal is on the way into ECMAScript.
+
+The ES2015 Loader spec defines import() as method to load ES2015 modules dynamically on runtime.
+
+webpack treats import() as a split-point and puts the requested module in a separate chunk. import() takes the module name as argument and returns a Promise: import(name) -> Promise
+
+webpack 2 例子 
+
+index.js
+
+	function determineDate() {
+	  import('moment').then(function(moment) {
+	    console.log(moment().format());
+	  }).catch(function(err) {
+	    console.log('Failed to load moment', err);
+	  });
+	}
+
+	determineDate();
+
+	https://webpack.js.org/guides/code-splitting-import/
+
+前面已经说过了，import from 是必须放在文件的开头部分，而这里，实际上相当于是对之进行了处理。让它等效于放在开头部分了。
+
+
+
+
+
 * 模块加载器
 
 包括css loader ,字体loader等模块加载器，能够让我们统一管理这些模块，把最终的项目进行输出。
@@ -303,13 +343,59 @@ CSS 盒模型是页面布局上的一种思想，盒模型认为除了一些像s
 如何使用CSS盒模型呢?当理解了what和why之后，就能知道要在什么时候以及如何使用了。
 
 
-# js 操作数组都有哪些方法
+# js 操作数组都有哪些方法 array
 
-- 转换成其他类型数据的方法 join   
-- 对数组中元素的操作 push pop shift unshift map forEach every some  
-- 对数组中部分操作 concat  filter  slice splice
+
+- 转换成其他类型数据的方法 join  toString  
+- 对数组中元素的操作 push pop shift unshift map forEach every some indexOf,lastIndexOf,sort 排序 
+
+注意indexOf和lastIndexOf的区别
+
+	var a=[1,2,3,4,5,4,4,5];
+	
+	a.indexOf(4);
+	//3
+	a.lastIndexOf(4);
+	//6
+
+	sort排序的算法实现，具体看浏览器底层的js引擎实现。在V8使用的是快速排序。
+
+
+
+- 对数组中部分操作 concat  filter  slice splice ,fill
+
+
+ES6 feacture
+
+	var a=new Array(4)
+	//[undefined × 4]
+	a.fill(4)
+	//[4, 4, 4, 4]
+
+
+
 
 其中slice不改变原来数组的值，splice则是改变原来数组的值，将操作的元素截取掉。
+
+
+# js操作字符串方法
+
+- 转换成其他类型数据     JSON.parse(str)
+- 对元素的操作  indexof uppercase lowercase ,chatCodeAt 对应的ASCII码 ，charAt 对应的译码 
+- 对元素的部分操作 subStr ,subString  ,concat 拼接字符串, trim 去掉字符串中的空格,原数组保持不变,match,replace，匹配和替换字符串操作。
+
+
+	var a='   eee   '
+	"   eee   "
+	a.trim() 
+	"eee"
+
+在以上所列的这些对数组的操作中，只有splice，是改变原本数组的。
+
+
+
+
+
 
 # _lodash 函数式编程
 
