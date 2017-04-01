@@ -313,11 +313,152 @@ CSS 盒模型是页面布局上的一种思想，盒模型认为除了一些像s
 
 # _lodash 函数式编程
 
+## 什么是函数式编程
+
+函数式编程是一种编程思想，与面向对象编程一样，并列的。
+
+
+## 为什么要使用函数式编程
+
+- 纯函数（Pure functions）
+
+这个在React中也有应用，就是给定输入，得到输出的过程
+
+- 函数复合（Function composition）
+
+使用compose将多个函数结合在一起
+
+- 避免共享状态（Avoid shared state）
+
+
+- 避免改变状态（Avoid mutating state）
+
+
+
+- 避免副作用（Avoid side effects）
+
+一个输入，固定的输出
+比如当使用 原生JS的使用，使用splice对数组进行操作，就会出现副作用。
+
+
+## 为什么lodash/underscore 不是函数式编程
+
+之所以 人们会问你是否用过lodash/underscore 这些工具库，其实他们也是因为知道这些工具库的亮点和优势是在于它的函数式编程的那套逻辑东西。
+
+但是，underscore做得可能还不够好。
+
+ 
+[Hey Underscore, You're Doing It Wrong!](https://www.youtube.com/watch?v=m3svKOdZijA)
+
+>it offers a bunch of tools included in today's functional programming paradigm (like map, filter, reduce, take, drop, compose, etc.), but in Underscore the functions are sometimes verbose and unintuitive. It claims to be a functional programming language, but how true is that?
+
+个人理解，存疑：lodash/underscore并没有一些函数式编程的概念，比如functor因子，只是将它简化了，方便我们来使用。但是他的过度封装，又使得这个过程整个代码量变得更多更大了。
+
+
+
 # React 相关的
+
+## 什么是React?
+
+React是Facebook公司开发的开源前端框架。
+
+### 他的一些基本概念
+
+#### 状态和属性
+
+状态是可变的，属性是不可变的。我们如果想要改变属性，可以在父组件之上进行操作哦。
+
+#### 生命周期
+
+- didmount 
+在ajax中应用  真实的DOM被渲染出来后调用，在该方法中可通过this.getDOMNode()访问到真实的DOM元素。此时已可以使用其他类库来操作这个DOM。
+
+- shouldmount  
+
+组件是否应当渲染新的props或state，返回false表示跳过后续的生命周期方法，通常不需要使用以避免出现bug。在出现应用的瓶颈时，可通过该方法进行适当的优化
+- willmount   在完成首次渲染之前调用，此时仍可以修改组件的state。
+
+
+
+
+## 为什么是React
+
+- 他能够帮助我们快速构建web app。因为他已经有了一套框架，就好像是我们在做建筑，已经有了梁柱，接下来就是搭建的过程。
+- 它的组件化的开发思路，能够让前端开发工程化，更加有效率。当然，前提是整个项目并不是很小，不然就是杀鸡用牛刀了。
+- 他的虚拟dom的算法，他的单向绑定的功能，能够让网页的相应更快。
+
+
+## how   
+
+光学习 React 的远远不够的，伴随React而来的是他的整个生态系统，包括router，redux，一些为之设计的UI库等等。
+包括在本地node环境之下的开发和配置工作
+
 
 ##  virtual dom 的what how why
 
-## componentShouldMound()等等
+http://stackoverflow.com/questions/21109361/why-is-reacts-concept-of-virtual-dom-said-to-be-more-performant-than-dirty-mode
+
+
+>A virtual DOM is nice because it lets us write our code as if we were re-rendering the entire scene. Behind the scenes we want to compute a patch operation that updates the DOM to look how we expect. So while the virtual DOM diff/patch algorithm is probably not the optimal solution, it gives us a very nice way to express our applications. We just declare exactly what we want and React/virtual-dom will work out how to make your scene look like this. We don't have to do manual DOM manipulation or get confused about previous DOM state. We don't have to re-render the entire scene either, which could be much less efficient than patching it.
+
+>DOM updating: DOM operations are very expensive because modifying the DOM will also apply and calculate CSS styles, layouts. The saved time from unnecessary DOM modification can be longer than the time spent diffing the virtual DOM.
+
+按照我的理解，就是js的速度是快速的，而操作dom的花费是高昂的，因为每一次改变dom，也会连同css布局等一同改变。我们可以使用js来改变。虚拟dom通过自身的diff算法，将状态与vdom进行单行的绑定，这样一来，只要状态发生了改变，vdom就会发生改变，如果状态不变，则vdom也不变。
+
+vdom可以理解为是dom和js直接的一个桥梁。
+
+使用vdom也避免了我们直接去操作dom，我们也可以减少使用getElementById 这样的选择器了。至于，jQuery甚至是可以完全替代了。
+
+
+
+
+How Does Virtual DOM Work?
+
+Like the actual DOM, the Virtual DOM is a node tree that lists elements and their attributes and content as objects and properties. React’s render() method creates a node tree from React components and updates this tree in response to mutations in the data model, caused by actions.
+
+Each time the underlying data changes in a React app, a new Virtual DOM representation of the user interface is created
+
+This is where things get interesting. Updating the browser’s DOM is a three-step process in React.
+
+1.Whenever anything may have changed, the entire UI will be re-rendered in a Virtual DOM representation.
+2.The difference between the previous Virtual DOM representation and the new one will be calculated.
+3.The real DOM will be updated with what has actually changed. This is very much like applying a patch.
+
+就像是实际的DOM，虚拟DOM同样是一棵节点树，上面有一列元素，每个元素有他们对应的属性和内容。React的render()方法从React组件那里创造了一颗这样的节点树，当数据模型中的状态值发生改变的时候，render()函数还会对它进行更新。
+
+这就是这件事的有趣之处了，更新浏览器的DOM，如果使用React的话，需要三步。
+
+1 无论什么时候，只要有东西被改变了，整个UI就会被重新渲染。
+2 前一个虚拟DOM的呈现于当前状态的虚拟DOM之间的差异就会被计算，
+3 真实的DOM就会被更新。这就是像在打补丁。
+
+
+
+# 如何判断是一个数组
+ 
+ a=[1,2,3,4,5,6];
+
+- Array.isArray(a)
+- a instanceof Array
+- Object.prototype.toString.call(a)
+
+为什么第三种方法是可行的呢？
+
+	var o = new Object();
+	o.toString(); // returns [object Object]
+
+
+	var b=new Object
+	//undefined
+	b.toString()
+	//"[object Object]"
+	b.toString.call(a)
+	//"[object Array]"
+
+call的绑定是一个参数，一个数组。
+apply可以是多个参数，不是数组。
+
+
 
 
 
