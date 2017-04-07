@@ -49,8 +49,8 @@ return time;
 
 var c=document.getElementById("first-canvas");
 var ctx=c.getContext("2d");
-var cw= c.width=400;
-var ch= c.height=400;
+var cw= c.width=500;
+var ch= c.height=500;
 
 function draw()
 {
@@ -66,7 +66,17 @@ ctx.textAlign = "start";  //居中
 
 }
 
-setInterval(draw,1000);
+//setInterval(draw,1000);
+
+function circle(){
+	ctx.clearRect(0,0,400,400);
+	ctx.beginPath();
+	ctx.arc(200,200,200,0,2*Math.PI);
+	ctx.stroke();
+
+}
+
+
 
 /*
 
@@ -82,3 +92,82 @@ setInterval与 setTimeout的区别是，setInterval是指的中断，这个之�
 
 
 */
+
+
+//绘制一个三角形，使用的是moveto，lineto这种画线的方式
+function triangle(){
+
+	ctx.beginPath(); //开始绘制路径
+	ctx.moveTo(200,0);
+	ctx.lineTo(400,400);
+	ctx.lineTo(0,400);
+	ctx.fill(); //激活这个图形 ;
+	ctx.fillStyle="red";
+}
+
+//triangle();
+
+
+
+//绘制一个菱形
+
+function rhombus(){
+
+	ctx.beginPath(); //开始绘制路径
+	ctx.moveTo(200,0);
+	ctx.lineTo(400,200);
+	ctx.lineTo(200,400);
+	ctx.lineTo(0,200);
+	ctx.lineTo(200,0);  //如果是空心的话，就还需要加上这一行
+	ctx.stroke();
+	//ctx.fill(); //激活这个图形 ,fill是实心的，stroke是空心的
+	ctx.fillText("hello",200,200);
+
+}
+//rhombus();
+
+function heart(){
+	ctx.beginPath();
+	ctx.arc(50,50,50,Math.PI,2*Math.PI);  //上半个圆是PI到2pi
+	ctx.arc(100,50,100,0,Math.PI);        //下半个圆是0到pi
+	ctx.arc(150,50,50,Math.PI,2*Math.PI); 
+	
+	ctx.fillStyle = 'red'; //注意先后顺序，只有在ctx.fill 之前才有效
+	ctx.fill();
+}
+
+//heart();
+
+
+//国旗
+
+// canvas 图形的嵌套
+// 要想实现canvas 图形的嵌套，我们应该把外层的元素stroke虚化处理
+function flag(){
+	ctx.fillStyle="red"; 
+	//ctx.strokeStyle="red" ; //内部为空时的样式,也就是外面的线的颜色
+	//这一行又要在下面两行前面，顺序不能错，
+	//这一行的style同时作用于外层的方形和内层的三角形
+
+	ctx.fillRect(0,0,400,400);
+
+	ctx.fill();
+	ctx.strokeStyle="red";
+	ctx.moveTo(0,400);
+	ctx.lineTo(0,500); 
+	ctx.stroke();
+	ctx.fillStyle="yellow"; //我们通过再加一个颜色，让新的ctx颜色覆盖掉原来的。
+	ctx.moveTo(200,200);
+	ctx.beginPath();
+	ctx.moveTo(200,0);
+	ctx.lineTo(400,400);
+	ctx.lineTo(0,400);
+	ctx.fill();
+
+}
+
+flag();
+
+
+
+
