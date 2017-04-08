@@ -50,25 +50,62 @@ let arr = [function() { console.log(1) }, "1333", 2, 3, { "a": "3ijf3i", "b": "f
 //这个时候，又是巧用this的时候了。
 
 
-Array.prototype.compact = function() {
-    var newArr = [];
+// Array.prototype.compact = function() {
+//     var newArr = [];
 
-    function compact(arr) {
+//     function compact(arr) {
 
-        for (var i = 0; i < arr.length; i++) {
-            if (!Array.isArray(arr[i])) {
-                newArr.push(arr[i]);
-            } else {
-                compact(arr[i]);
-            }
-        }
-    }
-    compact(this);
-    return newArr;
-}
+//         for (var i = 0; i < arr.length; i++) {
+//             if (!Array.isArray(arr[i])) {
+//                 newArr.push(arr[i]);
+//             } else {
+//                 compact(arr[i]);
+//             }
+//         }
+//     }
+//     compact(this);
+//     return newArr;
+// }
 
-let comArr = arr.compact();
-console.log( comArr);
+// let comArr = arr.compact();
+// console.log( comArr);
 
 //不改变原来的数组
+
+
+
+/*我们还可以使用reduce来拍平数组*/
+
+/*reduce 就是依次合并的过程，因此正好可以用来拍平数组*/
+
+
+ 
+
+    
+
+
+var list1 = [[0, 1], [2, 3], [4, 5]];
+var list2 = [0, [1, [2, [3, [4, [5]]]]]];
+
+// const flatten = arr => arr.reduce(
+//   (acc, val) => acc.concat(
+//     Array.isArray(val) ? flatten(val) : val
+//   ),
+//   []
+// );
+
+function flatten(arr){
+    return  arr.reduce(
+  function(acc, val) {return  acc.concat(  //这里没有return 的话是会报错的
+    Array.isArray(val) ? flatten(val) : val
+  )},
+  []
+);
+}
+console.log(flatten(list1)); // returns [0, 1, 2, 3, 4, 5]
+console.log(flatten(list2)); // returns [0, 1, 2, 3, 4, 5]
+    
+
+/*注意区别ES5和ES6的写法*/
+/*注意在ES5中，要在合适的地方写上return*/
 
