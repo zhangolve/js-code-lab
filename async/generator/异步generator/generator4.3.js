@@ -1,7 +1,7 @@
 /*  异步迭代生成器 */
 var request=require('request');
 var options = {
-  url: 'https://jsonplaceholder.typicode.com/todos',
+  url: 'https://jsonplaceholder.typicode.com/todeeeos',
   headers: {
     'User-Agent': 'request'
   }
@@ -20,7 +20,9 @@ var result=yield call();  //这里进行等待，调用call()占位，等到调�
 console.log(result);   //最后我们把结果进行输出
 }
 
-var it=main();
+//var it=main();
 
-it.next();
+//it.next();
+
+
 
