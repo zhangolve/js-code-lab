@@ -753,7 +753,49 @@ resolve reject 等
 
 
 
+# 知道创宇面试
 
+## sessionStorage 和localstorage 的区别
+
+两者的最大区别是sessionStorage是回话存储，所谓session是指用户在浏览某个网站时，从进入网站到浏览器关闭所经过的这段时间会话，也就是用户浏览这个网站所花费的时间就是session的生命周期。而localStorage则是只要用户不手动删除数据，就会一直存在于浏览器中。
+
+## 给Array实现一个copyer的继承方法
+
+
+比如[1,2,3,4].copyer()=[1,2,3,4,1,2,3,4];
+
+下面的答案是当时就答上来的
+
+
+		Array.prototype.copyer=function(){
+			return this.concat(this);
+		}
+
+
+## html 元素设置为隐藏（当时答上来）
+
+- display:none
+- visibility:hidden
+- opacity:0
+
+## 字符串单词首字母大写（当时答上来）
+
+	String.prototype.firstUpperCase=function(){
+		var arr=this.split(" ");
+		var newStr="";
+		for(var i=0;i<arr.length;i++)
+		{
+			var firstUpper=arr[i][0].toUpperCase()+arr[i].substr(1);
+			newStr=newStr+firstUpper+" "
+		}
+		return newStr;
+	}
+
+## 五分之一圆的实现
+
+https://github.com/zhangolve/css3-practice/blob/master/border-radius/index.html
+
+  
 
 
 
