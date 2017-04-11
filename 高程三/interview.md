@@ -45,12 +45,7 @@
 		//不改变原来的数组
 
 
-如上所示，我自己构造的一个拍平数组的一个方法，他利用的就是在Array原型链上面添加compact方法来实现，而其中很关键的一个点，就是this值，在这里this指的是new 出来之后的新的数组本身。
-
-
-
-
-	
+如上所示，我自己构造的一个拍平数组的一个方法，他利用的就是在Array原型链上面添加compact方法来实现，而其中很关键的一个点，就是this值，在这里this指的是new 出来之后的新的数组本身。除此之外，我们也可以使用bind,call.apply等方法来改变上下文作用域,也就是改变this的指向
 
 
 
@@ -805,10 +800,154 @@ https://github.com/zhangolve/css3-practice/blob/master/border-radius/index.html
 
   
 
+# bind call apply
+
+## 是什么
+
+bind call apply 这些操作方法的作用都是为了改变一个函数的执行上下文环境而产生的。也就是说改变this的指向。
+
+
+	var x=3;
+	function foo(){
+		console.log(this.x);
+	}
+
+	function bar(){
+		var x=4;
+	}
+
+现在我们想要改变foo()函数中this的指向。因此可以写
+
+
+	foo.call(bar); //undefined
+	
+
+上面的写法是我自己的一个误区了，我我以为是绑定一个函数结构体，但是事实上绑定的是一个Object，是一个对象。
+这个对象可以是window，可以是global(node环境之下)，可以是自己定义的一个对象，比如bar={x:4},总之执行的环境是对象。
+
+所以上面的问题，我们应该改写bar
+
+	var bar={
+		x:4
+	}
+
+	foo.call(bar);
+
+
+当然，我们也可以给他们传值，仍然是上面的这个例子：
+
+	var x=3;
+	function foo(y,z){
+		console.log(this.x+y+z);
+	}
+	var bar={
+		x:4
+	}
+
+	foo.call(bar,3);  //7 
+
+
+## call 和apply的不同
+
+
+这就又牵扯到apply和call的不同之处了，最大的不同在于二者的绑定参数形式不同。来看例子：
+
+
+		var x=3;
+		function foo(y,z){
+			console.log(this.x+y+z);
+		}
+		var bar={
+			x:4
+		}
+
+	  foo.call(bar,3,4);  //11
+	  foo.apply(bar,[3,4]);//11
+	  foo.bind(bar,3,4)(); //11
+
+
+上面的这个例子还是比较好的说明了这一点的。值得注意的是bind的参数形式是与call一致的。
+
+从我们使用学习bind,call,apply的经历来看，还是应该从最简单的例子入手，去发现规律，去使用。
+
+		var x=3;
+		function foo(y,z){
+			console.log(this.x+y+z);
+		}
+		function bar(){
+		return {
+			x:4
+		}
+		}
+		console.log(typeof bar()); //object
+	  foo.call(bar(),3,4);  //11
+
+
+前面说了，无论是bind,call还是apply方法，第一个参数都是一个object，当然也会有变形，比如上面这种，call内部的第一个参数是bar()，他在call()内部会立即执行，并且返回一个object，所以从本质上来说，这个bar()事实上仍然是一个object。
 
 
 
 
+由于bind()方法并不是立即的执行的，因此我们也可以不必在进行bind的时候直接给他传参，这也是为什么我看到的很多使用bind()方法的代码中,bind()方法内都只有一个参数，事实上传参，可能是在接下来的步骤中，而就是这样的误解，也让我一直以为bind()方法只接受一个参数。
+
+来看例子
+
+		var x=3;
+		function foo(y,z){
+			console.log(this.x+y+z);
+		}
+		var bar={
+			x:4
+		}
+		var result=foo.bind(bar);
+		foo(3,4);//10
+		result(3,4); //11
+
+
+
+
+## 有没有解绑
+
+当我们使用bind，call,apply的时候，也应该想到有没有解绑的操作。我们可以分别来看一下，首先是bind方法，bind方法并不是立即执行的，而这个方法执行并不改变原始的function 的作用域，比如说上面的例子，事实上原始的function foo就从来没有改变过，他只不过是一个是这个function内部的实现复制到了另外一个function 在这里也就是result里面的，既然原来的function根本就没有改变，又何须解绑呢？你如果说result的解绑，其实也可以直接给它置为Null。这样做有他的好处，他符合函数式编程的特征。
+
+再来说说，call 和apply,这两个方法是调用之后立即执行，我们还是对上面的例子做一下变形：
+
+		var x=3;
+		function foo(y,z){
+			console.log(this.x+y+z);
+		}
+		var bar={
+			x:4
+		}
+		foo.call(bar,3,4); //11
+		foo(3,4);//10
+		
+
+上面的例子也已经比较好的说明了，事实上call和apply方法只是立即调用执行，这一点上与bind有区别。而他们也都与bind方法一样，不改变原有的函数，这仍然是符合函数式编程思想的。既然原始函数都没有改变，也就谈不上解绑了。我们如果想要让一个函数绑定另外一个作用域，只需要再执行一次新的绑定即可。比如：
+
+		var x=3;
+		function foo(y,z){
+			console.log(this.x+y+z);
+		};
+		var bar={
+			x:4
+		};
+		var test={
+			x:5;
+		}
+		foo.call(bar,3,4); //11
+		foo(3,4);//10
+		foo.call(test,3,4);//12
+
+# ES6 语法
+
+const obj={a:1,b:2,c:3};
+function foo(o,arr){
+	//请实现该方法
+}
+
+foo(obj,{"a","c"});
+//输出 {a:1,c:3}
 
 
 
