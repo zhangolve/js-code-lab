@@ -9,9 +9,15 @@
 var str="this is a test";
 
 var newStr=str.replace(/\w/g,"b");
-console.log(newStr);  //bbbb bb b bbbb
+//console.log(newStr);  //bbbb bb b bbbb
 
-console.log(str);//原字符串不发生改变
+//console.log(str);//原字符串不发生改变
 
+newStr=str.replace(/\s.|^./g, function($0){
+	console.log($0);  //$0 是一个由一个空格和一个字母组成的字符串
+	return $0.toUpperCase();
+});
 
+console.log(newStr);
 
+/*.操作符是只匹配一个字符*/

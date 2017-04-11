@@ -791,6 +791,14 @@ resolve reject 等
 		return newStr;
 	}
 
+
+String.prototype.firstUpperCase = function(){
+    return this.replace(/\b(\w)(\w*)/g, function($0, $1, $2) {
+        return $1.toUpperCase() + $2.toLowerCase();
+    });
+}
+
+
 ## 五分之一圆的实现
 
 https://github.com/zhangolve/css3-practice/blob/master/border-radius/index.html
