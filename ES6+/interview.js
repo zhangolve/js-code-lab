@@ -1,14 +1,38 @@
+console.time('map');
+const obj={a:1,b:2,c:3};
+function foo(o,arr){
+	var obj={};
+	arr.map(  (i)=>obj[i]=o[i]);
+	return obj;
+}
+
+var result=foo(obj,["a","c"]);
+console.log(result);
+console.timeEnd('map');
+
+//输出 {a:1,c:3}
+//map: 9.057ms
+
+/*
+
+forEach() executes the callback function once for each array element;
+unlike map() or reduce() it always returns the value undefined and is not chainable.
+ The typical use case is to execute side effects at the end of a chain.
+ */
+// console.time('forEach')
 // const obj={a:1,b:2,c:3};
 // function foo(o,arr){
 // 	var obj={};
-// 	arr.map(  (i)=>obj[i]=o[i]);
+// 	arr.forEach(  (i)=>obj[i]=o[i]);
 // 	return obj;
 // }
 
 // var result=foo(obj,["a","c"]);
 // console.log(result);
+// console.timeEnd('forEach')
+//forEach: 12.613ms
 
-//输出 {a:1,c:3}
+
 
 /*
 Given an array of 2k integers (for some integer k), perform the following operations until the array contains only one element:
@@ -48,8 +72,8 @@ function arrayConversion(arr) {
   return copyedArr
   
 }
-var result=arrayConversion([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
-console.log(result);
+//var result=arrayConversion([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]);
+//console.log(result);
 
 /*合并相邻的两个数，*/
 function arrayAddTwo(arr){
