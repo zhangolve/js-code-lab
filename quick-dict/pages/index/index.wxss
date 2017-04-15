@@ -19,3 +19,9 @@
 .usermotto {
   margin-top: 200px;
 }
+
+#myInput{
+  height:30px;
+  border-bottom:1px solid red;
+  color:brown;
+}

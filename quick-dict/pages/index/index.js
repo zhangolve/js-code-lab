@@ -19,7 +19,7 @@ Page({
     console.log(inputContent);
   },
   search:function(){
-    console.log('success');
+    
     var that=this;
     wx.request({
   url: 'https://fanyi.youdao.com/openapi.do?keyfrom=quick-dict&key=1633006486&type=data&doctype=json&version=1.1&q='+inputContent.myInput,
@@ -28,6 +28,7 @@ Page({
   },
   success: function(res) {
     if(res.data){
+      console.log(res.data);
       that.setData({
         translation:res.data.translation
       })

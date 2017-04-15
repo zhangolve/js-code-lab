@@ -10,6 +10,8 @@
   <view class="search">
     <input id="myInput" bindchange="bindChange" />
     <button bindtap="search" > search </button>
-    <text> {{translation[0]}}  </text>
+     <ul wx:for="{{translation}}" wx:for-item="tran-items" wx:key="*this">
+    <li > {{tran-items}}</li>
+  </ul>
   </view>
 </view>
