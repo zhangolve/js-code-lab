@@ -182,6 +182,71 @@ Ecmascript识别出来这种语法，将之认为是一个Array。
 同样的道理，上面这个甚至将sayFullName变量的this去掉的方法，也是一样的道理。变量只在构造函数中出现，只有当加上this值之后，才能够将值进行传递。由此，我们也能够看到this的强大。正是由于this的灵活，才能够出现构造函数设计模式。
 
 
+# 工程模式的好处与缺点
+
+## 好处：
+
+1.工厂类集中了所有对象的创建，便于对象创建的统一管理
+2.对象的使用者仅仅是使用产品，实现了单一职责
+3.便于扩展，如果新增了一种业务，只需要增加相关的业务对象类和工厂类中的生产业务对象的方法，不需要修改其他的地方。
+4.主要好处就是可以消除对象间的耦合，通过使用工程方法而不是new关键字。将所有实例化的代码集中在一个位置防止代码重复。
+
+## 缺点
+
+大多数类最好使用new关键字和构造函数，可以让代码更加简单易读。而不必去查看工厂方法来知道。
+
+
+适用场景
+
+1.需要根据不同参数产生不同实例，这些实例有一些共性的场景
+2.使用者只需要使用产品，不需要知道产品的创建细节
+
+下面的代码同样是简单工厂模式，是它的变形了。比高程三上面的例子要稍微复杂一点。
+
+
+	var productEnums = {
+    flight: "flight",
+    hotel: "hotel"
+	};
+	function Flight() {
+	    console.log("This is Flight");
+	}
+	function Hotel() {
+	    console.log("This is Hotel");
+	}
+	function User() {
+	    this.shopCart = [];
+	}
+	User.prototype = {
+	    constructor: User,
+	    order: function (productType) {
+	        var product = null;
+	        switch (productType) {
+	            case productEnums.flight:
+	                product = new Flight();
+	            case productEnums.hotel:
+	                product = new Hotel();
+	            default:
+	        }
+	        this.shopCart.push(product);
+	    }
+	}
+	var user = new User();
+	user.order(productEnums.flight);
+
+
+
+# 上面提到的工厂模式，原型模式，构造函数模式的对比
+
+构造函数模式与工厂模式的对比
+
+- 函数名首写字母为大写　　（虽然标准没有严格规定首写字母为大写，但按照惯例，构造函数的首写字母用大写
+- 没有显示的创建对象
+- 直接将属性和方法赋值给了this对象
+- 没有return语句
+- 使用new创建对象
+- 能够识别对象（这正是构造函数模式胜于工厂模式的地方）
+
 
 
 # 如何解决跨域问题
