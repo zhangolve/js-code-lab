@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>a-calulator-with-jquery-and-mathjs</title>
+    
+    
+    
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
+
+        <link rel="stylesheet" href="css/style.css">
+
+    
+    
+    
+  </head>
+
+  <body>
+
+    '<!-- a calaulator app-->
+<body>
+  <p>简单计算器</p>
+  <div class="container">
+<div id="allcontent" class="col-md-12 col-xs-12 col-ms-12">
+<!--显示屏-->
+
+
+<div id="screen">
+<input id="number" value=0></input>
+  
+</div>
+<!--显示屏结束-->
+<!--按键区域开始-->
+
+<div>
+<!--plus de mul dev operation-->
+  
+<button value="0" id="btn0" onclick="clickIt(0)" class="btn btn-primary" >0</button>
+  <button value="1"  class="btn btn-primary" id="btn1" onclick="clickIt(1)"  >1</button>
+  <button value="2" id="btn2" onclick="clickIt(2)"  class="btn btn-primary">2</button>
+  <button value="3" id="btn3" onclick="clickIt(3)"  class="btn btn-primary">3</button>
+  <br>
+  <button value="4" id="btn4" onclick="clickIt(4)"  class="btn btn-primary">4</button>
+  <button value="5" onclick="clickIt(5)" id="btn5"  class="btn btn-primary">5</button>
+  <button value="6" id="btn6" onclick="clickIt(6)"  class="btn btn-primary">6</button>
+  <button value="7" id="btn7" onclick="clickIt(7)"  class="btn btn-primary">7</button>
+  <br>
+  <button value="8" id="btn8" onclick="clickIt(8)"  class="btn btn-primary">8</button>
+  <button value="9" id="btn9" onclick="clickIt(9)"  class="btn btn-primary">9</button>
+  
+    <button value="+" onclick="takeOperation('+')"  class="btn btn-info">+</button>
+    <button value="-" onclick="takeOperation('-')"  class="btn btn-info">-</button>
+  <br> 
+  <button value="×" onclick="takeOperation('*')"  class="btn btn-info">×</button>
+    <button value="/" onclick="takeOperation('/')"  class="btn btn-info">/</button>
+    <button value="=" onclick="takeOperation('=')" id="equal"  class="btn btn-success">=</button>
+   <button value="clear" onclick="takeOperation('clear')" id="equal"  class="btn btn-danger">clear</button>
+  
+  
+</div>
+<!--按键区域结束-->
+
+</div>
+  </div>
+</body>
+    <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.js'></script>
+
+        <script src="js/index.js"></script>
+
+    
+    
+    
+  </body>
+</html>

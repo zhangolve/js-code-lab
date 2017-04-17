@@ -1,0 +1,44 @@
+/*
+TO-DO-LIST
+1我怀疑在bootstrap按键的icon里面有对应的数字和加减乘除操作icon
+2使用bootstrap进行按键分区
+3屏幕层应该加上边框
+*/
+
+#screen{
+  height:100px;
+  
+  
+}
+
+#allcontent{
+/*
+  border-left:0px;
+  border-right:0px;
+  border-top:50px;
+  margin-left:0px;
+  margin-right:200px;
+  border-style:solid;
+  border-width:2px;
+  */
+  text-align:center;
+   background-color:grey;
+}
+.body{
+  text-align:center;
+ 
+}
+
+p{
+font-size:20px;
+color:blue;
+text-align:center;
+
+}
+
+input{
+height:60px;
+
+}
+
+/*在审查元素中选择移动设备，可以用于模拟移动设备的情况*/
