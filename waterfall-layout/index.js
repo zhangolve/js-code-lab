@@ -9,6 +9,22 @@ var content=document.getElementById('content');
 var waterfall=(function(){
 var id=1;
 return function(){
+	var animate=document.createElement('div');
+	animate.classList.add('animate');
+	
+	var trans='<div class="tran-1">'+
+	'<div class=" tran"></div>'+
+	'</div>'+
+	'<div class="tran-2">'+
+	'<div class="tran"></div>'+
+	'</div>'+
+	'<div class="tran-3">'+
+	'<div class="tran"></div>'+
+	'</div>';
+	animate.innerHTML=trans;
+	content.appendChild(animate);
+
+
 $.ajax({
 	url:'https://jsonplaceholder.typicode.com/posts?userId='+id,
 	type:"GET",
@@ -28,7 +44,8 @@ $.ajax({
 			li.appendChild(h1);
 			li.appendChild(div);
 			ul.appendChild(li);
-		})
+		});
+		animate.style.display="none";
 		content.appendChild(ul);
 	}
 });

@@ -31,4 +31,24 @@
 
 - 调用一次api已经实现，接下来就是当鼠标滚轮滚动最底下的时候，来实现继续调用。
 
+- http://www.cnblogs.com/ArthurPatten/p/3405352.html 滚动到页面底部的监听
+
+- 我们对一个元素里面添加多个div元素，并不需要频繁执行createElement()，只需要在innerHTML里面构造出一个模板字符串即可
+
+
+		var animate=document.createElement('div');
+		animate.classList.add('animate');
+		
+		var trans='<div class="tran-1">'+
+		'<div class=" tran"></div>'+
+		'</div>'+
+		'<div class="tran-2">'+
+		'<div class="tran"></div>'+
+		'</div>'+
+		'<div class="tran-3">'+
+		'<div class="tran"></div>'+
+		'</div>';
+		animate.innerHTML=trans;
+		content.appendChild(animate);
+
 
