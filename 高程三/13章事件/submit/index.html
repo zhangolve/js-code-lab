@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> submit event  </title>
+</head>
+<body>
+
+<form>
+<input type="text" name="google">
+<input type="submit" name="btnK">
+</form>
+<script type="text/javascript">
+	var google=document.querySelector('input[name=google]');
+	var form=document.querySelector('form');
+	btnK=document.querySelector('input[name=btnK]');
+	//btnK.onsubmit=function(e){ 无效，至少是要在他的上一级上才能进行监听
+		//这一点也很容易误导，因为在这一级上onclick是有效的。
+		//当然，也可以是根据事件冒泡的规则，来往上冒泡监听的。
+		form.onsubmit=function(e){
+			//alert('fefe');
+			var q=google.value;
+		
+		window.open("https://www.google.com/webhp?hl=zh-CN&ictx=2&sa=X&ved=0ahUKEwi_9_f5ra_TAhVorVQKHRaeDJUQPQgD#newwindow=1&hl=zh-CN&q="+q);
+	}
+	window.onsubmit=function(e){
+		window.open('http://www.baidu.com');
+	}
+
+/*
+当出现两次监听submit事件的时候，两个事件不会覆盖，都会发生。
+*/
+
+</script>
+</body>
+</html>
