@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> bubble 1  what's target ?</title>
+</head>
+<body>
+<ul id="ul">
+	<li><button>0</button></li>
+	<li><button>1</button></li>
+	<li><button>2</button></li>
+	<li><button>3</button></li>
+	<li><button>4</button></li>
+	<li><button>5</button></li>
+	<li><button>6</button></li>
+	<li><button>7</button></li>
+	<li><button>8</button></li>
+	<li id="9"><button>9</button></li>
+
+
+</ul>
+<script type="text/javascript">
+		ul=document.getElementById('ul');
+	
+
+		console.log(ul);
+
+		ul.onclick=function(e){
+			console.log(e.target.parentElement  );  //这个时候的target  是那个button元素，我们是想要将他的父元素li移除的，因此要找到父元素
+			 //当然也要记住一些方法属性名，比如这里是 parentElement，而不是 parent
+			var removed=e.target.parentElement;
+			ul.removeChild(removed);
+			 	//console.log(li.firstChild);  //9 可以看出来是等效的
+		}
+
+</script>
+</body>
+</html>
+
+<!--
+2017.04.20
+
+
+
+我当时写的脚本，用到了点击某个li将之删除，当然在这里也是很好实现的。
+然而面试也忘记了。
+
+这种通过父元素子元素之间关系的方式来寻找和确定元素的方式显然是更好一点。
+相比于对每个元素设置id的方式来说。
+
+-->

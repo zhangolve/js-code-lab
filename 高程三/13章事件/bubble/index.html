@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> bubble 1  what's target ?</title>
+</head>
+<body>
+<ul id="ul">
+	<li><button>0</button></li>
+	<li><button>1</button></li>
+	<li>2</li>
+	<li>3</li>
+	<li>4</li>
+	<li>5</li>
+	<li>6</li>
+	<li>7</li>
+	<li>8</li>
+	<li id="9"><button>9</button></li>
+
+
+</ul>
+<script type="text/javascript">
+		ul=document.getElementById('ul');
+		li=document.getElementById('9');
+
+		console.log(ul);
+
+		ul.onclick=function(e){
+			console.log(e.target.firstChild);  //这个时候的target  
+			 //指示的就是这个被点击的元素，相当于是li.firstChild ,因此firstChild出现的是元素内部内容。
+			 //我们也可以进行等效看一下
+			 	console.log(li.firstChild);  //9 可以看出来是等效的
+		}
+
+</script>
+</body>
+</html>
+
+<!--
+2017.04.20
+
+让我们来看一下，如果	
+
+<li id="9"><button>9</button></li> 
+li=document.getElementById('9');
+	console.log(li.firstChild); 
+这个时候打印的是<button>9<button>这个并不意外。
+
+但是target指的是li的话，那么按照li.firstChild等效的方式的话，当
+点击第一个按钮的时候，打印的实际上也应该是
+<button>0</button>
+这里实际上我自己有个误区
+我总是觉得应当是前后一致的，
+比如我看到后面几个都是li元素套一个text，以为就都是如此了。
+但是事实是，
+在这里，当第一个li内部套了一个button的时候，点击的对象，也就是这个target
+也就是这个最内层的发生位置，也已经是这个button元素了，因此我们只需要取出这个
+button元素的内部文本就ok了。	
+
+所以，我们除了使用firstChild这样的方法，应该也是可以使用innerHTML的。
+实际测试没有问题
+console.log(e.target.firstChild); 
+
+这也是一个面试题了，面试前一天
+我就已经写过一个脚本，用过child和innerHTML这些属性了，但是却还是
+不够灵活。
+
+我当时写的脚本，用到了点击某个li将之删除，当然在这里也是很好实现的。
+然而面试也忘记了。
+
+-->

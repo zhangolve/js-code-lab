@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> 当点击一个li的时候，让其他兄弟li的背景颜色发生改变</title>
+</head>
+<style type="text/css">
+	button{
+		background-color: red;
+	}
+</style>
+<body>
+<ul id="ul">
+	<li><button>0</button></li>
+	<li><button>1</button></li>
+	<li><button>2</button></li>
+	<li><button>3</button></li>
+	<li><button>4</button></li>
+	<li><button>5</button></li>
+	<li><button>6</button></li>
+	<li><button>7</button></li>
+	<li><button>8</button></li>
+	<li><button>9</button></li>
+
+
+</ul>
+<script type="text/javascript">
+		
+
+		ul=document.getElementById('ul');
+		var btns= document.getElementsByTagName('button');
+		ul.onclick=function(e){
+			var removed=e.target;
+			var btnsArr=Array.prototype.slice.call(btns);
+			console.log(Array.isArray(btnsArr) );
+
+			// for(var i=0;i<btns.length;i++)
+			// {
+			// 	btns[i].style.backgroundColor="black";
+
+			// }
+
+			btnsArr.map( (item)=>item.style.backgroundColor="black" );
+			
+			//btns.style.backgroundColor="black";
+			removed.style.backgroundColor='red';
+		}
+
+</script>
+</body>
+</html>
+
+<!--
+2017.04.20
+//btns.forEach((btn)=>btn.style.backgroundColor="red"); 
+//这里无论是使用forEach还是使用map都是错误的。
+
+//因为btns是一个htmlCollection对象，并不是一个object，
+其实今天面试也有问道这几者的区别，然而我并没有往这个方向上答。
+
+
+需要将htmlCollection对象 转换成Array这种数据类型的，
+然后才能够使用map和foreach方法
+
+
+
+
+-->
