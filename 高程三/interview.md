@@ -1017,3 +1017,113 @@ foo(obj,{"a","c"});
 
 
 
+# 阿里电话面试 (2017.04.24)
+
+## react生命周期
+
+
+生命周期函数
+
+装载组件触发
+
+componentWillMount
+
+只会在装载之前调用一次，在 render 之前调用，你可以在这个方法里面调用 setState 改变状态，并且不会导致额外调用一次 render
+componentDidMount
+只会在装载完成之后调用一次，在 render 之后调用，从这里开始可以通过 ReactDOM.findDOMNode(this) 获取到组件的 DOM 节点。
+更新组件触发
+
+这些方法不会在首次 render 组件的周期调用
+componentWillReceiveProps
+shouldComponentUpdate
+componentWillUpdate
+componentDidUpdate
+
+卸载组件触发
+componentWillUnmount
+
+## AMD 和 commonjs哪一个是异步的？为什么要用commonjs，为什么要用AMD？
+
+CommonJS modules were designed with server development in mind. Naturally, the API is synchronous. In other words, modules are loaded at the moment and in the order they are required inside a source file.
+
+commonjs 是同步的，而AMD就像他的名字所说的那样，是Asynchronous Module defination 的。
+
+AMD 是异步的
+
+看看commonjs的问题：
+
+It also meant they placed more of a burden on web developers to implement the format, and the stop-gap measures meant debugging was worse. eval-based debugging or debugging multiple files that are concatenated into one file have practical weaknesses. Those weaknesses may be addressed in browser tooling at some point in the future, but the end result: using CommonJS modules in the most common of JS environments, the browser, is non-optimal today.
+
+由于commonjs的同步性，造成阻塞，因此在浏览器端的表现不佳，当然由于commonjs的简单易用，因此nommonjs仍然是最普遍的一款模块加载器。
+
+因此，这个时候AMD的异步性就凸显出来了，能够用在浏览器端的动态加载上，能够实现异步，不会出现卡顿。
+
+
+
+## 受控组件和非受控组件
+
+###  1. 受控组件
+
+
+受控组件也被称做“受限组件”或“受约束组件”。受控组件与其它React组件行为一样，其所有状态属性的更改都由React 来控制，也就是说它根据组件的props和state来改变组件的UI表现形式。
+
+对于一个<input>受限组件，当我们设置其value值。组件渲染后，其value值会始终保持不变：
+
+	var MyInput = React.createClass({
+	  render: function() {
+	    return <input type="text" value="itbilu.com" />;
+	  }
+	});
+
+	ReactDOM.render(
+	  <MyInput />,
+	  document.getElementById('example')
+	);
+
+
+上面的代码渲染后是一个值为itbilu.com的 input 元素,用户在渲染后的元素里中输入任何值都不起作用，这是因为其值是受React 控制的，React已经为其赋值为itbilu.com。
+
+受控组件的优势在于，我们可以非常容易实现对用户输入的验证，或者对用户交互做额外的处理。
+
+如，对用户输入做截断处理：
+
+	handleChange: function(event) {
+	  this.setState({value: event.target.value.substr(0, 140)});
+	}
+
+
+上面的代码会接受用户输入，并截取前 140 个字符
+
+### 非受控组件
+
+非受控组件相对于普通React 组件或受控组件来说是一种反模式。非受控组件不受React 的状态控制（state或props）。
+
+如，对于<input>来说，当我们不设置其value或设置为null时就是一个非受控组件。非受控的组件渲染出来的元素直接反应用户输入，其值会随用户输入的改变而改变：
+
+	var MyInput = React.createClass({
+	  render: function() {
+	    return <input type="text" />;
+	  }
+	});
+
+	ReactDOM.render(
+	  <MyInput />,
+	  document.getElementById('example')
+	);
+
+
+非受控组件依然可以设置初始值。如，我们可以<input>的defaultValue属性：
+
+	render: function() {
+	  return <input type="text" defaultValue="itbilu.com" />;
+	}
+
+
+# react 高阶组件
+
+
+http://www.jianshu.com/p/4780d82e874a
+
+
+http://www.cnblogs.com/qingmingsang/articles/6223385.html
+
