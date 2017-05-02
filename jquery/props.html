@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>prop demo</title>
+  <style>
+  p {
+    margin: 20px 0 0;
+  }
+  b {
+    color: blue;
+  }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body>
+ 
+<input id="check1" type="checkbox" checked="checked"/>
+<input type="text" id="focus" autofocus/>
+<label for="check1">Check me</label>
+<p id="checkp"></p>
+ <p id="focusp"></p>
+<script>
+
+$( "#check1" ).change(function() {
+  var input=document.getElementsByTagName('input')[0];
+  var checked=input.getAttribute('checked');
+  console.log(input);
+  console.log(checked);
+
+  var $input = $( this );
+  $( "#checkp" ).html(
+    ".attr( \"checked\" ): <b>" + $input.attr( "checked" ) + "</b><br>" +
+    ".prop( \"checked\" ): <b>" + $input.prop( "checked" ) + "</b><br>" +
+    ".is( \":checked\" ): <b>" + $input.is( ":checked" ) + "</b>" );
+}).change();
+$("#focus").change( function(){
+var focusAttr=$("#focus").attr("autofocus");
+var focusProp=$("#focus").prop("autofocus");
+$('#focusp').html( focusAttr + focusProp );
+}).change();
+</script>
+ 
+</body>
+</html>
