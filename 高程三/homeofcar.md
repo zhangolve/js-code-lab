@@ -14,7 +14,7 @@ http://www.zhangxinxu.com/wordpress/2011/06/html5%E8%87%AA%E5%AE%9A%E4%B9%89%E5%
 ## map 和reduce 的区别
 
 作者：尤雨溪
-链接：https://www.zhihu.com/question/24927450/answer/29478982
+
 来源：知乎
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
