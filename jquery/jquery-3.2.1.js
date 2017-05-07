@@ -82,6 +82,10 @@ var support = {};
 		script.text = code;
 		doc.head.appendChild( script ).parentNode.removeChild( script );
 	}
+	//定义了一个全局的方法。先创建了一个脚本，当创建完毕的时候，不同于innerHTML，这个时候就能够执行脚本了，然后我们再移除这段已经执行过的脚本
+	//就是理所应当的了。
+	//我们知道使用 jQuery html() 方法时插入的脚本总是执行的，jQuery 会检查传入的内容，并执行其中的每一个脚本
+	// http://harttle.com/2017/01/16/dynamic-script-insertion.html
 /* global Symbol */
 // Defining this global in .eslintrc.json would create a danger of using the global
 // unguarded in another place, it seems safer to define global only for this module
@@ -194,9 +198,14 @@ jQuery.fn = jQuery.prototype = {
 	splice: arr.splice
 };
 
+//Description: Merge the contents of two or more objects together into the first object.
+//$.extend( object1, object2 );\
+//argument是给他传入的参数
+//extend方法的作用是把除第一个参数之外的其他参数合并到第一个参数之中。
+//在这里$ 就相当于是jQuery
 jQuery.extend = jQuery.fn.extend = function() {
 	var options, name, src, copy, copyIsArray, clone,
-		target = arguments[ 0 ] || {},
+		target = arguments[ 0 ] || {}, //找到第一个参数，作为目标
 		i = 1,
 		length = arguments.length,
 		deep = false;
@@ -304,6 +313,7 @@ jQuery.extend( {
 
 		// Detect obvious negatives
 		// Use toString instead of jQuery.type to catch host objects
+		//这里可以看出来Object.prototype.toString.call(obj) 的用法，只有当是json的时候才会返回 "[object Object]"
 		if ( !obj || toString.call( obj ) !== "[object Object]" ) {
 			return false;
 		}
@@ -321,9 +331,10 @@ jQuery.extend( {
 	},
 
 	isEmptyObject: function( obj ) {
-
+		//用来判断一个空的对象json
 		/* eslint-disable no-unused-vars */
 		// See https://github.com/eslint/eslint/issues/6125
+		// 这里定义了一个变量name，如果obj为空，则不会进入for循环之中 
 		var name;
 
 		for ( name in obj ) {
@@ -331,13 +342,14 @@ jQuery.extend( {
 		}
 		return true;
 	},
-
+	//终于找到type方法的定义了，使用方法jquery.type,输入一个obj对象，如果输入为空，则返回一个空的字符串
 	type: function( obj ) {
 		if ( obj == null ) {
 			return obj + "";
 		}
 
 		// Support: Android <=2.3 only (functionish RegExp)
+		// 使用二元选择操作，进行返回，得到的是最终的类型
 		return typeof obj === "object" || typeof obj === "function" ?
 			class2type[ toString.call( obj ) ] || "object" :
 			typeof obj;
@@ -3817,6 +3829,7 @@ jQuery.extend( {
 		} );
 
 		// Make the deferred a promise
+		// 可以看到即便是jquery也使用了promise，对其进行了一定封装
 		promise.promise( deferred );
 
 		// Call given func if any
@@ -3829,6 +3842,8 @@ jQuery.extend( {
 	},
 
 	// Deferred helper
+
+	//当多个ajax请求发出时，当多个ajax请求都有相应时，采取相应的动作，这个时候可以使用when,他相当于promise.all() 
 	when: function( singleValue ) {
 		var
 
@@ -3905,6 +3920,7 @@ jQuery.readyException = function( error ) {
 
 
 // The deferred used on DOM ready
+// 这个是我们见到的最常见的ready方法，里面传入一个fn函数，从这里的源代码我们也可以看清楚了
 var readyList = jQuery.Deferred();
 
 jQuery.fn.ready = function( fn ) {

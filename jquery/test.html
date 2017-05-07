@@ -21,7 +21,29 @@
 			$github.html(res.current_user_url);
 			}
 		})
-	})
+	});
+	var obj1 = {a:"1",b:"2"},
+		obj2 = {c:"3"},
+		obj3 = {d:"4"};
+	$.extend(obj1,obj2,obj3);
+	console.log(obj1);
+/*
+extend这个方法，其实是一个js的工具方法，有点像是lodash里面的方法，他并不是用来对dom进行处理的。
+*/	
+/*
+a
+:
+"1"
+b
+:
+"2"
+c
+:
+"3"
+d
+:
+"4"
+*/
 </script>
 </body>
 </html>
