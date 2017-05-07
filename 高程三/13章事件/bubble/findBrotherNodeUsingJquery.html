@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> 当点击一个li的时候，让其他兄弟li的背景颜色发生改变</title>
+</head>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+<style type="text/css">
+	button{
+		background-color: red;
+	}
+</style>
+<body>
+<ul id="ul">
+	<li><button>0</button></li>
+	<li><button>1</button></li>
+	<li><button>2</button></li>
+	<li><button>3</button></li>
+	<li><button>4</button></li>
+	<li><button>5</button></li>
+	<li><button>6</button></li>
+	<li><button>7</button></li>
+	<li><button>8</button></li>
+	<li><button>9</button></li>
+
+
+</ul>
+<script type="text/javascript">
+		$(document).ready(function(){
+			$('ul').bind("click",function(e){
+				$('button').css("background-color","red");
+				$li=$(e.target).parent() ;
+			
+			//	console.log($li);
+				$li.siblings().children().css("background-color","black");
+
+			})
+		})
+
+		
+</script>
+</body>
+</html>
+
+<!--
+
+2017.05.07
+阅读《锋利的Jquery》 写作练习
+
+
+
+-->
