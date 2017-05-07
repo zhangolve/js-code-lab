@@ -24,6 +24,7 @@
 		// This accentuates the need for the creation of a real `window`.
 		// e.g. var jQuery = require("jquery")(window);
 		// See ticket #14549 for more info.
+		// 使用了闭包，因此我们是不能得到jquery内部的所有变量的，只能找到闭包暴露出来的一些方法。
 		module.exports = global.document ?
 			factory( global, true ) :
 			function( w ) {
@@ -111,6 +112,7 @@ var
 		return letter.toUpperCase();
 	};
 
+//给原型链上添加fn这个原型 ,对应地也就能够产生$().get ,$().each 这些方法了。
 jQuery.fn = jQuery.prototype = {
 
 	// The current version of jQuery being used
@@ -124,7 +126,7 @@ jQuery.fn = jQuery.prototype = {
 	toArray: function() {
 		return slice.call( this );
 	},
-
+	//Objcet.prototype.slice.call(this)
 	// Get the Nth element in the matched element set OR
 	// Get the whole matched element set as a clean array
 	get: function( num ) {
@@ -274,7 +276,7 @@ jQuery.extend( {
 	},
 
 	noop: function() {},
-
+	//判断一个对象是否是一个函数 
 	isFunction: function( obj ) {
 		return jQuery.type( obj ) === "function";
 	},
@@ -520,11 +522,14 @@ function( i, name ) {
 } );
 
 function isArrayLike( obj ) {
-
+	//我们知道ArrayLike 对象，他的特点是能够被遍历，是使用for循环的。但是却不能够使用Array的一些方法，这个时候，为了我们能够在其上使用
+	//Array的一些方法，我们也就使用了转化，但是这个前提是先要判断是否是这样的对象。常见的这样的对象，比如是var cl=document.getElementsByClassName("example");
 	// Support: real iOS 8.2 only (not reproducible in simulator)
 	// `in` check used to prevent JIT error (gh-2145)
 	// hasOwn isn't used here due to false negatives
 	// regarding Nodelist length in IE
+	// 注意在这里定义多个变量的时候，并不是每一个变量都用分好分隔的。
+
 	var length = !!obj && "length" in obj && obj.length,
 		type = jQuery.type( obj );
 
@@ -545,6 +550,31 @@ var Sizzle =
  * http://jquery.org/license
  *
  * Date: 2016-08-08
+ * 
+ Selector Features
+
+CSS 3 Selector support
+Full Unicode support
+Escaped selector support #id\:value
+Contains text :contains(text)
+Complex :not :not(a#id)
+Multiple :not :not(div,p)
+Not attribute value [name!=value]
+Has selector :has(div)
+Position selectors :first, :last, :even, :odd, :gt, :lt, :eq
+Easy Form selectors :input, :text, :checkbox, :file, :password, :submit, :image, :reset, :button
+Header selector :header
+Code Features
+
+
+Provides meaningful error messages for syntax problems
+Uses a single code path (no XPath)
+Uses no browser-sniffing
+Caja-compatible code
+上面介绍了sizzle.js的一些特性和优点，从中也可以看出来，他把css3的一些选择器的语法规则用到了JS上面
+来让整个选择的过程更加的快捷，对比原生JS的话，其实原声JS的getQuerySelector("")就有借鉴这样的思路和方法。
+不过他只能支持到IE9 。
+
  */
 (function( window ) {
 
@@ -1147,8 +1177,9 @@ setDocument = Sizzle.setDocument = function( node ) {
 
 	/* getElement(s)By*
 	---------------------------------------------------------------------- */
-
+	
 	// Check if getElementsByTagName("*") returns only elements
+	//做这个检查当然也是因为IE8及其一下版本IE并不支持这个语法
 	support.getElementsByTagName = assert(function( el ) {
 		el.appendChild( document.createComment("") );
 		return !el.getElementsByTagName("*").length;

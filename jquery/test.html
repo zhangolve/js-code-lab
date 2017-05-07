@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>  this is a demo for ajax </title>
+</head>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+<body>
+<div id="github"> </div>
+<script type="text/javascript">
+ 	var $github=$('#github');
+	$(document).ready(function () {
+		$.ajax({
+			type:"GET",
+			url:"http://api.github.com",
+			dataType:"JSON",
+			success:function(res){
+			console.log(res);
+			$github.html(res.current_user_url);
+			}
+		})
+	})
+</script>
+</body>
+</html>
