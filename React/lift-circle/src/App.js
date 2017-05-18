@@ -17,17 +17,19 @@ class App extends Component {
   }
 
   componentWillMount() {
+    this.setState({number: 2})
     console.log('component will  mount ')
   }
   componentDidMount() {
     console.log('component did mount ');
+    console.log(this.state.number);
   }
   shouldComponentUpdate() {
     // 组件是否需要更新，我们可以举一个最简单的例子，如果在这个点击增加的事件中，限制最大数字为10，就可以使用这个生命周期方法来实现
     // 注意这里的判断条件是大于9，而不是大于10 。也因为实际上改变state是在执行这个方法之前进行的。 另外还需要注意的一点是虽然显示出来的数字最大是10
-    // 了，但是我们可以通过控制台观察到，实际上state里面的number值仍然在伴随着click事件的触发而变大
-    // 只是因为状态没有更新，导致没有展示出来而已。 因此，我们可以做下面这样的一个实验，最初点击一次，下面展示的数字增加1，到10
-    // 的时候，点击之后下面的数字不发生改变，继续点击，点击到20次， 下面的数字又变成可动状态。
+    // 了，但是我们可以通过控制台观察到，实际上state里面的number值仍然在伴随着click事件的触发而变大 只是因为状态没有更新，导致没有展示出来而已。
+    // 因此，我们可以做下面这样的一个实验，最初点击一次，下面展示的数字增加1，到10 的时候，点击之后下面的数字不发生改变，继续点击，点击到20次，
+    // 下面的数字又变成可动状态。
 
     if (this.state.number > 9 && this.state.number < 20) {
       this.tips = "equals 10 11-20";
