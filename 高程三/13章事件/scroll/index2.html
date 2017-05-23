@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> scroll it and when click it and stop scroll</title>
+</head>
+<style type="text/css">
+	::-webkit-scrollbar {
+	    width: 40px;
+	    height: 40px;
+	    background:rgba(0,0,0,0.1);
+	    color: red;
+	}
+	html{
+		height:100%;
+	}
+	body{
+		height:800%;
+	}
+	div{
+		text-align: right;
+		text-decoration: underline;
+	}
+	div:nth-child(odd){
+		background-color: yellow;
+	}
+	a:nth-child(odd){
+	color: red;
+	width:100%;
+	}
+	a:nth-child(even){
+	color: blue;	
+	width: 100%;
+	}
+</style>
+<body>
+<div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div>
+<div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div>
+<div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div><div>
+<a href="http://www.baidu.com">www.baidu.com</a>
+</div>
+<div>
+<a href="http://www.qq.com">www.qq.com</a>
+</div>
+<script  src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+<script>
+	function handler() {
+  event.preventDefault();
+  console.log('canceled');
+}
+	$(window).scroll(function(){
+		document.addEventListener("click",handler,false);
+		console.log('scrolling');
+	});
+	$(window).scroll(function() {
+    clearTimeout($.data(this, 'scrollTimer'));
+    $.data(this, 'scrollTimer', setTimeout(function() {
+        // do something
+		document.removeEventListener("click",handler,false);
+        console.log("Haven't scrolled in 250ms!");
+    }, 1000));
+});
+
+
+</script>
+
+</body>
+
+
+
+
+</html>
