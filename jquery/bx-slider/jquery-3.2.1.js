@@ -335,6 +335,9 @@ jQuery.extend( {
 		/* eslint-disable no-unused-vars */
 		// See https://github.com/eslint/eslint/issues/6125
 		// 这里定义了一个变量name，如果obj为空，则不会进入for循环之中 
+		// 这个问题之前在与同事交流的时候也有遇到过，竟然想不起来这个方法了。
+		//另外的方法是 Object.keys(bar) 其中bar 是一个对象，如果是空的，则会返回一个空的数组。
+		// 使用lodash 工具库的话，对应的是_.isEmpty() 方法 
 		var name;
 
 		for ( name in obj ) {
