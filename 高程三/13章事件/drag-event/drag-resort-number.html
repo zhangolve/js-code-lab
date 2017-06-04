@@ -1,0 +1,40 @@
+<!--
+    使用js对1-10随机排列，然后再使用拖动人工正确地从小到大排列顺序
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta lang="en"></meta>
+    <title>drag and resort number </title>
+</head>
+<body>
+    <h2>this is a random resort game</h2>
+    <ul id="container">
+        
+    </ul>
+    <div id="testArea"></div>
+    <script>
+    window.onload=function(){
+        container=document.getElementById('container');
+        var i=0;
+        var numArr=[];
+        
+      while(true){
+        var  ranNum=Math.round( Math.random()*10);
+                if( numArr.indexOf(ranNum)==-1 &&ranNum!==0){
+                    numArr.push(ranNum);
+                }
+                if(numArr.length==10){
+                    console.log(numArr);
+                    break;
+                }
+                
+        }
+
+        var numStr=JSON.stringify(numArr);
+        var testArea=document.getElementById('testArea');
+        testArea.innerText=numStr;
+    }
+    </script>
+</body>
+</html>
