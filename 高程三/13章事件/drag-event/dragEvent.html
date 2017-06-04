@@ -1,6 +1,13 @@
+<!--
+    20170604 drag and drop event 
+    拖动和放置事件搭配使用
+    dropzone 是放置区域
+
+-->
+
 <div class="dropzone">
   <div id="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)">
-    This div is draggable
+    draggable
   </div>
 </div>
 <div class="dropzone"></div>
@@ -68,8 +75,11 @@
 
   document.addEventListener("drop", function( event ) {
       // prevent default action (open as link for some elements)
+      console.log('drop event',event.target);
       event.preventDefault();
       // move dragged elem to the selected drop target
+      // 如果放置的区域的恰好是dropzone，那么这个时候，则能够放下这个被拖动的元素
+      //否则仍然在原位置
       if ( event.target.className == "dropzone" ) {
           event.target.style.background = "";
           dragged.parentNode.removeChild( dragged );
@@ -78,3 +88,16 @@
     
   }, false);
 </script>
+
+<!--
+from mdn
+https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer
+
+DataTransfer
+The DataTransfer object is used to hold the data that is being dragged during a drag and drop operation.
+It may hold one or more data items, each of one or more data types. For more information about drag and drop, see HTML Drag and Drop API.
+This object is available from the dataTransfer property of all drag events. It cannot be created separately (i.e. there is no constructor for this object).
+
+DataTransfer对象的作用是用来保存被拖放的数据
+
+-->

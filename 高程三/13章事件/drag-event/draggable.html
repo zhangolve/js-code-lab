@@ -1,0 +1,51 @@
+<!--
+    20170604 
+    到目前为止实际上已经接触了很多种写样式的方法了。
+    包括：
+    内嵌的样式
+    外联的样式
+    jsx里面的样式等
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <mata lang="en"></mata>
+    <title>draggable test demo</title>
+</head>
+<body>
+ <p id="p1" draggable="true" ondragstart="dragstart_handler(event);">This element is draggable.</p>
+<div id="dropzone" style='width:300px;height:200px;background-color:red ;position:absolute;top:100px    '></div>
+<script>
+    function dragstart_handler(ev) {
+ console.log("dragStart");
+ // Add the target element's id to the data transfer object
+ ev.dataTransfer.setData("text/plain", ev.target.id);
+ console.log(ev.dataTransfer);
+
+}
+var p1=document.getElementById('p1');
+var dropZone=document.getElementById('dropzone');
+dropzone.addEventListener("drop",function(e){
+console.log(e.target);
+console.log('dropped');
+dropZone.appendChild(p1);
+
+console.log(p1.draggable);
+p1.draggable=false;
+},false);
+
+dropZone.addEventListener('dragover',function(e){
+e.preventDefault();
+e.dataTransfer.dropEffect="move";
+console.log('dragover');
+})
+
+</script>
+</body>
+
+</html>
+<!--
+    这里注意一个要点，我们是把dragstart事件添加到被拖动的元素上面
+    而把drop,dragleave,dragover事件添加到待放置的区域上面,这样来处理保证来判断元素能够被放在合适的位置。
+    drop 事件要和dragover事件搭配使用
+-->
