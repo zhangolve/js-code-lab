@@ -79,13 +79,13 @@ class App extends Component {
           </span>
 
         </p>
-        <p>
+    
           <ul>
             <li>name: {this.discription.name}</li>
             <li>age: {this.discription.age}</li>
             <li>location: {this.discription.location}</li>
           </ul>
-        </p>
+ 
       </div>
     );
   }
