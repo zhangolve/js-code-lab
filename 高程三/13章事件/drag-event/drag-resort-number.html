@@ -3,38 +3,79 @@
 -->
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta lang="en"></meta>
     <title>drag and resort number </title>
 </head>
+
 <body>
+    <style>
+        li {
+            height: 50px;
+            background-color: blue;
+            text-align: center;
+        }
+    </style>
     <h2>this is a random resort game</h2>
     <ul id="container">
-        
+
     </ul>
     <div id="testArea"></div>
     <script>
-    window.onload=function(){
-        container=document.getElementById('container');
-        var i=0;
-        var numArr=[];
-        
-      while(true){
-        var  ranNum=Math.round( Math.random()*10);
-                if( numArr.indexOf(ranNum)==-1 &&ranNum!==0){
+        window.onload = function () {
+            container = document.getElementById('container');
+            var i = 0;
+            var numArr = [];
+
+            while (true) {
+                var ranNum = Math.round(Math.random() * 10);
+                if (numArr.indexOf(ranNum) == -1 && ranNum !== 0) {
                     numArr.push(ranNum);
                 }
-                if(numArr.length==10){
+                if (numArr.length == 10) {
                     console.log(numArr);
                     break;
                 }
-                
-        }
 
-        var numStr=JSON.stringify(numArr);
-        var testArea=document.getElementById('testArea');
-        testArea.innerText=numStr;
-    }
+            }
+
+            // var numStr=JSON.stringify(numArr);
+            var container = document.getElementById('container');
+            var liHTML = "";
+            for (var i = 0; i < numArr.length; i++) {
+                liHTML += "<li  draggable=true  class='dragzone'   >" + numArr[i] + "</li>";
+            }
+            container.innerHTML = liHTML;
+
+            var dragEle=null;
+            document.addEventListener('dragstart', function (e) {
+                e.dataTransfer.setData('text/plain', null);
+                e.target.style.opacity=0.8;
+                dragEle=e.target;
+            });
+
+            document.addEventListener("dragover", function (e) {
+                e.preventDefault();
+                e.dataTransfer.dropEffect="move";
+            });
+            document.addEventListener("drop",function(e){
+                e.preventDefault();
+                if(e.target.className=="dragzone"){
+                    var droppedArea=e.target;
+                    var  middleText =   droppedArea.innerText;
+                    droppedArea.innerText=dragEle.innerText;
+                    dragEle.innerText=middleText;
+                
+                }
+                 dragEle.style.opacity=null;
+                 dragEle=null;
+
+
+            })
+
+        }
     </script>
 </body>
+
 </html>
