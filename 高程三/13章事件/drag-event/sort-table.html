@@ -1,0 +1,91 @@
+<!--
+    使用js对1-10随机排列，然后再使用拖动人工正确地从小到大排列顺序
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta lang="en"></meta>
+    <title>drag and resort number </title>
+</head>
+
+<body>
+      <script src="http://cdnjs.cloudflare.com/ajax/libs/Sortable/1.6.0/Sortable.min.js"></script>
+    <style>
+        li {
+            height: 50px;
+            background-color: blue;
+            text-align: center;
+        }
+        .dragzone:nth-child(even) {
+            background: #ff0000;
+        }
+        .dragzone:nth-child(odd) {
+            background: #0000ff;
+        }
+    </style>
+    <h2>sort table</h2>
+    <table >
+    <thead>
+        <tr >
+            <td>name</td>
+            <td>age</td>
+            <td>gender</td>                        
+        </tr>
+    </thead>
+    <tbody id="container" >
+        <tr class="dragzone" >
+            <td>zhang</td>
+            <td>20</td>
+            <td>male</td>            
+        </tr>
+         <tr class="dragzone" >
+            <td>tom</td>
+            <td>18</td>
+            <td>male</td>            
+        </tr>
+    </tbody>
+    </table>
+    <div id="testArea"></div>
+  
+    <script>
+        window.onload = function () {
+            container = document.getElementById('container');
+            // Sortable.create(container);
+            var dragEle=null;
+            document.addEventListener('dragstart', function (e) {
+                console.log('dragstart');
+                e.dataTransfer.setData('text/plain', null);
+                e.target.style.opacity=0.8;
+                dragEle=e.target;
+            });
+
+            document.addEventListener("dragover", function (e) {
+                e.preventDefault();
+                e.dataTransfer.dropEffect="move";
+            });
+            document.addEventListener("drop",function(e){
+                e.preventDefault();
+                if(e.target.className=="dragzone"){
+                    var droppedArea=e.target;
+                    var  middleText =   droppedArea.innerText;
+                    droppedArea.innerText=dragEle.innerText;
+                    dragEle.innerText=middleText;
+                
+                }
+                 dragEle.style.opacity=null;
+                 dragEle=null;
+            })
+
+        }
+    </script>
+</body>
+
+</html>
+
+<!--
+    从直观感觉上来看应该会有以下几点可以优化
+    1 随机数的生成过程
+    2 两个数位置的替换过程
+使用innerText在我看来可能并不是一个很好的选择
+-->
