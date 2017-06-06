@@ -14,14 +14,12 @@
 	a();
 
 
-这个时候，由于这个function a() 是直接在全局作用域之中被使用，因此这里的this就是指带的window对象。
+这个时候，由于这个function a() 是直接作用在全局作用域上面，因此这里的this就是指带的window对象。
 
 而如果是下面的情况呢?创建继承对象，就是引用来的了。这个时候，我们的this就不能好似全局变量window了，这个原因，当然也是因为我们必须保证他的动态性，一些根据设计模式而产生的库才有意义。
 
 		//console.log(newArr);
 		//这个时候，又是巧用this的时候了。
-
-
 		Array.prototype.compact = function() {
 		    var newArr = [];
 
