@@ -49,4 +49,8 @@ trigger
         这几行代码实际上起到了一个代理的作用，在实际测试中，也发现由于changeBkg这个自定义的事件也冒泡了，因此也
         alert了一个bubbled这样一个警告信息。而对于这个changeBkg自定义事件来说，他的target就是我们在
             $('#btn').trigger('changeBkg'); 这一步里面已经指定的#btn了。     
+
+            You can't. jQuery events works with event bubbling it doesn't support capturing.Also see
+            Because not all browsers support event capturing, especially IE. As jQuery is supposed to be cross-browser compatible, it cannot offer event capturing (it might be possible to simulate event capturing, 
+            but if it were easy, I'm sure they would have done it).
 -->
