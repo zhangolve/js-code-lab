@@ -1,0 +1,41 @@
+<!--20170612
+在公司和同事一起讨论的一个很有意思的话题
+事件的处理 冒泡和捕获阶段 attach  bubble 两个阶段 什么时候处理 
+preventDefault()的处理时机
+stopPropagation()的处理时机问题
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> stop and preventDefault </title>
+</head>
+
+<body id="body">
+	<div id="divtag">
+		<a id="atag" href="http://www.baidu.com">www.baidu.com</a>
+	</div>
+	<script type="text/javascript">
+		
+		var atag = document.getElementById('atag');
+		atag.addEventListener('click', function (e) {
+			//e.preventDefault();
+			alert('4');
+		}, true);
+		var divtag = document.getElementById('divtag');
+
+		divtag.addEventListener('click', function (e) {
+			alert('3');
+			e.stopPropagation();
+		},true);
+		var body = document.getElementById('body');
+		body.addEventListener('click', function (e) {
+			alert('2');
+		},true);
+		document.addEventListener('click', function () {
+			alert('1')
+		}, true);
+	</script>
+</body>
+
+</html>
