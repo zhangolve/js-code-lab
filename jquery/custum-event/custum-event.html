@@ -1,0 +1,52 @@
+<!--20170614-->
+<!--
+http://api.jquery.com/trigger/
+整个过程实际上经过了三次传递，
+首先是模拟触发了trigger 这个button上面的事件处理函数，而它的事件处理程序又触发了自定义事件changeBkg，
+这样也就最终实现了在初始化页面之后，改变一个div背景颜色的目的。
+
+-->
+<html>
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta name=”viewport” content=”width=device-width, initial-scale=1, maximum-scale=1″>
+    <title>
+        测试页面 custum event
+    </title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div id="container">
+        <button id="btn">
+click here
+</button>
+        <button id="trigger">
+trigger
+</button>
+    </div>
+    <script>
+        $('#btn').on('changeBkg', function () {
+            $(this).parent().css('background-color', '#333');
+        });
+        $('#container').on('changeBkg',function(){
+            alert('bubbled');
+        });
+        $('#trigger').on('click', function () {
+            $('#btn').trigger('changeBkg');
+        });
+        $('#trigger').trigger('click');
+    </script>
+</body>
+
+<!--
+    我们要注意      
+      $('#container').on('changeBkg',function(){
+            alert('bubbled');
+        });
+        这几行代码实际上起到了一个代理的作用，在实际测试中，也发现由于changeBkg这个自定义的事件也冒泡了，因此也
+        alert了一个bubbled这样一个警告信息。而对于这个changeBkg自定义事件来说，他的target就是我们在
+            $('#btn').trigger('changeBkg'); 这一步里面已经指定的#btn了。     
+-->
