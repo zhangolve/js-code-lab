@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ua test </title>
+</head>
+
+<body>
+    this is a ua test demo
+    <script>
+        // var ua = window.navigator.userAgent;
+        // var re = /57/;
+        // var jquery = document.createElement("script");
+        // jquery.type = "text/javascript";
+        // jquery.src = 'jquery-3.2.1.js';
+        // if (re.test(ua)) {
+        //     document.body.appendChild(jquery);
+        // }
+        // $(body.body).append('<h2>jquery has been loaded </h2>');
+    function loadScript(url, callback)
+{
+    // Adding the script tag to the head as suggested before
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = url;
+
+    // Then bind the event to the callback function.
+    // There are several events for cross browser compatibility.
+    script.onreadystatechange = callback;
+    script.onload = callback;
+
+    // Fire the loading
+    head.appendChild(script);
+};
+
+loadScript("jquery-3.2.1.js",function(){
+    $(document.body).append('<h2>jquery has been loaded</h2>');
+});    
+    </script>
+</body>
+
+</html>
+
+<!--
+参考：https://stackoverflow.com/questions/950087/how-do-i-include-a-javascript-file-in-another-javascript-file
+
+20170620
+这个方案最终并没有考虑
+理由是实际上，由于是使用了jinjia2的模板，因此判断ua可以在后台服务中进行，而不必在js里面判断ua。这个时候
+在后台，通过判断相应的ua值，来加载相应的script就很简单了。
+
+上面注释中这段代码是有问题的，理由是并不能够动态地加载。
+
+
+后面能够成功的实现，将需要注入的script放到了head里面，这个时候按照文档的执行顺序，这个注入的脚本也就能够来执行了。
+
+-->
