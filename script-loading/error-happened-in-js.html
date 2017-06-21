@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> a error happened in js never excatute next code </title>
+</head>
+<body>
+    <h1> 荷塘月色 </h1>
+
+    <p >
+        另外也需要注意的是，js是顺序执行的,当执行到一条语句，结果报错的时候，将不会再继续执行整个大段js中后面的部分了。
+    </p>
+    <p id="para">
+        本段不会改变，因为报了错，后面的代码不会执行。尽管我写了para.innerText='你就是看不到，哈哈哈'
+    </p>
+    <script>
+        console.log(abcdefghigklmn); //从这里就报错了，阻止了程序继续执行下去。试试看把本行错误注释掉呢？！
+        var para=document.getElementById('para');
+        para.innerText='你就是看不到，哈哈哈'
+    </script>
+</body>
+</html>
+
+<!--
+    20170621
+    另外也需要注意的是，js是顺序执行的，
+    当执行到一条语句，结果报错的时候，将不会再继续执行整个大段js中后面的部分了。
+-->
