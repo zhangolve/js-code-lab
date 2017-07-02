@@ -1,0 +1,49 @@
+<!--
+    20170702
+    深入理解dom js加载执行顺序
+-->
+<!DOCTYPE html>
+<html>
+<head>
+    <title> this is a test for daynamic create  and excaute  js </title>
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="depend-on-jq.js"></script>-->
+</head>
+<body>
+    <p>do you want an apple?</p>
+    <p>are you happy?</p>
+    <!--<script>
+        ['https://code.jquery.com/jquery-3.2.1.js','depend-on-jq.js'].forEach(  function(src) {
+            console.log('111',src);
+            let script=document.createElement('script');
+                 script.src=src;
+            const head =   document.getElementsByTagName('head')[0]
+            console.log(head);
+            head.appendChild(script);
+        })
+
+        /*
+        最终结果：
+        depend-on-jq.js:2 Uncaught ReferenceError: $ is not defined
+        */
+    </script>-->
+        <!--<script>
+        ['https://code.jquery.com/jquery-3.2.1.js','depend-on-jq.js'].forEach(  function(src) {
+            console.log('111',src);
+            let script=document.createElement('script');
+                 script.src=src;
+                 script.async=false; //不是字符串
+            const head =   document.getElementsByTagName('head')[0]
+            console.log(head);
+            head.appendChild(script);
+        })
+
+        /*
+        最终结果：
+       改变了段落文本内容，两个js按照顺序执行。cdn的下载会优先进行。其实还是相当于在<head>中添加了两段js代码的，
+       如同我上面head中注释的那样。
+    
+        */
+    </script>-->
+</body>
+</html>
