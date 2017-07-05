@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>test it</title>
+    <script>
+        function foo() {
+            return bar();
+        }
+        var bar = function () {
+            return baz();
+        }
+
+        function baz() {
+            debugger;
+            console.log('333');
+        }
+        foo();
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
