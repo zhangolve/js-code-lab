@@ -1,0 +1,15 @@
+<!<!DOCTYPE html>
+<html>
+<head>
+    <title> create element demo  </title>
+</head>
+<body>
+    <div id="root"> </div>
+    <script>
+      let  child = document.createElement('div');
+      child.innerHTML='<div>hello world</div>'
+      let root = document.getElementById('root');
+      root.appendChild(child); 
+    </script>
+</body>
+</html>
