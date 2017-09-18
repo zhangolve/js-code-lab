@@ -1,0 +1,31 @@
+/* Component API */
+// forceUpdate()
+
+class App extends React.Component{
+  constructor(){
+    super();
+    // this.state={value:''}
+    this.value='';
+    this.handleInput=this.handleInput.bind(this);
+  };
+ handleInput(e) {
+   // this.setState({
+   //   value:e.target.value
+   // }) 
+   
+   //this.value=e.target.value;
+   //console.log(this.value);
+ };
+  
+  render(){
+    return(
+      <div>
+      <input value={this.value} onChange={this.handleInput}/>
+      
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('app'));
+  // <input value={this.state.value} onChange={this.handleInput}/>
