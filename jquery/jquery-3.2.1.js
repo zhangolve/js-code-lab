@@ -3971,6 +3971,7 @@ jQuery.extend( {
 jQuery.ready.then = readyList.then;
 
 // The ready event handler and self cleanup method
+	// 这个方法很不错，自己把自己移除调
 function completed() {
 	document.removeEventListener( "DOMContentLoaded", completed );
 	window.removeEventListener( "load", completed );
@@ -3981,6 +3982,7 @@ function completed() {
 // after the browser event has already occurred.
 // Support: IE <=9 - 10 only
 // Older IE sometimes signals "interactive" too soon
+// 只针对老的ie 浏览器这样用，还是出于浏览器兼容性的考虑。当然在现代浏览器上面也都有这些属性，但是需要使用setTimeout 。
 if ( document.readyState === "complete" ||
 	( document.readyState !== "loading" && !document.documentElement.doScroll ) ) {
 
@@ -3989,6 +3991,9 @@ if ( document.readyState === "complete" ||
 
 } else {
 
+	// DOMContentLoaded 事件发生要比 load 事件要早，因此从代码上可以看出来，在现代浏览器上面
+	// 会先触发 DOMContentLoaded 这个事件，这个时候，外部图片资源等还没有加载完毕，而这个时候我们又紧接着移除了所有的事件监听，因此load事件也就不会再触发了。
+	// 之所以要在这里放置两个 事件监听，也是为了浏览器兼容性的考虑。
 	// Use the handy event callback
 	document.addEventListener( "DOMContentLoaded", completed );
 
@@ -4142,7 +4147,7 @@ Data.prototype = {
 	},
 	access: function( owner, key, value ) {
 
-		// In cases where either:
+		//   In cases where either:
 		//
 		//   1. No key was specified
 		//   2. A string key was specified, but no value provided
@@ -4272,6 +4277,8 @@ function dataAttr( elem, key, data ) {
 
 	// If nothing was found internally, try to fetch any
 	// data from the HTML5 data-* attribute
+	//优先查找 jquery 的内部存储，如果找不到去HTML5 的属性。因此偶尔会出现一些小问题。
+	// 注意这里仍然是为了浏览器的兼容性，没有使用更现代的 .dataset.name 这样的形式
 	if ( data === undefined && elem.nodeType === 1 ) {
 		name = "data-" + key.replace( rmultiDash, "-$&" ).toLowerCase();
 		data = elem.getAttribute( name );
@@ -4463,7 +4470,8 @@ jQuery.extend( {
 		} );
 	}
 } );
-
+//Show or manipulate the queue of functions to be executed on the matched elements.
+	// 队列中的方法
 jQuery.fn.extend( {
 	queue: function( type, data ) {
 		var setter = 2;
