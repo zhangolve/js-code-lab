@@ -19,8 +19,12 @@ class SortNumber extends Component {
 
     }
     
+/*
+如果写成createRandomNumList () 这样的形式，当然也是可行的。但是，如果是eventhandler的话，就不行了。
+这里的createRandomNumList 是放到了原型上面，他内部的this并不指向当前这个实例。
 
-    createRandomNumList = () => {
+*/
+    createRandomNumList ()  {
         var numArr = [];
 
         while (true) {
@@ -39,6 +43,8 @@ class SortNumber extends Component {
     }
 
     render() {
+        console.log(this);
+        console.log('this is here ')
         var liHTML="";
         var {numArr}=this.state;
         liHTML=  numArr.map( (num,index)=><li key={index}  >{num}</li>  );

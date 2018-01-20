@@ -1,0 +1,195 @@
+var path = require('path');
+var webpack = require('webpack');
+var pkg = require('./package.json');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var InlineManifestWebpackPlugin = require('inline-manifest-webpack-plugin');
+var MOBILE_WEBSITE = path.resolve(__dirname, 'src/ljmall/website/mobile');
+var SOM_COMMON = path.resolve(__dirname, 'src/ljmall/website/store_operator_mobile/frontend/Common');
+var APP_SRC_PATH = path.resolve(MOBILE_WEBSITE, 'frontend');
+var APP_DIST_PATH = path.resolve(__dirname, 'static/mobile/dist');
+var STATIC_PATH = path.resolve(__dirname, 'static');
+var jsTemplate = path.resolve(APP_SRC_PATH, 'frontend-js.ejs');
+var cssTemplate = path.resolve(APP_SRC_PATH, 'frontend-css.ejs');
+var jsTemplateDistFile = path.resolve(APP_SRC_PATH, 'frontend-js.html');
+var cssTemplateDistFile = path.resolve(APP_SRC_PATH, 'frontend-css.html');
+var CleanWebpackPlugin = require('clean-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var WebpackChunkHash = require("webpack-chunk-hash");
+var InlineChunkManifestHtmlWebpackPlugin = require('inline-chunk-manifest-html-webpack-plugin');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+module.exports = function (env) {
+    var isDev = env === 'dev';
+
+    var plugins = [
+        new ExtractTextPlugin({
+            publicPath: '/static',
+            filename: '[name].[chunkhash].css',
+            disable: false,
+            allChunks: true
+        }),
+        new HtmlWebpackPlugin({
+            inject: false,
+            template: jsTemplate,
+            filename: jsTemplateDistFile
+        }),
+        new HtmlWebpackPlugin({
+            inject: false,
+            template: cssTemplate,
+            filename: cssTemplateDistFile
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            names: ['vendor', 'utils', 'manifest'],
+            minChunks: Infinity
+        }),
+        new webpack.HashedModuleIdsPlugin(),
+        new InlineManifestWebpackPlugin(),
+        new CleanWebpackPlugin([APP_DIST_PATH], {
+            verbose: true,
+            dry: false
+        }),
+        new webpack.DefinePlugin({
+            IS_DEV_ENV: isDev,
+            IS_PROD_ENV: env === 'prod'
+        })
+        //,new BundleAnalyzerPlugin({analyzerPort: 8899})
+    ];
+    if (!isDev) {
+        plugins.push(new WebpackChunkHash());
+        plugins.push(new InlineChunkManifestHtmlWebpackPlugin());
+    }
+
+    return {
+        entry: {
+            app: ['babel-polyfill', 'whatwg-fetch', path.resolve(APP_SRC_PATH, 'app.js')],
+            vendor: Object.keys(pkg.dependencies),
+            // 将node_modules 目录下的所有包引入进来，代表的是第三方库的入口
+            utils: [
+                path.resolve(APP_SRC_PATH, 'Common/Utils'),
+                path.resolve(SOM_COMMON, 'Common.js')
+            ]
+        },
+        output: {
+            path: APP_DIST_PATH,
+            publicPath: '/static/mobile/dist/',
+            filename: '[name].[chunkhash].js',
+            chunkFilename: '[name].[chunkhash].js',
+            sourceMapFilename: '[file].map'
+        },
+        resolve: {
+            alias: {
+                scss: path.resolve(APP_SRC_PATH, 'scss'),
+                static: STATIC_PATH,
+                SomCommon: SOM_COMMON,
+                Common: path.resolve(APP_SRC_PATH, 'Common')
+            },
+            mainFields: ['module', 'main']
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.html$/,
+                    use: [
+                        {
+                            loader: 'raw-loader'
+                        }
+                    ]
+                },
+                {
+                    test: /\.scss$/,
+                    use: ExtractTextPlugin.extract({
+                        use: [{
+                            loader: 'css-loader',
+                            options: {
+                                root: 'static',
+                                minimize: true
+                            }
+                        }, 'sass-loader'],
+                        fallback: 'style-loader'
+                    }),
+                    include: path.resolve(APP_SRC_PATH, 'scss')
+                },
+                {
+                    test: /\.css$/,
+                    use: ExtractTextPlugin.extract({
+                        use: [{
+                            loader: 'css-loader'
+                        }]
+                    })
+                },
+                {
+                    test: /\.(js|jsx)$/,
+                    use: [
+                        {
+                            loader: 'babel-loader',
+                            options: {
+                                presets: [['env', {modules: false}], 'react'],
+                                plugins: ['transform-class-properties', 'transform-object-rest-spread']
+                            }
+                        }
+                    ],
+                    include: [APP_SRC_PATH, SOM_COMMON]
+                },
+                {
+                    test: /\.(png|gif)$/,
+                    use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                                limit: 10240, // 10K
+                                name: '[hash].[ext]',
+                                outputPath: 'images/',
+                                publicPath: '/static/mobile/dist/'
+                            }
+                        }
+                    ]
+                },
+                {
+                    test: /\.svg$/,
+                    use: [
+                        {
+                            loader: 'url-loader',
+                            options: {
+                                limit: 10240, // 10K
+                                name: '[hash].[ext]',
+                                outputPath: 'fonts/',
+                                publicPath: '/static/mobile/dist/'
+                            }
+                        }
+                    ]
+                },
+                {
+                    test: /\.(eot|ttf|woff|woff2)$/,
+                    use: [
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                name: '[hash].[ext]',
+                                outputPath: 'fonts/',
+                                publicPath: '/static/mobile/dist/'
+                            }
+                        }
+                    ]
+                },
+                {
+                    test: /\.jpg$/,
+                    use: [
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                name: '[hash].[ext]',
+                                outputPath: 'images/',
+                                publicPath: '/static/mobile/dist/'
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        devtool: isDev ? 'eval-source-map' : 'hidden-source-map',
+        externals: {
+            jquery: 'jQuery'
+        },
+        plugins: plugins
+    };
+};
