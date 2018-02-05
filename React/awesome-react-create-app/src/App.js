@@ -47,6 +47,11 @@ class App extends Component {
     console.log('did update');
   }
 
+  componentWillUnmount() {
+    // 切换了组件会触发这个生命周期函数
+    console.log('unmount');
+  }
+
   add = () => {
 
     let number = this.state.number;

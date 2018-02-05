@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <title>test remember scroll position</title>
+        <meta name="HandheldFriendly" content="True">
+        <meta name="apple-itunes-app" content="app-id=1126255323" />
+        <meta http-equiv="cleartype" content="on">
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="format-detection" content="email=no" />
+        <link rel="apple-touch-icon-precomposed" href="{{ static_url('mobile/img/mobile-app.png') }}">
+        <link rel="shortcut icon" href="{{ static_url('mobile/img/mobile-app.png') }}">
+        <link rel="canonical" href="https://www.lijiababy.com.cn">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content=>
+        <meta name="screen-orientation" content="portrait">
+        <meta name="full-screen" content="yes">
+        <meta name="x5-orientation" content="portrait">
+        <meta name="x5-fullscreen" content="true">
+    </head>
+    <style>
+        html {
+            height: 100%;
+        }
+        body {
+        }
+        #container-wrapper {
+            overflow-x:hidden;
+            overflow-y: auto;
+        }
+        #container {
+            min-height: 100%;
+            position:relative;
+            min-height: 100%;
+        }
+        .loading-wrapper {
+            display: none;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            background: rgba(0,0,0,.05);
+            text-align: center;
+            width: 10rem;
+            z-index: 9999;
+        }
+        .brand-product-list {
+            height:3000px;
+        }
+    </style>
+    <body >
+    <div id="container-wrapper" style="overflow-y: auto;overflow-x: hidden"></div>
+   <div id="container">
+    <div id="brand-products-page">
+        <div class="loading-wrapper"></div>
+        <div class="brand-product-list">
+       
+        </div>
+        </div>   
+    </div>
+    </body>
+    <script>
+       var loading =  document.getElementsByClassName("loading-wrapper")[0];
+       var list = document.getElementsByClassName("brand-product-list")[0];
+    //    setTimeout(function(){
+    //     loading.style.display = 'none';
+    //     list.style.display = 'block';
+    //    },3000)
+     setTimeout(function(){
+        // loading.style.display = 'none';
+        // list.style.display = 'block';
+        list.innerHTML = " <div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div><div>hello world</div>"+" <div>hello world</div>"+" <div>hello world</div>"
+       },1000)
+    </script>
+</html>
+
+<!--浏览器本身带有一些特性，能够支持记住滚动位置，这个可以通过修改history.scrollRestoration = 'manual'; 这个属性来设置。-->
+<!--浏览器会判断原始的html网页（也就是没有经过任何js插入节点之前的html网页，可以通过查看网页源代码来查看）
+，如果网页的高度是大于上次滚动到的位置的，则会去尝试着自动滚动到上次滚动到的位置，否则，则仍然会在top的位置。
+而之后再通过js来插入html节点也没有关系，因为已经滚动到了这个位置，随时等候内容的补充。-->
+
+<!--
+使用react-router的react项目，即便是我们给react容器设置了一个定高，虽然能够在刷新或者返回的时候restore位置，
+但是，由于是单页面的应用，其实虽然用户看起来是在不同的页面进行切换，但是在浏览器看来，是在同一个页面，
+因此就会造成一些问题，例如从商品列表页切换到商品详情页的时候，如果商品列表页有出现滚动，那么商品详情页也会滚动到那个位置。
+但是很不明白的是，react-router 的文档网站，在不适用sessionstorage 的时候，在不给容器设置远大于100%的定高的时候，又是怎么
+设计的，能够让该网站实现滚动记忆。
+
+-->
