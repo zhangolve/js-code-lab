@@ -2,7 +2,7 @@
 import React from 'react';
 import {  Route} from 'react-router';
 import App from './App';
-import BtnContainer from './life-cycle';
+import BtnContainer from './life-cycle/life-cycle';
 import SortNumber from './SortNumber';
 import NotFound from './NotFound';
 
