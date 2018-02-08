@@ -100,3 +100,18 @@ setTimeout(()=>console.log(3),0);
 
 /*如果有多个异步的话，那么按照顺序放下去  打印 1  2 3 */
 
+
+/* 例子八*/
+
+setTimeout(function(){
+var a=null;a.book=3},1000)
+setTimeout(function(){
+console.log('no matter error')
+},4000)
+28
+VM15847:2 Uncaught TypeError: Cannot set property 'book' of null
+    at <anonymous>:2:18
+(anonymous) @ VM15847:2
+setTimeout (async)
+(anonymous) @ VM15847:1
+VM15847:4 no matter error
