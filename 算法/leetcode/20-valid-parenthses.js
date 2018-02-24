@@ -1,0 +1,3 @@
+var isValid = function(s) {
+    
+};
