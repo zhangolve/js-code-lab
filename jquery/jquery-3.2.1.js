@@ -5975,6 +5975,9 @@ jQuery.fn.extend( {
 		}, null, value, arguments.length );
 	},
 
+	//document.body.appendChild(script);
+	// $body.append(script); 区别
+	//
 	append: function() {
 		return domManip( this, arguments, function( elem ) {
 			if ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) {

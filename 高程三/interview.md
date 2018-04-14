@@ -966,6 +966,29 @@ bind call apply 这些操作方法的作用都是为了改变一个函数的执�
 		foo(3,4);//10
 		result(3,4); //11
 
+我们也可以结合类似Array.prototype.slice.call(arguments) 这样的用法来加深对这一块的理解。我们知道arguments是一个类数组，它是一个对象，他可以找出他的长度，通过点length ，也可以使用中括号找元素，但是并不具备Array 的其他的属性，比如slice，map,reduce 等方法。这个时候，如果我们想让arguments 对象应用上这些方法，就要强行给arguments  绑定上新的方法。
+
+比如在MDN 上面的例子
+
+function list() {
+  return Array.prototype.slice.call(arguments);
+}
+
+var list1 = list(1, 2, 3); // [1, 2, 3]
+
+在这个例子中，就是把通过arguments {1:1,2:2,3:3} 强行绑定上slice方法，让他可以进行slice，然后生成的结果是一个array 数组。
+
+这里我们不妨这么想这件事，当我们看到Array.prototype ，数组原型链的时候，不妨把它想象成一个具体的数组，哪怕是一个空数组，[]。 这个时候，
+
+[].slice.call([1,2,3,4,5])
+
+结果是什么呢？显然是[1,2,3,4,5]
+
+或者可以这么说，当我们看到Array.prototype 的时候，它就是在告诉我们相应的方法对所有的array都有效。
+
+这个时候可能又要问了，call的第一个参数代表的是需要绑定并执行的环境作用域，那么一个数组[1,2,3,4,5] 算什么作用域啊。我现在看来，只要是object就是一个作用域，而一个数组，就是一个object，当然也能成为一个作用域。也能够用来指代this.
+
+
 
 
 
