@@ -61,7 +61,39 @@
 // foo();
 
 
-console.log(Array.prototype.slice);
+// console.log(Array.prototype.slice);
 
 // 如何理解呢
+
+var climbStairs = function(n) {
+  if(n===1) {
+      return 1;
+  }
+  if(n===2) {
+      return 2;
+  }
+  if(n>2) {
+      return  arguments.callee(n - 1)+ arguments.callee(n - 2);
+  }
+};
+
+
+// 还是一个斐波那契数列问题
+// https://github.com/qiwsir/algorithm/blob/master/fibonacci.md
+
+
+// 伪造一个arguments 对象
+
+var arg = {0:1,1:1,2:3,3:4,length:4}
+console.log(arg[0])
+console.log(arg.length)
+
+// 看上去像一个array，能够通过 .length 知道它的长度，能够知道每一个位置的元素。但是就是不能够来应用其他的数组方法。
+
+// (1/√5)*{[(1+√5)/2]^n - [(1-√5)/2]^n}
+
+
+console.log(climbStairs(4))
+
+// https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/arguments/callee
 
