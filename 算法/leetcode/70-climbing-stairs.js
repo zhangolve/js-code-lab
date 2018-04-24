@@ -64,17 +64,19 @@
 // console.log(Array.prototype.slice);
 
 // 如何理解呢
-
+var obj={1:1,2:2};
 var climbStairs = function(n) {
-  if(n===1) {
-      return 1;
+  if (n===1) {
+      return obj[1];
   }
-  if(n===2) {
-      return 2;
+  if (n===2) {
+      return obj[2];
   }
-  if(n>2) {
-      return  arguments.callee(n - 1)+ arguments.callee(n - 2);
+  // 如果n不在obj之中
+  if (!obj[n]) {
+    obj[n] = arguments.callee(n-1) + arguments.callee(n-2);
   }
+  return obj[n]
 };
 
 
@@ -84,9 +86,9 @@ var climbStairs = function(n) {
 
 // 伪造一个arguments 对象
 
-var arg = {0:1,1:1,2:3,3:4,length:4}
-console.log(arg[0])
-console.log(arg.length)
+// var arg = {0:1,1:1,2:3,3:4,length:4}
+// console.log(arg[0])
+// console.log(arg.length)
 
 // 看上去像一个array，能够通过 .length 知道它的长度，能够知道每一个位置的元素。但是就是不能够来应用其他的数组方法。
 

@@ -261,7 +261,13 @@ Ecmascript识别出来这种语法，将之认为是一个Array。
 
 # 谈谈你对webpack的看法
 
-我认为webpack是前端工程化的一个很有效的工具，在早期的前端开发中，没有webpack，没有npm，没有grunt的时候，开发者同样是写HTML,CSS,Javascript ，但是在项目管理上并不是很方便，如果要引入很多的库，那么如果管理就成了问题，项目越大，这个问题就越突出。webpack包括npm等工具，在我看来就是方便我们开发进行项目管理。我们能够很清楚地知道引入了哪些模块，能够很方便地进行集成。比方说，webpack的热加载，webpack-dev-server 就是个很好的工具，当修改完代码后，我们不用再手动频繁地刷新网页。
+我认为webpack是前端工程化的一个很有效的工具。
+
+在早期的前端开发中，没有webpack，没有npm，没有grunt的时候，开发者同样是写HTML,CSS,Javascript ，但是在项目管理上并不是很方便，如果要引入很多的库，那么如果管理就成了问题，项目越大，这个问题就越突出。
+
+webpack包括npm等工具，在我看来就是方便我们开发进行项目管理。我们能够很清楚地知道引入了哪些模块，能够很方便地进行集成。
+
+比方说，webpack的热加载，webpack-dev-server 就是个很好的工具，当修改完代码后，我们不用再手动频繁地刷新网页。
 
 webpack两大特色
 
@@ -286,6 +292,8 @@ webpack treats import() as a split-point and puts the requested module in a sepa
 
 webpack 2 例子 
 
+20180424 短短一年，webpack 已经到4了。
+
 index.js
 
 	function determineDate() {
@@ -300,15 +308,21 @@ index.js
 
 	https://webpack.js.org/guides/code-splitting-import/
 
+这里举的例子是import then 的语法，在webpack 1 中的语法是Syetem.import() 这个在实际项目中也已经在使用，现在也已经在重构。
+
+
 前面已经说过了，import from 是必须放在文件的开头部分，而这里，实际上相当于是对之进行了处理。让它等效于放在开头部分了。
-
-
 
 
 
 * 模块加载器
 
 包括css loader ,字体loader等模块加载器，能够让我们统一管理这些模块，把最终的项目进行输出。
+
+20180424 更新
+思想是 ALL IN JS 的思想。无论是CSS，less，SASS, SCSS ，JPG,JPEG 都可以通过loader 进行引入。讲他们放置于JS 的管理之下。
+
+当然，webpack 也能够进行代码压缩，代码code spliting  等工作，最终优化用户体验。
 
 
 
