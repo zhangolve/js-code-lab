@@ -393,6 +393,13 @@ index.js
 * ES6的import引入方式更加多种多样一些。
 
 
+区分清楚AMD 规范，commonjs规范，ES 6 MODULE 规范之间的区别。
+
+commonjs require，只能同步加载模块。
+amd define 可以有回调函数，异步加载模块。浏览器端一般采用amd 规范，能够异步的加载模块。
+
+
+
 
 # HTML5 有哪些新特性
 
