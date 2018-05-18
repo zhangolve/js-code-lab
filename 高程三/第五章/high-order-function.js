@@ -42,3 +42,7 @@ console.log('add',addResult);  //9
 
 const multiResult = hof(multi,3,1,2,3);
 console.log('multi',multiResult); //18
+
+
+
+
