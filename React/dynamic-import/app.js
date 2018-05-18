@@ -7,11 +7,56 @@ import BaseLayout from './BaseLayout';
 import Loading from 'react-loading';
 import Loadable from 'react-loadable';
 
+// 20180518 
 //　动态引入，有时候，可能会遇到不同页面，使用同一个组件的情况，这个时候不能够直接使用
 //   LoadableComponent 给他赋上一个值这样的写法。因为会造成，组件的重载。
 // 上一个生命周期结束，新的生命周期开始。
 // 仔细想想，其实我们只是需要引入的这个组件本身不发生变化，他的属性等情况还是应该保持一致。
 //　也就是说，组件的状态应该是 didupdate　而不是 didmount .
+
+
+/***
+
+看有关高阶函数的例子，可以帮助我们理解高阶组件
+这个事情，简单说还是跟闭包跟作用域有关系。
+在for循环这个块级作用域当中，每一次都伴随着销毁和重新建立新的内存，因此arr[0],arr[1]两者并非相等。
+
+* //实例3
+
+function foo(para) {
+    return function bar() {
+        return para;
+    }
+}
+
+var arr = [];
+
+for(var i=0;i<2;i++) {
+    const a = foo(0);
+    arr.push(a);        
+}
+console.log(arr[0]==arr[1]);  // false 
+
+//　实例4
+
+function foo(para) {
+    return function bar() {
+        return para;
+    }
+}
+
+var arr = [];
+
+const a = foo(0);
+arr.push(a);
+arr.push(a);
+
+console.log(arr[0]===arr[1]); //true;
+
+ * 
+ * 
+ */
+
 const LoadingComponent = props => {
     if (props.error) {
     // When the loader has errored
