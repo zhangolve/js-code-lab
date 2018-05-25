@@ -1,0 +1,24 @@
+{
+  "name": "webpack-demo",
+  "version": "1.0.0",
+  "sideEffects": false,
+  "main": "index.js",
+  "author": "zhangolve",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "uglifyjs-webpack-plugin": "1.2.5",
+    "webpack": "4.8.3",
+    "webpack-cli": "2.1.2"
+  },
+  "scripts": {
+    "build-mobile": "webpack -p"
+  },
+  "dependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
+  }
+}
