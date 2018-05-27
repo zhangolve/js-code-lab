@@ -15,10 +15,24 @@
     "webpack-cli": "2.1.2"
   },
   "scripts": {
-    "build-mobile": "webpack -p"
+    "build-mobile": "webpack   -p "
   },
   "dependencies": {
+    "babel-preset-react-app": "^3.1.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">1%",
+      "last 4 versions",
+      "Firefox ESR",
+      "not ie < 11"
+    ]
   }
 }
