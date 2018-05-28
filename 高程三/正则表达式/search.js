@@ -9,7 +9,13 @@ filterStore = (value) => {
     const values = value.split(/\s+/g);
     const resultStoresArr =  values.map(value=>fullStores.filter( store=>store.full_address.indexOf(value)!==-1 || store.name.indexOf(value)!==-1));
     const combine = (a, b, p) => { 
-        return b.concat( ((a,b)=> a.filter( aa =>   ! b.find ( bb => aa[p] === bb[p])))(a,b)  );
+        console.log(a,b)
+        if(a.length>0) {
+        const filter = (a,b)=> a.filter( aa =>  b.find ( bb => aa[p] === bb[p]));
+        return [].concat(filter(a,b));
+        } else {
+            return b
+        }
     }
     const resultStores = resultStoresArr.reduce( (i,j)=> combine(i,j,'id')  , []);
     console.log(`search ${value} result is ${JSON.stringify(resultStores)}`);
@@ -22,7 +28,7 @@ filterStore = (value) => {
 // filterStore('草桥');
 // filterStore('004u3934u9');
 
-filterStore('朝阳 安贞');
+filterStore('朝阳 北京 安贞');
 
 //搜索结果取并集
 
