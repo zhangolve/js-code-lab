@@ -9,10 +9,9 @@ filterStore = (value) => {
     const values = value.split(/\s+/g);
     const resultStoresArr =  values.map(value=>fullStores.filter( store=>store.full_address.indexOf(value)!==-1 || store.name.indexOf(value)!==-1));
     const combine = (a, b, p) => { 
-        console.log(a,b)
         if(a.length>0) {
-        const filter = (a,b)=> a.filter( aa =>  b.find ( bb => aa[p] === bb[p]));
-        return [].concat(filter(a,b));
+        const intersection = (a,b)=> a.filter( aa =>  b.find ( bb => aa[p] === bb[p]));
+        return [].concat(intersection(a,b));
         } else {
             return b
         }
