@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {  NavLink} from 'react-router-dom';
 
 
 class UpdateBlocker extends React.PureComponent {
@@ -10,11 +11,29 @@ class UpdateBlocker extends React.PureComponent {
             PropTypes.node
         ]).isRequired
     };
+    componentDidUpdate() {
+        console.log('blocker did update')
+    }
     render() {
         return this.props.children;
     }
 }
 
+
+class BaseLayoutFooter extends React.Component {
+
+    componentDidUpdate() {
+        console.log('footer did update');
+    }
+    render(){
+        return (
+            <React.Fragment>
+            <NavLink to='/about'>About</NavLink>
+            <NavLink to='/'>INDEX</NavLink>
+            </React.Fragment>            
+        )
+    }
+}
 
 class BaseLayout extends Component {
      
@@ -34,7 +53,9 @@ class BaseLayout extends Component {
         </header>
         {this.props.children}
         <footer style={{position:'fixed',bottom:'0'}}>
-            this is footer
+            <UpdateBlocker>
+                    <BaseLayoutFooter/>
+            </UpdateBlocker>
         </footer>
       </div>
       </UpdateBlocker>
