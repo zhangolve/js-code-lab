@@ -75,8 +75,8 @@ function simplifyPath(path) {
     //     path = path.substring(0, path.length-1);
     // }
 
-    path = path.replace(/\/+$/,'');
-    path = path.replace(/\/{2,}/,'/'); //将原来多个//变成只有一个
+    path = path.replace(/\/+$/g,'');
+    path = path.replace(/\/{2,}/g,'/'); //将原来多个//变成只有一个
     // 这里是在说分割数组，仔细看是不是也可以用split方法，区别在于split的key不会放到生成的数组当中
     // var start = 0;
     // for(var i=1; i<path.length; i++){
@@ -87,27 +87,25 @@ function simplifyPath(path) {
     //         stack.push(path.substring(start));
     //     }
     // }
-    
     stack = path.split('/')
-　　console.log(stack)
+    console.log(stack)
     var result = [];
     var back = 0;
 
     while(stack.length!=0){
         var top = stack.pop();
         
-        if(top == "."|| top=='') {
+        if(top == ".") {
             //nothing
         }　else if(top == "..")　{
             back++;
         }　else　{
-            console.log('here')
+            console.log(back);
             if(back > 0){
                 back--;
             }　else{
-                console.log(back)
                 result.push(top);
-                console.log(result)
+                
             }
         }
     }
@@ -119,6 +117,7 @@ function simplifyPath(path) {
     if(result.length==1 && result[0]=='') {
         return '/'
     }
+    console.log(result)
     return result.reverse().join('/');
 }
 
