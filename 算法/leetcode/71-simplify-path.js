@@ -38,3 +38,6 @@ var simplifyPath = function(path)  {
 
 //http://blog.sodhanalibrary.com/2015/06/simplify-path-using-javascript.html
 
+
+
+
