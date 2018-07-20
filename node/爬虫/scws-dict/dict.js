@@ -1,8 +1,5 @@
 const fs = require('fs');
 const request = require('request');
-const _ = require('lodash');
-const iconv = require('iconv-lite');
-const async = require('async');
 const url = 'http://www.xunsearch.com/scws/demo/get_tfidf.php';
 const headers = {
     'Content-Type': 'application/json',
@@ -44,12 +41,12 @@ setInterval(()=> {
 /* 得到json数据，将json数据写入本地文件*/
 
 // getJson(url);
-
+ // 为什么要self = word;??
 function handleWord(word) {
     if(!word) {
         return ;
     }
-
+ //桑蕊（sunrype）
     const qs = {data: word };
     request({
         method: 'GET',
@@ -60,15 +57,17 @@ function handleWord(word) {
         json: true,
         qs: qs
     }, (error, response, html) => {
-        const line = new Buffer(word)
+        var self= `${word} \r\n`;
         if(error) {
             console.log(error)
         }
         if (!error) {
+            console.log(self);
             const content = JSON.stringify(response.body);
             // write to it
             if(!content.match(/WORD=(.*?)\s/s)) {
-                fs.writeFile('./dict-error.txt', line, {encoding:'utf-8',flag: 'a+'}, (err, res) => {
+                console.log(self);
+                fs.writeFile('./dict-error.txt',new Buffer(self), {encoding:'utf-8',flag: 'a+'}, (err, res) => {
                     if (err) throw err;
                 });
                 return ;
