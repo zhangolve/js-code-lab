@@ -6,6 +6,7 @@ function simplifyPath(path) {
     stack = path.split('/')
     var result = [];
     var back = 0;
+    
     while(stack.length!=0){
         var top = stack.pop();
         if(top == ".") {
