@@ -44,3 +44,25 @@ var findContentChildren = function(g, s) {
 };
 
 //https://leetcode.com/problems/assign-cookies/description/
+
+//　看别人的解法，我失败的原因是没有先排序，而是做了min　pop这样的动作。
+
+var findContentChildren = function(g, s) {
+    var compare = function(a, b) {return b - a};
+    g.sort(compare);
+    s.sort(compare);
+    var j = 0;
+    for (var i = 0; i < g.length; i++) {
+        if (g[i] <= s[j]) j++;
+    }
+    return j;
+};
+
+// 先排序，因为要求　s[j]>g[i]因此,只要找到最小的j，就可以顺带着连pop的工作都做了。
+//　如果连j==0都通不过，也就表示ｇ的最大值都比ｓ的最小值小，就也无须再比较了。
+//　说到底，还是始终要拿s的最小值去跟ｇ的最小值比较
+
+// [7,8,9,10]   [5,6,7,8]
+// 注意是降序排序
+// [10,9.8,7]  [8,7,6,5]
+// 先把最大的给最大的
