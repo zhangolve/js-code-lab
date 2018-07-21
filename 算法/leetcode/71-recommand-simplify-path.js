@@ -31,6 +31,7 @@ function simplifyPath(path) {
         var top = stack.pop();
         //　从堆栈中pop出来元素，按照前面的示例，第一个应该为[/c]
         //　因为split效果之后，都是以/开头，因此就这么做判断了。
+        //　注意有一条规则是开头的/.. 和末尾的/..都可以理解为/,开头的/是根目录他已经退无可退了。
         if(top == "/." || top == "/"){
             //nothing
         }　else if(top == "/..")　{
@@ -105,7 +106,6 @@ function simplifyPath(path) {
                 back--;
             }　else{
                 result.push(top);
-                
             }
         }
     }
