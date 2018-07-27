@@ -1,0 +1,35 @@
+          "last 2 versions",
+          "> 1%",
+          "not ie <= 11",
+          "iOS >= 8",
+          "Android >= 4"
+
+            // "Android >=4"
+
+
+
+        SELECT elc.name, emc.name, esc.name, etc.name, b.name,
+            pv.style_code, pv.color, pv.size, pv.vsku, pv.name, ps.purchase_sales_channel_id, ps.purchase_development_channel_id,
+            SUM(CASE WHEN ps.purchase_type=1 THEN 1 ELSE -1 END * pi.quantity),
+            SUM(CASE WHEN ps.purchase_type=1 THEN 1 ELSE -1 END * pi.credit_redeemable_points),
+            SUM(CASE WHEN ps.purchase_type=1 THEN 1 ELSE -1 END * pi.credit_redemption_discount),
+            ROUND(SUM(CASE WHEN ps.purchase_type=1 THEN 1 ELSE -1 END * pi.total), 2),
+            ROUND(SUM(CASE WHEN ps.purchase_type=1 THEN 1 ELSE -1 END * (pi.total - (pi.cost_price * pi.quantity))), 2)
+        FROM purchase_status ps
+            INNER JOIN purchase p ON p.id=ps.purchase_id
+            INNER JOIN purchase_item pi ON pi.purchase_id=ps.purchase_id
+            INNER JOIN product_variant pv ON pv.id=pi.product_variant_id
+            LEFT JOIN brand b ON b.id=pv.brand_id
+            INNER JOIN erp_category elc ON elc.id=pv.erp_large_category_id
+            LEFT JOIN erp_category emc ON emc.id=pv.erp_medium_category_id
+            LEFT JOIN erp_category esc ON esc.id=pv.erp_small_category_id
+            LEFT JOIN erp_category etc ON etc.id=pv.erp_tiny_category_id
+        WHERE ps.placed_at>='2016-11-11 00:00:00' AND ps.placed_at<'2016-11-12 00:00:00'
+            AND NOT ps.is_canceled AND NOT ps.is_erp_canceled AND NOT ps.is_erp_deleted
+            AND (
+                (ps.purchase_type=1 AND (ps.is_paid OR ps.is_payment_secured OR ps.is_cod))
+                OR (ps.purchase_type=2 AND p.return_logistics_mode!=4)
+            ) AND NOT ps.is_split
+        GROUP BY  elc.name, emc.name, esc.name, etc.name,
+            b.name, pv.id, ps.purchase_development_channel_id, ps.purchase_sales_channel_id
+        ORDER BY pv.vsku, ps.purchase_sales_channel_id

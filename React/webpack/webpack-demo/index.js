@@ -1,4 +1,4 @@
-import {foo,bar} from './vendor.js';
+import {bar,foo} from './vendor.js';
 
 bar();
 let a= 10;

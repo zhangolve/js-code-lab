@@ -6,19 +6,25 @@
   "author": "zhangolve",
   "license": "MIT",
   "devDependencies": {
-    "babel": "^6.23.0",
+    "@babel/cli": "^7.0.0-beta.54",
+    "@babel/core": "^7.0.0-beta.54",
+    "@babel/preset-env": "^7.0.0-beta.54",
     "babel-loader": "^7.1.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "uglifyjs-webpack-plugin": "1.2.5",
-    "webpack": "4.8.3",
+    "webpack": "4.16.2",
     "webpack-cli": "2.1.2"
   },
   "scripts": {
     "build-mobile": "webpack   -p "
   },
   "dependencies": {
+    "@babel/polyfill": "^7.0.0-beta.54",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-react-app": "^3.1.1",
+    "babel-runtime": "^6.26.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0"
   },

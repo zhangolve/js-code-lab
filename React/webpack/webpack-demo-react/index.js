@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import {Header} from './Header.js';
-import {a} from './utils'
+import {a,isIncluedes} from './utils'
 
 console.log(a);
-
+console.log(isIncluedes(3));
 export default class Home extends Component {
     /*
     this is comment
