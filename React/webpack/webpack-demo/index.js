@@ -1,3 +1,4 @@
+
 import {bar,foo} from './vendor.js';
 
 bar();

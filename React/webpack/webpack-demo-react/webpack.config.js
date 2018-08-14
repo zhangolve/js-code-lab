@@ -1,5 +1,6 @@
 const path = require('path');
 const UglifyJsPlugin  = require('uglifyjs-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
     entry: ['./index.js'],
@@ -46,7 +47,13 @@ module.exports = {
             // Enable file caching
             cache: true,
             sourceMap: true,
-          })
+          }),
+          new OptimizeCssAssetsPlugin({
+            assetNameRegExp: /\.css$/g,
+            cssProcessor: require('cssnano'),
+            cssProcessorOptions: { autoprefixer: false , safe: true},
+            canPrint: false
+            })
         ]},
     module: {
         rules: [
@@ -57,6 +64,16 @@ module.exports = {
                         loader: 'babel-loader'
                     }
                 ]
+            },
+            {
+                test: /\.css$/,
+                use: [{
+                        loader: 'css-loader',
+                        options: {
+                             root: 'static',
+                             minimize: true
+                    }
+                }]
             }
         ]
     },

@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import {Header} from './Header.js';
 import {a,isIncluedes} from './utils'
 
+import './index.css';
+
+
 console.log(a);
 console.log(isIncluedes(3));
 export default class Home extends Component {
