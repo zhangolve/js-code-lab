@@ -8,6 +8,7 @@ import './index.css';
 console.log(a);
 console.log(isIncluedes(3));
 export default class Home extends Component {
+
     /*
     this is comment
     88888888888
@@ -15,7 +16,7 @@ export default class Home extends Component {
     */
   render() {
     return (
-      <div>
+      <div className="book">
         <Header>
             hello world
         </Header>

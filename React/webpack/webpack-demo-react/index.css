@@ -3,3 +3,7 @@ div {
     height: 400px;
 }
 
+.book {
+    display: block;
+    border: 1px solid blue;
+}
