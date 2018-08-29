@@ -1,9 +1,37 @@
 div {
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
     height: 400px;
+    z-index: 5000;
 }
 
 .book {
     display: block;
     border: 1px solid blue;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* this is a test for remove comment */
+
+
+@keyframes one {
+    0% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+@keyframes one {
+    0% {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+.box {
+    animation-name: one;
 }

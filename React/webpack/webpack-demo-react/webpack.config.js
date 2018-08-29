@@ -33,8 +33,10 @@ module.exports = function (env) {
             new OptimizeCssAssetsPlugin({
                 assetNameRegExp: /\.css$/g,
                 cssProcessor: require('cssnano'),
-                cssProcessorOptions: { autoprefixer: false},
-                canPrint: false
+                cssProcessorOptions: {discardComments: {
+                    removeAll: false,
+                }},
+                canPrint: true
                 })
             ],
             splitChunks:{
