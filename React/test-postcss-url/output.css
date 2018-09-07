@@ -1,0 +1,6 @@
+.element {
+    background: url('src/stylesheet/images/sprite.png');
+    display: -webkit-flex;
+    display: flex;
+    color: red;
+}
