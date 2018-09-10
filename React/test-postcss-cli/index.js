@@ -14,3 +14,4 @@ const output = postcss()
     from: "src/stylesheet/index.css",
     to: "dist/index.css"
   })
+  console.log(output)

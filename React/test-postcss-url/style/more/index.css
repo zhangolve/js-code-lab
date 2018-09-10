@@ -1,0 +1,9 @@
+html {
+    font-size: 18px;
+    color: red;
+}
+
+.test {
+    display: flex;
+    background-image: url("/sprite.png");
+}
