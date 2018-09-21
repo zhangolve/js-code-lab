@@ -5,26 +5,24 @@
  * @param {number} k
  * @return {number[]}
  */
+
 var topKFrequent = function(nums, k) {
-    var result = {}; // key num value frequent
-    
-    function findLargest(arr, k) {
-        
-        arr.pop()
-        var ele = Math.max(...arr);
-        arr.pop(ele);
-    }
-    
-    for(var i=0;i<nums.length;i++) {
-        var num = nums[i];
-        if(!result[num]) {
-            result[num] = 1;
-        } else {
-            result[num] +=1;
-        }
-    }
-    
-};
+    var obj = {};
+    // for(var i=0;i<nums.length;i++) {
+    //     const value = nums[i];
+    //     obj[value] = obj[value]? obj[value]+1:1;
+    // }
+    // 这个排序的方法用的很巧妙
+    // 有些时候，可是不显式地使用for循环
+    nums.forEach(value=>obj[value]=obj[value]? obj[value]+1:1);
+    return Object.keys(obj).sort( (i,j)=> obj[j]-obj[i]).slice(0,k).map(i=>parseInt(i));
+}
+
+
+
+// 根本没有必要对原始数组排序，只需要对去重之后的数组进行排序
+
+console.log(topKFrequent([1,1,1,2,2,3],2))
 
 /*
 出现最频繁的ｋ个数字
@@ -60,7 +58,25 @@ Array.prototype.bucketSort = function(num) {
     }
     return wrapBuckets
   }
-  const arr = [11, 9, 6, 8, 1, 3, 5, 1, 1, 0, 100]
+//   const arr = [11, 9, 6, 8, 1, 3, 5, 1, 1, 0, 100]
+  const arr = [1,1,2,2,3,3,3]
   console.log(arr.bucketSort(10))
 
+//   Array.prototype.lenSort = function()
 
+// 实现一个排序　
+
+
+
+// var topKFrequent = function(nums, k) {
+//     var hash={}, res = [];
+// 	nums.forEach(function(value){
+// 	     hash[value]= ( hash[value]+1)|| 1;
+// 	});
+// 	Object.keys(hash).sort(function(a,b){return hash[b]-hash[a]})
+// 	.slice(0,k)
+// 	.forEach(function(x){
+// 		res.push(parseInt(x));
+// 	});
+// 	return res;
+// };
