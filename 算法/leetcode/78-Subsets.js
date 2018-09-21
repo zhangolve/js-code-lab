@@ -11,9 +11,8 @@ var subsets = function(nums) {
         dp[i].push([nums[i]]);
         console.log(dp[i],1);
         for(var j=0;j<dp[i-1].length;j++) {
-            var current = dp[i-1][j];
-            current_push = [...current,nums[i]];
-            dp[i].push(current_push);
+            var current = dp[i-1][j].concat(nums[i]);
+            dp[i].push(current);
         } 
     }
     return dp[length-1];
