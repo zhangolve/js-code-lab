@@ -43,4 +43,11 @@ dp[1] foreach 插入到其中
 
     需要注意
     dp[0]改变了，但是其他元素也相应地发生了改变。
+    When the fill method gets passed an object, it will copy the reference and fill the array with references to that object.
+
+    fill的是对象的时候，有这样一个坑。
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill
+
+    理解清楚concat和push的区别和联系。
+    
 */
