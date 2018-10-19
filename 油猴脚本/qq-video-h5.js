@@ -33,5 +33,18 @@ Object.defineProperty(navigator,"userAgent",{value:"Mozilla/5.0 (Macintosh; Inte
 3 . 由于flash是浏览器的一个插件，所以为了更好地实现伪装，还应该在插件这里做判断。因为很有可能，腾讯的代码还要去判断当前这个浏览器是否
 支持flash，而判断的依据就是navigator.plugins,这个时候，我们伪装后告诉他没有flash插件，他就只好去使用h5播放器了。
 
+含有flash播放器的浏览器，未经过改造之前会有这样一个信息：
+MimeType {type: "application/x-shockwave-flash", suffixes: "swf", description: "Shockwave Flash", enabledPlugin: Plugin}
+description: "Shockwave Flash"
+enabledPlugin: Plugin {0: MimeType, 1: MimeType, application/x-shockwave-flash: MimeType, application/futuresplash: MimeType, name: "Shockwave Flash", filename: "libpepflashplayer.so", description: "Shockwave Flash 31.0 r0", …}
+suffixes: "swf"
+type: "application/x-shockwave-flash"
+__proto__: MimeType
 
+
+ it's returned by the window.navigator.plugins property. The PluginArray is not a JavaScript array, but has the length property and supports accessing individual items using bracket notation (plugins[2]), as well as via item(index) and namedItem("name") methods.
+
+ https://developer.mozilla.org/en-US/docs/Web/API/PluginArray
+
+ 
 */
