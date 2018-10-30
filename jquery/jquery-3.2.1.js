@@ -146,6 +146,8 @@ jQuery.fn = jQuery.prototype = {
 
 	// Take an array of elements and push it onto the stack
 	// (returning the new matched element set)
+	//将一个含有元素的数组推入堆栈，返回新匹配到的元素集合。注意这里进行了过滤。
+	// 堆栈中有了值,这个方法用于呈现$('') 的结果
 	pushStack: function( elems ) {
 
 		// Build a new jQuery matched element set
@@ -419,6 +421,7 @@ jQuery.extend( {
 
 	// Support: Android <=4.0 only, PhantomJS 1 only
 	// push.apply(_, arraylike) throws on ancient WebKit
+	// 将两个类数组进行合并
 	merge: function( first, second ) {
 		var len = +second.length,
 			j = 0,
@@ -3142,7 +3145,7 @@ jQuery.fn.extend( {
 		if ( !rneedsContext.test( selectors ) ) {
 			for ( ; i < l; i++ ) {
 				for ( cur = this[ i ]; cur && cur !== context; cur = cur.parentNode ) {
-
+					// 往父级元素上去遍历,直到找到满足条件的父级元素
 					// Always skip document fragments
 					if ( cur.nodeType < 11 && ( targets ?
 						targets.index( cur ) > -1 :
