@@ -8,6 +8,31 @@
 // @license      MIT
 // ==/UserScript==
 
+/*
+todo 
+单个问题页面，查看更多
+搜索快捷键
+按住ESC,退出当前光标聚集
+按住Ｉ键，向下滚动 一点点
+按住Ｏ键，向上滚动　一点点
+
+无须快捷键　空格键，向下滚动，但是是滚动一屏的距离，我希望的并不是滚动一屏啊！
+
+快捷键 说明
+j / k 上一个/下一个答案
+g/G 第一个/最后一个答案
+/ 搜索
+o 显示评论
+v 赞同
+d 反对
+t 感谢
+sc 收藏
+fx 分享
+w 阅读全文/收起
+1/2/3 切换 推荐/关注/热榜
+可以做成chrome ex，？呼出快捷键说明栏
+*/ 
+
 (function() {
     'use strict';
     let selectId = 0;
@@ -36,12 +61,13 @@
       } else if(/^(http|https):\/\/www.zhihu.com\/follow/.test(href)) {
         mainTag = document.querySelector('.Topstory-content');
       }
-      mainTag.addEventListener('mouseover', mouseoverEvent, true);
-      observer.observe(mainTag, { attributes: true, childList: true, subtree: true });
+      if(mainTag) {
+        mainTag.addEventListener('mouseover', mouseoverEvent, true);
+        observer.observe(mainTag, { attributes: true, childList: true, subtree: true });
+      }
     }
 
     function setAnswersitems() {
-      console.log('got here');
       let items;
       items = document.querySelectorAll('.' + answerClass);
       if(!items) return -1;
@@ -54,6 +80,7 @@
       selectId = newId;
     }
 
+    // 还应该匹配search页面！！
     function getAnswerClass() {
       if(/^(http|https):\/\/www.zhihu.com(\/)?$/.test(window.location.href)) { // 匹配主页
         return 'TopstoryItem';

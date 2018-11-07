@@ -30,13 +30,13 @@ function tickets(peopleInLine){
             for(let z=0;z<change.length;z++) {
             for(let j=0;j<change.length;j++) {
                 //　从当前零钱里找出来拿走
-                index=current[z].findIndex(v=>v==change[z][j])
-                console.log(index);
-                if(index===-1) {
-                    return 'NO'
-                } else {
-                    current = current.filter((v,i)=>i!=index);
-                }
+                    index=current[z].findIndex(v=>v==change[z][j])
+                    console.log(index);
+                    if(index===-1) {
+                        return 'NO'
+                    } else {
+                        current = current.filter((v,i)=>i!=index);
+                    }
             }
             // 两种可能啊！
             current.push(peopleInLine[i])
