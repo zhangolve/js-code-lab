@@ -11,7 +11,6 @@
 /*
 todo 
 单个问题页面，查看更多
-搜索快捷键
 按住ESC,退出当前光标聚集
 按住Ｉ键，向下滚动 一点点
 按住Ｏ键，向上滚动　一点点
@@ -20,15 +19,15 @@ todo
 
 快捷键 说明
 j / k 上一个/下一个答案
-g/G 第一个/最后一个答案
 / 搜索
 o 显示评论
 v 赞同
 d 反对
 t 感谢
-sc 收藏
-fx 分享
 w 阅读全文/收起
+g+n 查看通知
+g+p 查看个人首页
+g+s 去往设置页面
 1/2/3 切换 推荐/关注/热榜
 可以做成chrome ex，？呼出快捷键说明栏
 */ 
@@ -36,7 +35,7 @@ w 阅读全文/收起
 (function() {
     'use strict';
     let selectId = 0;
-    let gFlag = false, scFlag = false, fxFlag = false;
+    let gFlag = false;
     const observer = new MutationObserver(setAnswersitems);
     let listItems;
     let mainTag; // 问题列表
@@ -146,6 +145,7 @@ w 阅读全文/收起
       window.scrollTo(0, elementTop-70);
     }
 
+    // 设置边框样式
     function setBorderStyle(currentId, previousId) {
         let currentElement = findAnswers(currentId);
         currentElement.style.border = '3px solid #3284ff';
@@ -153,6 +153,7 @@ w 阅读全文/收起
         previousItem.style.border = '';
     }
 
+    //到下一个项目
     function nextItem() {
       let length = answersCount();
       if(selectId !== length){
@@ -162,6 +163,7 @@ w 阅读全文/收起
       setLocation(selectId);
     }
 
+    //到上一个项目
     function previousItem() {
       if(selectId !== 0){
         setBorderStyle(selectId - 1, selectId)
@@ -170,7 +172,7 @@ w 阅读全文/收起
       setLocation(selectId);
     }
 
-
+    //查看答案详情或者折叠详情
     function moreOrFold() {
         let answers = findAnswers(selectId);
         let contentMoreBtn = answers.querySelector('.ContentItem-more');
@@ -179,22 +181,6 @@ w 阅读全文/收起
         actionBtn.click();   
     }
     
-    function firstItem()
-    {
-      if(gFlag){
-        gFlag = false;
-        setBorderStyle(0, selectId)
-        setSelectId(0);
-        setLocation(selectId);
-      }
-      gFlag = true;
-    }
-
-    function lastItem(){
-      setBorderStyle(answersCount(), selectId)
-      setSelectId(answersCount());
-      setLocation(selectId);
-    }
 
     function voteButtonUp() {
       let answers = findAnswers(selectId);
@@ -228,24 +214,35 @@ w 阅读全文/收起
       thinkButton.click();
     }
 
-    function collection()
-    {
-      let answers = findAnswers(selectId);
-      let thinkButton = answers.getElementsByClassName('ContentItem-actions')[0].childNodes[3];
-      thinkButton.click();
-    }
-
-    function share()
-    {
-      let answers = findAnswers(selectId);
-      let share = answers.getElementsByClassName('ContentItem-actions')[0].childNodes[2];
-      let button = share.getElementsByTagName('button')[0];
-      button.click();
-    }
-
+    //切换tab
     function switchTab(index) {
         var tabs = document.querySelector('.Tabs').children;
         tabs[index].firstChild.click()
+    }
+
+    //gohome 返回首页
+    function goHome() {
+      window.location.href = '/';
+    }
+
+    // 查看最新提醒通知
+    function seeNotification() {
+      var PushNotifications = document.querySelector('.PushNotifications-icon');
+      PushNotifications.click();
+    }
+
+    //去往设置页面
+    function goSetting() {
+      window.location.href = '/settings/account';
+    };
+
+    function escapeHandler() {
+        if(document.hasFocus()) {
+          var a = '<div tabindex=''></div>'
+          document.appendChild()
+          console.log('can blur?')
+          window.blur();
+        }
     }
 
     function hotkey(event)
@@ -259,23 +256,31 @@ w 阅读全文/收起
         return;
       }
 
-      if(event.key =='s') {
-        scFlag = true;
-      } else if(event.key =='f') {
-        fxFlag = true;
-      } else if(scFlag && event.key=='c') {
-        scFlag = fxFlag = false;
-        collection();
-        return;
-      } else if(fxFlag && event.key=='x') {
-        scFlag = fxFlag = false;
-        share();
-        return;
-      }
-      else {
-        scFlag = fxFlag = 0;
+      if(event.key=='g') {
+        gFlag = true;
+      } else if(gFlag) {
+        switch (event.key) {
+          case 'n':
+            seeNotification();
+            break;
+          case 'h':
+            goHome();
+            break;
+          case 's':
+            goSetting();
+            break;
+        }
+      } else {
+        gFlag = false;
       }
 
+      if(event.keyCode==27) {
+        console.log('esc')
+        // chrome 'Escape'
+        // firefox 'Esc'
+        escapeHandler();
+        return;
+      }
       switch (event.key) {
         case '1':
           switchTab(0)
@@ -297,9 +302,6 @@ w 阅读全文/收起
           break;
         case '?':
           break;
-        case 'g':
-          firstItem();
-          break;
         case 'o':
           break;
         case 'c':
@@ -317,11 +319,6 @@ w 阅读全文/收起
         case 'w':
           moreOrFold();
           break;
-        case 'G':
-          lastItem();
-          break;
-        default:
-
       }
     }
 })();

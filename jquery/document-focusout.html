@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>点击按钮focusout</title>
+</head>
+<body>
+    <style>
+        #focus-tab {
+        /* not work if focus */
+        /* visibility: hidden;   */
+            position: fixed;
+            /* top: -1000px;  */
+            /*我让这个元素肯定不在页面上不就ok了？！*/
+        }
+    </style>
+    <h2>你可以点击下面的按钮看看focus的情况</h2>
+    <input autofocus/>
+    <input id="focusout-input">
+    <span id="focusout"></span>
+    <button id="btn">click here</button>
+    <!-- <div tabindex="0" id="focus-tab">tab</div> -->
+</body>
+<script src="./jquery-3.2.1.js"></script>
+<script>
+    $(document).ready(function(){
+        // 这是错误的，因为点击按钮的时候，光标本身就已经focusout了。没有代表性
+        // $('#btn').on('click',function(e){
+        //     e.preventDefault();
+        //     window.blur();
+        //     // $(document).focusout(); can work prefectly
+        // })
+        // $(document).on('keypress',function(e){
+        //     e.preventDefault();
+        //     console.log('key pressed');
+        //     // 由于preventDefault不会输入任何东西，但是下面的focusout也没有执行。
+        //     // 这种方式也是没有用的。
+        //     $(document).focusout();
+        // })
+        // $(document).on('keypress',function(e){
+        //     e.preventDefault();
+        //     console.log('key pressed');
+        //     $('#focusout').focus();
+        //     // 由于preventDefault不会输入任何东西，但是下面的focusout也没有执行。
+        //     // 这种方式也是没有用的。
+        // })
+        // $(document).on('keypress',function(e){
+        //     // 如果#focusout-input元素被隐藏了，则他失去了focus的能力，则他也不会去focus
+        //     e.preventDefault();
+        //     console.log('key pressed');
+        //     $('#focusout-input').focus();
+        //     // 由于preventDefault不会输入任何东西，但是下面的focusout也没有执行。
+        //     // 这种方式也是没有用的。
+        // }) 
+        $(document).on('keypress',function(e){
+            e.preventDefault();
+            var focusTab = document.createElement('div');
+            focusTab.innerHTML = '<div id="focus-tab" tabindex="0">999</div>';
+            console.log(focusTab);
+            document.body.appendChild(focusTab);
+            focusTab.focus();
+            // 由于preventDefault不会输入任何东西，但是下面的focusout也没有执行。
+            // 这种方式也是没有用的。
+        }) 
+    });
+</script>
+</html>
+
+
+<!--
+https://stackoverflow.com/questions/1599660/which-html-elements-can-receive-focus
+
+
+$focusable:
+  'a[href]',
+  'area[href]',
+  'button',
+  'details',
+  'input',
+  'iframe',
+  'select',
+  'textarea',
+
+  // these are actually case sensitive but i'm not listing out all the possible variants
+  '[contentEditable=""]',
+  '[contentEditable="true"]',
+  '[contentEditable="TRUE"]',
+
+  '[tabindex]:not([tabindex^="-"])',
+  ':not([disabled])';
+
+-->
