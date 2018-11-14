@@ -25,7 +25,7 @@ v 赞同
 d 反对
 t 感谢
 w 阅读全文/收起
-g+n 查看通知
+g+n 查看通知/关闭通知
 g+p 查看个人首页
 g+s 去往设置页面
 1/2/3 切换 推荐/关注/热榜
@@ -227,8 +227,22 @@ g+s 去往设置页面
 
     // 查看最新提醒通知
     function seeNotification() {
-      var PushNotifications = document.querySelector('.PushNotifications-icon');
-      PushNotifications.click();
+      // 如果有关闭通知的按钮，则点击之,使通知关闭。否则，创建之。
+      var closeNoti= document.querySelector('#closeNoti');
+      if(closeNoti) {
+        closeNoti.click();
+        setTimeout(function(){
+          document.body.removeChild(closeNoti);
+        },300)
+      } else {
+        closeNoti = document.createElement('button');
+        closeNoti.setAttribute('id','closeNoti');
+        closeNoti.style.position= 'fixed';
+        closeNoti.style.top = '-1000px';        
+        document.body.appendChild(closeNoti);
+        var PushNotifications = document.querySelector('.PushNotifications-icon');
+        PushNotifications.click();
+      }
     }
 
     //去往设置页面
@@ -237,11 +251,13 @@ g+s 去往设置页面
     };
 
     function escapeHandler() {
-        if(document.hasFocus()) {
-          var a = '<div tabindex=''></div>'
-          document.appendChild()
-          console.log('can blur?')
-          window.blur();
+        if(document.hasFocus) {
+          var focusTab = document.createElement('div');
+          focusTab.setAttribute('tabindex','0');
+          focusTab.style.position= 'fixed';
+          focusTab.style.top = '-1000px';
+          document.body.appendChild(focusTab);
+          focusTab.focus();
         }
     }
 
@@ -275,9 +291,7 @@ g+s 去往设置页面
       }
 
       if(event.keyCode==27) {
-        console.log('esc')
-        // chrome 'Escape'
-        // firefox 'Esc'
+        event.preventDefault();
         escapeHandler();
         return;
       }
