@@ -13,11 +13,9 @@ todo
 单个问题页面，查看更多
 按住Ｉ键，向下滚动 一点点
 按住Ｏ键，向上滚动 一点点
-收起评论
 无须快捷键 空格键，向下滚动，但是是滚动一屏的距离，我希望的并不是滚动一屏啊！
-ENTER 当前项目打开看详情
-let,const 统一，lint
 快捷键 说明
+ENTER 当前回答详情
 ESC 从写评论状态切换为继续浏览其他答案
 j / k 上一个/下一个答案
 / 搜索
@@ -86,7 +84,10 @@ g+s 去往设置页面
       mainTag = document.querySelector('.MoreAnswers');
       answerClass = 'List-item';
     } else if (/^(http|https):\/\/www.zhihu.com\/search\/*/.test(href)) { // 匹配搜索页面
-      mainTag = document.querySelector('.SearchMain').parentElement;
+      mainTag = document.querySelector('.SearchMain');
+      answerClass = 'List-item';
+    } else if (/^(http|https):\/\/www.zhihu.com\/question\/(\d+)$/.test(href)) {
+      mainTag = document.querySelector('.QuestionAnswers-answers');
       answerClass = 'List-item';
     }
     if (mainTag) {
@@ -161,7 +162,10 @@ g+s 去往设置页面
     const contentMoreBtn = answers.querySelector('.ContentItem-more');
     const contentFoldBtn = answers.querySelector('.ContentItem-rightButton');
     const actionBtn = contentMoreBtn || contentFoldBtn;
-    actionBtn.click();
+    // 有些字数少的回答，就没有展开的按钮。
+    if (actionBtn) {
+      actionBtn.click();
+    }
   }
 
   // 赞同
@@ -235,6 +239,7 @@ g+s 去往设置页面
     window.location.href = '/settings/account';
   }
 
+  // esc的处理
   function escapeHandler() {
     if (document.hasFocus) {
       const focusTab = document.createElement('div');
@@ -246,6 +251,13 @@ g+s 去往设置页面
     }
   }
 
+  // ENTER键的处理
+  function enterHandler() {
+    console.log('got here');
+    const currentElement = findAnswers(selectId);
+    const link = currentElement.querySelector('a');
+    link.click();
+  }
   function hotkey(event) {
     if (event.altKey || event.ctrlKey) return;
 
@@ -279,6 +291,11 @@ g+s 去往设置页面
     if (event.keyCode === 27) {
       event.preventDefault();
       escapeHandler();
+      return;
+    }
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      enterHandler();
       return;
     }
     switch (event.key) {
