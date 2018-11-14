@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>点击按钮focusout</title>
+</head>
+<body>
+    <h2>你可以按下esc键或其他键试试</h2>
+    <input autofocus/>
+</body>
+<script>
+    window.onload= function() {
+        document.addEventListener('keydown', function(e){
+            if(e.keyCode==27) {
+                e.preventDefault();
+                var focusTab = document.createElement('div');
+                focusTab.setAttribute('tabindex','0');
+                focusTab.style.position= 'fixed';
+                focusTab.style.top = '-1000px';
+                document.body.appendChild(focusTab);
+                focusTab.focus();
+            }
+        })
+    };
+</script>
+</html>

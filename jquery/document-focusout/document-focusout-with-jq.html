@@ -12,7 +12,7 @@
         /* not work if focus */
         /* visibility: hidden;   */
             position: fixed;
-            /* top: -1000px;  */
+            top: -1000px; 
             /*我让这个元素肯定不在页面上不就ok了？！*/
         }
     </style>
@@ -54,16 +54,25 @@
         //     // 由于preventDefault不会输入任何东西，但是下面的focusout也没有执行。
         //     // 这种方式也是没有用的。
         // }) 
-        $(document).on('keypress',function(e){
-            e.preventDefault();
-            var focusTab = document.createElement('div');
-            focusTab.innerHTML = '<div id="focus-tab" tabindex="0">999</div>';
-            console.log(focusTab);
-            document.body.appendChild(focusTab);
-            focusTab.focus();
+        //keydown 对ESC是有效的，但是keypress对ESC是无效的。这个在chrome下测试是这样的。
+        $(document).on('keydown',function(e){
+            console.log(e.keyCode);
+            //输入1的时候，模拟blur效果
+            if(e.keyCode==27) {
+                e.preventDefault();
+                var focusTab = document.createElement('div');
+                focusTab.innerHTML = '<div id="focus-tab" tabindex="0">999</div>';
+                document.body.appendChild(focusTab);
+                setTimeout(function(){
+                    $('#focus-tab').focus();
+                },10);
+            }
             // 由于preventDefault不会输入任何东西，但是下面的focusout也没有执行。
             // 这种方式也是没有用的。
         }) 
+
+        // 将jq代码转为pure代码
+        
     });
 </script>
 </html>
