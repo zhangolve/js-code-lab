@@ -28,16 +28,16 @@ function tickets(peopleInLine){
             console.log(current)
         } else{
             for(let z=0;z<change.length;z++) {
-            for(let j=0;j<change.length;j++) {
-                //　从当前零钱里找出来拿走
-                    index=current[z].findIndex(v=>v==change[z][j])
-                    console.log(index);
-                    if(index===-1) {
-                        return 'NO'
-                    } else {
-                        current = current.filter((v,i)=>i!=index);
-                    }
-            }
+                for(let j=0;j<change.length;j++) {
+                    //　从当前零钱里找出来拿走
+                        index=current[z].findIndex(v=>v==change[z][j])
+                        console.log(index);
+                        if(index===-1) {
+                            return 'NO'
+                        } else {
+                            current = current.filter((v,i)=>i!=index);
+                        }
+                }
             // 两种可能啊！
             current.push(peopleInLine[i])
             console.log(current);
@@ -81,3 +81,27 @@ function tickets(peopleInLine){
 
 
 */
+
+
+function tickets(peopleInLine){
+    var a25 = 0,a50 = 0;
+    for(var i = 0;i<peopleInLine.length;i++){
+      if(peopleInLine[i] == 25){
+        a25 += 1;
+      }
+      if(peopleInLine[i] == 50){
+        a25 -= 1; a50 += 1;
+      }
+      if(peopleInLine[i] == 100){
+        if(a50 == 0 && a25 >= 3){
+          a25 -= 3;
+        }else{
+          a25 -= 1; a50 -= 1;
+        }
+      }
+      if(a25 < 0 || a50 < 0){
+         return 'NO';
+      }
+    }
+    return 'YES';
+  }
