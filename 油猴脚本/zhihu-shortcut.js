@@ -11,16 +11,17 @@
 /*
 todo 
 单个问题页面，查看更多
-按住ESC,退出当前光标聚集
 按住Ｉ键，向下滚动 一点点
 按住Ｏ键，向上滚动　一点点
-
+收起评论
 无须快捷键　空格键，向下滚动，但是是滚动一屏的距离，我希望的并不是滚动一屏啊！
+ENTER 当前项目打开看详情
 
 快捷键 说明
+ESC 从写评论状态切换为继续浏览其他答案
 j / k 上一个/下一个答案
 / 搜索
-o 显示评论
+c 显示评论
 v 赞同
 d 反对
 t 感谢
@@ -29,6 +30,7 @@ g+n 查看通知/关闭通知
 g+p 查看个人首页
 g+s 去往设置页面
 1/2/3 切换 推荐/关注/热榜
+
 可以做成chrome ex，？呼出快捷键说明栏
 */ 
 
@@ -45,20 +47,20 @@ g+s 去往设置页面
     addEvent();
 
     function addEvent() {
-      answerClass = getAnswerClass();
       if (mainTag) {
         mainTag.removeEventListener('mouseover', mouseoverEvent, true);
         observer.disconnect();
       }
       var href = window.location.href;
-      if(/^(http|https):\/\/www.zhihu.com(\/)?$/.test(href)) { // 匹配主页
+      if(/^(http|https):\/\/www.zhihu.com(\/|\/follow)?$/.test(href)) { // 匹配主页
         mainTag = document.querySelector('.Topstory-content');
+        answerClass = 'TopstoryItem';
       } else if (/^(http|https):\/\/www.zhihu.com\/question\/(\d)+\/answer\/*/.test(href)) { //匹配单个问题页面
-        mainTag = document.querySelector('.List-item');
-      } else if(/^(http|https):\/\/www.zhihu.com\/question\/*/.test(href)) {
-        mainTag = document.querySelector('.List-item').parentElement;
-      } else if(/^(http|https):\/\/www.zhihu.com\/follow/.test(href)) {
-        mainTag = document.querySelector('.Topstory-content');
+        mainTag = document.querySelector('.MoreAnswers');
+        answerClass = 'List-item';
+      } else if(/^(http|https):\/\/www.zhihu.com\/search\/*/.test(href)) { // 匹配搜索页面
+        mainTag = document.querySelector('.SearchMain').parentElement;
+        answerClass = 'List-item';
       }
       if(mainTag) {
         mainTag.addEventListener('mouseover', mouseoverEvent, true);
@@ -77,16 +79,6 @@ g+s 去往设置页面
       const newId = Number(value);
       if (isNaN(newId)) return;
       selectId = newId;
-    }
-
-    // 还应该匹配search页面！！
-    function getAnswerClass() {
-      if(/^(http|https):\/\/www.zhihu.com(\/)?$/.test(window.location.href)) { // 匹配主页
-        return 'TopstoryItem';
-      }
-      else if (/^(http|https):\/\/www.zhihu.com\/question\/*/.test(window.location.href)) { //匹配问题页面
-        return 'List-item';
-      }
     }
 
     function mouseoverEvent(e){
@@ -148,9 +140,13 @@ g+s 去往设置页面
     // 设置边框样式
     function setBorderStyle(currentId, previousId) {
         let currentElement = findAnswers(currentId);
-        currentElement.style.border = '3px solid #3284ff';
         let previousItem = findAnswers(previousId);
-        previousItem.style.border = '';
+        if(currentElement) {
+          currentElement.style.border = '3px solid #3284ff';
+        }
+        if(previousItem) {
+          previousItem.style.border = '';
+        }
     }
 
     //到下一个项目
@@ -181,25 +177,28 @@ g+s 去往设置页面
         actionBtn.click();   
     }
     
-
+    // 赞同
     function voteButtonUp() {
       let answers = findAnswers(selectId);
       let voteButton = answers.getElementsByClassName('VoteButton--up')[0];
       voteButton.click();
     }
 
+    //　反对
     function voteButtonDown() {
       let answers = findAnswers(selectId);
       let voteButton = answers.getElementsByClassName('VoteButton--down')[0];
       voteButton.click();
     }
 
+    //搜索
     function search()
     {
       const searchInput = document.querySelector('.SearchBar-input input');
       searchInput.focus();
     }
 
+    //打开评论
     function openComment()
     {
       let answers = findAnswers(selectId);
@@ -207,6 +206,7 @@ g+s 去往设置页面
       comment.click();
     }
 
+    //感谢
     function thank()
     {
       let answers = findAnswers(selectId);
@@ -218,6 +218,7 @@ g+s 去往设置页面
     function switchTab(index) {
         var tabs = document.querySelector('.Tabs').children;
         tabs[index].firstChild.click()
+        selectId = 0;
     }
 
     //gohome 返回首页
