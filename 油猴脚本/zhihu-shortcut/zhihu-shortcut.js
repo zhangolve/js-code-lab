@@ -253,7 +253,6 @@ g+s 去往设置页面
 
   // ENTER键的处理
   function enterHandler() {
-    console.log('got here');
     const currentElement = findAnswers(selectId);
     const link = currentElement.querySelector('a');
     link.click();
@@ -293,7 +292,7 @@ g+s 去往设置页面
       escapeHandler();
       return;
     }
-    if (event.keyCode === 13) {
+    if (event.keyCode === 13 && element.tagName === 'BODY') {
       event.preventDefault();
       enterHandler();
       return;
