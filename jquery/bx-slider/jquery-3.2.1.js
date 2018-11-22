@@ -130,7 +130,7 @@ jQuery.fn = jQuery.prototype = {
 	toArray: function() {
 		return slice.call( this );
 	},
-	//Objcet.prototype.slice.call(this)
+	//Object.prototype.slice.call(this)
 	// Get the Nth element in the matched element set OR
 	// Get the whole matched element set as a clean array
 	get: function( num ) {
