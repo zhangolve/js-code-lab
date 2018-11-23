@@ -69,8 +69,8 @@ b
 // [1, 2, 3]
 
 a=[{a:1,b:2},{a:2,b:3},{a:3,b:4}]
-[Object, Object, Object]
+// [Object, Object, Object]
 a.find((item)=>item.a==1)
-Object {a: 1, b: 2}
+// Object {1, b: 2}
 _.find(a,(item)=>item.a==1)
-Object {a: 1, b: 2}
+// Object {a: 1, b: 2}
