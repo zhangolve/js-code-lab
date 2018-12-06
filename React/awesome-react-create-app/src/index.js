@@ -6,7 +6,7 @@ import './index.css';
 
 ReactDOM.render(
    <HashRouter>
-  <Routes  />
+      <Routes  />
   </HashRouter>,
   document.getElementById('root')
 );

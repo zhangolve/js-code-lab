@@ -3,29 +3,26 @@ import React, {Component} from 'react';
 class Container extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            text : "are you ok",
-            num:0
-        }
     }
-    componentDidMount() {
-        console.log( ' container didmout');
+
+    homeHandler = () => {
+        this.props.history.push('/');
     }
-    componentDidUpdate() {
-        console.log(' container did update');
-    }
-    componentWillUpdate() {
-        console.log('container  will update');
-    }
-    componentWillUnmount() {
-        console.log('container will unmount');
+
+    cateHandler = () => {
+        this.props.history.push('/cate');
     }
 
     render() {
-        return <div>
-            hello world are you ok
+        return (
+        <div>
+            <div className="btns">
+                <button onClick={this.homeHandler}>home</button>
+                <button onClick={this.cateHandler}>category</button>
+            </div>
             {this.props.children}
         </div>
+        )
     }
 }
 
