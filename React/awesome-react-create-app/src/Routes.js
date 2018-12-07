@@ -7,6 +7,7 @@ import { TransitionGroup, CSSTransition } from "react-transition-group";
 import BtnContainer from './life-cycle/life-cycle';
 import SortNumber from './SortNumber';
 import NotFound from './NotFound';
+import RouteWithLayout from './RouteWithLayout';
 import './animate.css';
 
 const Routes = () => (
@@ -29,8 +30,8 @@ const Routes = () => (
       timeout={300}
     >
     <Switch>
-        <Route exact path="/" component={App} />    
-        <Route exact path="/cate" component={Cate}/>
+        <RouteWithLayout exact path="/" component={App} />    
+        <RouteWithLayout exact path="/cate" component={Cate}/>
         <Route exact path="/life-cycle" component={BtnContainer}/>
         <Route  path="/sort-numbers" component={SortNumber} />
         <Route path="*"  component={NotFound}/>
