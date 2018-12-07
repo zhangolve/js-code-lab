@@ -1,6 +1,6 @@
 // src/routes.js
 import React from 'react';
-import {  Route, Link} from 'react-router-dom';
+import {  Route, Link, Switch} from 'react-router-dom';
 import App from './App';
 import Cate from './Cate';
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -10,7 +10,10 @@ import NotFound from './NotFound';
 import './animate.css';
 
 const Routes = () => (
-  <div>
+  <Route
+  render={({ location }) => 
+  (
+    <div>
     <ul>
           <li>
             <Link to="/">Home</Link>
@@ -19,24 +22,23 @@ const Routes = () => (
             <Link to="/cate">cate</Link>
           </li>
     </ul>
-    <Route>
     <TransitionGroup>
     <CSSTransition
-      key={location.key}
+      key={location.pathname}
       classNames="fade"
       timeout={300}
     >
-    <switch>
+    <Switch>
         <Route exact path="/" component={App} />    
         <Route exact path="/cate" component={Cate}/>
         <Route exact path="/life-cycle" component={BtnContainer}/>
         <Route  path="/sort-numbers" component={SortNumber} />
         <Route path="*"  component={NotFound}/>
-    </switch>
+    </Switch>
     </CSSTransition>
     </TransitionGroup>
-    </Route>
-  </div>
+  </div>)}
+  />
 );
 
 export default Routes;
