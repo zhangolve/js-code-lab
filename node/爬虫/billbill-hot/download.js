@@ -1,5 +1,5 @@
 const { exec } = require('child_process');
-const yougetBase = 'you-get -o ./videos https://www.bilibili.com/video';  
+const yougetBase = 'you-get -o ./videos/001 https://www.bilibili.com/video';  
 
 function direct(arr) {
     // const arr = ['36426489', '36931079', '24868082'];

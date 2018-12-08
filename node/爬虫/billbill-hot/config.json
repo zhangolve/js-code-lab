@@ -1,3 +1,4 @@
 {
-    "vidpath": "./videos"
+    "vidpath": "./videos/001",
+    "proxy": "127.0.0.1:8081"
 }

@@ -14,11 +14,10 @@ var google = require('googleapis')
 var googleAuth = require('google-auth-library')
 var EventEmitter = require('events')
 
-
 const SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl']
 const CREDS = 'client_secrets.json'
 var TOKEN_PATH = 'google-apis-nodejs-quickstart.json'
-
+// process.env.HTTPS_PROXY = 'http://127.0.0.1:8123';
 
 class Emitter extends EventEmitter {}
 var event = new Emitter()
@@ -55,39 +54,13 @@ function createResource(properties) {
     return resource;
   }
   
+var tryCount = 0;
 
-
-
-  async function runSample(auth, requestData) {
-    var fileSize = fs.statSync(requestData['mediaFilename']).size;
-    var service = google.youtube('v3');
-    var parameters = removeEmptyParameters(requestData['params']);
-    parameters['auth'] = auth;
-    parameters['media'] = { body: fs.createReadStream(requestData['mediaFilename']) };
-    parameters['notifySubscribers'] = false;
-    parameters['resource'] = createResource(requestData['properties']);
-    const res = await service.videos.insert(
-      parameters,
-      {
-        // Use the `onUploadProgress` event from Axios to track the
-        // number of bytes uploaded to this point.
-        onUploadProgress: evt => {
-          const progress = (evt.bytesRead / fileSize) * 100;
-          readline.clearLine();
-          readline.cursorTo(0);
-          process.stdout.write(`${Math.round(progress)}% complete`);
-        },
-      }
-    );
-    console.log(res);
-    return res.data;
-  }
-
-
-  
 function videosInsert(auth, requestData) {
     // runSample(auth, requestData).catch((e)=>{console.log(e)})
+    // var service = google.youtube({ version: 'v3', proxy: 'http://127.0.0.1:' });
     var service = google.youtube('v3');
+    var fileName = requestData['mediaFilename'];
     var parameters = removeEmptyParameters(requestData['params']);
     parameters['auth'] = auth;
     parameters['media'] = { body: fs.createReadStream(requestData['mediaFilename']) };
@@ -96,10 +69,23 @@ function videosInsert(auth, requestData) {
     var req = service.videos.insert(parameters, function(err, data) {
         if (err) {
             console.log('The API returned an error: ' + err);
+            tryCount++
+            if(tryCount<5) {
+                console.log(`retry uploading ${fileName}`)
+                videosInsert(auth, requestData);
+            } else {
+                process.exit();
+            }
         }
         if (data) {
+            tryCount = 0;
             console.log(data);
-            console.log('data');
+            fs.unlink(fileName, function (err) {            
+                if (err) {                                                 
+                    console.error(err);                                    
+                }                                                          
+               console.log(fileName+ 'File has been Deleted');                           
+            });
             // console.log(util.inspect(data, false, null));
             event.emit('finished')
         }
@@ -111,7 +97,7 @@ function videosInsert(auth, requestData) {
         var uploadedBytes = req.req.connection._bytesDispatched;
         var uploadedMBytes = uploadedBytes / 1048576;
         var progress = uploadedBytes > fileSize ? 100 : (uploadedBytes / fileSize) * 100;
-        event.emit('progress', uploadedMBytes, fileSize / 1048576, progress)
+        // event.emit('progress', uploadedMBytes, fileSize / 1048576, progress)
         //console.log(uploadedMBytes.toFixed(2) + ' MBs uploaded. ' + progress.toFixed(2) + '% completed.');
         if (progress === 100) {
             console.log('Done uploading, waiting for response...');

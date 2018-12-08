@@ -53,6 +53,8 @@ function init() {
 
     function switchedOneAuthor() {
         rl.question('输入up主id\n', function(authorId) {
+            console.log('开始下载');
+            rl.close();
             execuate(url(authorId))
         })
     }
@@ -61,6 +63,7 @@ function init() {
 
 /* 得到json数据，将json数据写入本地文件*/
 function execuate(url) {
+    console.log('000')
     request({
         method: 'GET',
         gzip: true,

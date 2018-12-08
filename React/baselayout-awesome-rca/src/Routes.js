@@ -6,6 +6,7 @@ import BaseLayout from './BaseLayout';
 import About from './About';
 
 const Routes = () => (
+  
   <Switch >
       <Route exact path='/' render={props => (
     <BaseLayout {...props}>
@@ -18,6 +19,7 @@ const Routes = () => (
     </BaseLayout>
   )}/>    
   </Switch>
+
 );
 
 export default Routes;

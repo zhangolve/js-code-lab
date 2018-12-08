@@ -1,9 +1,9 @@
  var fs = require('fs')
 var YT = require('./ytupload')
 var config = require('./config.json')
-
 var currentFile = 0
-
+var useProxy = false;
+// process.env.HTTPS_PROXY = 'http://127.0.0.1:8123';
 
 if (process.argv.find(a => a == 'clear' || a == '-clear' || a == '--clear')) {
     let file = 'google-apis-nodejs-quickstart.json'
@@ -52,7 +52,8 @@ var time = getTime()
 YT.upload({
     title: `${files[0].split('.')[0]}`,
     file: config.vidpath + '/' + files[0],
-    privacy: 'public'
+    privacy: 'public',
+    description: `转载自billbill`
 })
 
 YT.event.on('progress', (uploaded, filesize, progress) => {
@@ -70,14 +71,16 @@ YT.event.on('progress', (uploaded, filesize, progress) => {
 })
 
 YT.event.on('finished', () => {
+    console.log('333')
     if (++currentFile < files.length) {
         let f = files[currentFile]
         YT.upload({
-            title: `${f.split('.')[0]} ${time.d}.${time.m}.${time.y} - ${time.h}:${time.min}:${time.s}`,
+            title: `${f.split('.')[0]}`,
             file: config.vidpath + '/' + f,
             privacy: 'public'
         })
+    } else {
+        process.exit()
     }
     console.log(`Finished uploading ${currentFile} video files.`)
-    process.exit()
 })
