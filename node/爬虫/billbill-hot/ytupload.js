@@ -70,11 +70,12 @@ function videosInsert(auth, requestData) {
         if (err) {
             console.log('The API returned an error: ' + err);
             tryCount++
-            if(tryCount<5) {
+            if(tryCount<3) {
                 console.log(`retry uploading ${fileName}`)
                 videosInsert(auth, requestData);
             } else {
-                process.exit();
+                tryCount = 0;
+                event.emit('finished')
             }
         }
         if (data) {
