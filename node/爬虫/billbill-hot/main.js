@@ -35,6 +35,7 @@ function getTime() {
     }
 }
 
+// 这里的判断也有问题，一个文件名可能包含.
 var files = fs.readdirSync(config.vidpath)
     .filter(f => { 
         var ext = f.split('.')[1]
@@ -56,22 +57,17 @@ YT.upload({
     description: `转载自billbill`
 })
 
-YT.event.on('progress', (uploaded, filesize, progress) => {
-    console.clear()
+YT.event.on('progress', () => {
     time = getTime()
     console.log(`
 
   [${time.d}.${time.m}.${time.y} - ${time.h}:${time.min}:${time.s}]
 
   Uploading video file '${files[currentFile]}'...
-
-  ${uploaded.toFixed(2)} MiB / ${filesize.toFixed(2)} MiB  -  ${progress.toFixed(2)} %
-  [${'========================================'.substr(40 - parseInt(40 * (progress / 100)))}${'                                        '.substr(parseInt(40 * (progress / 100)))}]
     `)
 })
 
 YT.event.on('finished', () => {
-    console.log('333')
     if (++currentFile < files.length) {
         let f = files[currentFile]
         YT.upload({

@@ -10,11 +10,13 @@
 var fs = require('fs')
 var readline = require('readline')
 var util = require('util')
-var google = require('googleapis')
+var {google} = require('googleapis')
 var googleAuth = require('google-auth-library')
 var EventEmitter = require('events')
 
-const SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl']
+const SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl',
+                'https://www.googleapis.com/auth/youtube.upload',
+                'https://www.googleapis.com/auth/youtube'];
 const CREDS = 'client_secrets.json'
 var TOKEN_PATH = 'google-apis-nodejs-quickstart.json'
 // process.env.HTTPS_PROXY = 'http://127.0.0.1:8123';
@@ -57,9 +59,8 @@ function createResource(properties) {
 var tryCount = 0;
 
 function videosInsert(auth, requestData) {
-    // runSample(auth, requestData).catch((e)=>{console.log(e)})
     // var service = google.youtube({ version: 'v3', proxy: 'http://127.0.0.1:' });
-    var service = google.youtube('v3');
+    var service = google.youtube({ version: 'v3', auth: auth });
     var fileName = requestData['mediaFilename'];
     var parameters = removeEmptyParameters(requestData['params']);
     parameters['auth'] = auth;
@@ -70,23 +71,33 @@ function videosInsert(auth, requestData) {
         if (err) {
             console.log('The API returned an error: ' + err);
             tryCount++
-            if(tryCount<3) {
-                console.log(`retry uploading ${fileName}`)
-                videosInsert(auth, requestData);
-            } else {
-                tryCount = 0;
-                event.emit('finished')
-            }
+            // if(tryCount<3) {
+            //     console.log(`retry uploading ${fileName}`)
+            //     videosInsert(auth, requestData);
+            // } else {
+            //     tryCount = 0;
+            //     event.emit('finished')
+            // }
+            // tryCount++
+            // if(tryCount<5) {
+            //     console.log(`retry uploading ${fileName}`)
+            //     videosInsert(auth, requestData);
+            // } else {
+                    // event.emit('finished')
+            //     process.exit();
+            // }
+            event.emit('finished')
         }
         if (data) {
             tryCount = 0;
             console.log(data);
-            fs.unlink(fileName, function (err) {            
-                if (err) {                                                 
-                    console.error(err);                                    
-                }                                                          
-               console.log(fileName+ 'File has been Deleted');                           
-            });
+            console.log('\n 333')
+            // fs.unlink(fileName, function (err) {            
+            //     if (err) {                                                 
+            //         console.error(err);                                    
+            //     }                                                          
+            //    console.log(fileName+ 'File has been Deleted');                           
+            // });
             // console.log(util.inspect(data, false, null));
             event.emit('finished')
         }
@@ -94,17 +105,19 @@ function videosInsert(auth, requestData) {
   
     var fileSize = fs.statSync(requestData['mediaFilename']).size;
     // show some progress
-    var id = setInterval(function () {
-        var uploadedBytes = req.req.connection._bytesDispatched;
-        var uploadedMBytes = uploadedBytes / 1048576;
-        var progress = uploadedBytes > fileSize ? 100 : (uploadedBytes / fileSize) * 100;
-        // event.emit('progress', uploadedMBytes, fileSize / 1048576, progress)
-        //console.log(uploadedMBytes.toFixed(2) + ' MBs uploaded. ' + progress.toFixed(2) + '% completed.');
-        if (progress === 100) {
-            console.log('Done uploading, waiting for response...');
-            clearInterval(id);
-        }
-    }, 250);
+    event.emit('progress')
+
+    // var id = setInterval(function () {
+    //     // var uploadedBytes = req.req.connection._bytesDispatched;
+    //     // var uploadedMBytes = uploadedBytes / 1048576;
+    //     // var progress = uploadedBytes > fileSize ? 100 : (uploadedBytes / fileSize) * 100;
+    //     // event.emit('progress', uploadedMBytes, fileSize / 1048576, progress)
+    //     //console.log(uploadedMBytes.toFixed(2) + ' MBs uploaded. ' + progress.toFixed(2) + '% completed.');
+    //     if (progress === 100) {
+    //         console.log('Done uploading, waiting for response...');
+    //         clearInterval(id);
+    //     }
+    // }, 250);
 }
 
 
@@ -199,3 +212,5 @@ function upload(prop) {
 
 exports.upload = upload
 exports.event = event
+
+// 4/rgAR1F3fNiyz0QXZNG4X6fI8zDxUNgeBSg1SiIRf3Kloec69Se6w-Js

@@ -33,7 +33,7 @@ function init() {
 
 
     function switchType() {
-        rl.question('输入1,下载上传单个视频。输入2,下载上传单个up主视频:\n\n', function(code) {
+        rl.question('输入1,下载上传单个视频。输入2,下载上传单个up主视频:\n', function(code) {
             if(code==1) {
                 switchedOneVideo();
             } else if(code==2) {
