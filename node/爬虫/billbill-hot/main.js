@@ -38,11 +38,10 @@ function getTime() {
 // 这里的判断也有问题，一个文件名可能包含.
 var files = fs.readdirSync(config.vidpath)
     .filter(f => { 
-        var ext = f.split('.')[1]
+        var ext = f.split('.')[f.length-1]
         return ext == 'mp4' ||
                ext == 'flv'
     })
-console.log(files.length)
 
 if (files.length == 0) {
     console.log(`Please place some video files into '${config.vidpath}' before starting the script.`)
