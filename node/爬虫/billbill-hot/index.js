@@ -53,17 +53,28 @@ function init() {
 
     function switchedOneAuthor() {
         rl.question('输入up主id\n', function(authorId) {
-            console.log('开始下载');
-            rl.close();
-            execuate(url(authorId))
+            shouldCreatePlayList(authorId);
+        });
+    }
+
+    function shouldCreatePlayList(authorId) {
+        rl.question('输入1下载完成后，创建播放列表,否则忽略\n', function(shouldCreate) {
+            if(shouldCreate==1) {
+                rl.question('输入播放列表名称\n', function(playListName) {
+                    console.log('---------start download----------------');
+                    execuate(url(authorId), playListName)    
+                })      
+            } else {
+                console.log('---------start download----------------');
+                execuate(url(authorId)) 
+            }       
         })
     }
 }
 
 
 /* 得到json数据，将json数据写入本地文件*/
-function execuate(url) {
-    console.log('000')
+function execuate(url, playListName) {
     request({
         method: 'GET',
         gzip: true,
@@ -81,7 +92,7 @@ function execuate(url) {
                     const aid = vlist[i].aid;    
                     aids.push(aid);
                 }
-                download.download(aids);
+                download.download(aids, playListName);
         }
     });
 }
