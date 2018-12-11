@@ -31,7 +31,13 @@ const youtube = google.youtube({
 
 const needDeletedVideosId = ["43cbd_xOtOs"]
 
+// 给定一个播放列表，目录名即为播放列表名。创建播放列表，往播放列表中添加视频
+// 一个视频
+// workflow 下载=》上传
+// 用新的方式，老的不再使用。
+async function init() {
 
+}
 
 // very basic example of uploading a video to youtube
 async function runSample(fileName) {
@@ -66,6 +72,29 @@ async function runSample(fileName) {
   );
   console.log('\n\n');
   // console.log(res.data);
+  return res.data;
+}
+
+async function playlistItemsInsert() {
+  // test
+  const resouce = { 
+    kind: 'youtube#playlistItem',
+    snippet:{ 
+      resourceId: {
+        "kind": 'youtube#video',
+        "videoId": 'QZOoLD8ebQE'
+      },
+      playlistId: 'PLoHxWFMhISQy1npPfFLCzVpjV8SwSdTDU'
+    }
+  };
+
+  const res = await youtube.playlistItems.insert(
+   {
+    part: 'snippet',
+    requestBody: resouce
+   }
+  );
+  console.log(res.data);
   return res.data;
 }
 
@@ -117,7 +146,7 @@ if (module === require.main) {
   const fileName = process.argv[2];
   sampleClient
     .authenticate(scopes)
-    .then(() => {runSample(fileName);})
+    .then(() => {playlistItemsInsert();})
     .catch(()=>{console.error('error')});
 }
 

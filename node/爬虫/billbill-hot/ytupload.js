@@ -90,18 +90,26 @@ function videosInsert(auth, requestData) {
         }
         if (data) {
             tryCount = 0;
-            console.log(data);
-            console.log('\n 333')
-            // fs.unlink(fileName, function (err) {            
-            //     if (err) {                                                 
-            //         console.error(err);                                    
-            //     }                                                          
-            //    console.log(fileName+ 'File has been Deleted');                           
-            // });
-            // console.log(util.inspect(data, false, null));
+            // service.playlistItems.insert({
+            //     PLoHxWFMhISQy1npPfFLCzVpjV8SwSdTDU
+            // }, function(err, response) {
+            //     if (err) {
+            //       console.log('The API returned an error: ' + err);
+            //       return;
+            //     }
+            //     console.log(response);
+            //   });
+            }
+            fs.unlink(fileName, function (err) {            
+                if (err) {                                                 
+                    console.error(err);                                    
+                }                                                          
+               console.log(fileName+ 'File has been Deleted');                           
+            });
+            console.log(util.inspect(data, false, null));
             event.emit('finished')
         }
-    });
+    );
   
     var fileSize = fs.statSync(requestData['mediaFilename']).size;
     // show some progress
