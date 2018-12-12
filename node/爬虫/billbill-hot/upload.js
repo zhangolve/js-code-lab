@@ -4,6 +4,15 @@ const readline = require('readline');
 const {google} = require('googleapis');
 const sampleClient = require('./sampleclient');
 
+const log4js = require('log4js');
+log4js.configure({
+  appenders: { 
+      billbill_upload: { type: 'file', filename: 'billbill.log', maxLogSize: 10485760, backups: 3, compress: true } ,
+      console: { type: 'console' }
+    }, // 日志的名称
+  categories: { default: { appenders: ['billbill_upload','console'], level: 'all' } } // appender 决定了每一行日志前缀是啥
+});
+const logger = log4js.getLogger('billbill_upload');
 
 // initialize the Youtube API library
 const youtube = google.youtube({
@@ -31,6 +40,7 @@ async function init(uploadPath, playListIdSign) {
     if(!playListIdSign) {
       const playlist = await insertPlayList(playListName);
       playListId = playlist.id;
+      logger.info(`创建播放列表成功，播放列表id为: ${playListId}`)
     } else {
       playListId = playListIdSign;
     }
@@ -46,14 +56,18 @@ async function init(uploadPath, playListIdSign) {
         }
         const video = await insertVideos(file);
         if(video) {
+          logger.info(`${file.name}已经完成上传`);
+
           if(typeof playListId ==='string') {
             await playlistItemsInsert(video.id, playListId)
           }
+          
           fs.unlink(file.name, function (err) {            
             if (err) {                                                 
-                console.error(err);                                    
-            }                                                          
-            console.log(fileName+ 'File has been Deleted');
+                logger.error(err);                                    
+
+            }
+            logger.warn(fileName+ 'File has been Deleted');
             console.clear();                           
           });
           await upload();
@@ -62,7 +76,7 @@ async function init(uploadPath, playListIdSign) {
     }
     await upload();
   } catch(e) {
-    console.log(e);
+    logger.error(e);
   }
 }
 
@@ -86,6 +100,7 @@ async function insertPlayList(playListName) {
 // very basic example of uploading a video to youtube
 async function insertVideos(file) {
   const fileSize = fs.statSync(file.name).size;
+  logger.info(`开始上传视频${file.name}`);
   const res = await youtube.videos.insert(
     {
       part: 'id,snippet,status',
@@ -106,18 +121,18 @@ async function insertVideos(file) {
     {
       onUploadProgress: evt => {
         const progress = (evt.bytesRead / fileSize) * 100;
+        console.clear();
         readline.clearLine();
         readline.cursorTo(0);
         process.stdout.write(`${Math.round(progress)}% complete\n`);
-      },
+      }
     }
   );
-  console.log('\n\n');
   return res.data;
 }
 
 async function playlistItemsInsert(videoId, playListId) {
-  // test
+  
   const resouce = { 
     kind: 'youtube#playlistItem',
     snippet:{ 
@@ -161,21 +176,24 @@ if (module === require.main) {
             sampleClient
             .authenticate(scopes)
             .then(() => {init(uploadPath)})
-            .catch(()=>{console.error('error')});
+
+            .catch((err)=>{logger.error(err)});
           } else if(code==2) {
             rl.question('输入播放列表id\n', function(playListId) {
               rl.close();
               sampleClient
               .authenticate(scopes)
               .then(() => {init(uploadPath, playListId)})
-              .catch(()=>{console.error('error')});
+
+              .catch((err)=>{logger.error(err)});
             })
           } else {
             rl.close();
             sampleClient
             .authenticate(scopes)
             .then(() => {init(uploadPath, true)})
-            .catch(()=>{console.error('error')});
+
+            .catch((err)=>{logger.error(err)});
             switchType();
           }
       })
