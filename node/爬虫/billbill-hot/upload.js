@@ -4,6 +4,7 @@ const readline = require('readline');
 const {google} = require('googleapis');
 const sampleClient = require('./sampleclient');
 
+
 // initialize the Youtube API library
 const youtube = google.youtube({
   version: 'v3',
@@ -21,31 +22,54 @@ function getFiles(uploadPath) {
     });
 }
 
-async function init(uploadPath) {
+async function init(uploadPath, playListIdSign) {
   const splited = uploadPath.split('/');
   const playListName = splited[splited.length-1];
   const needUploadFiles = getFiles(uploadPath);
-  
-  const playlist = await insertPlayList(playListName);
-  console.log(playList)
-  const playListId = playlist.id;
-  // 一个一个地，上传所有视频
-  async function upload() {
-    if(needUploadFiles.length>0) {
-      const file = needUploadFiles.pop();
-      const video = await insertVideos()
-      await playlistItemsInsert(video.id, playListId)
-      if(res) {
-        upload();
+  try {
+    let playListId = null;
+    if(!playListIdSign) {
+      const playlist = await insertPlayList(playListName);
+      playListId = playlist.id;
+    } else {
+      playListId = playListIdSign;
+    }
+
+    async function upload() {
+      if(needUploadFiles.length>0) {
+        const fileName = needUploadFiles.pop();
+        const file = {
+            title: `${fileName.split('.')[0]}`,
+            name: uploadPath + '/' + fileName,
+            privacy: 'public',
+            description: `转载自billbill`
+        }
+        const video = await insertVideos(file);
+        if(video) {
+          if(typeof playListId ==='string') {
+            await playlistItemsInsert(video.id, playListId)
+          }
+          fs.unlink(file.name, function (err) {            
+            if (err) {                                                 
+                console.error(err);                                    
+            }                                                          
+            console.log(fileName+ 'File has been Deleted');
+            console.clear();                           
+          });
+          await upload();
+        }
       }
     }
+    await upload();
+  } catch(e) {
+    console.log(e);
   }
 }
 
 // insert a playlist 
 
 async function insertPlayList(playListName) {
-  const res = await youtube.videos.insert(
+  const res = await youtube.playlists.insert(
     {
       part: 'snippet,status',
       requestBody: {
@@ -60,23 +84,23 @@ async function insertPlayList(playListName) {
 }
 
 // very basic example of uploading a video to youtube
-async function insertVideos(fileName) {
-  const fileSize = fs.statSync(fileName).size;
+async function insertVideos(file) {
+  const fileSize = fs.statSync(file.name).size;
   const res = await youtube.videos.insert(
     {
       part: 'id,snippet,status',
       notifySubscribers: false,
       requestBody: {
         snippet: {
-          title: 'Node.js YouTube Upload Test',
-          description: 'Testing YouTube upload via Google APIs Node.js Client',
+          title: file.title,
+          description: file.description,
         },
         status: {
-          privacyStatus: 'private',
+          privacyStatus: file.privacy,
         },
       },
       media: {
-        body: fs.createReadStream(fileName),
+        body: fs.createReadStream(file.name),
       },
     },
     {
@@ -89,7 +113,6 @@ async function insertVideos(fileName) {
     }
   );
   console.log('\n\n');
-  // console.log(res.data);
   return res.data;
 }
 
@@ -115,8 +138,6 @@ async function playlistItemsInsert(videoId, playListId) {
   return res.data;
 }
 
-
-
 const scopes = [
   'https://www.googleapis.com/auth/youtube.upload',
   'https://www.googleapis.com/auth/youtube',
@@ -124,10 +145,41 @@ const scopes = [
 
 if (module === require.main) {
   const uploadPath = process.argv[2];
-  sampleClient
-    .authenticate(scopes)
-    .then(() => {init(uploadPath)})
-    .catch(()=>{console.error('error')});
+  
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  })
+
+  switchType();
+
+
+  function switchType() {
+      rl.question('输入1,创建新播放列表，2添加到已有播放列表，否则不添加到任何播放列表\n', function(code) {
+          if(code==1) {
+            rl.close();
+            sampleClient
+            .authenticate(scopes)
+            .then(() => {init(uploadPath)})
+            .catch(()=>{console.error('error')});
+          } else if(code==2) {
+            rl.question('输入播放列表id\n', function(playListId) {
+              rl.close();
+              sampleClient
+              .authenticate(scopes)
+              .then(() => {init(uploadPath, playListId)})
+              .catch(()=>{console.error('error')});
+            })
+          } else {
+            rl.close();
+            sampleClient
+            .authenticate(scopes)
+            .then(() => {init(uploadPath, true)})
+            .catch(()=>{console.error('error')});
+            switchType();
+          }
+      })
+  }
 }
 
 module.exports = {
