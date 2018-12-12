@@ -15,14 +15,26 @@ log4js.configure({
 
 const logger = log4js.getLogger('billbill_download');
 
-function direct(arr, playListName) {
-    const some = arr.splice(0,5);
-    const exPath = playListName ? `${pathBase}/${playListName}`: pathBase;
-    mkdirp(exPath, function(err) { 
-        if(err) {
-            logger.error(err);
-        }
-        function execCommand(aid) {
+/***
+
+videolist
+[
+{
+ aid: '',
+ playListName: //　对应的文件夹名字
+ playListId: // 添加到已有的播放列表中   
+}
+]
+*/
+function direct(videolist) {
+    const some = videolist.splice(0,5);
+    function execCommand(video) {
+        const {playListId, aid, playListName} = video;
+        let exPath = playListName ? `${pathBase}/${playListName}${playListId ? '-'+playListId:''}`: pathBase;
+        mkdirp(exPath, function(err) { 
+            if(err) {
+                logger.error(err);
+            }
             const cmd = `${yougetBase} -o ${exPath} ${bilibiliBase}/av${aid} `;
             logger.info(cmd);
             let tryCount = 0;
@@ -39,19 +51,19 @@ function direct(arr, playListName) {
                 } else {
                     logger.info(`exec stdout: ${stdout}`);
                     tryCount = 0 ;
-                    if(arr.length>0) {
-                        execCommand(arr.shift());
+                    if(videolist.length>0) {
+                        execCommand(videolist.shift());
                     } else {
                         logger.info('finish load');
                     }
                 }
             });
-        }
-        for(var i=0;i<some.length;i++) {
-            const aid = some[i];
-            execCommand(aid);
-        }
-    });
+        });
+    }  
+    for(var i=0;i<some.length;i++) {
+        const video = some[i];
+        execCommand(video);
+    }  
 }
 
 
