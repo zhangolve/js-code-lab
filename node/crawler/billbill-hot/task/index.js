@@ -3,6 +3,7 @@ const {url,headers} = require('../const');
 const download = require('../download');
 const request =require('request') ;
 
+function rss() {
 let loopCount = 0;
 
 const log4js = require('log4js');
@@ -15,7 +16,7 @@ log4js.configure({
 
 const logger = log4js.getLogger('billbill_task');
 
-const gapTime = 60 * 60 * 24 *12; //间隔时间为1天，任务执行时间为一天。
+const gapTime = 60 * 60 * 24 * 12; //间隔时间为1天，任务执行时间为一天。
 
 const firstTimestamp = new Date()/1000 - gapTime;
 
@@ -70,3 +71,7 @@ function loop() {
 }
 
 loop();
+}
+
+module.exports = {rss}
+

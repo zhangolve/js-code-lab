@@ -5,6 +5,7 @@ const {google} = require('googleapis');
 const sampleClient = require('./sampleclient');
 
 const log4js = require('log4js');
+
 log4js.configure({
   appenders: { 
       billbill_upload: { type: 'file', filename: 'billbill.log', maxLogSize: 10485760, backups: 3, compress: true } ,
