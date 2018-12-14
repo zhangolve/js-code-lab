@@ -1,8 +1,8 @@
 const cron = require('node-cron');
 const {rss} = require('./index');
+const {load} =  require('./uploadRSS');
 
-const task = cron.schedule('1 */3 * * *', () =>  {
-  console.log('start ');
+const task = cron.schedule('0 */3 * * *', () =>  {
   rss();
 }, {
   scheduled: false
@@ -11,12 +11,11 @@ const task = cron.schedule('1 */3 * * *', () =>  {
 task.start();
 
 
-const task = cron.schedule('59 */3 * * *', () =>  {
-  console.log('start ');
-  rss();
+const task2 = cron.schedule('59 */3 * * *', () =>  {
+  load();
 }, {
   scheduled: false
 });
 
-task.start();
+task2.start();
 

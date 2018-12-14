@@ -26,7 +26,8 @@ function doTask (playListPath) {
   .catch((err)=>{logger.error(err)});
 }
 
-function load(dir) {
+function load() {
+  const dir = videoRootPath
   fs.readdirSync(dir)
     .filter(f => { 
       const playListPath = dir + '/' + f
