@@ -5,7 +5,7 @@ const {load} =  require('./uploadRSS');
 const task = cron.schedule('0 */3 * * *', () =>  {
   rss();
 }, {
-  scheduled: false
+  scheduled: true
 });
 
 task.start();
@@ -14,7 +14,7 @@ task.start();
 const task2 = cron.schedule('59 */3 * * *', () =>  {
   load();
 }, {
-  scheduled: false
+  scheduled: true
 });
 
 task2.start();

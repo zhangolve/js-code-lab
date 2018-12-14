@@ -27,12 +27,14 @@ function doTask (playListPath) {
 }
 
 function load() {
+  logger.info('上传视频：开始查找视频')
   const dir = videoRootPath
   fs.readdirSync(dir)
     .filter(f => { 
       const playListPath = dir + '/' + f
       var stat = fs.statSync(playListPath)
       if (stat && stat.isDirectory() && f.split('-').length ===2) {
+        logger.info(`找到视频路径: ${f}`)
         doTask(playListPath)
       }
     });

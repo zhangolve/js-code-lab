@@ -1,10 +1,14 @@
-const {authors} = require('./rssConfig');
+const {authorsList} = require('./rssConfig');
 const {url,headers} = require('../const');
 const download = require('../download');
 const request =require('request') ;
 
-function rss() {
+// require 的内容只在开头进行了声明，只在整个task开始的时候调用一次，以后就存在栈中了
 
+function rss() {
+// 每次调用，都初始化authors数组和loopCount
+const authors = authorsList.slice(0); //单纯相等的话，两个变量其实是一个变量，因为地址相同
+console.log(authors.length,'initial')
 let loopCount = 0;
 
 const log4js = require('log4js');
@@ -71,6 +75,8 @@ function loop() {
   }
 }
 
+console.log('rss')
+console.log(authors.length)
 loop();
 }
 
