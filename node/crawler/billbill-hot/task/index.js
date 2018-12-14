@@ -17,7 +17,7 @@ log4js.configure({
 
 const logger = log4js.getLogger('billbill_task');
 
-const gapTime = 60 * 60 ; //间隔时间为1天，任务执行时间为一天。
+const gapTime = 60 * 60 *3 ; //与job的间隔时间相同。
 
 const firstTimestamp = new Date()/1000 - gapTime;
 
