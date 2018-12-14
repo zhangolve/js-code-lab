@@ -34,7 +34,10 @@ function getFiles(uploadPath) {
 
 async function init(uploadPath, playListIdSign) {
   const splited = uploadPath.split('/');
-  const playListName = splited[splited.length-1];
+  let playListName = splited[splited.length-1];
+  const playListNameArr = playListName.split('-')
+  playListName = playListNameArr[0];
+  playListIdSign = playListName.length > 1 ? playListNameArr[1] : playListIdSign;
   const needUploadFiles = getFiles(uploadPath);
   try {
     let playListId = null;
@@ -177,7 +180,6 @@ if (module === require.main) {
             sampleClient
             .authenticate(scopes)
             .then(() => {init(uploadPath)})
-
             .catch((err)=>{logger.error(err)});
           } else if(code==2) {
             rl.question('输入播放列表id\n', function(playListId) {
@@ -185,7 +187,6 @@ if (module === require.main) {
               sampleClient
               .authenticate(scopes)
               .then(() => {init(uploadPath, playListId)})
-
               .catch((err)=>{logger.error(err)});
             })
           } else {
@@ -193,7 +194,6 @@ if (module === require.main) {
             sampleClient
             .authenticate(scopes)
             .then(() => {init(uploadPath, true)})
-
             .catch((err)=>{logger.error(err)});
             switchType();
           }
@@ -202,6 +202,6 @@ if (module === require.main) {
 }
 
 module.exports = {
-  insertVideos,
-  client: sampleClient.oAuth2Client,
+  init,
+  sampleClient
 };
