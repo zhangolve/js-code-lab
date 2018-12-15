@@ -1,8 +1,8 @@
 
-const request =require('request') ;
 const download = require('./download');
 const readline = require('readline')
 const {url, headers} = require('./const');
+const axios = require("axios");
 
 
 console.log('---------start----------------');
@@ -60,31 +60,30 @@ function init() {
 
 
 /* 得到json数据，将json数据写入本地文件*/
-function execuate(url, playListName) {
-    request({
-        method: 'GET',
-        gzip: true,
-        url,
-        headers,
-        timeout: 3000,
-    }, (error, response, html) => {
-        if (!error) {
-            const res = JSON.stringify(response.body);
-            let resObj = JSON.parse(res);
-            resObj = JSON.parse(resObj);
-            const vlist = resObj.data.vlist;
-            const videolist = [];
-            for(var i=0; i<vlist.length; i++)  {
-                const aid = vlist[i].aid;
-                const video = {
-                    aid,
-                    playListName
-                }    
-                videolist.push(video);
-            }
-            download.download(videolist);
-        }
-    });
+async function execuate(url, playListName) {
+    try {
+        const response = await axios.get(url, {
+          params: {
+            method: 'GET',
+            gzip: true,
+            url,
+            headers,
+            timeout: 3000,      
+        }});
+        const res = response.data;
+        const vlist = res.data.vlist;
+        const videolist = [];
+        vlist.forEach(v => {
+            const video = {
+                aid: v.aid,
+                playListName
+            }    
+            videolist.push(video);            
+        });
+        download.download(videolist)
+      } catch (error) {
+        console.log(error);
+    }
 }
 
 module.exports = {execuate,url,headers};

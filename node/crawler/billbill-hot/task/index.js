@@ -1,14 +1,14 @@
 const {authorsList} = require('./rssConfig');
 const {url,headers} = require('../const');
 const download = require('../download');
-const request =require('request') ;
+const axios = require("axios");
+
 
 // require 的内容只在开头进行了声明，只在整个task开始的时候调用一次，以后就存在栈中了
 
 function rss() {
 // 每次调用，都初始化authors数组和loopCount
 const authors = authorsList.slice(0); //单纯相等的话，两个变量其实是一个变量，因为地址相同
-console.log(authors.length,'initial')
 let loopCount = 0;
 
 const log4js = require('log4js');
@@ -28,35 +28,35 @@ const firstTimestamp = new Date()/1000 - gapTime;
 const videolist = []; 
 
 
-function execuate(url, playListName, playListId) {
-  request({
-      method: 'GET',
-      gzip: true,
-      url,
-      headers,
-      timeout: 3000,
-  }, (error, response, html) => {
-      loopCount++;
-      if (!error) {
-          const res = JSON.stringify(response.body);
-          let resObj = JSON.parse(res);
-          resObj = JSON.parse(resObj);
-          const vlist = resObj.data.vlist;
-          for(var i=0; i<vlist.length; i++)  {
-              const created = vlist[i].created;
-              const aid = vlist[i].aid;
-              if(created > firstTimestamp) {
-                const video = {
-                  aid,
-                  playListId,
-                  playListName
-                }
-                videolist.push(video);
-              }
-          }
-          loop();
+async function execuate(url, playListName, playListId) {
+  try {
+    const response = await axios.get(url, {
+      params: {
+        method: 'GET',
+        gzip: true,
+        url,
+        headers,
+        timeout: 3000,      
+    }});
+    const res = response.data;
+    const vlist = res.data.vlist;
+    const videolist = [];
+    vlist.forEach(v => {
+      const created = v.created;
+      const aid = v.aid;
+      if(created > firstTimestamp) {
+        const video = {
+          aid,
+          playListId,
+          playListName
+        }
+        videolist.push(video);
       }
-  });
+      loop();
+    });
+  } catch (error) {
+    logger.log(error);
+  }
 }
 
 function loop() {
@@ -75,10 +75,11 @@ function loop() {
   }
 }
 
-console.log('rss')
-console.log(authors.length)
 loop();
 }
 
 module.exports = {rss}
+
+
+
 

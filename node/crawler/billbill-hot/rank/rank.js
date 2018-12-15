@@ -23,14 +23,13 @@ const getData = async url => {
     console.log(typeof res)
     const vlist = res.data.vlist;
     const videolist = [];
-    for(var i=0; i<vlist.length; i++)  {
-      const aid = vlist[i].aid;
+    vlist.forEach(v => {
+      const aid = v.aid;
       const video = {
           aid
       }    
-      videolist.push(video);
-    }
-    console.log(videolist.length)
+      videolist.push(video);      
+    });
   } catch (error) {
     console.log(error);
   }
