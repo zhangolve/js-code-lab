@@ -33,7 +33,10 @@ function init() {
     function switchedOneVideo() {
         rl.question('输入视频aid\n', function(aid) {
             rl.close();
-            download.download([aid]);
+            const videolist = [{
+                aid
+            }];
+            download.download(videolist);
         })
     }
 
