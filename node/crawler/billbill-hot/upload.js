@@ -1,6 +1,6 @@
 const fs = require('fs');
 const readline = require('readline');
-
+const {playListURL} = require('./const');
 const {google} = require('googleapis');
 const sampleClient = require('./sampleclient');
 
@@ -39,6 +39,7 @@ async function init(uploadPath, playListIdSign) {
   playListName = playListNameArr[0];
   playListIdSign = playListName.length > 1 ? playListNameArr[1] : playListIdSign;
   const needUploadFiles = getFiles(uploadPath);
+  logger.info(`共有${needUploadFiles.length}个视频需要上传`);
   try {
     let playListId = null;
     if(!playListIdSign) {
@@ -46,22 +47,23 @@ async function init(uploadPath, playListIdSign) {
       playListId = playlist.id;
       logger.info(`创建播放列表成功，播放列表id为: ${playListId}`)
     } else {
+      logger.info(`使用已有播放列表，播放列表id为: ${playListIdSign}`)
       playListId = playListIdSign;
     }
 
     async function upload() {
       if(needUploadFiles.length>0) {
         const fileName = needUploadFiles.pop();
+        const playListDes = typeof playListId ==='string' ? `更多同类视频，请浏览播放列表：${playListURL(playListId)}` : '';
         const file = {
             title: `${fileName.split('.')[0]}`,
             name: uploadPath + '/' + fileName,
             privacy: 'public',
-            description: `转载自billbill`
+            description: `转载自billbill　\n ${playListDes}`
         }
         const video = await insertVideos(file);
         if(video) {
           logger.info(`${file.name}已经完成上传`);
-
           if(typeof playListId ==='string') {
             await playlistItemsInsert(video.id, playListId)
           }
