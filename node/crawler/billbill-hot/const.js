@@ -1,5 +1,5 @@
 config = {
-  url: (authorId) => `https://space.bilibili.com/ajax/member/getSubmitVideos?mid=${authorId}&pagesize=100&tid=0&page=1&keyword=&order=pubdate`,
+  url: (authorId) => `https://space.bilibili.com/ajax/member/getSubmitVideos?mid=${authorId}&pagesize=80&tid=0&page=1&keyword=&order=pubdate`,
   myAuthorId: 2486887,
   headers: {
     'Content-Type': 'application/json',
