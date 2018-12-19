@@ -10,7 +10,6 @@ function rss() {
 // 每次调用，都初始化authors数组和loopCount
 const authors = authorsList.slice(0); //单纯相等的话，两个变量其实是一个变量，因为地址相同
 let loopCount = 0;
-
 const log4js = require('log4js');
 log4js.configure({
   appenders: { 
@@ -21,7 +20,7 @@ log4js.configure({
 
 const logger = log4js.getLogger('billbill_task');
 
-const gapTime = 60 * 60 *3 ; //与job的间隔时间相同。
+const gapTime = 60 * 60 * 3 ; //与job的间隔时间相同。
 
 const firstTimestamp = new Date()/1000 - gapTime;
 
@@ -40,7 +39,6 @@ async function execuate(url, playListName, playListId) {
     }});
     const res = response.data;
     const vlist = res.data.vlist;
-    const videolist = [];
     vlist.forEach(v => {
       const created = v.created;
       const aid = v.aid;
@@ -52,8 +50,9 @@ async function execuate(url, playListName, playListId) {
         }
         videolist.push(video);
       }
-      loop();
     });
+    loopCount++;
+    loop();
   } catch (error) {
     logger.log(error);
   }
@@ -64,7 +63,7 @@ function loop() {
     const author = authors.pop();
     execuate(url(author.id), author.playListName, author.playListId)
   } else {
-    // 是loop完结，而不是本身没有数据
+    // 是loop完结，而不是本身没有数据, b站视频还有一个审核的时间，审核的时候，如果碰巧来做这个job呢？
     if(loopCount>0) {
       logger.info('已完成所有检查');
       logger.info(`共找到${videolist.length}个视频`);
@@ -77,7 +76,9 @@ function loop() {
 
 loop();
 }
-
+if (module === require.main) { 
+  rss();
+}
 module.exports = {rss}
 
 

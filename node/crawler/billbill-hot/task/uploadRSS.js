@@ -40,7 +40,9 @@ function load() {
     });
 }
 
-load();
+if (module === require.main) { 
+  load();
+}
 
 module.exports = {load};
 
