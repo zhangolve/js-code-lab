@@ -176,7 +176,7 @@ if (module === require.main) {
 
 
   function switchType() {
-      rl.question('输入1,创建新播放列表，2添加到已有播放列表，否则不添加到任何播放列表\n', function(code) {
+      rl.question('输入1,创建新播放列表，2添加到已有播放列表，否则根据路径直接找播放列表或不添加到任何播放列表\n', function(code) {
           if(code==1) {
             rl.close();
             sampleClient
@@ -205,5 +205,6 @@ if (module === require.main) {
 
 module.exports = {
   init,
+  insertPlayList,
   sampleClient
 };

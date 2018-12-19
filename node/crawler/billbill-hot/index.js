@@ -3,6 +3,7 @@ const download = require('./download');
 const readline = require('readline')
 const {url, headers} = require('./const');
 const axios = require("axios");
+const {insertPlayList} = require('./upload');
 
 
 console.log('---------start----------------');
@@ -64,6 +65,12 @@ function init() {
 
 /* 得到json数据，将json数据写入本地文件*/
 async function execuate(url, playListName) {
+    // 完全可以在下载前，就把播放列表创建好的
+    let playListId;
+    if(playListName) {
+        const playlist = await insertPlayList(playListName);
+        playListId = playlist.id;        
+    }
     try {
         const response = await axios.get(url, {
           params: {
@@ -79,7 +86,8 @@ async function execuate(url, playListName) {
         vlist.forEach(v => {
             const video = {
                 aid: v.aid,
-                playListName
+                playListName,
+                playListId
             }    
             videolist.push(video);            
         });
