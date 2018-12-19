@@ -43,7 +43,7 @@ function direct(videolist) {
                     logger.error(`exec error: ${error} ${cmd}`);
                     if(tryCount<10) {
                         tryCount++;
-                        execCommand(aid);
+                        execCommand(video);
                     } else {
                         logger.info(`exec error: ${cmd} 10 times`);
                         return ;
