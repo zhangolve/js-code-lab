@@ -3,12 +3,22 @@ const {url,headers} = require('../const');
 const download = require('../download');
 const axios = require("axios");
 
+const redis = require("redis"),
+    client = redis.createClient();
+
+const {promisify} = require('util');
+const smembersAsync = promisify(client.smembers).bind(client);
 
 // require 的内容只在开头进行了声明，只在整个task开始的时候调用一次，以后就存在栈中了
 
 function rss() {
 // 每次调用，都初始化authors数组和loopCount
-const authors = authorsList.slice(0); //单纯相等的话，两个变量其实是一个变量，因为地址相同
+
+const res = await smembersAsync(rssConfigKey);
+const redisAuthorList = res.map( author =>JSON.parse(author));
+const combinedAuthorList = authorsList.concat(redisAuthorList);
+
+const authors = combinedAuthorList.slice(0); //单纯相等的话，两个变量其实是一个变量，因为地址相同
 let loopCount = 0;
 const log4js = require('log4js');
 log4js.configure({

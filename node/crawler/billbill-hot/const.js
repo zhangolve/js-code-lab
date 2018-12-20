@@ -12,7 +12,12 @@ config = {
     Host: 'space.bilibili.com',
     'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36',
 },
-  playListURL: playListId => `https://www.youtube.com/playlist?list=${playListId}`
+  playListURL: playListId => `https://www.youtube.com/playlist?list=${playListId}`,
+  rssConfigKey: 'rssConfigKey',
+  scopes: [
+    'https://www.googleapis.com/auth/youtube.upload',
+    'https://www.googleapis.com/auth/youtube',
+  ]
 }
 
 module.exports = config;

@@ -3,6 +3,7 @@ const readline = require('readline');
 const {playListURL} = require('./const');
 const {google} = require('googleapis');
 const sampleClient = require('./sampleclient');
+const {scopes} = require('./const');
 
 const log4js = require('log4js');
 
@@ -159,10 +160,7 @@ async function playlistItemsInsert(videoId, playListId) {
   return res.data;
 }
 
-const scopes = [
-  'https://www.googleapis.com/auth/youtube.upload',
-  'https://www.googleapis.com/auth/youtube',
-];
+
 
 if (module === require.main) {
   const uploadPath = process.argv[2];

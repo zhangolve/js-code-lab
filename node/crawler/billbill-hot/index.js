@@ -1,10 +1,12 @@
 
 const download = require('./download');
 const readline = require('readline')
-const {url, headers} = require('./const');
+const {url, headers, rssConfigKey, scopes} = require('./const');
 const axios = require("axios");
-const {insertPlayList} = require('./upload');
+const {insertPlayList, sampleClient} = require('./upload');
 
+const redis = require("redis"),
+    client = redis.createClient();
 
 console.log('---------start----------------');
 
@@ -52,11 +54,11 @@ function init() {
             if(shouldCreate==1) {
                 rl.question('输入播放列表名称\n', function(playListName) {
                     console.log('---------start download----------------');
-                    execuate(url(authorId), playListName)    
+                    execuate(authorId, playListName)    
                 })      
             } else {
                 console.log('---------start download----------------');
-                execuate(url(authorId)) 
+                execuate(authorId) 
             }       
         })
     }
@@ -64,37 +66,40 @@ function init() {
 
 
 /* 得到json数据，将json数据写入本地文件*/
-async function execuate(url, playListName) {
+async function execuate(authorId, playListName) {
+
     // 完全可以在下载前，就把播放列表创建好的
+    // 默认长期订阅
+    const urlLink = url(authorId)
     let playListId;
     if(playListName) {
+        await sampleClient.authenticate(scopes)
         const playlist = await insertPlayList(playListName);
-        playListId = playlist.id;        
+        playListId = playlist.id;
+        const feed = {id: authorId, playListId, playListName}
+        client.sadd(rssConfigKey, JSON.stringify(feed), redis.print);        
     }
     try {
-        const response = await axios.get(url, {
-          params: {
-            method: 'GET',
-            gzip: true,
-            url,
-            headers,
-            timeout: 3000,      
-        }});
-        const res = response.data;
-        const vlist = res.data.vlist;
-        const videolist = [];
-        vlist.forEach(v => {
-            const video = {
-                aid: v.aid,
-                playListName,
-                playListId
-            }    
-            videolist.push(video);            
-        });
-        download.download(videolist)
-      } catch (error) {
-        console.log(error);
+    const response = await axios.get(urlLink, {
+        params: {
+          method: 'GET',
+          gzip: true,
+          headers,
+          timeout: 3000,      
+      }});
+      const res = response.data;
+      const vlist = res.data.vlist;
+      const videolist = [];
+      vlist.forEach(v => {
+          const video = {
+              aid: v.aid,
+              playListName,
+              playListId
+          }    
+          videolist.push(video);            
+      });
+      download.download(videolist)
+    } catch(e) {
+        console.log(e);
     }
 }
-
-module.exports = {execuate,url,headers};
