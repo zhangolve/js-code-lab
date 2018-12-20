@@ -1,5 +1,5 @@
 const {authorsList} = require('./rssConfig');
-const {url,headers} = require('../const');
+const {url,headers, rssConfigKey} = require('../const');
 const download = require('../download');
 const axios = require("axios");
 
