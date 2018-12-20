@@ -5,7 +5,7 @@ config = {
    {id: '10518076', playListId: 'PLoHxWFMhISQxzj90OUubWs3JTKceDVFjz', playListName:'南国小豆豆'},
    {id: '363212074', playListId: 'PLoHxWFMhISQy1npPfFLCzVpjV8SwSdTDU', playListName:'中国乒乓球'},
    {id: '331782289', playListId: 'PLoHxWFMhISQx6JEaVYQcLLrqBVyHrT4G7', playListName:'搞笑课代表'},
-   {id: '353508187', playListId: 'PLoHxWFMhISQx6u3zDJ3roA0FlLxvgAxwd', playListName:'搞笑课代表'},
+   {id: '353508187', playListId: 'PLoHxWFMhISQx6u3zDJ3roA0FlLxvgAxwd', playListName:'虎背熊腰女老湿'},
   ] 
 }
 
