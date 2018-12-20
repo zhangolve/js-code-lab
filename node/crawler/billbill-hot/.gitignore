@@ -3,3 +3,4 @@ videos
 bilibili.log
 .idea
 *.log
+*.rdb
