@@ -11,7 +11,7 @@ const smembersAsync = promisify(client.smembers).bind(client);
 
 // require 的内容只在开头进行了声明，只在整个task开始的时候调用一次，以后就存在栈中了
 
-function rss() {
+async function rss() {
 // 每次调用，都初始化authors数组和loopCount
 
 const res = await smembersAsync(rssConfigKey);
