@@ -33,7 +33,8 @@ function load() {
     .filter(f => { 
       const playListPath = dir + '/' + f
       var stat = fs.statSync(playListPath)
-      if (stat && stat.isDirectory() && f.split('-').length ===2) {
+      // 有些playlistid 本身自带-
+      if (stat && stat.isDirectory() && f.split('-').length >1 ) {
         logger.info(`找到视频路径: ${f}`)
         doTask(playListPath)
       }
