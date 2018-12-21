@@ -35,21 +35,19 @@ function getFiles(uploadPath) {
 
 async function init(uploadPath, playListIdSign) {
   const splited = uploadPath.split('/');
-  let playListName = splited[splited.length-1];
-  const playListNameArr = playListName.split('-')
-  playListName = playListNameArr[0];
-  playListIdSign = playListNameArr.length > 1 ? playListName.slice(playListNameArr[0].length+1): playListIdSign;
+  let playList = splited[splited.length-1];
+  const playListArr = playList.split('-')
+  const playListName = playList[0];
+  let playListId = playListArr.length > 1 ? playList.slice(playListArr[0].length+1): playListIdSign;
   const needUploadFiles = getFiles(uploadPath);
   logger.info(`共有${needUploadFiles.length}个视频需要上传`);
   try {
-    let playListId = null;
-    if(!playListIdSign) {
+    if(!playListId) {
       const playlist = await insertPlayList(playListName);
       playListId = playlist.id;
       logger.info(`创建播放列表成功，播放列表id为: ${playListId}`)
     } else {
-      logger.info(`使用已有播放列表，播放列表id为: ${playListIdSign}`)
-      playListId = playListIdSign;
+      logger.info(`使用已有播放列表，播放列表id为: ${playListId}`)
     }
 
     async function upload() {
