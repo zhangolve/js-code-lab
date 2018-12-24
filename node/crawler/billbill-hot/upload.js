@@ -41,7 +41,6 @@ async function init(uploadPath, playListIdSign) {
   let playListId = playListArr.length > 1 ? playList.slice(playListArr[0].length+1): playListIdSign;
   const needUploadFiles = getFiles(uploadPath);
   logger.info(`共有${needUploadFiles.length}个视频需要上传`);
-  console.log(playListId)
   try {
     if(!playListId) {
       const playlist = await insertPlayList(playListName);
@@ -50,7 +49,6 @@ async function init(uploadPath, playListIdSign) {
     } else {
       logger.info(`使用已有播放列表，播放列表id为: ${playListId}`)
     }
-    return;
     async function upload() {
       if(needUploadFiles.length>0) {
         const fileName = needUploadFiles.pop();
