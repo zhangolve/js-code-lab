@@ -144,5 +144,29 @@ a = [1,2,3,4,5]; // 将[1,2,3,5]这个对象(也是一个数组)存放在内存�
 
 
 
-钱的事重要么。失败了。
+
+6. Function Scope, Block Scope and Lexical Scope
+
+闭包，词法作用域， 函数
+
+
+var a = 10;
+var o = {
+     a:11,
+     b:{
+         fn:function(){
+              var a= 5;
+              console.log(this);
+              console.log(a);
+         }
+     }
+}
+<!-- ob.b.fn(); -->
+var f = o.b.fn;
+
+f();
+
+要知道区别和联系啊。
+
+https://github.com/mqyqingfeng/Blog/issues/3
 

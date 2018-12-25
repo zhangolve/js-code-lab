@@ -11,3 +11,7 @@ ubuntu 环境 18.04
 - pm2 监控
 - redis
 
+nginx 在线观看，了解nginx的工作方式
+
+
+
