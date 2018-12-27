@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const {init, sampleClient } = require('../upload');
+const {sendMail} = require('./mail');
 
 const videoRootPath = path.resolve(__dirname, '../videos');
 
@@ -23,7 +24,11 @@ function doTask (playListPath) {
   sampleClient
   .authenticate(scopes)
   .then(() => {init(playListPath)})
-  .catch((err)=>{logger.error(err)});
+  .catch((err)=>{
+    logger.error(err);
+    sendMail(err);
+  }
+  );
 }
 
 function load() {

@@ -2,6 +2,7 @@ const {authorsList} = require('./rssConfig');
 const {url,headers, rssConfigKey} = require('../const');
 const download = require('../download');
 const axios = require("axios");
+const {sendMail} = require('./mail');
 
 const redis = require("redis"),
     client = redis.createClient();
@@ -65,6 +66,7 @@ async function execuate(url, playListName, playListId) {
     loop();
   } catch (error) {
     logger.log(error);
+    sendMail(error);
   }
 }
 
