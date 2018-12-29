@@ -53,11 +53,12 @@ async function init(uploadPath, playListIdSign) {
       if(needUploadFiles.length>0) {
         const fileName = needUploadFiles.pop();
         const playListDes = typeof playListId ==='string' ? `更多同类视频，请浏览播放列表：${playListURL(playListId)}` : '';
+        const subscribeDes = '请观看我的频道更新消息。 \n 订阅我： https://www.youtube.com/channel/UCyX0BWvZyyzmbEpy6RMqkNw?sub_confirmation=1';
         const file = {
             title: `${fileName.split('.')[0]}`,
             name: uploadPath + '/' + fileName,
             privacy: 'public',
-            description: `转载自billbill　\n ${playListDes}`
+            description: `${subscribeDes} \n 转载自billbill　\n ${playListDes}`
         }
         const video = await insertVideos(file);
         if(video) {
