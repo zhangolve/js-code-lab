@@ -170,3 +170,19 @@ f();
 
 https://github.com/mqyqingfeng/Blog/issues/3
 
+作用域
+
+
+
+
+http://m.dev.lijiabaobei.com/
+
+
+
+http://m.dev.lijiabaobei.com/static/shopper/images/cert/gongshangyingyezhizhao.jpg?v=27fc6cff464f591cdeadd181d6029b86
+
+
+
+
+
+
