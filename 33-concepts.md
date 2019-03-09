@@ -228,6 +228,21 @@ https://github.com/mqyqingfeng/Blog/issues/3
 基本上，setTimeout 需要等待当前队列中所有的消息都处理完毕之后才能执行，即使已经超出了由第二参数所指定的时间。
 
 
+这里的核心点，其实就是一个。javascript是单线程语言，单线程语言这个特性决定了，只有利用消息队列和事件循环，才能够发挥CPU的最大性能，不然浪费性能。
+
+JavaScript是单线程的，但是JavaScript引擎却不是。
+——被貘大批判过后我仔细想了想，严谨地说应该是“JavaScript是单线程的，但是JavaScript的执行环境不是单线程的，如浏览器、nodejs。
+
+https://www.zhihu.com/question/35905242/answer/65025503
+
+
+单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。如果前一个任务耗时很长，后一个任务就不得不一直等着。
+
+http://www.ruanyifeng.com/blog/2014/10/event-loop.html
+
+
+
+
 
 10. setTimeout, setInterval and requestAnimationFrame
 
