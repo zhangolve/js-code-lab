@@ -231,6 +231,7 @@ https://github.com/mqyqingfeng/Blog/issues/3
 这里的核心点，其实就是一个。javascript是单线程语言，单线程语言这个特性决定了，只有利用消息队列和事件循环，才能够发挥CPU的最大性能，不然浪费性能。
 
 JavaScript是单线程的，但是JavaScript引擎却不是。
+
 ——被貘大批判过后我仔细想了想，严谨地说应该是“JavaScript是单线程的，但是JavaScript的执行环境不是单线程的，如浏览器、nodejs。
 
 https://www.zhihu.com/question/35905242/answer/65025503
@@ -239,6 +240,10 @@ https://www.zhihu.com/question/35905242/answer/65025503
 单线程就意味着，所有任务需要排队，前一个任务结束，才会执行后一个任务。如果前一个任务耗时很长，后一个任务就不得不一直等着。
 
 http://www.ruanyifeng.com/blog/2014/10/event-loop.html
+
+
+https://www.jianshu.com/p/761cf767df4e
+
 
 
 
@@ -251,6 +256,10 @@ http://www.ruanyifeng.com/blog/2014/10/event-loop.html
 其等待的时间取决于队列里待处理的消息数量。在下面的例子中，"this is just a message" 将会在回调获得处理之前输出到控制台，这是因为延迟参数是运行时处理请求所需的最小等待时间，但并不保证是准确的等待时间。
 
 基本上，setTimeout 需要等待当前队列中所有的消息都处理完毕之后才能执行，即使已经超出了由第二参数所指定的时间。
+
+从事件循环的角度来看，setTimeout的callback是作为宏任务来处理的。在任务处理时，先处理同步任务，然后处理微任务，再处理宏任务。
+
+
 
 
 11. js引擎
@@ -266,6 +275,12 @@ js引擎的作用是什么呢？他能够分析我们给网页所写的js脚本�
 于是就出现了v8引擎与firefox上的js引擎明显的不同，具体的，可以看下面的这篇文章。
 
 https://v8.dev/blog/array-sort
+
+
+
+12. Bitwise Operators, Type Arrays and Array Buffers  按位操作符, 类数组对象和类型化数组
+
+按位与或非
 
 
 

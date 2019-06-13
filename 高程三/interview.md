@@ -803,6 +803,10 @@ resolve reject 等
 对JS文件进行压缩
 
 
+可以查看我简书上面的前端优化系列。
+
+https://www.jianshu.com/nb/32728336
+
 
 # 最后一个问题，你还有什么问题要问吗？
 
@@ -856,6 +860,14 @@ resolve reject 等
 - display:none
 - visibility:hidden
 - opacity:0
+
+
+这些的区别又在哪里呢？/
+
+如果给一个元素设置了display: none，那么该元素以及它的所有后代元素都会隐藏，它是前端开发人员使用频率最高的一种隐藏方式。隐藏后的元素无法点击，无法使用屏幕阅读器等辅助设备访问，占据的空间消失。    
+给元素设置visibility: hidden也可以隐藏这个元素，但是隐藏元素仍需占用与未隐藏时一样的空间，也就是说虽然元素不可见了，但是仍然会影响页面布局。
+
+opacity：0则仅仅不可见，但仍可被浏览器发现，也就能触发各种事件。通过浏览器调试工具即可得出此结论。
 
 ## 字符串单词首字母大写（当时答上来）
 
@@ -1056,6 +1068,19 @@ function foo(o,arr){
 foo(obj,{"a","c"});
 //输出 {a:1,c:3}
 
+# 什么是eventEmmiter
+
+
+Event emitter 听起来只是触发一个事件，这个事件任何东西都能监听。
+
+想象一下这样的场景，在你的异步代码中，去“呼叫”一些事件的发生，以及让你其他部分都要听到你的“呼叫”并且注册他们的想法。
+
+为了不同的目的，对于 Event Emitter 模式有大量不同的实现，但是基本的想法是为了给一个框架提供事件的管理以及能够去订阅他们。
+
+在这里，我们的目标创建属于我们自己的 Event Emitter 去理解背后的秘密。所以，让我们看一下下面的代码是怎么工作的。
+
+https://www.zcfy.cc/article/javascript-the-magic-behind-event-emitter-medium-1581.html
+
 
 
 
@@ -1083,6 +1108,20 @@ componentDidUpdate
 
 卸载组件触发
 componentWillUnmount
+
+更新 2019.06更新：
+
+由于react 16中废弃了一些生命周期方法，因而现在的使用情况与之前会有不同
+
+首次mounting的过程：
+
+constructor()
+static getDerivedStateFromProps()
+render()
+componentDidMount()
+
+具体的可以查看思维导图
+
 
 ## AMD 和 commonjs哪一个是异步的？为什么要用commonjs，为什么要用AMD？
 
@@ -1171,5 +1210,9 @@ http://www.cnblogs.com/qingmingsang/articles/6223385.html
 
 
 
+## hook 钩子函数
 
+useState
+
+等等，待补充。2
 
