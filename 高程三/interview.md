@@ -258,6 +258,7 @@ Ecmascript识别出来这种语法，将之认为是一个Array。
 * Javascript 对JSON有更好的解析支持
 * JSON的传输速度更快
 
+是不是因为json更加轻量，所以传输起来速度更快呢？？
 
 # 谈谈你对webpack的看法
 
@@ -521,7 +522,8 @@ ES6 feacture
 在以上所列的这些对数组的操作中，只有splice，是改变原本数组的。
 
 
-
+注意substr和substring的区别。
+substr第二个参数说的是截取的位数，substring说的是截取的末位index
 
 
 
@@ -568,7 +570,25 @@ ES6 feacture
 
 个人理解，存疑：lodash/underscore并没有一些函数式编程的概念，比如functor因子，只是将它简化了，方便我们来使用。但是他的过度封装，又使得这个过程整个代码量变得更多更大了。
 
+## 什么是函数式编程
 
+函数式编程（请注意多了一个“式”字）——Functional Programming，虽然也可以归结到面向过程的程序设计，但其思想更接近数学计算。
+
+我们首先要搞明白计算机（Computer）和计算（Compute）的概念。
+
+在计算机的层次上，CPU执行的是加减乘除的指令代码，以及各种条件判断和跳转指令，所以，汇编语言是最贴近计算机的语言。
+
+而计算则指数学意义上的计算，越是抽象的计算，离计算机硬件越远。
+
+对应到编程语言，就是越低级的语言，越贴近计算机，抽象程度低，执行效率高，比如C语言；越高级的语言，越贴近计算，抽象程度高，执行效率低，比如Lisp语言。
+
+函数式编程就是一种抽象程度很高的编程范式，纯粹的函数式编程语言编写的函数没有变量，因此，任意一个函数，只要输入是确定的，输出就是确定的，这种纯函数我们称之为没有副作用。而允许使用变量的程序设计语言，由于函数内部的变量状态不确定，同样的输入，可能得到不同的输出，因此，这种函数是有副作用的。
+
+函数式编程的一个特点就是，允许把函数本身作为参数传入另一个函数，还允许返回一个函数！
+
+Python对函数式编程提供部分支持。由于Python允许使用变量，因此，Python不是纯函数式编程语言
+
+https://www.liaoxuefeng.com/wiki/897692888725344/923030136026784
 
 # React 相关的
 
@@ -752,7 +772,22 @@ import default class A extends component { }
 
 - set map
 
+这里需要注意的是set表示的是集合。
+但是map，表示的则是键值对相关的应用。
+
+如果一个键比较特殊，可以使用map来实现。我自己的实践，比较少。从书上看到的例子，
+a={a:1}
+b={b:2}
+
+如果想要把a,b作为键的话，都放到一个对象上面，那么就会有问题了，因为这些键，都会经过toString转化成[object object] ,所以不能这么用。
+但是，这个时候，使用map就能很容易的达到效果。
+
+
 - 变量解构赋值
+
+不仅可以解构数组，还能够结构一般对象字面量。
+
+es2018
 
 - 模板字符串
 
@@ -807,6 +842,8 @@ resolve reject 等
 
 https://www.jianshu.com/nb/32728336
 
+
+code spliting , lazy component , 等
 
 # 最后一个问题，你还有什么问题要问吗？
 
@@ -1208,11 +1245,158 @@ http://www.jianshu.com/p/4780d82e874a
 
 http://www.cnblogs.com/qingmingsang/articles/6223385.html
 
-
+关于高阶组件，我自己也曾经写过。当时为了实现对React-router里面的route组件的封装，希望他的外面包裹上一层公用的组件内容，于是写了一个高阶组件。这样的话，调用的时候，可以直接引用这个高阶组件。能够达到复用的作用，另外，也能够让代码显得更加优雅。
 
 ## hook 钩子函数
 
 useState
 
 等等，待补充。2
+
+
+
+todo
+
+## 实现一个a(1)(2)(3)(4) 的方法
+
+function a(a){
+
+	return function(b) {
+		return a+b
+	}
+}
+
+考察的高阶函数的应用。
+
+两个的都没有问题，自然4个括号也不是问题。
+
+
+# 阿里影业电话面试
+
+## 什么是深复制，如何进行深复制
+
+https://juejin.im/post/5b20c9f65188257d7d719c1c
+
+
+之前去一家公司面试的时候，面试官问了我一个问题，说:"如何才能深拷贝一个对象"。当时我心里有些窃喜，这么简单的问题还用想吗？于是脱口而出:"平时常用的有两种办法，第一种用JSON.parse(JSON.stringify(obj))，第二种可以使用for...in加递归完成"。
+
+作者：YDJFE
+链接：https://juejin.im/post/5b235b726fb9a00e8a3e4e88
+来源：掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+可以从中看出，obj中的普通对象和数组都能拷贝，然而date对象成了字符串，函数直接就不见了，正则成了一个空对象。
+
+
+
+
+
+Object.getPrototypeOf()
+返回参数对象的原型。
+几种特殊对象的原型。
+// 空对象的原型是 Object.prototype
+Object.getPrototypeOf({}) === Object.prototype // true
+
+// Object.prototype 的原型是 null
+Object.getPrototypeOf(Object.prototype) === null // true
+
+// 函数的原型是 Function.prototype
+function f() {}
+Object.getPrototypeOf(f) === Function.prototype // true
+复制代码Object.setPrototypeOf()
+为参数对象设置原型，返回该参数对象。它接受两个参数，第一个是现有对象，第二个是原型对象。
+Object.create()
+方法接受一个对象作为参数，然后以它为原型，返回一个实例对象。该实例完全继承原型对象的属性。
+//原型对象
+let A = {
+    print:function(){
+        console.log('hello');
+    }
+}
+
+//实例对象
+let B = Object.create(A);
+
+Object.getPrototypeOf(B) === A // true
+B.print() // hello
+B.print === A.print // true
+复制代码if (typeof Object.create !== 'function') {
+  Object.create = function (obj) {
+    function F() {}
+    F.prototype = obj;
+    return new F();
+  };
+}
+复制代码上面代码表明，Object.create方法的实质是新建一个空的构造函数F，然后让F.prototype属性指向参数对象obj，最后返回一个F的实例，从而实现让该实例继承obj的属性。
+Object.create方法生成的新对象，动态继承了原型。在原型上添加或者修改任何方法，会立刻反应在新对象上。
+Object.create还可以接收第二个参数，该参数是一个属性描述对象，会添加到实例对象，作为该对象自身的属性。
+
+作者：DreamTruth
+链接：https://juejin.im/post/5c777a29e51d454fbd5a85fe
+来源：掘金
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+
+
+深复制。原型链的问题。
+
+
+
+## 前端安全你知道哪些？
+
+## 对跨域的理解
+
+什么是跨域， 当一个请求url的协议、域名、端口三者之间.有一个不同的时候就是跨域。
+
+
+1.JSONP
+在HTML标签里，一些标签比如script、img这样的获取资源的标签是没有跨域限制的，利用这一点，我们可以这样干：
+
+2.空iframe加form
+细心的朋友可能发现，JSONP只能发GET请求，因为本质上script加载资源就是GET，那么如果要发POST请求怎么办呢？
+
+后端写个小接口
+3.CORS
+
+
+## 负载均衡
+
+
+
+## 系统调优
+
+调优的目的是高效地使用资源，尽可能地使用最多的资源，从而提高性能
+任何资源都要查看是资源使用率满了，还是没有高效使用资源
+例如CPU使用率高，是因为算法问题（死循环，低效算法），还是因为程序本身就需要这么多CPU。如果CPU使用率低，则查看是因为资源等待还是线性操作。
+又如I/O，wa低下，也有可能I/O的问题（当然不是硬件问题），wa低下代表磁盘的使用率低下。这时要看到底是程序本身不怎么使用磁盘，还是没有高效使用（大量随机操作，而不是批量操作，顺序写入，使用缓冲等）
+如果要提升服务器端的响应时间RT
+采用减少IO的时间能达到最佳效果，比如合并多个IO请求
+减少IO的调用次数：并发HTTP请求（无上下文依赖，多个连接，一个线程）、HTTP连接池（长连接）
+减少CPU的使用时间
+使用缓存
+如果要提升QPS
+采用优化CPU的时间能达到最佳效果，同时可以加大线程数
+减少CPU的使用时间
+增加CPU的数量
+减少同步锁
+如果CPU不能被压到85%以上，并且此时的QPS已经达到了峰值，则说明另有瓶颈
+
+作者：PennyWong
+链接：https://www.jianshu.com/p/c750acdc10e4
+来源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+
+
+## 算法
+
+前端leader 岗位
+
+汉诺塔问题
+
+动态规划问题
+
+递归算法
+
+快速排序
+
 
