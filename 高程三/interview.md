@@ -1387,6 +1387,9 @@ Object.create还可以接收第二个参数，该参数是一个属性描述对�
 简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
 
 
+# 数据结构与算法
+
+
 ## 算法
 
 前端leader 岗位
@@ -1400,3 +1403,108 @@ Object.create还可以接收第二个参数，该参数是一个属性描述对�
 快速排序
 
 
+## 什么是哈希
+
+## 什么是二叉树
+
+## 时间复杂度和空间复杂度
+
+ 空间复杂度是啥呢？
+
+ 判断某年是不是闰年。。
+
+ 空间存储 
+
+ 线性表。。。
+
+ 具有线一样性质的数据结构
+
+ 有限序列。list。。
+
+ 线性表 / 数组。
+
+  定义：线性表（Linear List）是一种线性结构，它是由（n>=）个数据元素组成的有穷序列，其中，数据元素又称节点。
+
+    存储结构：顺序存储、链式存储。
+
+    时间复杂度：顺序表中的按位查找、求表长都是O（1），删除和插入操作是O（n）。
+
+    链表中的删除、查找、插入等操作的时间复杂度都是O（n）（因为这些操作之前都需要对线性表进行定位操作）
+--------------------- 
+作者：周坤_66 
+来源：CSDN 
+原文：https://blog.csdn.net/zhoukun1008/article/details/48894135 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
+    数组采用顺序存储结构来存储数据元素，数组还可以看做线性表的推广。数组和线性表有很大的联系，线性表的顺序存储结构组成中都含有数组。
+	单链表 ，头插法。。
+
+https://juejin.im/post/5b247a02f265da599c5604df
+
+可以看看，可以考虑。。
+
+
+## undefined 和null的区别
+
+
+
+
+## 两个递增的数组merge为一个数组
+
+
+
+public static int[] MergeList(int a[],int b[])
+        {
+            int result[];  
+//                定义一个新数组，长度为两个数组长度之和
+                result = new int[a.length+b.length];
+              //i:a数组下标    j：b数组下标  k：新数组下标
+                int i=0,j=0,k=0;
+//                按位循环比较两个数组，较小元素的放入新数组，下标加一（注意，较大元素对应的下标不加一），直到某一个下标等于数组长度时退出循环
+                while(i<a.length && j<b.length)
+                    if(a[i] <= b[j]) {
+                        result[k++] = a[i++];
+                        print(result);
+                        System.out.println();
+                    }else{
+                        result[k++] = b[j++];
+                    }
+                /* 后面连个while循环是用来保证两个数组比较完之后剩下的一个数组里的元素能顺利传入 *
+                 * 此时较短数组已经全部放入新数组，较长数组还有部分剩余，最后将剩下的部分元素放入新数组，大功告成*/
+                while(i < a.length) 
+                    result[k++] = a[i++];
+                while(j < b.length)
+                    result[k++] = b[j++];
+                return result;
+           } 
+
+
+
+## 快速排序算法
+
+const quickSort = (array) => {
+ const sort = (arr, left = 0, right = arr.length - 1) => {
+  if (left >= right) {//如果左边的索引大于等于右边的索引说明整理完毕
+   return
+  }
+ let i = left
+ let j = right
+ const baseVal = arr[j] // 取无序数组最后一个数为基准值
+ while (i < j) {//把所有比基准值小的数放在左边大的数放在右边
+  while (i < j && arr[i] <= baseVal) { //找到一个比基准值大的数交换
+   i++
+  }
+  arr[j] = arr[i] // 将较大的值放在右边如果没有比基准值大的数就是将自己赋值给自己（i 等于 j）
+  while (j > i && arr[j] >= baseVal) { //找到一个比基准值小的数交换
+   j--
+ }
+  arr[i] = arr[j] // 将较小的值放在左边如果没有找到比基准值小的数就是将自己赋值给自己（i 等于 j）
+ }
+ arr[j] = baseVal // 将基准值放至中央位置完成一次循环（这时候 j 等于 i ）
+ sort(arr, left, j-1) // 将左边的无序数组重复上面的操作
+ sort(arr, j+1, right) // 将右边的无序数组重复上面的操作
+ }
+ const newArr = array.concat() // 为了保证这个函数是纯函数拷贝一次数组
+ sort(newArr)
+ return newArr
+}
