@@ -59,6 +59,20 @@ var test2=function (){
 	console.log(i);
 }
 
+// 特别要注意这种当定义的时候就已经调用了的情况
+
+// 可以再举出来一个例子，比如。
+
+var a=3
+var b={
+	a: this.a,
+	c: function () {
+		return this.a;
+	}
+}
+
+// 在这里b.a早就已经确定了，它会是等于3.从它初始化的时候，就已经确定了。
+
 //test2(); //3
 
 

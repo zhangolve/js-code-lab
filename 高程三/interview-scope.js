@@ -34,6 +34,7 @@ console.log(5,c());
 
 console.log(6,d());
 
+// var a={a:this} 直接在浏览器console里面写，会看到这里的a.a是window对象。还是那句话，你需要知道到底this是啥。
 
 
 // chrome:
