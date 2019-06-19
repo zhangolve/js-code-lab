@@ -1508,3 +1508,22 @@ const quickSort = (array) => {
  sort(newArr)
  return newArr
 }
+
+
+
+## 事件委托的缺点 事件委托是怎么一回事
+
+
+
+## promise all
+
+
+## 快速排序
+
+
+dfs bfs
+
+
+深度优先 广度优先。
+
+

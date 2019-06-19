@@ -56,3 +56,5 @@ swap(index,i);
 
 // selection();
 // console.log(arr);
+
+// 其时间复杂度为 O(N^2)。
