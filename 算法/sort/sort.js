@@ -58,3 +58,66 @@ swap(index,i);
 // console.log(arr);
 
 // 其时间复杂度为 O(N^2)。
+
+
+// 2019.06.19
+
+// 快速排序
+
+
+// 分治的思想。。 有一个数， 在第一次排列之后，这个数的左边的数都比他小，这个数右边的数都比它大
+
+/**
+ * 
+ * @param {*} arr
+ *  例如一个数组[1,3,9,8,6,4]
+ * 	第一次 i=0,j=5, k=4，k为基准值
+ *  想要以k为分界，k的左边比它小，k的右边比它大。可以等于。
+ *  由于快速排序是修改自冒泡排序，所以可以应用一些冒泡排序的思想
+ * 	i=2的时候，arr[i] =9,这个值比4要大，所以交换位置。
+ * 	此时数组变为[1,3,4,8,6,9]
+ * 	这个时候再将j的值从后往前找，找比k小的。
+ *  此时发现，j=2的时候，这个值等于小于4，成立了。
+ *  因此第一轮排序结束，i=j=2，它的左边都比它小，它的右边都比它大。
+ * 	然后将左右两边分开，分治的思想，分别来看。
+ *  左边是index 0，1
+ * 	右边是index 3，4，5 
+ * 	左边i=0，j=1, k=3,
+ * 	右边i=3, j=5,k=9, 这部分数组为[8,6,9],经过一次之后，这部分数组不变，此时减j，排序[8,6],关键点是要做到i=j
+ */
+
+function quickSort(arr) {
+
+	function _quickSort(arr, i=0, j=arr.length-1) {
+		// 给定一个默认的初始值
+		let left = i;
+		let right = j;
+		if(i==j) {
+			return 
+		}
+		k=arr[j];
+		while(i<j && arr[i]<=k) {
+			i++
+		}
+		//直到加到arr[i]>=k
+		arr[j]=arr[i];
+		arr[i]=arr[j]; // k?
+		
+		while(i<j && arr[j]>=k) {
+			j--
+		}
+		arr[j]=k;
+		console.log(arr);
+		_quickSort(arr, left+1,right) // 为啥这里是left，right，不是i，j
+		_quickSort(arr, left, right-1)
+	}
+	_quickSort(arr);
+	return arr;
+}
+
+console.log(quickSort([1,3,9,8,6,4]));
+
+
+
+
+
