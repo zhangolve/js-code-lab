@@ -250,7 +250,50 @@ Ecmascript识别出来这种语法，将之认为是一个Array。
 # 如何解决跨域问题
 
 对于前端来说，可以做的是由原来的datatype:JSON 改为dataType：JSONP ，
-对于后端来说，修改他返回头response header 的ACCESS-CONTROL-ALLO-ORIGIN :* 就是对所有的非本域内的访问都通过，当然，这是一种并不安全的访问，应当在正式投入生产之后取消掉。
+对于后端来说，修改他返回头response header 的ACCESS-CONTROL-ALLOW-ORIGIN :* 就是对所有的非本域内的访问都通过，当然，这是一种并不安全的访问，应当在正式投入生产之后取消掉。
+
+
+
+## 前端安全你知道哪些？
+
+## 对跨域的理解
+
+什么是跨域， 当一个请求url的协议（这里的协议指的是http还是https）、域名(包括子域名)、端口三者之间.有一个不同的时候就是跨域。
+
+
+1.JSONP
+在HTML标签里，一些标签比如script、img这样的获取资源的标签是没有跨域限制的，利用这一点，我们可以这样干：
+
+
+jsonp的原理是什么。
+
+重新构造，构造成为一个script标签，这个标签来加载内容。。执行内容。。
+
+
+2.空iframe加form
+
+细心的朋友可能发现，JSONP只能发GET请求，因为本质上script加载资源就是GET，那么如果要发POST请求怎么办呢？
+
+后端写个小接口
+
+3.CORS
+
+后端服务做修改做限制
+
+## http和https的区别和联系。
+
+https有证书。
+
+http 默认监听80端口
+https 默认监听443端口。在http下加入了ssl层，https的安全基础是https。
+
+如果攻击者截取了web浏览器和网站服务器之间的传输报文，就可以直接读懂其中的信息。
+
+
+https的缺点：
+
+https证书需要钱，https连接缓存不如http高效，会增加数据开销和功耗。https握手阶段比较费时，会使页面加载时间延长，会更耗电。
+
 
 # XML 和JSON 的比较
 
@@ -491,8 +534,9 @@ CSS 盒模型是页面布局上的一种思想，盒模型认为除了一些像s
 
 
 
-- 对数组中部分操作 concat  filter  slice splice ,fill
+- 对数组中部分操作 concat  filter  slice splice ,fill,reverse.
 
+之前面试说，只有splice能够改变原始数组，这个说法显然不太准确，实际上很多方法都可以改变原数组，但是更多的，其实是堆栈方法。pop ,push, shift,unshift等，再然后就是数组的扩充或剪切方法，就是splice, fill, copyWithIn等方法了。
 
 ES6 feacture
 
@@ -501,15 +545,13 @@ ES6 feacture
 	a.fill(4)
 	//[4, 4, 4, 4]
 
-
-
-
+	
 其中slice不改变原来数组的值，splice则是改变原来数组的值，将操作的元素截取掉。
 
 
 # js操作字符串方法
 
-- 转换成其他类型数据     JSON.parse(str)
+- 转换成其他类型数据     JSON.parse(str)  
 - 对元素的操作  indexof uppercase lowercase ,chatCodeAt 对应的ASCII码 ，charAt 对应的译码 
 - 对元素的部分操作 subStr ,subString  ,concat 拼接字符串, trim 去掉字符串中的空格,原数组保持不变,match,replace，匹配和替换字符串操作。
 
@@ -666,13 +708,21 @@ This is where things get interesting. Updating the browser’s DOM is a three-st
 2 前一个虚拟DOM的呈现于当前状态的虚拟DOM之间的差异就会被计算，
 3 真实的DOM就会被更新。这就是像在打补丁。
 
+## use hooks
 
+怎么用，为什么要用它，有什么好处？？
+
+## 你有没有用过高阶组件
+
+高阶组件的作用，高阶组件的意义。
+
+再看看当时的route这个高阶组件的实现。
 
 # 如何判断是一个数组
  
  a=[1,2,3,4,5,6];
 
-- Array.isArray(a)
+- Array.isArray(a)  // 这个应该是ES6的语法吧。
 - a instanceof Array
 - Object.prototype.toString.call(a)
 
@@ -691,6 +741,21 @@ This is where things get interesting. Updating the browser’s DOM is a three-st
 
 call的绑定是一个参数，一个数组。
 apply可以是多个参数，不是数组。
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString
+
+toString() can be used with every object and allows you to get its class. To use the Object.prototype.toString() with every object, you need to call Function.prototype.call() or Function.prototype.apply() on it, passing the object you want to inspect as the first parameter called thisArg.
+
+var toString = Object.prototype.toString;
+
+toString.call(new Date);    // [object Date]
+toString.call(new String);  // [object String]
+toString.call(Math);        // [object Math]
+
+// Since JavaScript 1.8.5
+toString.call(undefined);   // [object Undefined]
+toString.call(null);        // [object Null]
+
 
 
 # 你用过哪些ES6的新特性
@@ -789,6 +854,11 @@ b={b:2}
 
 es2018
 
+- 对象的简单化
+
+let a=function() {};
+{a}
+
 - 模板字符串
 
 注意：**模板字符串，是键盘上tab键上面那个键，而不是普通的引号键。**
@@ -805,6 +875,42 @@ es2018
 .then  .all .race  
 
 resolve reject 等
+
+
+# 能不能手写promise ,手写await async
+
+待补充
+
+看es6 部分。
+
+
+
+
+## array 和string 新方法
+
+array.prototype includes findIndex find copyWithIn  
+
+string.prototype .startWith  endWith includes 
+
+## Array 对象的
+
+Array.from 
+
+Array.of 
+
+Array.isArray
+
+## Math对象上的
+
+## regex的
+
+
+## Object普通对象上的
+
+整体来看，es6包含的东西，还是很多的，可是如果你只回答let，const，spread，rest，arrow function是很难让人满意的。
+
+
+## for of 
 
 
 
@@ -902,9 +1008,9 @@ code spliting , lazy component , 等
 这些的区别又在哪里呢？/
 
 如果给一个元素设置了display: none，那么该元素以及它的所有后代元素都会隐藏，它是前端开发人员使用频率最高的一种隐藏方式。隐藏后的元素无法点击，无法使用屏幕阅读器等辅助设备访问，占据的空间消失。    
-给元素设置visibility: hidden也可以隐藏这个元素，但是隐藏元素仍需占用与未隐藏时一样的空间，也就是说虽然元素不可见了，但是仍然会影响页面布局。
+给元素设置visibility: hidden也可以隐藏这个元素，但是隐藏元素仍需占用与未隐藏时一样的空间，也就是说虽然元素不可见了，但是仍然会影响页面布局。也不会被听到。
 
-opacity：0则仅仅不可见，但仍可被浏览器发现，也就能触发各种事件。通过浏览器调试工具即可得出此结论。
+opacity：0则仅仅不可见，但仍可被浏览器发现，也就能触发各种事件。通过浏览器调试工具即可得出此结论。可以听到。也就是屏幕阅读器可以访问。
 
 ## 字符串单词首字母大写（当时答上来）
 
@@ -1342,23 +1448,6 @@ Object.create还可以接收第二个参数，该参数是一个属性描述对�
 
 
 
-## 前端安全你知道哪些？
-
-## 对跨域的理解
-
-什么是跨域， 当一个请求url的协议、域名、端口三者之间.有一个不同的时候就是跨域。
-
-
-1.JSONP
-在HTML标签里，一些标签比如script、img这样的获取资源的标签是没有跨域限制的，利用这一点，我们可以这样干：
-
-2.空iframe加form
-细心的朋友可能发现，JSONP只能发GET请求，因为本质上script加载资源就是GET，那么如果要发POST请求怎么办呢？
-
-后端写个小接口
-3.CORS
-
-
 ## 负载均衡
 
 
@@ -1446,8 +1535,46 @@ https://juejin.im/post/5b247a02f265da599c5604df
 
 ## undefined 和null的区别
 
+这个区别，这个考点。一定要记住，已经至少问过三次了，每次都答的不是很好。
+
+当声明的变量还未被初始化时，变量的默认值为undefined。
+Null类型也只有一个值，即null。null用来表示尚未存在的对象，常用来表示函数企图返回一个不存在的对象。
+
+alert(null == document.getElementById('notExistElement'));  
+
+10-'fefe' //NaN  注意这种不是数字的情况，当+的情况，ok存在将10转义成字符串10，但是当-的时候，并不会将10转义为字符串。
 
 
+[typeof null, null instanceof Object]
+
+"object", false
+
+undefined和null比较特殊，虽然null的类型是object，但是null不具有任何对象的特性，就是说我们并不能执行null.toString()、null.constructor等对象实例的默认调用。所以从这个意义上来说，null和undefined有最大的相似性。看看null == undefined的结果(true)也就更加能说明这点。不过相似归相似，还是有区别的，就是和数字运算时，10 + null结果为：10；10 + undefined结果为：NaN（非数字值）。故null instanceof Object判读为false。
+
+pg：isNaN() 函数用于检查其参数是否是非数字值，参数值为 NaN 或字符串、对象、undefined等非数字值则返回 true, 否则返回 false。
+
+2、typeof 返回一个表达式的数据类型的字符串，返回结果为javascript中的基本数据类型，包括：number、boolean、string、object、undefined、function等6种数据类型。
+
+null肯定不是undefined，当然是object。
+--------------------- 
+作者：恶人谷房客 
+来源：CSDN 
+原文：https://blog.csdn.net/weixin_42049636/article/details/81565461 
+版权声明：本文为博主原创文章，转载请附上博文链接！
+
+
+typeof new String('A')
+"object"
+
+
+let a=new String('A');
+
+console.log(a) // 对象String()
+
+按照定义来说，万物本来都是对象。高程三上也有说明的，只是说，通过new之后，生成的是对象。
+
+
+发现知识上还有很多不足，还是应该好好看。
 
 ## 两个递增的数组merge为一个数组
 
@@ -1514,6 +1641,26 @@ const quickSort = (array) => {
 ## 事件委托的缺点 事件委托是怎么一回事
 
 
+优缺点总结
+优点：
+
+1.减少事件注册，节省内存，如：
+
+table可以代理所有td的click事件
+ul代理所有li的click事件
+2.减少了dom节点更新的操作，处理逻辑只需在委托元素上进行，如：
+
+新添加的li不用绑定事件
+删除li时，不需要进行元素与处理函数的解绑
+缺点：
+
+1.事件委托基于冒泡，对于onfoucs和onblur等事件不支持
+2.层级过多，冒泡过程中，可能会被某层阻止掉（建议就近委托）
+
+总之一切都是基于冒泡的，只要事件不支持冒泡或者中途有event.stopPropagation（）等，那么委托就会失败，所以并不适用于直接在document上进行委托。
+
+# JS
+
 
 ## promise all
 
@@ -1534,4 +1681,76 @@ map 有返回值，
 
 这两者都不会修改原数组
 只有splice会修改原始数组。
+
+## jquery
+
+### 自定义事件
+
+自定义事件
+由于jQuery这种实现事件绑定的机制，自定义事件变得非常简单。
+
+$(document).on('smile', function () {});
+上述代码，document元素绑定了一个自定义事件smile，我们可以用trigger或triggerHandler来触发这个事件：
+
+$(document).trigger('smile');
+$(document).triggerHandler('smile');
+trigger和triggerHandler的区别在于，trigger方法触发的事件会顺着DOM树向上冒泡，而triggerHandler方法只是调用该元素上对应的事件函数，不会冒泡。
+
+自定义事件一般用于给元素绑定一系列的动作，比如，我们要实现弹框效果，我们需要一个掩层和若干窗体。
+
+<div id="overlay">
+    <div class="window window--login"></div>
+    <div class="window window--register"></div>
+    ...
+</div>
+弹框需要两个动作： 关闭窗体和打开窗体。考虑到窗体可能动态增加，我们用到了动态事件绑定(动态绑定的原理在于，子元素触发的事件总会冒泡到父元素上，所以我们只需要把事件函数绑定在父元素上)
+
+$('#overlay').on('close', '.window', function() {});
+$('#overlay').on('open', '.window', function() {});
+由于动态绑定依赖冒泡来触发事件函数，所以当我们 只能使用 trigger，来触发动态绑定的事件。比如我们要打开登录窗口：
+
+$('.window--login').tigger('open');
+通过自定义事件，我们将DOM元素和其DOM操作一一对应起来。
+
+
+
+https://www.zybuluo.com/lxjwlt/note/58483
+
+
+
+## 优先级与数据类型
+
+0.2-0.1==0.1  // true
+
+我开始以为会先执行0.1==0.1 然后是true，0.2-true，为NaN呢。但是并不是。
+
+0.2-true为-0.8, true会转化为1.
+
+0.2+true则会返回1.2。
+
+但是这道题还有别的问题，就是浮点数相关的。。
+
+0.2+0.1==0.3  //false因为js的浮点数运算。
+
+这是什么原理呢？？
+
+
+var a=new Number(5);
+var b=new Number(6);
+var c=6;
+
+b-a===1 //true
+b==c //true
+b===c //false
+
+## 'use strict'
+
+
+
+
+ 如果过了一个多月，就说自己要的工资太高了，加上旅行出去玩了，耽误了一些时间。。
+如果是小厂，就说自己当时想去大厂，大厂几面耽误了。。
+
+
+
 

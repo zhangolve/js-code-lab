@@ -74,3 +74,16 @@ a.find((item)=>item.a==1)
 // Object {1, b: 2}
 _.find(a,(item)=>item.a==1)
 // Object {a: 1, b: 2}
+
+
+let foo=[1,2,3,4];
+
+
+// copyWithin  这个方法改变原数组，这一点一定要注意。
+foo.copyWithin(0,1,2)
+
+// 把某个片段做一个拷贝，返回原来数组，改变原始输入。
+
+
+
+// [1,2,3,[1,2]].flat() 数组拍平，chrome73已经支持的方法。

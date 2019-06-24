@@ -26,3 +26,69 @@ const quickSort = (array) => {
 	return newArr
    }
    
+
+
+
+
+
+
+
+
+
+   function quickSort(arr) {
+	   function sort(arr, start=0, end=arr.length-1) {
+			if(start>=end) {
+				return;
+			} else {
+				// 去做查找
+				const k = arr[end];
+				while(i<j) {
+					while(arr[start]<k) {
+						start++
+					}
+					while(arr[end]>k)  {
+						end--;
+					}
+				}
+			}
+
+	   }
+	   sort(arr)
+
+   }
+
+
+   [1,2,8,7,5,3,4]  // base =4;
+
+   i=2  value=8 // 要比base大
+   j=5 value=3  //要比base小 
+
+   交换位置
+[1,2,3,7,5,8,4]
+i=3 value=7
+j=4 value=5
+
+交换位置
+
+[1,2,3,5,7,8,4]
+
+i=j=3 将base 与key=3 交换位置
+ 
+[1,2,3,4,7,8,5]
+
+[1,2] =》 i=j
+[4,7,8,5] base = 5
+
+// 7 碰不了头
+
+// i=j=1
+
+[4,5,8,7]
+
+[8,7]
+
+[7,8]
+
+排列完成。。
+
+
