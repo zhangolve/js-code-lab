@@ -130,4 +130,13 @@ componentWillRecivevProps 或者是getDreivedStateFromProps 收到了props，直
 当然，更好的方式，是将之改造成纯的受控组件或者非受控组件。
 
 
+## redux
+
+
+
+
+## ant design
+
+
+
 

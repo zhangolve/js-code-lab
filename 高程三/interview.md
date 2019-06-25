@@ -487,6 +487,10 @@ amd define 可以有回调函数，异步加载模块。浏览器端一般采用
 
 	当然，我也必须要说，前端开发入门虽然相对来说简单一点，但是后期的进阶过程可能并没有那么简单。这个过程，可能就需要长期的努力和坚持了。一万小时定律在这个时候还是很靠谱的。
 
+// 20190625 
+
+知识体系比较全面，做过前端，也写过后端，数据库相关的东西，
+
 
 
 # CSS盒模型 what why how 
@@ -907,6 +911,27 @@ Array.isArray
 
 ## Object普通对象上的
 
+Object.is 判断是否是同一个对象，基本相当于===。
+
+
+ES5就有的方法
+
+Object.freeze() 冻结，不能修改或添加对象属性
+Object.isFreeze() 判断一个对象是否已经冻结
+
+
+如何解冻结呢？？
+
+Object.seal()， 冷藏，不能添加属性，可以修改属性。
+
+Object.isSeal()， 判断是否已经冷藏。
+
+Object.defineProperty
+
+Object.defineProperty(a,'a',{value:3,writable:false})
+
+
+
 整体来看，es6包含的东西，还是很多的，可是如果你只回答let，const，spread，rest，arrow function是很难让人满意的。
 
 
@@ -984,6 +1009,8 @@ code spliting , lazy component , 等
 ## sessionStorage 和localstorage 的区别
 
 两者的最大区别是sessionStorage是回话存储，所谓session是指用户在浏览某个网站时，从进入网站到浏览器关闭所经过的这段时间会话，也就是用户浏览这个网站所花费的时间就是session的生命周期。而localStorage则是只要用户不手动删除数据，就会一直存在于浏览器中。
+
+注意localStorage 的存值取值是个坑。。 要注意通过JSON.stringify 和   JSON.parse 进行转化。
 
 ## 给Array实现一个copyer的继承方法
 
@@ -1363,7 +1390,11 @@ useState
 
 todo
 
+
+
 ## 实现一个a(1)(2)(3)(4) 的方法
+
+这里其实是考察的科里化。
 
 function a(a){
 
@@ -1447,6 +1478,31 @@ Object.create还可以接收第二个参数，该参数是一个属性描述对�
 深复制。原型链的问题。
 
 
+var a={a:function() {console.log("ccc")}}
+var c=Object.create(a);
+c.a();
+for(var i in c) {console.log(i)}
+c.d=4;
+for(var i in c) {console.log(i)}
+JSON.stringify(c)
+"{"d":4}"
+
+c.hasOwnProperty('a')
+false
+c.hasOwnProperty('d')
+true
+
+
+class Animal {constructor() {this.a=3;this.b=4}}
+var a=new Animal()
+a.hasOwnProperty('a')
+true
+
+class 本身可以看作做构造函数模式的语法糖，class是个类，它本身也有属性，a作为一个实例，可以继承这个属性。
+
+for(var i in a) {console.log(i)}   // a,b 
+
+
 
 ## 负载均衡
 
@@ -1520,6 +1576,9 @@ Object.create还可以接收第二个参数，该参数是一个属性描述对�
 
     链表中的删除、查找、插入等操作的时间复杂度都是O（n）（因为这些操作之前都需要对线性表进行定位操作）
 --------------------- 
+
+
+
 作者：周坤_66 
 来源：CSDN 
 原文：https://blog.csdn.net/zhoukun1008/article/details/48894135 
@@ -1658,11 +1717,22 @@ ul代理所有li的click事件
 2.层级过多，冒泡过程中，可能会被某层阻止掉（建议就近委托）
 
 总之一切都是基于冒泡的，只要事件不支持冒泡或者中途有event.stopPropagation（）等，那么委托就会失败，所以并不适用于直接在document上进行委托。
-
+   
 # JS
 
 
 ## promise all
+
+
+
+function wait(times) {
+	return new Promise((resolve,reject)=>{
+		setTimeout(function(){
+			resolve();
+		},times)
+	})
+}
+
 
 
 ## 快速排序
@@ -1745,7 +1815,7 @@ b===c //false
 
 ## 'use strict'
 
-
+with 变量提升，函数提升等， eval等会不允许。。
 
 
  如果过了一个多月，就说自己要的工资太高了，加上旅行出去玩了，耽误了一些时间。。
