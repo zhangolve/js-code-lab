@@ -38,3 +38,96 @@ React 下一代调和算法 **Fiber** 会通过开始或停止渲染的方式优
 
 给 h5 元素设置 ref <a ref="update">更新</a>后，可以拿到它的真实 dom<a>更新</a>。
 给组件设置ref<Child ref = 'child'/>后，拿到的是组件的实例(上图中的Constructor)
+
+
+this.refs 和 ReactDOM.findDOMNode的区别
+
+ref添加到Compoennt上获取的是Compoennt实例，添加到原生HTML上获取的是DOM；
+
+ReactDOM.findDOMNode，当参数是DOM，返回值就是该DOM；当参数是Component获取的是该Component render方法中的DOM
+二者主要区别在ref绑定在组件上的时候，this.refs获取到的是组件实例，ReactDOM.findDOMNode获取到的是dom节点。
+
+作者：BubbleM
+链接：https://www.jianshu.com/p/56ace3e7f565
+来源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
+
+
+React组件有两种定义方式：
+
+function
+
+对于用function定义的组件是没有办法用ref获取的，原因是： ref回调函数会在组件被挂载之后将组件实例传递给函数。但是使用function定义的函数并没有实例。
+但是仍然可以获取function定义的组件中的DOM元素，下面会讲
+
+
+class
+
+用class定义的组件由于可以获取组件实例，因此ref函数会在组件挂载的时候将实例传递给组件
+
+
+
+将ref回调函数作用于某一个React组件，此时回调函数会在当前组件被实例化并挂载到页面上才会被调用。
+ref回调函数被调用时，会将当前组件的实例作为参数传递给函数。
+
+There are a few good use cases for refs:
+
+Managing focus, text selection, or media playback.
+Triggering imperative animations.
+Integrating with third-party DOM libraries.
+Avoid using refs for anything that can be done declaratively.
+
+
+Adding a Ref to a DOM Element
+This code uses a ref to store a reference to a DOM node:
+
+class CustomTextInput extends React.Component {
+  constructor(props) {
+    super(props);
+    // create a ref to store the textInput DOM element
+    this.textInput = React.createRef();
+    this.focusTextInput = this.focusTextInput.bind(this);
+  }
+
+  focusTextInput() {
+    // Explicitly focus the text input using the raw DOM API
+    // Note: we're accessing "current" to get the DOM node
+    this.textInput.current.focus();
+  }
+
+  render() {
+    // tell React that we want to associate the <input> ref
+    // with the `textInput` that we created in the constructor
+    return (
+      <div>
+        <input
+          type="text"
+          ref={this.textInput} />
+
+        <input
+          type="button"
+          value="Focus the text input"
+          onClick={this.focusTextInput}
+        />
+      </div>
+    );
+  }
+}
+React will assign the current property with the DOM element when the component mounts, and assign it back to null when it unmounts. ref updates happen before componentDidMount or componentDidUpdate lifecycle methods.
+
+## react 中的反模式
+
+componentWillRecivevProps 或者是getDreivedStateFromProps 收到了props，直接将props 转化为state，这样的模式就是反模式。
+
+这样的模式会有什么问题呢？
+
+这就要说到react的受控组件和非受控组件的概念了。如果一个组件既通过父组件控制他的某个行为，又通过自身控制他的行为，那么这个组件就不是纯的受控组件，也不是纯的非受控组件。
+
+他们会有很多问题，就容易产生问题。
+
+这两个生命周期方法，比较好的用法应该是当发现之前的props值与当前的props值不相等时候，才进行下面的操作。
+
+当然，更好的方式，是将之改造成纯的受控组件或者非受控组件。
+
+
+
