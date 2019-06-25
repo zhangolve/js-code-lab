@@ -12,14 +12,12 @@ function forthCircle(){
 }
 
 function restCircle(){
-
 		ctx.beginPath();
 		ctx.arc(200,200,200,0,1.5*Math.PI,false);
 		ctx.lineTo(200,200);
 		ctx.fillStyle="red";
 		ctx.fill();
 }
-
 
 forthCircle();
 restCircle();

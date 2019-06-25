@@ -168,17 +168,15 @@ function flag(){
 
 /*也是一个面试题了，要求做出五分之一圆来*/
 function fifthCircle(){
-
-		ctx.beginPath();
-		ctx.arc(200,200,200,Math.PI,1.4*Math.PI,false);
-		ctx.lineTo(200,200);
-		ctx.fillStyle="red";
-		ctx.fill();
+	ctx.beginPath();
+	ctx.arc(200,200,200,Math.PI,1.4*Math.PI,false);
+	ctx.lineTo(200,200);
+	ctx.fillStyle="red";
+	ctx.fill();
 }
 
-
-
-flag();
+// flag();
+heart();
 
 
 

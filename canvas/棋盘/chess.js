@@ -6,30 +6,28 @@ canvas.height=800;
 //这个时候一个棋盘就绘制完成了
 context.strokeRect(0,0,500,500);
 context.strokeRect(50,50,400,400);
+
 function DightFixed(Dight,How){
-
-                    //
-                    if((Dight-50)/20==0){  
-                    return Dight;  
-                  }
-                  else {
-                  	if( (Dight-50)%20>10) {
-                  		Dight=Dight+20-(Dight-50)%20;
-                  		return Dight;
-                  	}
-                  	else{
-                  		Dight=Dight-(Dight-50)%20;
-											return Dight;                 
-                  	}
-                  }
-
+	if((Dight-50)/20==0){  
+		return Dight;  
+	}
+	else {
+		if( (Dight-50)%20>10) {
+			Dight=Dight+20-(Dight-50)%20;
+			return Dight;
+		}
+		else{
+			Dight=Dight-(Dight-50)%20;
+								return Dight;                 
+		}
+	}
 }
 
 
 for(var i=0;i<20;i++){
 	context.beginPath();
-	context.moveTo(50,400*i/20+50);
-	context.lineTo(450,400*i/20+50);
+	context.moveTo(50, 400*i/20+50);
+	context.lineTo(450, 400*i/20+50);
 	context.stroke();
 }
 
@@ -59,4 +57,11 @@ canvas.onclick=function(e){
 我们为了简化，可以先在方格内部进行填充
 
 如果是方格内部填充应该有一个满足的关系式
+*/
+
+// 20190625
+/** 
+ * maybe to do 
+ *  两种棋子 ，黑子和白字
+ * 	不能让棋子下到了内边框以外的部分
 */

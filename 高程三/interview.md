@@ -887,7 +887,16 @@ resolve reject 等
 
 看es6 部分。
 
+# yield 
 
+yield是ES6的新关键字，使生成器函数执行暂停，yield关键字后面的表达式的值返回给生成器的调用者。它可以被认为是一个基于生成器的版本的return关键字。
+yield关键字实际返回一个IteratorResult（迭代器）对象，它有两个属性，value和done，分别代表返回值和是否完成。
+yield无法单独工作，需要配合generator(生成器)的其他函数，如next，懒汉式操作，展现强大的主动控制特性。
+
+作者：世外大帝
+链接：https://www.jianshu.com/p/36c74e4ca9eb
+来源：简书
+简书著作权归作者所有，任何形式的转载都请联系作者获得授权并注明出处。
 
 
 ## array 和string 新方法
@@ -931,11 +940,13 @@ Object.defineProperty
 Object.defineProperty(a,'a',{value:3,writable:false})
 
 
+Object.entries([])
+
 
 整体来看，es6包含的东西，还是很多的，可是如果你只回答let，const，spread，rest，arrow function是很难让人满意的。
 
 
-## for of 
+## for in 
 
 
 
@@ -1423,9 +1434,6 @@ https://juejin.im/post/5b20c9f65188257d7d719c1c
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
 可以从中看出，obj中的普通对象和数组都能拷贝，然而date对象成了字符串，函数直接就不见了，正则成了一个空对象。
-
-
-
 
 
 Object.getPrototypeOf()
