@@ -92,3 +92,50 @@ i=j=3 将base 与key=3 交换位置
 排列完成。。
 
 
+
+[1,3, 6,5,7,2]
+
+
+[1,2,6,5,7,3]
+
+[6,5,7,3]
+
+[6,5,7]
+
+[6,5]
+[5,6]
+
+
+function quickSort_2(arr) {
+	function swap(arr, i, j) {
+		let middle = arr[i];
+		arr[i] = arr[j]
+		arr[j] = middle;
+	}
+	function sort(arr, i=0,j=arr.length-1) {
+		if(i>=j) {
+			return arr;
+		}
+		else {
+			let base = arr[j];
+			while(i<j) {
+				while(arr[i]<base) {
+					i++;
+				}
+				while(arr[j]>base) {
+					j--;	
+				}
+				swap(arr, i, j)
+			}
+			sort(arr, 0, i-1)
+			sort(arr, j+1, arr.length-1)
+		}
+	}
+}
+
+console.log(quickSort_2([1,3, 6,5,7,2]));
+
+
+
+
+

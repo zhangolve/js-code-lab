@@ -115,9 +115,46 @@ function quickSort(arr) {
 	return arr;
 }
 
-console.log(quickSort([1,3,9,8,6,4]));
+// console.log(quickSort([1,3,9,8,6,4]));
 
 
 
+function quickSort_2(arr) {
+	function swap(arr, i, j) {
+		let middle = arr[i];
+		arr[i] = arr[j]
+		arr[j] = middle;
+	}
+	function sort(arr, i=0,j=arr.length-1) {
+		if(i==j) {
+			console.log(i,j)
+			console.log(arr);
+			return arr;
+		}
+		else {
+			console.log(i,j)
+			let base = arr[j];
+			let originJ = j;
+			while(i<j&&arr[i]<base) {
+				i++;
+			}
+			while(i<j&&arr[j]>=base) {
+				console.log('j',j)
+				j--;	
+			}
+			if(i==j) {
+				swap(arr, i, originJ)
+			}else {
+				swap(arr, i, j)
+			}	
+		}
+		sort(arr, 0, i-1)
+		sort(arr, j+1, arr.length-1)
+	}
+	sort(arr);
+	return arr;
+}
+
+console.log(quickSort_2([1,3, 8,7,4,6,5,7,2]));
 
 
