@@ -126,15 +126,17 @@ function quickSort_2(arr) {
 		arr[j] = middle;
 	}
 	function sort(arr, i=0,j=arr.length-1) {
-		if(i==j) {
+		// 这里不是i==j,而是i>j
+		if(i>j) {
 			console.log(i,j)
 			console.log(arr);
-			return arr;
+			return;
 		}
 		else {
 			console.log(i,j)
 			let base = arr[j];
-			let originJ = j;
+			let right = j;
+			let left = i;
 			while(i<j&&arr[i]<base) {
 				i++;
 			}
@@ -143,18 +145,26 @@ function quickSort_2(arr) {
 				j--;	
 			}
 			if(i==j) {
-				swap(arr, i, originJ)
+				swap(arr, i, right)
 			}else {
 				swap(arr, i, j)
 			}	
+			sort(arr, left, i-1)
+			sort(arr, j+1, right)
 		}
-		sort(arr, 0, i-1)
-		sort(arr, j+1, arr.length-1)
+		
 	}
 	sort(arr);
 	return arr;
 }
 
 console.log(quickSort_2([1,3, 8,7,4,6,5,7,2]));
+// 
+// https://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html
+// 快速排序是每个程序员都应当掌握的排序算法。当然我们接触的第一个排序算法可能是插入排序或者冒泡排序，但数据量一旦超过几万，
+//插入和冒泡的性能会非常差。这时时间复杂度的渐进优势就表现出来了。 平均情况下快速排序的时间复杂度是Θ(nlgn)，最坏情况是n2，
+//但通过随机算法可以避免最坏情况。由于递归调用，快排的空间复杂度是Θ(lgn)
 
+
+// 可能是对于我来说，最容易理解的快速排序算法了。
 
