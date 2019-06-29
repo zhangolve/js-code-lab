@@ -113,7 +113,7 @@ function quickSort_2(arr) {
 		arr[j] = middle;
 	}
 	function sort(arr, i=0,j=arr.length-1) {
-		if(i>=j) {
+		if(i>j) {
 			return arr;
 		}
 		else {

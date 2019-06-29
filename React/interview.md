@@ -132,7 +132,7 @@ componentWillRecivevProps 或者是getDreivedStateFromProps 收到了props，直
 
 ## redux
 
-
+view 
 
 
 ## ant design
