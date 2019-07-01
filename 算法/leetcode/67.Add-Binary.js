@@ -27,12 +27,31 @@ var addBinary_false = function(a, b) {
 
 // 也就是这件事情的本来，从后往前，进位的这么个工作。
 
-var addBinary_false = function(a, b) {
-    const arr_a = a.split('').reverse();
-    const arr_b = b.split('').reverse();
-    const arr_sum = [];
-    const maxLoop = arr_a.length > arr_b.length ? arr_a.length :  arr_b.length;
-  };
+var addBinary = function(a, b) {
+  const arr_a = a.split('').reverse();
+  const arr_b = b.split('').reverse();
+  const arr_sum = [];
+  const maxLoop = arr_a.length > arr_b.length ? arr_a.length :  arr_b.length;
+  let jinwei = 0;
+  for(let i=0;i<maxLoop;i++) {
+    let ai = arr_a[i] ? parseInt(arr_a[i]) : 0;
+    let bi = arr_b[i] ? parseInt(arr_b[i]): 0;
+    let value = 0;
+    if(ai+bi+jinwei>=2) {
+      value=ai+bi+jinwei-2;
+      jinwei=1;
+    } else {
+      value = ai+bi+jinwei;
+      jinwei=0;
 
+    }
+    arr_sum.push(value);
+  }
+  if(jinwei>0) {
+      arr_sum.push(jinwei);
+  }
+  return arr_sum.reverse().join('')
+};
 
+addBinary("1010","1011")
   // 1110 100
