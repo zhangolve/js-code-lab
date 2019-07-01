@@ -832,6 +832,12 @@ const 的特点是针对**直接类型**的变量，他的值是不变的。
 好处:能够确定this，无需再考虑this是谁。另外，语法更加简洁清晰，也是一种语法糖。
 坏处：有的时候是需要this的动态变化的，这个时候就有他的问题了。
 
+箭头函数，由于是匿名函数，在一些事件绑定解绑的场合并不适合，因为匿名函数每次都发生改变。
+
+（可以聊得更透彻一些这个话题）
+
+
+
 - class
 
 React 项目中应用比较多一点
@@ -1841,4 +1847,166 @@ with 变量提升，函数提升等， eval等会不允许。。
 从1000，0000 =》 1，0000， 0000
 
 计算数字1出现的个数。
+
+## ES5 构造对象继承
+
+function Foo() {
+	this.a=3;
+	this.b=5;
+}
+
+var bar = new Foo();
+
+bar.c=4;
+
+console.log(bar.a,bar.c)
+
+这里的bar 是一个实例。那么如果想要有一个类，是继承自Foo这个类的呢？？
+
+
+我们来考虑一下对象原型的问题。
+
+如果我们给Foo改变他的原型，由于他的原型和Foo是指向同一个位置的，这个时候，则Foo的原型也会发生改变。
+
+只有在类上面才能够找到prototype这个属性。
+
+例如：
+
+bar.prototype.e = function() {
+	return 15;
+}
+
+这样的写法是错误的，因为bar根本就不是一个类，而是一个实例。
+
+
+
+来看一下网上说的 
+  function Supertype(name){
+      console.log('name'，this)
+	  this.name = name;
+  }
+  ​
+  function Subtype(){
+      Supertype.call(this,'Annika');
+      this.age  = 21;
+  }
+  ​
+ var instance = new Subtype;
+ console.log(instance.name);  \\Annika
+ console.log(instance.age);   \\29
+
+实现了一个子类，这个子类继承自Supertype .
+
+这个事情应该怎么理解？这里的call bind apply，能不能对之有更深入的理解呢？？
+
+我们注意看，Supertype 有没有age这个属性呢？显然是没有的。
+
+那么为什么Subtype会有name这个属性呢？
+
+根据call方法的语义，这个时候，Supertype.call(this,'Annika'); 究竟起到了哪些作用呢？我们来看看什么时候，这个this.name的绑定会执行！！
+
+通过观察，我们知道，实际上，在类里面写的console.log要在实例化之后，才会调用。相应的，其实这个类里面的其他代码也是在实例化的时候才会去调用。这里的核心点，就是this的指向。
+
+我们创建这个实例的时候，代码得到调用，
+
+
+我们再次探究一下，如果想要让B方法调用A方法里面的变量，应该要的行为。
+
+// 例子1
+let a= 5;
+function A()  {
+	this.a=3
+}
+
+function B() {
+	A.call(this);
+	let b=10;
+	return a+b;
+}
+
+
+console.log(B())  // 15
+
+var c=new B();  // 这样的写法也是错误的，区别类和实例的方法，实例是有返回值的，当然也可以没有。
+
+
+
+
+// 例子2
+
+let a= 5;
+function A()  {
+	this.a=3
+	return this.a;
+}
+
+function B() {
+	let a = A.call(this);
+	let b=10;
+	return a+b;
+}
+
+
+console.log(B())  // 13
+
+// 例子3
+
+let a= 5;
+function A()  {
+	this.a=3
+}
+
+function B() {
+	A.call(this);
+	this.b=10; // var b
+	return this.a+this.b;  // 但是这里如果是this.b就是undefined为啥呢。因为B方法直接在window下调用，这个时候this是window对象，而不是B方法本身。
+}
+
+
+console.log(B())  // 13
+console.log(a);
+这个时候，我们可以认为B是一个实例。然后B调用了A里面的变量a。
+
+
+
+其实回过头来看，一直以来面试的时候，说let和var的区别的时候。都说的并不全面。
+
+这里涉及到的点有变量提升，有块级作用域，也有不能重复声明。
+
+重复声明，如果是在es5中，非严格模式是可以的。最多是一个overwrite，但是在严格模式下会问题了。
+
+另外箭头函数也没有说全他的作用和问题。
+
+
+## typeof 方法
+
+先简单回顾下数据类型：number, string, bool, object, symbol, undefined, null 
+
+字面量的情况 number string， bool类型的数据,typeof 就是他们本身的类型。
+
+但是一旦这个数据，经过了new，我们知道在js中，万物都可以被成为object，只不过有些数据去掉了表达。
+
+所以，如果这个时候，new Number(3) ，他的typeof 应该是一个object。
+
+typeof null "object"
+typeof undefined "undefined"
+
+typeof function "function"
+
+正则表达式
+
+typeof /123/g "object"
+
+类型	结果
+Undefined	"undefined"
+Null	"object"（见下文）
+Boolean	"boolean"
+Number	"number"
+String	"string"
+Symbol （ECMAScript 6 新增）	"symbol"
+宿主对象（由JS环境提供）	Implementation-dependent
+函数对象（[[Call]] 在ECMA-262条款中实现了）	"function"
+任何其他对象	"object"
+
+
 
