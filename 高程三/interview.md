@@ -2062,3 +2062,10 @@ Object.getPrototypeOf(h) // {a:1}
 
 Object.getPrototypeOf(h)
 
+
+这个时候你要明白， 这是一个故事。
+
+as we can see , we like it . 
+
+it support . 
+
