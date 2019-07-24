@@ -283,4 +283,33 @@ https://v8.dev/blog/array-sort
 按位与或非
 
 
+13. DOM and Layout Trees
 
+
+dom 
+
+https://www.digitalocean.com/community/tutorials/introduction-to-the-dom
+
+dom 是制作网站页面交互的重要组成部分。 
+
+一个网站含有一个html文档，浏览器是干嘛的呢，就是一个应用程序，编译html和css ， 渲染样式，内容，最终呈现出来给你看。
+
+除此之外，浏览器还创造了一个文档的表示，即为dom。这个模型，可以帮助js去处理文档，将之视为对象。
+
+高程三是怎么表述的呢？？？
+
+dom 可以经过js的修改。
+html一般来说，就是原始的html。 是不经过js改动的原始文件。
+
+
+
+Everything in HTML, even comments, becomes a part of the DOM.
+
+There are 12 node types. In practice we usually work with 4 of them:
+
+document – the “entry point” into DOM.
+element nodes – HTML-tags, the tree building blocks.
+text nodes – contain text.
+comments – sometimes we can put the information there, it won’t be shown, but JS can read it from the DOM.
+
+使用dom的nodeType可以做出判断，可以用来判断是否是文档，还是文字，又或者是评论，注释，进而做出相应的处理。
