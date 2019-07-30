@@ -17,9 +17,11 @@ showHideBtn.addEventListener('click',function(){
    var clickBtn = document.getElementById('clickBtn');
    var container = document.getElementById('container');
    if(clickBtn) {
-        container.innerHTML = '';
+        //no.1  container.innerHTML = '';
+        clickBtn.style.display='none';
    } else {
-       container.innerHTML='<button id="clickBtn">click</button>'
+    //    container.innerHTML='<button id="clickBtn">click</button>'
+        clickBtn.style.display="block";
    }
 })
 
