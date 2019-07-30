@@ -1,0 +1,31 @@
+<!---
+20190730
+如果一个元素从文档中移除出去，那么相应的事件处理程序也自动解绑了。
+需要再次注册事件处理程序，才能够让事件处理程序起作用。
+-->
+<html>
+    
+    <button id="showHideBtn">show/hide</button>
+    <div id="container">
+    <button id="clickBtn">click</button>
+    </div>
+</html>
+
+<script>
+var showHideBtn = document.getElementById('showHideBtn');
+showHideBtn.addEventListener('click',function(){
+   var clickBtn = document.getElementById('clickBtn');
+   var container = document.getElementById('container');
+   if(clickBtn) {
+        container.innerHTML = '';
+   } else {
+       container.innerHTML='<button id="clickBtn">click</button>'
+   }
+})
+
+var clickBtn = document.getElementById('clickBtn');
+clickBtn.addEventListener('click',function() {
+    alert('alert');
+})
+
+</script>

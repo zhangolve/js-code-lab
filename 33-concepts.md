@@ -313,3 +313,17 @@ text nodes – contain text.
 comments – sometimes we can put the information there, it won’t be shown, but JS can read it from the DOM.
 
 使用dom的nodeType可以做出判断，可以用来判断是否是文档，还是文字，又或者是评论，注释，进而做出相应的处理。
+
+浏览器的渲染机制
+
+为什么重要？探究浏览器的渲染机制，可以帮助我们理解页面加载，性能优化。
+
+性能优化为什么重要，用户体验！！
+https://juejin.im/entry/59e1d31f51882578c3411c77
+
+
+14. Factories and Classes
+
+
+
+https://opentdb.com/api.php?amount=10&category=27&type=multiple
