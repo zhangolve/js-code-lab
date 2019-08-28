@@ -62,3 +62,20 @@ sleep(10000).then((resolve)=>{
 });
 // 注意这里面的顺序。
 
+
+
+
+// delay
+async function delay(times) {
+    await new Promise( (resolve,reject)=> {
+    setTimeout(resolve, times);
+    })
+}
+
+
+async function test() {
+    await delay(5000);
+    console.log('1000');
+}
+
+test();
