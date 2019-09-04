@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>form title</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <label><span class="red">*</span> Name</label>
+            </td>
+            <td>
+                <input type="text" name="name" maxlength="100" class="width_short {required:true}" id="name"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <label>Description</label>
+          </td>
+          <td>
+            <textarea id="description" name="description" class="testta input_long {required:true}" style="height:100px;" maxlength="250"></textarea>
+          </td>
+        </tr>
+        </table>
+        
+        <h2>Import Settings</h2>
+        <table>
+        <tr>
+            <td>
+            <label><span class="red">*</span> Import Type</label>
+          </td>
+          <td>
+              <select class="width221 {required:true}">
+                <option value="Fastighetsnyckel">
+                    Fastighetsnyckel
+                </option>
+                <option value="Matrikkel">
+                    Matrikkel
+                </option>
+                <option value="Riksnyckel">
+                    Riksnyckel
+                </option>
+                <option value="Street">
+                    Street
+                </option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+            <td>
+            <label>File Type</label>
+          </td>
+            <td>
+            <span>CSV</span>
+          </td>
+        </tr>
+        </table>
+    <h2>Filetype settings for CSV</h2>
+    <table>
+    <tr>
+    <td>
+     <label><span class="red">*</span> Header Row</label>      
+    </td>
+    <td>
+      <input type="radio">yes</input>
+      <input type="radio">no</input>
+    </td>
+    </tr>
+          <tr>
+            <td>
+            <label><span class="red">*</span> Column Separator</label>
+          </td>
+          <td>
+              <select class="width221 {required:true}">
+                <option value="Semicolon">
+                   Semicolon
+                </option>
+                <option value="Comma">
+                    Comma
+                </option>
+                <option value="Tab">
+                    Tab
+                </option>
+            </select>
+          </td>
+        </tr>
+            <tr>
+            <td>
+            <label><span class="red">*</span> Encoding </label>
+          </td>
+          <td>
+              <select class="width221 {required:true}">
+                <option value="UTF-8">
+                   UTF-8 
+                </option>
+                <option value="ISO-8859-1">
+                    ISO-8859-1
+                </option>
+            </select>
+          </td>
+        </tr>
+    </table>    
+</body>
+</html>
+
+
+<script>
+
+</script>
