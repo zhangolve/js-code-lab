@@ -9349,8 +9349,12 @@ jQuery.extend( {
 
 			if ( fireGlobals ) {
 				globalEventContext.trigger( "ajaxComplete", [ jqXHR, s ] );
-
+				// fireGlobals 什么？？
 				// Handle the global AJAX counter
+				// 当所有的请求都结束的时候，触发事件。
+				// 只能在document上。$(document).ajaxStop() 
+				//  jQuery.active是一个全局变量。计数器的原理，在我之前做一个类似promise.all的工作的时候也有用过。
+				// jQuery.event.trigger 自定义事件。
 				if ( !( --jQuery.active ) ) {
 					jQuery.event.trigger( "ajaxStop" );
 				}

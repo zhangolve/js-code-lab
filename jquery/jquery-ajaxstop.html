@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./main.css" />
+</head>
+<body>
+    <table id="Grid"></table>
+    <table id="gridTable"></table>
+    
+    <button id="add">add</button>
+    <button id="call">call</button>
+    <button id="alwaysCall">always call</button>
+</body>
+<script type="text/javascript" src="./jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="./grid.base.js"></script>
+<script type="text/javascript" src="./jquery.fmatter.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        // 从这里可以看到，如果call的setInterval的时间间隔很小，比如只有100ms的话，这个时候，会在6-9次请求发出完成之后，再去
+        // 返回结果。stopAjax 的结果。但是，在接下来的时间里，又有了新的请求发出去，则在新的请求完成之后，去触发这个新的完成。
+        // 如果在一个请求完成之后，再去添加监听，$(document).ajaxStop ,也能够进入这个监听的hanlder里面去，可是如果说，
+        // 在js里面从来没有过ajax的调用，则也就不会进到handler里面去。
+        // 
+        $('#call').on('click', call)
+
+        $('#alwaysCall').on('click',function(){
+            var i=0;
+            setInterval(function(){
+                i++
+                if(i<20) {
+                call();
+                } 
+            },100);
+        })
+
+        function call() {
+        $.ajax({
+            url: 'https://api.github.com',
+            contentType: "application/json; charset=utf-8",
+            success: function (reuslt) {
+                console.log(result)
+                $(document).ajaxStop(function(){
+                console.log('3333')
+             })
+       
+            }
+        })
+        // $.ajax({
+        //     url: 'https://api.github.com',
+        //     contentType: "application/json; charset=utf-8",
+        //     success: function (reuslt) {
+        //         console.log(result)
+        //     }
+        // })
+        // $.ajax({
+        //     url: 'https://api.github.com',
+        //     contentType: "application/json; charset=utf-8",
+        //     success: function (reuslt) {
+        //         console.log(result)
+        //     }
+        // })
+        console.log('1111')
+        }
+
+
+        // $(document).ajaxStop(function(){
+        //     console.log('3333')
+        // })
+       
+    })
+</script>
+</html>
