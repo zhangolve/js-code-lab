@@ -327,3 +327,126 @@ https://juejin.im/entry/59e1d31f51882578c3411c77
 
 
 https://opentdb.com/api.php?amount=10&category=27&type=multiple
+
+15 this. call, apply and bind
+
+
+## this
+
+this是javascript 当中一个非常令人感动困惑的词。
+
+我之前在我的面试经验里面写到过一些例子。这次为了复习，自己再编几个。
+
+ 
+ 先说定义，this永远都指向的是所在的作用域，这个作用域可以是被调用的。
+
+ 来看例子:
+
+```
+var a=10;
+console.log(this.a)
+```
+
+这是一个最简单的例子，这里this指代的是当前的作用域，也就是window对象。所以，我们可以看到要想搞明白this是怎么一回事，应该拿它去跟context的概念一起去理解。
+
+
+
+我们再来看一个例子：
+
+```
+
+var a=10;
+var b={
+    a:5,
+    b:function() {
+        console.log(this.a);
+    }
+}
+```
+
+这个时候通过调用 b.b() 会打印a的值为5.
+
+但是如果我们调用var c=b.b;
+
+c() 这个时候会打印a的值为10；
+
+
+
+call
+
+
+```
+var b=10;
+var a={
+    b:1
+};
+
+function c() {
+    console.log(this.b);
+}
+
+c.call(a)    // 1
+c() // 10
+```
+
+只需要记住call立即执行，第一个参数是它的作用域，是object.
+
+
+```
+var b=10;
+var a={
+    b:1
+};
+
+function c(r,t,y) {
+    console.log(this.b);
+    console.log(this.b+r+t+y);
+}
+
+c.apply(a,[1,3,5])    // 10
+c(1,3,5) // 19
+```
+
+
+apply []
+
+## bind
+
+
+```
+var b=10;
+var a={
+    b:1
+};
+
+function c(r,t,y) {
+    console.log(this.b);
+    console.log(this.b+r+t+y);
+}
+
+c.bind();
+
+```
+
+注意与箭头函数一起使用时的场景。。
+
+
+
+new, Constructor, instanceof and Instances
+Prototype Inheritance and Prototype Chain
+Object.create and Object.assign
+map, reduce, filter
+Pure Functions, Side Effects and State Mutation
+Closures
+High Order Functions
+Recursion
+Collections and Generators
+Promises
+async/await
+Data Structures
+Expensive Operation and Big O Notation
+Algorithms
+Inheritance, Polymorphism and Code Reuse
+Design Patterns
+Partial Applications, Currying, Compose and Pipe
+Clean Code

@@ -874,9 +874,13 @@ let a=function() {};
 注意：**模板字符串，是键盘上tab键上面那个键，而不是普通的引号键。**
 
 
+styled-component 中比较频繁的使用。
+
+
+
 - 新的数组，对象操作方法
 
-重点提到 Array.from  Array.of Array.fill
+重点提到 Array.from  Array.of Array.fill Array.flat , Array.includes 
 
 - Promise 
 
@@ -1207,6 +1211,10 @@ var list1 = list(1, 2, 3); // [1, 2, 3]
 或者可以这么说，当我们看到Array.prototype 的时候，它就是在告诉我们相应的方法对所有的array都有效。
 
 这个时候可能又要问了，call的第一个参数代表的是需要绑定并执行的环境作用域，那么一个数组[1,2,3,4,5] 算什么作用域啊。我现在看来，只要是object就是一个作用域，而一个数组，就是一个object，当然也能成为一个作用域。也能够用来指代this.
+
+我们也可以这样来看这个问题，call的前面其实是需要调用作用域的方法，在这里就是slice方法，call里面的参数是它的作用域，也可以说是这个方法执行中的参数。slice方法，其实就是去找的this。
+
+这个时候，我们正好给它一个this对象。
 
 
 
