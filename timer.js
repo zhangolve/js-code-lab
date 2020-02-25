@@ -35,18 +35,12 @@ let doingDelay = false;
 let interalTimer = null;
 const delay = ()=> {
     return new Promise((resolve, reject)=> {
-        interalTimer = setInterval(()=> {
-            if(doingDelay) {
-                return;
-            } else {
-                doingDelay = true;
-                setTimeout(()=> {
-                    doingDelay = false;
-                    clearInterval(interalTimer)
-                    resolve();
-                },Math.random() * 3000)
-            }
-        }, 100)
+        
+    setTimeout(()=> {
+        doingDelay = false;
+        clearInterval(interalTimer)
+        resolve();
+    },Math.random() * 3000)
     })
 }
 
