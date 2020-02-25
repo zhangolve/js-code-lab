@@ -891,6 +891,10 @@ styled-component 中比较频繁的使用。
 resolve reject 等
 
 
+所谓的Promise， 是一种承诺，承诺一件事情一定能完成，或者完不成，它是一个契约。我们直到这个契约下达，才可以继续做接下来的事情。
+
+
+
 # 能不能手写promise ,手写await async
 
 待补充
@@ -1216,6 +1220,18 @@ var list1 = list(1, 2, 3); // [1, 2, 3]
 
 这个时候，我们正好给它一个this对象。
 
+比如
+
+
+```
+Array.prototype.plus=function() {
+	return this.reduce((res,value)=> res+value  ,0)  // 这里的this就是实例array本身。 
+}
+//[1,2,3,4].plus()
+// 10
+```
+
+这个时候，又牵扯到原型链的相关知识了。
 
 
 

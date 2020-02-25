@@ -441,7 +441,12 @@ Closures
 High Order Functions
 Recursion
 Collections and Generators
-Promises
+
+
+#Promises
+
+
+
 async/await
 Data Structures
 Expensive Operation and Big O Notation
