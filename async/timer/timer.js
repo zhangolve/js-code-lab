@@ -33,20 +33,37 @@ console.log(value,'value');
 
 let doingDelay = false;
 let interalTimer = null;
-const delay = ()=> {
+const delay = (value)=> {
+    doingDelay = true;
+    console.log(doingDelay,'doing delay');
     return new Promise((resolve, reject)=> {
         
     setTimeout(()=> {
         doingDelay = false;
         clearInterval(interalTimer)
         resolve();
-    },Math.random() * 3000)
+    }, (10-value) * 1000)
+    })
+}
+
+
+
+const interval = () => {
+    return new Promise((resolve, reject)=> {
+        this.interval = setInterval(()=> {
+            if(doingDelay) {
+                return;
+            } else {
+                clearInterval(this.interval);
+                resolve();
+            }
+        },100)
     })
 }
 
 async function doWork (value) {
-
-    await delay()
+    // await interval();
+    await delay(value);
     doingDelay = false;
     arr.push(value)
     clearTimeout(this.timer);
@@ -59,9 +76,29 @@ async function doWork (value) {
 
 
 const allDoWork = async () => {
-    for(let i=0;i<5;i++) {
-        await doWork(i);
+    while(a.length>0) {
+        var value = a.shift();
+        await doWork(value);
     }
 }
 
+
+const a =[1,2,3,4,5];
+
 allDoWork();
+
+// while(a.length>0) {
+//     while(Math.random()>0.5) {
+//         allDoWork();
+//     }
+
+// }
+
+//     for(let i=0;i<5;i++) {
+//         var value = a.shift();
+//         allDoWork(value);
+//     }
+// for(var )
+// for i [1,2,3]
+
+// 
