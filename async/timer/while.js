@@ -18,7 +18,7 @@ async function doWork (value, initArr) {
 
 const a =[];
 let count=0;
-
+ 
 
 const update = async (count)=>{
     if(a.length===0) {
