@@ -1,37 +1,14 @@
 var launched = app.launch("com.taobao.idlefish");
-console.log('launched', launched)
-if (launched) {
-    press(11348, 1350, 200);
-    sleep(2000)
-    alert('333')
-    var d=press(17611, 4395, 200); // press fabu
-    console.log(d,'d')
-}
-
-// toast(i);
-events.observeTouch();
-//注册触摸监听器
-events.onTouch(function(p){
-    //触摸事件发生时, 打印出触摸的点的坐标
-    alert(p.x + ", " + p.y);
-});
-
-
-var launched = app.launch("com.taobao.idlefish");
 events.observeToast();
 
-const backHomePage = () => {
-    // !text("任务").findOne() ||!
-    while(text("赚钱").findOne()  )
-    {
-        back();
-        sleep(2000);
-    }
-}
-
 if( launched) {
+    
+    let submitProduct = (order, movie) => {
+    
+    let enterStart = ()=>{
+    var first = [212, 245];
+
     sleep(3000)
-    //var d=press(967, 1845, 200); // press fabu 我的
     
     press(541, 1824, 200)
 
@@ -39,27 +16,101 @@ if( launched) {
 
 
     press(527, 1549, 200)
+    let i = order % 4 ; 
+    let j = Math.floor(order / 4); 
+    sleep(2000)
     
-    // bounds = (0,192,266,458)
-    var first = [212, 245];
-    // for i=10;
-    for(var j=0;j<3;j++) {
-        for(var i=0;i<4;i++) {
-            sleep(1000)
-            press(first[0]+266*i, first[0]+266*j, 200)
-            if(i*j>8) {
-                break;
-            }
-            }
+    scrollUp()
+    sleep(1000)
+    press(first[0]+266*i, first[1]+266*j, 200)
+    textContains('下一步').click();
+    sleep(1000)
+    text('下一步').click();
+    sleep(300)
     }
 
+    let enterDetail =()=> {
+    
+        var a= packageName('com.taobao.idlefish').className('android.widget.EditText').depth(11).findOne();
 
-    // text = 
-    // indexInParent = 18
-    console.log(className('android.view.View').depth(11).indexInParent(0).findOne().click(), 333);
-    console.log(className('android.view.View').depth(11).indexInParent(0).text('').findOne())
-    // console.log(className('android.view.View').depth(10).indexInParent(21).findOne().childCount());
-    // .forEach(function(child){
-    //     console.log(child.className());
-    // })
+        let copy =()=> {
+            a.click();
+            KeyCode("KEYCODE_SPACE")
+            const desc = movie + '电影票\n电影dvd\n#摆渡望潘\n感兴趣的给我留言吧';
+            setClip(desc);
+            sleep(300);
+            a.paste();
+        }
+
+        copy();
+        sleep(2000);
+        copy();
+    }
+
+    let enterPrice = ()=> {
+        textContains('开个价').click();
+        sleep(500)
+        text('0').click();
+        sleep(200)
+        text('.').click();
+        sleep(200)
+        text('6').click();
+        sleep(200)
+        text('6').click();
+        sleep(200)
+        text('确定').click();
+    }
+    
+    // 脚本
+
+    let enterMoreInfo =()=> {
+    console.log(555)
+    sleep(200)
+
+
+    let categoryAll = (triedTimes)=> {
+        console.log(textContains("更多信息").exists(), textContains("补充").exists())
+    if(textContains("更多信息").exists() && !textContains("补充").exists()) {
+        Tap(833, 1625)
+
+        sleep(2000)
+        if(triedTimes ===0) {
+            Tap(312, 416)
+        }
+        if(triedTimes === 1) {
+            Tap(234, 412)
+        }
+        Tap(917, 136)
+        sleep(3000)
+        categoryAll(triedTimes+1);
+    }
+    }
+    categoryAll(0);
 }
+
+let enterSubmit = () => {
+    sleep(200)
+    Tap(933, 136)
+    sleep(200)
+    back();
+}
+
+enterStart();
+enterDetail();
+enterPrice();
+enterMoreInfo();
+enterSubmit();
+}
+
+    var movieListFile = open('/sdcard/Misc/movie_list.txt');
+    if(movieListFile) {
+        var movieList =  movieListFile.readlines()
+        for(let i=0;i<movieList.length;i++ ) {
+            submitProduct(i, movieList[i])
+            sleep(2000);
+            break;
+        }
+    }
+}
+
+// desc("擦亮")
