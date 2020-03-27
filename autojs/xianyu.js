@@ -82,6 +82,9 @@ if( launched) {
         }
         Tap(917, 136)
         sleep(3000)
+        if(triedTimes>3) {
+            return;
+        } 
         categoryAll(triedTimes+1);
     }
     }
@@ -89,9 +92,10 @@ if( launched) {
 }
 
 let enterSubmit = () => {
+    console.log('4444')
     sleep(200)
-    Tap(933, 136)
-    sleep(200)
+    Tap(940, 150)
+    sleep(5000)
     back();
 }
 
@@ -108,7 +112,6 @@ enterSubmit();
         for(let i=0;i<movieList.length;i++ ) {
             submitProduct(i, movieList[i])
             sleep(2000);
-            break;
         }
     }
 }
