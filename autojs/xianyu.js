@@ -106,6 +106,24 @@ enterMoreInfo();
 enterSubmit();
 }
 
+    
+let caliangAll = () => {
+    let caliang = () => {
+        desc('擦亮').find().each(function(w){
+            w.click();
+            sleep(2000)
+        })
+    }
+    textContains('我发布的').click();
+    sleep(2000);
+    let scrollable = true;
+    while (scrollable ) {
+        caliang();
+        scrollable = scrollDown()
+        sleep(2000)
+    }       
+}
+
     var movieListFile = open('/sdcard/Misc/movie_list.txt');
     if(movieListFile) {
         var movieList =  movieListFile.readlines()
@@ -114,6 +132,7 @@ enterSubmit();
             sleep(2000);
         }
     }
+    caliangAll()
 }
 
 // desc("擦亮")
