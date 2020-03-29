@@ -177,8 +177,9 @@ function authorize(credentials, requestData, callback) {
     var redirectUrl = credentials.installed.redirect_uris[0];
     var auth = new googleAuth();
     var oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUrl);
-
+    console.log('999')
     fs.readFile(TOKEN_PATH, function(err, token) {
+        console.log('001')
         if (err) {
             getNewToken(oauth2Client, requestData, callback)
         } else {
@@ -217,6 +218,29 @@ function upload(prop) {
         }, videosInsert)
     })
 }
+fs.readFile(CREDS, (err, cont) => {
+    if (err) {
+        console.log('Error loading client secret file: \n', err)
+        return
+    }
+authorize(JSON.parse(cont), {
+    'params': {
+        'part': 'snippet, status'
+    },
+    'properties': {
+        'snippet.categoryId': '22',
+        'snippet.defaultLanguage': '',
+        'snippet.title': '333',
+        'status.embeddable': '',
+        'status.license': '',
+        'status.privacyStatus': 'public',
+        'status.publicStatsViewable': ''
+    },
+    'mediaFilename': 'fafefe'
+}, ()=>{
+    console.log('callback')
+})
+});
 
 exports.upload = upload
 exports.event = event
