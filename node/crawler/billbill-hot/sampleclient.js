@@ -73,11 +73,14 @@ class SampleClient {
     );
   }
   
+  
+  
   async authenticate(scopes) {
     return new Promise((resolve, reject) => {    
       fs.readFile(TOKEN_PATH, (err, token)=> {
           if (err) {
-              // getNewToken(oauth2Client, requestData, callback)
+            console.log('777')
+              getNewToken(oauth2Client, requestData, callback)
               console.log(err)
           } else {
               this.oAuth2Client.credentials = JSON.parse(token)
@@ -86,6 +89,32 @@ class SampleClient {
       });
     });
   }
+
+    getNewToken(oauth2Client, requestData, callback) {
+      console.log('3344')
+    var authUrl = oauth2Client.generateAuthUrl({
+      access_type: 'offline',
+      scope: SCOPES
+    })
+    console.log('Authorize this app by visiting this url: ', authUrl);
+    var rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    })
+    rl.question('Enter the code from that page here: ', function(code) {
+        rl.close()
+        oauth2Client.getToken(code, function(err, token) {
+            if (err) {
+                console.log('Error while trying to retrieve access token', err)
+                return
+            }
+            oauth2Client.credentials = token
+            storeToken(token)
+            callback(oauth2Client, requestData)
+        })
+    })
+  }
+
 }
 
 module.exports = new SampleClient();

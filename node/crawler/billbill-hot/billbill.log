@@ -191,3 +191,1214 @@ Downloading 美女向孟非提问题，引全场哄笑，老郭在旁“神补�
 [33;1myou-get:       and report this issue with the full output.[0m
  you-get  -o ./videos/fjeife-PLoHxWFMhISQw9YxyrMrfzYjxISGabjVjP https://www.bilibili.com/video/av38470774 
 [2018-12-20T16:32:16.786] [INFO] billbill_download - you-get  -o ./videos/fjeife-PLoHxWFMhISQw9YxyrMrfzYjxISGabjVjP https://www.bilibili.com/video/av38470774 
+[2020-03-29T08:53:54.799] [INFO] billbill_upload - 共有0个视频需要上传
+[2020-03-29T08:54:15.837] [ERROR] billbill_upload - Error: connect ECONNREFUSED 172.217.160.106:443
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1128:14) {
+  errno: 'ECONNREFUSED',
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '172.217.160.106',
+  port: 443,
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    validateStatus: [Function: validateStatus],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'google-api-nodejs-client/2.0.1',
+      'Content-Length': 229
+    },
+    method: 'post',
+    url: 'https://oauth2.googleapis.com/token',
+    data: 'refresh_token=1%2FegYrnZajpw_7GGYMKxhlQLh5nZ9zGicn4qVrVBGqwox2hd6G1YJb01BEknMim07l&client_id=873751139683-e6dqhk9l9va59vq3s4uec0g201do5mof.apps.googleusercontent.com&client_secret=gEa0oAQZfCSH7TpecTbjCGFh&grant_type=refresh_token'
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 10485760,
+      path: '/token',
+      method: 'post',
+      headers: [Object],
+      agent: undefined,
+      auth: undefined,
+      hostname: 'oauth2.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/token'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 229,
+    _requestBodyBuffers: [ [Object] ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: false,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /token HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/x-www-form-urlencoded\r\n' +
+        'User-Agent: google-api-nodejs-client/2.0.1\r\n' +
+        'Content-Length: 229\r\n' +
+        'Host: oauth2.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/token',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://oauth2.googleapis.com/token'
+  },
+  response: undefined
+}
+[2020-03-29T08:58:40.637] [INFO] billbill_upload - 共有0个视频需要上传
+[2020-03-29T08:59:01.678] [ERROR] billbill_upload - Error: connect ECONNREFUSED 172.217.24.10:443
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1128:14) {
+  errno: 'ECONNREFUSED',
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '172.217.24.10',
+  port: 443,
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    validateStatus: [Function: validateStatus],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'google-api-nodejs-client/2.0.1',
+      'Content-Length': 229
+    },
+    method: 'post',
+    url: 'https://oauth2.googleapis.com/token',
+    data: 'refresh_token=1%2FegYrnZajpw_7GGYMKxhlQLh5nZ9zGicn4qVrVBGqwox2hd6G1YJb01BEknMim07l&client_id=873751139683-e6dqhk9l9va59vq3s4uec0g201do5mof.apps.googleusercontent.com&client_secret=gEa0oAQZfCSH7TpecTbjCGFh&grant_type=refresh_token'
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 10485760,
+      path: '/token',
+      method: 'post',
+      headers: [Object],
+      agent: undefined,
+      auth: undefined,
+      hostname: 'oauth2.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/token'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 229,
+    _requestBodyBuffers: [ [Object] ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: false,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /token HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/x-www-form-urlencoded\r\n' +
+        'User-Agent: google-api-nodejs-client/2.0.1\r\n' +
+        'Content-Length: 229\r\n' +
+        'Host: oauth2.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/token',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://oauth2.googleapis.com/token'
+  },
+  response: undefined
+}
+[2020-03-29T09:02:26.041] [INFO] billbill_upload - 共有0个视频需要上传
+[2020-03-29T09:04:48.094] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-29T09:05:09.132] [ERROR] billbill_upload - Error: connect ECONNREFUSED 216.58.200.234:443
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1128:14) {
+  errno: 'ECONNREFUSED',
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '216.58.200.234',
+  port: 443,
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    validateStatus: [Function: validateStatus],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'google-api-nodejs-client/2.0.1',
+      'Content-Length': 229
+    },
+    method: 'post',
+    url: 'https://oauth2.googleapis.com/token',
+    data: 'refresh_token=1%2FegYrnZajpw_7GGYMKxhlQLh5nZ9zGicn4qVrVBGqwox2hd6G1YJb01BEknMim07l&client_id=873751139683-e6dqhk9l9va59vq3s4uec0g201do5mof.apps.googleusercontent.com&client_secret=gEa0oAQZfCSH7TpecTbjCGFh&grant_type=refresh_token'
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 10485760,
+      path: '/token',
+      method: 'post',
+      headers: [Object],
+      agent: undefined,
+      auth: undefined,
+      hostname: 'oauth2.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/token'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 229,
+    _requestBodyBuffers: [ [Object] ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: false,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /token HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/x-www-form-urlencoded\r\n' +
+        'User-Agent: google-api-nodejs-client/2.0.1\r\n' +
+        'Content-Length: 229\r\n' +
+        'Host: oauth2.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/token',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://oauth2.googleapis.com/token'
+  },
+  response: undefined
+}
+[2020-03-29T09:20:29.706] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-29T09:20:47.159] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-29T09:21:09.406] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-29T09:21:30.450] [ERROR] billbill_upload - Error: connect ECONNREFUSED 216.58.200.234:443
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1128:14) {
+  errno: 'ECONNREFUSED',
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '216.58.200.234',
+  port: 443,
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    validateStatus: [Function: validateStatus],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'google-api-nodejs-client/2.0.1',
+      'Content-Length': 229
+    },
+    method: 'post',
+    url: 'https://oauth2.googleapis.com/token',
+    data: 'refresh_token=1%2FegYrnZajpw_7GGYMKxhlQLh5nZ9zGicn4qVrVBGqwox2hd6G1YJb01BEknMim07l&client_id=873751139683-e6dqhk9l9va59vq3s4uec0g201do5mof.apps.googleusercontent.com&client_secret=gEa0oAQZfCSH7TpecTbjCGFh&grant_type=refresh_token'
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 10485760,
+      path: '/token',
+      method: 'post',
+      headers: [Object],
+      agent: undefined,
+      auth: undefined,
+      hostname: 'oauth2.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/token'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 229,
+    _requestBodyBuffers: [ [Object] ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: false,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /token HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/x-www-form-urlencoded\r\n' +
+        'User-Agent: google-api-nodejs-client/2.0.1\r\n' +
+        'Content-Length: 229\r\n' +
+        'Host: oauth2.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/token',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://oauth2.googleapis.com/token'
+  },
+  response: undefined
+}
+[2020-03-29T09:24:34.101] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-29T09:24:54.986] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-29T09:25:16.024] [ERROR] billbill_upload - Error: connect ECONNREFUSED 172.217.160.74:443
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1128:14) {
+  errno: 'ECONNREFUSED',
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '172.217.160.74',
+  port: 443,
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    validateStatus: [Function: validateStatus],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'google-api-nodejs-client/2.0.1',
+      'Content-Length': 229
+    },
+    method: 'post',
+    url: 'https://oauth2.googleapis.com/token',
+    data: 'refresh_token=1%2FegYrnZajpw_7GGYMKxhlQLh5nZ9zGicn4qVrVBGqwox2hd6G1YJb01BEknMim07l&client_id=873751139683-e6dqhk9l9va59vq3s4uec0g201do5mof.apps.googleusercontent.com&client_secret=gEa0oAQZfCSH7TpecTbjCGFh&grant_type=refresh_token'
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 10485760,
+      path: '/token',
+      method: 'post',
+      headers: [Object],
+      agent: undefined,
+      auth: undefined,
+      hostname: 'oauth2.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/token'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 229,
+    _requestBodyBuffers: [ [Object] ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: false,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /token HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/x-www-form-urlencoded\r\n' +
+        'User-Agent: google-api-nodejs-client/2.0.1\r\n' +
+        'Content-Length: 229\r\n' +
+        'Host: oauth2.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/token',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://oauth2.googleapis.com/token'
+  },
+  response: undefined
+}
+[2020-03-29T09:26:15.278] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-29T09:26:31.425] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-29T09:26:52.463] [ERROR] billbill_upload - Error: connect ECONNREFUSED 172.217.160.74:443
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1128:14) {
+  errno: 'ECONNREFUSED',
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '172.217.160.74',
+  port: 443,
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    validateStatus: [Function: validateStatus],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'google-api-nodejs-client/2.0.1',
+      'Content-Length': 229
+    },
+    method: 'post',
+    url: 'https://oauth2.googleapis.com/token',
+    data: 'refresh_token=1%2FegYrnZajpw_7GGYMKxhlQLh5nZ9zGicn4qVrVBGqwox2hd6G1YJb01BEknMim07l&client_id=873751139683-e6dqhk9l9va59vq3s4uec0g201do5mof.apps.googleusercontent.com&client_secret=gEa0oAQZfCSH7TpecTbjCGFh&grant_type=refresh_token'
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 10485760,
+      path: '/token',
+      method: 'post',
+      headers: [Object],
+      agent: undefined,
+      auth: undefined,
+      hostname: 'oauth2.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/token'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 229,
+    _requestBodyBuffers: [ [Object] ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: false,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /token HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/x-www-form-urlencoded\r\n' +
+        'User-Agent: google-api-nodejs-client/2.0.1\r\n' +
+        'Content-Length: 229\r\n' +
+        'Host: oauth2.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/token',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://oauth2.googleapis.com/token'
+  },
+  response: undefined
+}
+[2020-03-29T09:27:42.397] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-29T09:28:03.437] [ERROR] billbill_upload - Error: connect ECONNREFUSED 172.217.160.74:443
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1128:14) {
+  errno: 'ECONNREFUSED',
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '172.217.160.74',
+  port: 443,
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    validateStatus: [Function: validateStatus],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'google-api-nodejs-client/2.0.1',
+      'Content-Length': 229
+    },
+    method: 'post',
+    url: 'https://oauth2.googleapis.com/token',
+    data: 'refresh_token=1%2FegYrnZajpw_7GGYMKxhlQLh5nZ9zGicn4qVrVBGqwox2hd6G1YJb01BEknMim07l&client_id=873751139683-e6dqhk9l9va59vq3s4uec0g201do5mof.apps.googleusercontent.com&client_secret=gEa0oAQZfCSH7TpecTbjCGFh&grant_type=refresh_token'
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 10485760,
+      path: '/token',
+      method: 'post',
+      headers: [Object],
+      agent: undefined,
+      auth: undefined,
+      hostname: 'oauth2.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/token'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 229,
+    _requestBodyBuffers: [ [Object] ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: false,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /token HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/x-www-form-urlencoded\r\n' +
+        'User-Agent: google-api-nodejs-client/2.0.1\r\n' +
+        'Content-Length: 229\r\n' +
+        'Host: oauth2.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/token',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://oauth2.googleapis.com/token'
+  },
+  response: undefined
+}
+[2020-03-29T09:28:59.975] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-29T09:29:21.010] [ERROR] billbill_upload - Error: connect ECONNREFUSED 172.217.160.74:443
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1128:14) {
+  errno: 'ECONNREFUSED',
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '172.217.160.74',
+  port: 443,
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    validateStatus: [Function: validateStatus],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'google-api-nodejs-client/2.0.1',
+      'Content-Length': 229
+    },
+    method: 'post',
+    url: 'https://oauth2.googleapis.com/token',
+    data: 'refresh_token=1%2FegYrnZajpw_7GGYMKxhlQLh5nZ9zGicn4qVrVBGqwox2hd6G1YJb01BEknMim07l&client_id=873751139683-e6dqhk9l9va59vq3s4uec0g201do5mof.apps.googleusercontent.com&client_secret=gEa0oAQZfCSH7TpecTbjCGFh&grant_type=refresh_token'
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 10485760,
+      path: '/token',
+      method: 'post',
+      headers: [Object],
+      agent: undefined,
+      auth: undefined,
+      hostname: 'oauth2.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/token'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 229,
+    _requestBodyBuffers: [ [Object] ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: false,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /token HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/x-www-form-urlencoded\r\n' +
+        'User-Agent: google-api-nodejs-client/2.0.1\r\n' +
+        'Content-Length: 229\r\n' +
+        'Host: oauth2.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/token',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://oauth2.googleapis.com/token'
+  },
+  response: undefined
+}
+[2020-03-29T09:34:12.200] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-29T09:34:33.242] [ERROR] billbill_upload - Error: connect ECONNREFUSED 216.58.200.42:443
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1128:14) {
+  errno: 'ECONNREFUSED',
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '216.58.200.42',
+  port: 443,
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    validateStatus: [Function: validateStatus],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'google-api-nodejs-client/2.0.1',
+      'Content-Length': 229
+    },
+    method: 'post',
+    url: 'https://oauth2.googleapis.com/token',
+    data: 'refresh_token=1%2FegYrnZajpw_7GGYMKxhlQLh5nZ9zGicn4qVrVBGqwox2hd6G1YJb01BEknMim07l&client_id=873751139683-e6dqhk9l9va59vq3s4uec0g201do5mof.apps.googleusercontent.com&client_secret=gEa0oAQZfCSH7TpecTbjCGFh&grant_type=refresh_token'
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 10485760,
+      path: '/token',
+      method: 'post',
+      headers: [Object],
+      agent: undefined,
+      auth: undefined,
+      hostname: 'oauth2.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/token'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 229,
+    _requestBodyBuffers: [ [Object] ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: false,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /token HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/x-www-form-urlencoded\r\n' +
+        'User-Agent: google-api-nodejs-client/2.0.1\r\n' +
+        'Content-Length: 229\r\n' +
+        'Host: oauth2.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/token',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://oauth2.googleapis.com/token'
+  },
+  response: undefined
+}

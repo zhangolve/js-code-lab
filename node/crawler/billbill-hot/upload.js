@@ -7,6 +7,12 @@ const {scopes} = require('./const');
 
 const log4js = require('log4js');
 
+const path = require('path');
+
+
+const videoRootPath = path.resolve(__dirname, './videos');
+
+
 log4js.configure({
   appenders: { 
       billbill_upload: { type: 'file', filename: 'billbill.log', maxLogSize: 10485760, backups: 3, compress: true } ,
@@ -22,23 +28,25 @@ const youtube = google.youtube({
   auth: sampleClient.oAuth2Client
 });
 
-
 function getFiles(uploadPath) {
+  console.log(uploadPath,'666')
   return fs.readdirSync(uploadPath)
     .filter(f => { 
         const splited = f.split('.')
         const ext = splited[splited.length-1]
         return ext == 'mp4' ||
-                ext == 'flv'
+                ext == 'flv' || 'mkv'
     });
 }
 
 async function init(uploadPath, playListIdSign) {
-  const splited = uploadPath.split('/');
-  let playList = splited[splited.length-1];
-  const playListArr = playList.split('-')
-  const playListName = playList[0];
-  let playListId = playListArr.length > 1 ? playList.slice(playListArr[0].length+1): playListIdSign;
+  // const splited = uploadPath.split('/');
+  // let playList = splited[splited.length-1];
+  // const playListArr = playList.split('-')
+  // const playListName = playList[0];
+  // let playListId = playListArr.length > 1 ? playList.slice(playListArr[0].length+1): playListIdSign;
+  let playListName = 'test'
+  let playListId =null;
   const needUploadFiles = getFiles(uploadPath);
   logger.info(`共有${needUploadFiles.length}个视频需要上传`);
   try {
@@ -187,7 +195,7 @@ if (module === require.main) {
               sampleClient
               .authenticate(scopes)
               .then(() => {init(uploadPath, playListId)})
-              .catch((err)=>{logger.error(err)});
+              .catch((err)=>{console.log('444'); logger.error(err)});
             })
           } else {
             rl.close();
@@ -201,8 +209,23 @@ if (module === require.main) {
   }
 }
 
+
+function doTask (playListPath) {
+  sampleClient
+  .authenticate(scopes)
+  .then(() => {init(playListPath)})
+  .catch((err)=>{
+    logger.error(err);
+    sendMail(err);
+  }
+  );
+}
+
+doTask('./videos')
+
 module.exports = {
   init,
   insertPlayList,
   sampleClient
 };
+
