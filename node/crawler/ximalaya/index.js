@@ -33,25 +33,33 @@ request({
         
         const track = tracksClone.shift(); 
         
+        let getTrack = (track) => {
+            request({
+                method: 'GET',
+                url: getTrackUrl(track.trackId),
+                headers,
+                timeout: 3000,
+            }, 
+            (error, response, html) => {
+                if(!error) {
+                    const res = JSON.parse(response.body);
+                    console.log('res', res)
+                    const w4a = decode(res);
+                    console.log(w4a)
+                    download(w4a,res.title);
+                    if(tracksClone.length>0) {
+                        const currentTrack = tracksClone.shift(); 
+                        getTrack(currentTrack);    
+                    } else {
+                        console.log('finished')
+                    }
+                } else {
+                console.log(error,'333')
+                }
+            })
+        } 
 
-        request({
-            method: 'GET',
-            url: getTrackUrl(track.trackId),
-            headers,
-            timeout: 3000,
-        }, 
-        (error, response, html) => {
-            if(!error) {
-                const res = JSON.parse(response.body);
-                console.log('res', res)
-                const w4a = decode(res);
-                console.log(w4a)
-                await download(w4a);
-
-            } else {
-            console.log(error,'333')
-            }
-        }) 
+        getTrack(track)
     }
 });
 
