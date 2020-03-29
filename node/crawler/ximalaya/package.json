@@ -11,7 +11,8 @@
   "dependencies": {
     "async": "^2.1.4",
     "iconv-lite": "latest",
-    "request": "latest"
+    "request": "latest",
+    "axios": "latest"
    
   },
    "devDependencies": {
