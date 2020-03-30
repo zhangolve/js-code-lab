@@ -29,7 +29,6 @@ const youtube = google.youtube({
 });
 
 function getFiles(uploadPath) {
-  console.log(uploadPath,'666')
   return fs.readdirSync(uploadPath)
     .filter(f => { 
         const splited = f.split('.')
@@ -76,9 +75,8 @@ async function init(uploadPath, playListIdSign) {
           }
           
           fs.unlink(file.name, function (err) {            
-            if (err) {                                                 
+            if (err) {
                 logger.error(err);                                    
-
             }
             logger.warn(fileName+ 'File has been Deleted');
             console.clear();                           
@@ -89,7 +87,9 @@ async function init(uploadPath, playListIdSign) {
     }
     await upload();
   } catch(e) {
-    logger.error(e);
+    console.log(e)
+    console.log('999')
+    // logger.error(e);
   }
 }
 
@@ -178,7 +178,7 @@ if (module === require.main) {
     output: process.stdout
   })
 
-  switchType();
+  // switchType();
 
 
   function switchType() {
@@ -195,7 +195,7 @@ if (module === require.main) {
               sampleClient
               .authenticate(scopes)
               .then(() => {init(uploadPath, playListId)})
-              .catch((err)=>{console.log('444'); logger.error(err)});
+              .catch((err)=>{ logger.error(err)});
             })
           } else {
             rl.close();

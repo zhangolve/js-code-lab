@@ -2098,3 +2098,2067 @@ Downloading 美女向孟非提问题，引全场哄笑，老郭在旁“神补�
     }
   ]
 }
+[2020-03-30T07:05:05.372] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T07:05:26.414] [ERROR] billbill_upload - Error: connect ECONNREFUSED 172.217.160.106:443
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1128:14) {
+  errno: 'ECONNREFUSED',
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '172.217.160.106',
+  port: 443,
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    validateStatus: [Function: validateStatus],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'google-api-nodejs-client/2.0.1',
+      'Content-Length': 268
+    },
+    method: 'post',
+    url: 'https://oauth2.googleapis.com/token',
+    data: 'refresh_token=1%2F%2F0eL-hYwyzilGXCgYIARAAGA4SNwF-L9IrcFumTf8JYIfAnoPnh1_W0-K74wfD5unCqvpFl4_IWJdZEMUsvy4_J7L0LZhuZ-Dvohk&client_id=873751139683-e6dqhk9l9va59vq3s4uec0g201do5mof.apps.googleusercontent.com&client_secret=gEa0oAQZfCSH7TpecTbjCGFh&grant_type=refresh_token'
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 10485760,
+      path: '/token',
+      method: 'post',
+      headers: [Object],
+      agent: undefined,
+      auth: undefined,
+      hostname: 'oauth2.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/token'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 268,
+    _requestBodyBuffers: [ [Object] ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: false,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /token HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/x-www-form-urlencoded\r\n' +
+        'User-Agent: google-api-nodejs-client/2.0.1\r\n' +
+        'Content-Length: 268\r\n' +
+        'Host: oauth2.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/token',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://oauth2.googleapis.com/token'
+  },
+  response: undefined
+}
+[2020-03-30T07:05:33.809] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T07:05:54.843] [ERROR] billbill_upload - Error: connect ECONNREFUSED 172.217.24.10:443
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1128:14) {
+  errno: 'ECONNREFUSED',
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '172.217.24.10',
+  port: 443,
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    validateStatus: [Function: validateStatus],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'google-api-nodejs-client/2.0.1',
+      'Content-Length': 268
+    },
+    method: 'post',
+    url: 'https://oauth2.googleapis.com/token',
+    data: 'refresh_token=1%2F%2F0eL-hYwyzilGXCgYIARAAGA4SNwF-L9IrcFumTf8JYIfAnoPnh1_W0-K74wfD5unCqvpFl4_IWJdZEMUsvy4_J7L0LZhuZ-Dvohk&client_id=873751139683-e6dqhk9l9va59vq3s4uec0g201do5mof.apps.googleusercontent.com&client_secret=gEa0oAQZfCSH7TpecTbjCGFh&grant_type=refresh_token'
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 10485760,
+      path: '/token',
+      method: 'post',
+      headers: [Object],
+      agent: undefined,
+      auth: undefined,
+      hostname: 'oauth2.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/token'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 268,
+    _requestBodyBuffers: [ [Object] ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: false,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /token HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/x-www-form-urlencoded\r\n' +
+        'User-Agent: google-api-nodejs-client/2.0.1\r\n' +
+        'Content-Length: 268\r\n' +
+        'Host: oauth2.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/token',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://oauth2.googleapis.com/token'
+  },
+  response: undefined
+}
+[2020-03-30T07:07:07.729] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T07:07:28.782] [ERROR] billbill_upload - Error: connect ECONNREFUSED 172.217.24.10:443
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1128:14) {
+  errno: 'ECONNREFUSED',
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '172.217.24.10',
+  port: 443,
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    validateStatus: [Function: validateStatus],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'google-api-nodejs-client/2.0.1',
+      'Content-Length': 268
+    },
+    method: 'post',
+    url: 'https://oauth2.googleapis.com/token',
+    data: 'refresh_token=1%2F%2F0eL-hYwyzilGXCgYIARAAGA4SNwF-L9IrcFumTf8JYIfAnoPnh1_W0-K74wfD5unCqvpFl4_IWJdZEMUsvy4_J7L0LZhuZ-Dvohk&client_id=873751139683-e6dqhk9l9va59vq3s4uec0g201do5mof.apps.googleusercontent.com&client_secret=gEa0oAQZfCSH7TpecTbjCGFh&grant_type=refresh_token'
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 10485760,
+      path: '/token',
+      method: 'post',
+      headers: [Object],
+      agent: undefined,
+      auth: undefined,
+      hostname: 'oauth2.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/token'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 268,
+    _requestBodyBuffers: [ [Object] ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: false,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /token HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/x-www-form-urlencoded\r\n' +
+        'User-Agent: google-api-nodejs-client/2.0.1\r\n' +
+        'Content-Length: 268\r\n' +
+        'Host: oauth2.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/token',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://oauth2.googleapis.com/token'
+  },
+  response: undefined
+}
+[2020-03-30T07:14:35.807] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T07:14:36.311] [ERROR] billbill_upload - Error: Access Not Configured. YouTube Data API has not been used in project 873751139683 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/youtube.googleapis.com/overview?project=873751139683 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.
+    at createError (/home/zhangolve/github/js-code-lab/node/crawler/billbill-hot/node_modules/axios/lib/core/createError.js:16:15)
+    at settle (/home/zhangolve/github/js-code-lab/node/crawler/billbill-hot/node_modules/axios/lib/core/settle.js:18:12)
+    at Unzip.handleStreamEnd (/home/zhangolve/github/js-code-lab/node/crawler/billbill-hot/node_modules/axios/lib/adapters/http.js:201:11)
+    at Unzip.emit (events.js:215:7)
+    at endReadableNT (_stream_readable.js:1183:12)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21) {
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: 2147483648,
+    validateStatus: [Function],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json;charset=utf-8',
+      'Accept-Encoding': 'gzip',
+      'User-Agent': 'google-api-nodejs-client/0.4.0 (gzip)',
+      Authorization: 'Bearer ya29.a0Adw1xeVCWzq0OY7hTj8H1g34TrYTYRxo0roY2SN8o2-4wN4Lo8iA5xWRQA_DfjqvbpFPBtoAbw3djaZj1nIpHRyUeUnK3PNDO31UvCctFtqQdHAyQIGr7gA4lw6_IhZKfkL8wRs0r3n4YKFy7d_5nWvOmA_ffCpb88CX',
+      'Content-Length': 120
+    },
+    method: 'post',
+    url: 'https://www.googleapis.com/youtube/v3/playlists',
+    paramsSerializer: [Function],
+    data: '{"snippet":{"title":"test","description":"更多精彩视频，欢迎订阅浏览"},"status":{"privacyStatus":"public"}}',
+    params: { part: 'snippet,status' },
+    httpsAgent: HttpsProxyAgent {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _promisifiedCallback: true,
+      timeout: null,
+      options: [Url],
+      secureProxy: false,
+      proxy: [Object],
+      defaultPort: 443,
+      callback: [Function]
+    },
+    proxy: false
+  },
+  request: ClientRequest {
+    _events: [Object: null prototype] {
+      socket: [Function],
+      abort: [Function],
+      aborted: [Function],
+      error: [Function],
+      timeout: [Function],
+      prefinish: [Function: requestOnPrefinish]
+    },
+    _eventsCount: 6,
+    _maxListeners: undefined,
+    outputData: [],
+    outputSize: 0,
+    writable: true,
+    _last: true,
+    chunkedEncoding: false,
+    shouldKeepAlive: false,
+    useChunkedEncodingByDefault: true,
+    sendDate: false,
+    _removedConnection: false,
+    _removedContLen: false,
+    _removedTE: false,
+    _contentLength: null,
+    _hasBody: true,
+    _trailer: '',
+    finished: true,
+    _headerSent: true,
+    socket: TLSSocket {
+      _tlsOptions: [Object],
+      _secureEstablished: true,
+      _securePending: false,
+      _newSessionPending: false,
+      _controlReleased: true,
+      _SNICallback: null,
+      servername: 'www.googleapis.com',
+      alpnProtocol: false,
+      authorized: true,
+      authorizationError: null,
+      encrypted: true,
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      connecting: false,
+      _hadError: false,
+      _parent: [Socket],
+      _host: null,
+      _readableState: [ReadableState],
+      readable: false,
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      writable: false,
+      allowHalfOpen: false,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: undefined,
+      _server: null,
+      ssl: null,
+      _requestCert: true,
+      _rejectUnauthorized: true,
+      parser: null,
+      _httpMessage: [Circular],
+      [Symbol(res)]: null,
+      [Symbol(asyncId)]: 52,
+      [Symbol(kHandle)]: null,
+      [Symbol(lastWriteQueueSize)]: 0,
+      [Symbol(timeout)]: null,
+      [Symbol(kBuffer)]: null,
+      [Symbol(kBufferCb)]: null,
+      [Symbol(kBufferGen)]: null,
+      [Symbol(kBytesRead)]: 1081,
+      [Symbol(kBytesWritten)]: 605,
+      [Symbol(connect-options)]: [Object]
+    },
+    connection: TLSSocket {
+      _tlsOptions: [Object],
+      _secureEstablished: true,
+      _securePending: false,
+      _newSessionPending: false,
+      _controlReleased: true,
+      _SNICallback: null,
+      servername: 'www.googleapis.com',
+      alpnProtocol: false,
+      authorized: true,
+      authorizationError: null,
+      encrypted: true,
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      connecting: false,
+      _hadError: false,
+      _parent: [Socket],
+      _host: null,
+      _readableState: [ReadableState],
+      readable: false,
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      writable: false,
+      allowHalfOpen: false,
+      _sockname: null,
+      _pendingData: null,
+      _pendingEncoding: '',
+      server: undefined,
+      _server: null,
+      ssl: null,
+      _requestCert: true,
+      _rejectUnauthorized: true,
+      parser: null,
+      _httpMessage: [Circular],
+      [Symbol(res)]: null,
+      [Symbol(asyncId)]: 52,
+      [Symbol(kHandle)]: null,
+      [Symbol(lastWriteQueueSize)]: 0,
+      [Symbol(timeout)]: null,
+      [Symbol(kBuffer)]: null,
+      [Symbol(kBufferCb)]: null,
+      [Symbol(kBufferGen)]: null,
+      [Symbol(kBytesRead)]: 1081,
+      [Symbol(kBytesWritten)]: 605,
+      [Symbol(connect-options)]: [Object]
+    },
+    _header: 'POST /youtube/v3/playlists?part=snippet%2Cstatus HTTP/1.1\r\n' +
+      'Accept: application/json, text/plain, */*\r\n' +
+      'Content-Type: application/json;charset=utf-8\r\n' +
+      'Accept-Encoding: gzip\r\n' +
+      'User-Agent: google-api-nodejs-client/0.4.0 (gzip)\r\n' +
+      'Authorization: Bearer ya29.a0Adw1xeVCWzq0OY7hTj8H1g34TrYTYRxo0roY2SN8o2-4wN4Lo8iA5xWRQA_DfjqvbpFPBtoAbw3djaZj1nIpHRyUeUnK3PNDO31UvCctFtqQdHAyQIGr7gA4lw6_IhZKfkL8wRs0r3n4YKFy7d_5nWvOmA_ffCpb88CX\r\n' +
+      'Content-Length: 120\r\n' +
+      'Host: www.googleapis.com\r\n' +
+      'Connection: close\r\n' +
+      '\r\n',
+    _onPendingData: [Function: noopPendingOutput],
+    agent: HttpsProxyAgent {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _promisifiedCallback: true,
+      timeout: null,
+      options: [Url],
+      secureProxy: false,
+      proxy: [Object],
+      defaultPort: 443,
+      callback: [Function]
+    },
+    socketPath: undefined,
+    method: 'POST',
+    path: '/youtube/v3/playlists?part=snippet%2Cstatus',
+    _ended: true,
+    res: IncomingMessage {
+      _readableState: [ReadableState],
+      readable: false,
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      httpVersionMajor: 1,
+      httpVersionMinor: 1,
+      httpVersion: '1.1',
+      complete: true,
+      headers: [Object],
+      rawHeaders: [Array],
+      trailers: {},
+      rawTrailers: [],
+      aborted: false,
+      upgrade: false,
+      url: '',
+      method: null,
+      statusCode: 403,
+      statusMessage: 'Forbidden',
+      client: [TLSSocket],
+      _consuming: true,
+      _dumped: false,
+      req: [Circular],
+      responseUrl: 'https://www.googleapis.com/youtube/v3/playlists?part=snippet%2Cstatus',
+      redirects: []
+    },
+    aborted: false,
+    timeoutCb: null,
+    upgradeOrConnect: false,
+    parser: null,
+    maxHeadersCount: null,
+    _redirectable: Writable {
+      _writableState: [WritableState],
+      writable: true,
+      _events: [Object: null prototype],
+      _eventsCount: 2,
+      _maxListeners: undefined,
+      _options: [Object],
+      _redirectCount: 0,
+      _redirects: [],
+      _requestBodyLength: 120,
+      _requestBodyBuffers: [],
+      _onNativeResponse: [Function],
+      _currentRequest: [Circular],
+      _currentUrl: 'https://www.googleapis.com/youtube/v3/playlists?part=snippet%2Cstatus'
+    },
+    [Symbol(kNeedDrain)]: false,
+    [Symbol(isCorked)]: false,
+    [Symbol(kOutHeaders)]: [Object: null prototype] {
+      accept: [Array],
+      'content-type': [Array],
+      'accept-encoding': [Array],
+      'user-agent': [Array],
+      authorization: [Array],
+      'content-length': [Array],
+      host: [Array]
+    }
+  },
+  response: {
+    status: 403,
+    statusText: 'Forbidden',
+    headers: {
+      vary: 'Origin, X-Origin',
+      'content-type': 'application/json; charset=UTF-8',
+      date: 'Sun, 29 Mar 2020 23:14:36 GMT',
+      expires: 'Sun, 29 Mar 2020 23:14:36 GMT',
+      'cache-control': 'private, max-age=0',
+      'x-content-type-options': 'nosniff',
+      'x-frame-options': 'SAMEORIGIN',
+      'content-security-policy': "frame-ancestors 'self'",
+      'x-xss-protection': '1; mode=block',
+      server: 'GSE',
+      'alt-svc': 'quic=":443"; ma=2592000; v="46,43",h3-Q050=":443"; ma=2592000,h3-Q049=":443"; ma=2592000,h3-Q048=":443"; ma=2592000,h3-Q046=":443"; ma=2592000,h3-Q043=":443"; ma=2592000,h3-T050=":443"; ma=2592000',
+      connection: 'close',
+      'transfer-encoding': 'chunked'
+    },
+    config: {
+      adapter: [Function: httpAdapter],
+      transformRequest: [Object],
+      transformResponse: [Object],
+      timeout: 0,
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+      maxContentLength: 2147483648,
+      validateStatus: [Function],
+      headers: [Object],
+      method: 'post',
+      url: 'https://www.googleapis.com/youtube/v3/playlists',
+      paramsSerializer: [Function],
+      data: '{"snippet":{"title":"test","description":"更多精彩视频，欢迎订阅浏览"},"status":{"privacyStatus":"public"}}',
+      params: [Object],
+      httpsAgent: [HttpsProxyAgent],
+      proxy: false
+    },
+    request: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /youtube/v3/playlists?part=snippet%2Cstatus HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/json;charset=utf-8\r\n' +
+        'Accept-Encoding: gzip\r\n' +
+        'User-Agent: google-api-nodejs-client/0.4.0 (gzip)\r\n' +
+        'Authorization: Bearer ya29.a0Adw1xeVCWzq0OY7hTj8H1g34TrYTYRxo0roY2SN8o2-4wN4Lo8iA5xWRQA_DfjqvbpFPBtoAbw3djaZj1nIpHRyUeUnK3PNDO31UvCctFtqQdHAyQIGr7gA4lw6_IhZKfkL8wRs0r3n4YKFy7d_5nWvOmA_ffCpb88CX\r\n' +
+        'Content-Length: 120\r\n' +
+        'Host: www.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [HttpsProxyAgent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/youtube/v3/playlists?part=snippet%2Cstatus',
+      _ended: true,
+      res: [IncomingMessage],
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Writable],
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    data: { error: [Object] }
+  },
+  code: 403,
+  errors: [
+    {
+      domain: 'usageLimits',
+      reason: 'accessNotConfigured',
+      message: 'Access Not Configured. YouTube Data API has not been used in project 873751139683 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/youtube.googleapis.com/overview?project=873751139683 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.',
+      extendedHelp: 'https://console.developers.google.com/apis/api/youtube.googleapis.com/overview?project=873751139683'
+    }
+  ]
+}
+[2020-03-30T07:51:55.682] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T07:51:56.938] [INFO] billbill_upload - 创建播放列表成功，播放列表id为: PLmwPg467-tmtXkBqW4H5rkqGktpteLvSz
+[2020-03-30T07:51:56.939] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-03-30T07:51:57.122] [ERROR] billbill_upload - Error: socket hang up
+    at connResetException (internal/errors.js:570:14)
+    at TLSSocket.socketOnEnd (_http_client.js:440:23)
+    at TLSSocket.emit (events.js:215:7)
+    at endReadableNT (_stream_readable.js:1183:12)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21) {
+  code: 'ECONNRESET',
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: 2147483648,
+    validateStatus: [Function],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'multipart/related; boundary=28087635-d999-4cb7-9a09-991472828351',
+      'Accept-Encoding': 'gzip',
+      'User-Agent': 'google-api-nodejs-client/0.4.0 (gzip)',
+      Authorization: 'Bearer ya29.a0Adw1xeUJjXwMSQqBEqamI6lVMzqrG3RpzwFcDsfpZQsA_qGrvy-hjpW_FBWxmgrxJk9J7WX0d_hdfFrltnFtmEjTF-OVBNCZvxh11jazRn1P-3ojSF_n7XRQOcAEuiAbQgnVr1P5qCh7_iHvoRur5wHBCiwgBQciRcY'
+    },
+    method: 'post',
+    url: 'https://www.googleapis.com/upload/youtube/v3/videos',
+    onUploadProgress: [Function: onUploadProgress],
+    paramsSerializer: [Function],
+    data: PassThrough {
+      _readableState: [ReadableState],
+      readable: false,
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      writable: true,
+      allowHalfOpen: true,
+      _transformState: [Object]
+    },
+    params: {
+      part: 'id,snippet,status',
+      notifySubscribers: false,
+      uploadType: 'multipart'
+    },
+    httpsAgent: HttpsProxyAgent {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _promisifiedCallback: true,
+      timeout: null,
+      options: [Url],
+      secureProxy: false,
+      proxy: [Object],
+      defaultPort: 443,
+      callback: [Function]
+    },
+    proxy: false
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 2147483648,
+      path: '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart',
+      method: 'post',
+      headers: [Object],
+      agent: [HttpsProxyAgent],
+      auth: undefined,
+      hostname: 'www.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/upload/youtube/v3/videos',
+      search: '?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 4274650,
+    _requestBodyBuffers: [
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object]
+    ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: true,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: multipart/related; boundary=28087635-d999-4cb7-9a09-991472828351\r\n' +
+        'Accept-Encoding: gzip\r\n' +
+        'User-Agent: google-api-nodejs-client/0.4.0 (gzip)\r\n' +
+        'Authorization: Bearer ya29.a0Adw1xeUJjXwMSQqBEqamI6lVMzqrG3RpzwFcDsfpZQsA_qGrvy-hjpW_FBWxmgrxJk9J7WX0d_hdfFrltnFtmEjTF-OVBNCZvxh11jazRn1P-3ojSF_n7XRQOcAEuiAbQgnVr1P5qCh7_iHvoRur5wHBCiwgBQciRcY\r\n' +
+        'Host: www.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        'Transfer-Encoding: chunked\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [HttpsProxyAgent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: true,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://www.googleapis.com/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart'
+  },
+  response: undefined
+}
+[2020-03-30T07:54:47.340] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T07:54:48.202] [INFO] billbill_upload - 创建播放列表成功，播放列表id为: PLmwPg467-tmvQrYbRx0CP4gSvT8kqxflr
+[2020-03-30T07:54:48.203] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-03-30T07:54:48.394] [ERROR] billbill_upload - Error: socket hang up
+    at connResetException (internal/errors.js:570:14)
+    at TLSSocket.socketOnEnd (_http_client.js:440:23)
+    at TLSSocket.emit (events.js:215:7)
+    at endReadableNT (_stream_readable.js:1183:12)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21) {
+  code: 'ECONNRESET',
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: 2147483648,
+    validateStatus: [Function],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'multipart/related; boundary=596625ff-ac10-440e-a453-923d34a5c6e3',
+      'Accept-Encoding': 'gzip',
+      'User-Agent': 'google-api-nodejs-client/0.4.0 (gzip)',
+      Authorization: 'Bearer ya29.a0Adw1xeUJjXwMSQqBEqamI6lVMzqrG3RpzwFcDsfpZQsA_qGrvy-hjpW_FBWxmgrxJk9J7WX0d_hdfFrltnFtmEjTF-OVBNCZvxh11jazRn1P-3ojSF_n7XRQOcAEuiAbQgnVr1P5qCh7_iHvoRur5wHBCiwgBQciRcY'
+    },
+    method: 'post',
+    url: 'https://www.googleapis.com/upload/youtube/v3/videos',
+    onUploadProgress: [Function: onUploadProgress],
+    paramsSerializer: [Function],
+    data: PassThrough {
+      _readableState: [ReadableState],
+      readable: false,
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      writable: true,
+      allowHalfOpen: true,
+      _transformState: [Object]
+    },
+    params: {
+      part: 'id,snippet,status',
+      notifySubscribers: false,
+      uploadType: 'multipart'
+    },
+    httpsAgent: HttpsProxyAgent {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _promisifiedCallback: true,
+      timeout: null,
+      options: [Url],
+      secureProxy: false,
+      proxy: [Object],
+      defaultPort: 443,
+      callback: [Function]
+    },
+    proxy: false
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 2147483648,
+      path: '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart',
+      method: 'post',
+      headers: [Object],
+      agent: [HttpsProxyAgent],
+      auth: undefined,
+      hostname: 'www.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/upload/youtube/v3/videos',
+      search: '?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 4274650,
+    _requestBodyBuffers: [
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object]
+    ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: true,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: multipart/related; boundary=596625ff-ac10-440e-a453-923d34a5c6e3\r\n' +
+        'Accept-Encoding: gzip\r\n' +
+        'User-Agent: google-api-nodejs-client/0.4.0 (gzip)\r\n' +
+        'Authorization: Bearer ya29.a0Adw1xeUJjXwMSQqBEqamI6lVMzqrG3RpzwFcDsfpZQsA_qGrvy-hjpW_FBWxmgrxJk9J7WX0d_hdfFrltnFtmEjTF-OVBNCZvxh11jazRn1P-3ojSF_n7XRQOcAEuiAbQgnVr1P5qCh7_iHvoRur5wHBCiwgBQciRcY\r\n' +
+        'Host: www.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        'Transfer-Encoding: chunked\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [HttpsProxyAgent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: true,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://www.googleapis.com/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart'
+  },
+  response: undefined
+}
+[2020-03-30T07:55:08.763] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T07:55:09.422] [INFO] billbill_upload - 创建播放列表成功，播放列表id为: PLmwPg467-tmv0L5kiRTverQ8H1CuBTqX2
+[2020-03-30T07:55:09.422] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-03-30T07:55:09.667] [ERROR] billbill_upload - Error: socket hang up
+    at connResetException (internal/errors.js:570:14)
+    at TLSSocket.socketOnEnd (_http_client.js:440:23)
+    at TLSSocket.emit (events.js:215:7)
+    at endReadableNT (_stream_readable.js:1183:12)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21) {
+  code: 'ECONNRESET',
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: 2147483648,
+    validateStatus: [Function],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'multipart/related; boundary=56960e52-e451-4a43-97b0-e004ee71a2ef',
+      'Accept-Encoding': 'gzip',
+      'User-Agent': 'google-api-nodejs-client/0.4.0 (gzip)',
+      Authorization: 'Bearer ya29.a0Adw1xeUJjXwMSQqBEqamI6lVMzqrG3RpzwFcDsfpZQsA_qGrvy-hjpW_FBWxmgrxJk9J7WX0d_hdfFrltnFtmEjTF-OVBNCZvxh11jazRn1P-3ojSF_n7XRQOcAEuiAbQgnVr1P5qCh7_iHvoRur5wHBCiwgBQciRcY'
+    },
+    method: 'post',
+    url: 'https://www.googleapis.com/upload/youtube/v3/videos',
+    onUploadProgress: [Function: onUploadProgress],
+    paramsSerializer: [Function],
+    data: PassThrough {
+      _readableState: [ReadableState],
+      readable: false,
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      writable: true,
+      allowHalfOpen: true,
+      _transformState: [Object]
+    },
+    params: {
+      part: 'id,snippet,status',
+      notifySubscribers: false,
+      uploadType: 'multipart'
+    },
+    httpsAgent: HttpsProxyAgent {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _promisifiedCallback: true,
+      timeout: null,
+      options: [Url],
+      secureProxy: false,
+      proxy: [Object],
+      defaultPort: 443,
+      callback: [Function]
+    },
+    proxy: false
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 2147483648,
+      path: '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart',
+      method: 'post',
+      headers: [Object],
+      agent: [HttpsProxyAgent],
+      auth: undefined,
+      hostname: 'www.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/upload/youtube/v3/videos',
+      search: '?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 4274650,
+    _requestBodyBuffers: [
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object]
+    ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: true,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: multipart/related; boundary=56960e52-e451-4a43-97b0-e004ee71a2ef\r\n' +
+        'Accept-Encoding: gzip\r\n' +
+        'User-Agent: google-api-nodejs-client/0.4.0 (gzip)\r\n' +
+        'Authorization: Bearer ya29.a0Adw1xeUJjXwMSQqBEqamI6lVMzqrG3RpzwFcDsfpZQsA_qGrvy-hjpW_FBWxmgrxJk9J7WX0d_hdfFrltnFtmEjTF-OVBNCZvxh11jazRn1P-3ojSF_n7XRQOcAEuiAbQgnVr1P5qCh7_iHvoRur5wHBCiwgBQciRcY\r\n' +
+        'Host: www.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        'Transfer-Encoding: chunked\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [HttpsProxyAgent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: true,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://www.googleapis.com/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart'
+  },
+  response: undefined
+}
+[2020-03-30T07:57:39.170] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T07:57:40.036] [INFO] billbill_upload - 创建播放列表成功，播放列表id为: PLmwPg467-tmt8F2EBSCzt1miwjn22KJd6
+[2020-03-30T07:57:40.036] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-03-30T07:57:40.223] [ERROR] billbill_upload - Error: socket hang up
+    at connResetException (internal/errors.js:570:14)
+    at TLSSocket.socketOnEnd (_http_client.js:440:23)
+    at TLSSocket.emit (events.js:215:7)
+    at endReadableNT (_stream_readable.js:1183:12)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21) {
+  code: 'ECONNRESET',
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: 2147483648,
+    validateStatus: [Function],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'multipart/related; boundary=a5cbc235-8b5f-42b0-9e96-51340ac6384b',
+      'Accept-Encoding': 'gzip',
+      'User-Agent': 'google-api-nodejs-client/0.4.0 (gzip)',
+      Authorization: 'Bearer ya29.a0Adw1xeUJjXwMSQqBEqamI6lVMzqrG3RpzwFcDsfpZQsA_qGrvy-hjpW_FBWxmgrxJk9J7WX0d_hdfFrltnFtmEjTF-OVBNCZvxh11jazRn1P-3ojSF_n7XRQOcAEuiAbQgnVr1P5qCh7_iHvoRur5wHBCiwgBQciRcY'
+    },
+    method: 'post',
+    url: 'https://www.googleapis.com/upload/youtube/v3/videos',
+    onUploadProgress: [Function: onUploadProgress],
+    paramsSerializer: [Function],
+    data: PassThrough {
+      _readableState: [ReadableState],
+      readable: false,
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      writable: true,
+      allowHalfOpen: true,
+      _transformState: [Object]
+    },
+    params: {
+      part: 'id,snippet,status',
+      notifySubscribers: false,
+      uploadType: 'multipart'
+    },
+    httpsAgent: HttpsProxyAgent {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _promisifiedCallback: true,
+      timeout: null,
+      options: [Url],
+      secureProxy: false,
+      proxy: [Object],
+      defaultPort: 443,
+      callback: [Function]
+    },
+    proxy: false
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 2147483648,
+      path: '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart',
+      method: 'post',
+      headers: [Object],
+      agent: [HttpsProxyAgent],
+      auth: undefined,
+      hostname: 'www.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/upload/youtube/v3/videos',
+      search: '?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 4274650,
+    _requestBodyBuffers: [
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object]
+    ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: true,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: multipart/related; boundary=a5cbc235-8b5f-42b0-9e96-51340ac6384b\r\n' +
+        'Accept-Encoding: gzip\r\n' +
+        'User-Agent: google-api-nodejs-client/0.4.0 (gzip)\r\n' +
+        'Authorization: Bearer ya29.a0Adw1xeUJjXwMSQqBEqamI6lVMzqrG3RpzwFcDsfpZQsA_qGrvy-hjpW_FBWxmgrxJk9J7WX0d_hdfFrltnFtmEjTF-OVBNCZvxh11jazRn1P-3ojSF_n7XRQOcAEuiAbQgnVr1P5qCh7_iHvoRur5wHBCiwgBQciRcY\r\n' +
+        'Host: www.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        'Transfer-Encoding: chunked\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [HttpsProxyAgent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: true,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://www.googleapis.com/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart'
+  },
+  response: undefined
+}
+[2020-03-30T07:58:58.370] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T07:58:59.249] [INFO] billbill_upload - 创建播放列表成功，播放列表id为: PLmwPg467-tmuZ1ilIVaphEm9CT4rU7dGp
+[2020-03-30T07:58:59.250] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-03-30T07:58:59.433] [ERROR] billbill_upload - Error: socket hang up
+    at connResetException (internal/errors.js:570:14)
+    at TLSSocket.socketOnEnd (_http_client.js:440:23)
+    at TLSSocket.emit (events.js:215:7)
+    at endReadableNT (_stream_readable.js:1183:12)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21) {
+  code: 'ECONNRESET',
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: 2147483648,
+    validateStatus: [Function],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'multipart/related; boundary=da585b69-6735-48ea-9620-10957161813c',
+      'Accept-Encoding': 'gzip',
+      'User-Agent': 'google-api-nodejs-client/0.4.0 (gzip)',
+      Authorization: 'Bearer ya29.a0Adw1xeUJjXwMSQqBEqamI6lVMzqrG3RpzwFcDsfpZQsA_qGrvy-hjpW_FBWxmgrxJk9J7WX0d_hdfFrltnFtmEjTF-OVBNCZvxh11jazRn1P-3ojSF_n7XRQOcAEuiAbQgnVr1P5qCh7_iHvoRur5wHBCiwgBQciRcY'
+    },
+    method: 'post',
+    url: 'https://www.googleapis.com/upload/youtube/v3/videos',
+    onUploadProgress: [Function: onUploadProgress],
+    paramsSerializer: [Function],
+    data: PassThrough {
+      _readableState: [ReadableState],
+      readable: false,
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      writable: true,
+      allowHalfOpen: true,
+      _transformState: [Object]
+    },
+    params: {
+      part: 'id,snippet,status',
+      notifySubscribers: false,
+      uploadType: 'multipart'
+    },
+    httpsAgent: HttpsProxyAgent {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _promisifiedCallback: true,
+      timeout: null,
+      options: [Url],
+      secureProxy: false,
+      proxy: [Object],
+      defaultPort: 443,
+      callback: [Function]
+    },
+    proxy: false
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 2147483648,
+      path: '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart',
+      method: 'post',
+      headers: [Object],
+      agent: [HttpsProxyAgent],
+      auth: undefined,
+      hostname: 'www.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/upload/youtube/v3/videos',
+      search: '?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 4274650,
+    _requestBodyBuffers: [
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object]
+    ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: true,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: multipart/related; boundary=da585b69-6735-48ea-9620-10957161813c\r\n' +
+        'Accept-Encoding: gzip\r\n' +
+        'User-Agent: google-api-nodejs-client/0.4.0 (gzip)\r\n' +
+        'Authorization: Bearer ya29.a0Adw1xeUJjXwMSQqBEqamI6lVMzqrG3RpzwFcDsfpZQsA_qGrvy-hjpW_FBWxmgrxJk9J7WX0d_hdfFrltnFtmEjTF-OVBNCZvxh11jazRn1P-3ojSF_n7XRQOcAEuiAbQgnVr1P5qCh7_iHvoRur5wHBCiwgBQciRcY\r\n' +
+        'Host: www.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        'Transfer-Encoding: chunked\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [HttpsProxyAgent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: true,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://www.googleapis.com/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart'
+  },
+  response: undefined
+}
+[2020-03-30T08:00:05.403] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T08:00:06.258] [INFO] billbill_upload - 创建播放列表成功，播放列表id为: PLmwPg467-tmtGDH8NoEEEzBP9sqTpV7ON
+[2020-03-30T08:00:06.258] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-03-30T08:00:06.469] [ERROR] billbill_upload - Error: socket hang up
+    at connResetException (internal/errors.js:570:14)
+    at TLSSocket.socketOnEnd (_http_client.js:440:23)
+    at TLSSocket.emit (events.js:215:7)
+    at endReadableNT (_stream_readable.js:1183:12)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21) {
+  code: 'ECONNRESET',
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: 2147483648,
+    validateStatus: [Function],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'multipart/related; boundary=cb94e263-5c39-43ad-964b-111d54cb7ff4',
+      'Accept-Encoding': 'gzip',
+      'User-Agent': 'google-api-nodejs-client/0.4.0 (gzip)',
+      Authorization: 'Bearer ya29.a0Adw1xeUJjXwMSQqBEqamI6lVMzqrG3RpzwFcDsfpZQsA_qGrvy-hjpW_FBWxmgrxJk9J7WX0d_hdfFrltnFtmEjTF-OVBNCZvxh11jazRn1P-3ojSF_n7XRQOcAEuiAbQgnVr1P5qCh7_iHvoRur5wHBCiwgBQciRcY'
+    },
+    method: 'post',
+    url: 'https://www.googleapis.com/upload/youtube/v3/videos',
+    onUploadProgress: [Function: onUploadProgress],
+    paramsSerializer: [Function],
+    data: PassThrough {
+      _readableState: [ReadableState],
+      readable: false,
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      writable: true,
+      allowHalfOpen: true,
+      _transformState: [Object]
+    },
+    params: {
+      part: 'id,snippet,status',
+      notifySubscribers: false,
+      uploadType: 'multipart'
+    },
+    httpsAgent: HttpsProxyAgent {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _promisifiedCallback: true,
+      timeout: null,
+      options: [Url],
+      secureProxy: false,
+      proxy: [Object],
+      defaultPort: 443,
+      callback: [Function]
+    },
+    proxy: false
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 2147483648,
+      path: '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart',
+      method: 'post',
+      headers: [Object],
+      agent: [HttpsProxyAgent],
+      auth: undefined,
+      hostname: 'www.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/upload/youtube/v3/videos',
+      search: '?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 4274650,
+    _requestBodyBuffers: [
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object]
+    ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: true,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: multipart/related; boundary=cb94e263-5c39-43ad-964b-111d54cb7ff4\r\n' +
+        'Accept-Encoding: gzip\r\n' +
+        'User-Agent: google-api-nodejs-client/0.4.0 (gzip)\r\n' +
+        'Authorization: Bearer ya29.a0Adw1xeUJjXwMSQqBEqamI6lVMzqrG3RpzwFcDsfpZQsA_qGrvy-hjpW_FBWxmgrxJk9J7WX0d_hdfFrltnFtmEjTF-OVBNCZvxh11jazRn1P-3ojSF_n7XRQOcAEuiAbQgnVr1P5qCh7_iHvoRur5wHBCiwgBQciRcY\r\n' +
+        'Host: www.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        'Transfer-Encoding: chunked\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [HttpsProxyAgent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: true,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://www.googleapis.com/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart'
+  },
+  response: undefined
+}
+[2020-03-30T08:01:04.525] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T08:01:05.341] [INFO] billbill_upload - 创建播放列表成功，播放列表id为: PLmwPg467-tmuLPtxh_-zv56BIQhyg1Hv7
+[2020-03-30T08:01:05.342] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-03-30T08:01:05.548] [ERROR] billbill_upload - Error: socket hang up
+    at connResetException (internal/errors.js:570:14)
+    at TLSSocket.socketOnEnd (_http_client.js:440:23)
+    at TLSSocket.emit (events.js:215:7)
+    at endReadableNT (_stream_readable.js:1183:12)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21) {
+  code: 'ECONNRESET',
+  config: {
+    adapter: [Function: httpAdapter],
+    transformRequest: { '0': [Function: transformRequest] },
+    transformResponse: { '0': [Function: transformResponse] },
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: 2147483648,
+    validateStatus: [Function],
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'multipart/related; boundary=7168262d-8274-4236-beb2-f264d5b37e84',
+      'Accept-Encoding': 'gzip',
+      'User-Agent': 'google-api-nodejs-client/0.4.0 (gzip)',
+      Authorization: 'Bearer ya29.a0Adw1xeUJjXwMSQqBEqamI6lVMzqrG3RpzwFcDsfpZQsA_qGrvy-hjpW_FBWxmgrxJk9J7WX0d_hdfFrltnFtmEjTF-OVBNCZvxh11jazRn1P-3ojSF_n7XRQOcAEuiAbQgnVr1P5qCh7_iHvoRur5wHBCiwgBQciRcY'
+    },
+    method: 'post',
+    url: 'https://www.googleapis.com/upload/youtube/v3/videos',
+    onUploadProgress: [Function: onUploadProgress],
+    paramsSerializer: [Function],
+    data: PassThrough {
+      _readableState: [ReadableState],
+      readable: false,
+      _events: [Object: null prototype],
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      _writableState: [WritableState],
+      writable: true,
+      allowHalfOpen: true,
+      _transformState: [Object]
+    },
+    params: {
+      part: 'id,snippet,status',
+      notifySubscribers: false,
+      uploadType: 'multipart'
+    },
+    httpsAgent: HttpsProxyAgent {
+      _events: [Object: null prototype] {},
+      _eventsCount: 0,
+      _maxListeners: undefined,
+      _promisifiedCallback: true,
+      timeout: null,
+      options: [Url],
+      secureProxy: false,
+      proxy: [Object],
+      defaultPort: 443,
+      callback: [Function]
+    },
+    proxy: false
+  },
+  request: Writable {
+    _writableState: WritableState {
+      objectMode: false,
+      highWaterMark: 16384,
+      finalCalled: false,
+      needDrain: false,
+      ending: false,
+      ended: false,
+      finished: false,
+      destroyed: false,
+      decodeStrings: true,
+      defaultEncoding: 'utf8',
+      length: 0,
+      writing: false,
+      corked: 0,
+      sync: true,
+      bufferProcessing: false,
+      onwrite: [Function: bound onwrite],
+      writecb: null,
+      writelen: 0,
+      bufferedRequest: null,
+      lastBufferedRequest: null,
+      pendingcb: 0,
+      prefinished: false,
+      errorEmitted: false,
+      emitClose: true,
+      autoDestroy: false,
+      bufferedRequestCount: 0,
+      corkedRequestsFree: [Object]
+    },
+    writable: true,
+    _events: [Object: null prototype] {
+      response: [Function: handleResponse],
+      error: [Function: handleRequestError]
+    },
+    _eventsCount: 2,
+    _maxListeners: undefined,
+    _options: {
+      protocol: 'https:',
+      maxRedirects: 21,
+      maxBodyLength: 2147483648,
+      path: '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart',
+      method: 'post',
+      headers: [Object],
+      agent: [HttpsProxyAgent],
+      auth: undefined,
+      hostname: 'www.googleapis.com',
+      port: null,
+      nativeProtocols: [Object],
+      pathname: '/upload/youtube/v3/videos',
+      search: '?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart'
+    },
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 4274650,
+    _requestBodyBuffers: [
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object], [Object], [Object], [Object],
+      [Object], [Object]
+    ],
+    _onNativeResponse: [Function],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 6,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      _last: true,
+      chunkedEncoding: true,
+      shouldKeepAlive: false,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      socket: [TLSSocket],
+      connection: [TLSSocket],
+      _header: 'POST /upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: multipart/related; boundary=7168262d-8274-4236-beb2-f264d5b37e84\r\n' +
+        'Accept-Encoding: gzip\r\n' +
+        'User-Agent: google-api-nodejs-client/0.4.0 (gzip)\r\n' +
+        'Authorization: Bearer ya29.a0Adw1xeUJjXwMSQqBEqamI6lVMzqrG3RpzwFcDsfpZQsA_qGrvy-hjpW_FBWxmgrxJk9J7WX0d_hdfFrltnFtmEjTF-OVBNCZvxh11jazRn1P-3ojSF_n7XRQOcAEuiAbQgnVr1P5qCh7_iHvoRur5wHBCiwgBQciRcY\r\n' +
+        'Host: www.googleapis.com\r\n' +
+        'Connection: close\r\n' +
+        'Transfer-Encoding: chunked\r\n' +
+        '\r\n',
+      _onPendingData: [Function: noopPendingOutput],
+      agent: [HttpsProxyAgent],
+      socketPath: undefined,
+      method: 'POST',
+      path: '/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      _redirectable: [Circular],
+      [Symbol(kNeedDrain)]: true,
+      [Symbol(isCorked)]: false,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
+    },
+    _currentUrl: 'https://www.googleapis.com/upload/youtube/v3/videos?part=id%2Csnippet%2Cstatus&notifySubscribers=false&uploadType=multipart'
+  },
+  response: undefined
+}
+[2020-03-30T08:01:37.163] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T08:01:38.013] [INFO] billbill_upload - 创建播放列表成功，播放列表id为: PLmwPg467-tmuRbaC4niecBQ9M7qDpoih5
+[2020-03-30T08:01:38.014] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-03-30T08:02:11.612] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T08:02:12.452] [INFO] billbill_upload - 创建播放列表成功，播放列表id为: PLmwPg467-tmshHEFfNZe5ir52Ptrtj4md
+[2020-03-30T08:02:12.453] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-03-30T08:02:43.535] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T08:02:44.467] [INFO] billbill_upload - 创建播放列表成功，播放列表id为: PLmwPg467-tmvZncp5rCyao0ORKtCA_WNi
+[2020-03-30T08:02:44.467] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-03-30T08:05:26.048] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T08:08:11.959] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-03-30T08:08:37.179] [INFO] billbill_upload - 共有1个视频需要上传
