@@ -5,8 +5,10 @@ const Fs = require('fs')
 const Path = require('path')  
 const Axios = require('axios')
 
-async function download (url, title) {  
-  const path = Path.resolve(__dirname,'audios', `${title.split(' ')[0]}.m4a`)
+async function download (url, title, albumTitle) {  
+  const basePath = '/mnt/c/Users/13823/Music/audios/'
+
+  const path = Path.resolve(basePath, albumTitle, `${title}.m4a`)
   const writer = Fs.createWriteStream(path)
 
   const response = await Axios({

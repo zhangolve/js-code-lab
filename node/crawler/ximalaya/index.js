@@ -3,8 +3,14 @@ const request = require('request');
 const async = require('async');
 const decode = require('./decode')
 const download = require('./download');
+const mkdirp = require('mkdirp');
+const Path = require('path')  
+const readline = require('readline')
+
+const basePath = '/mnt/c/Users/13823/Music/audios/'
 // const config = require('./config.js');
-const url = `https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=23457286&pageNum=1`;
+
+let getPageUrl;
 
 const getTrackUrl = (trackId) => {
    return  `https://mpay.ximalaya.com/mobile/track/pay/${trackId}?device=pc&isBackend=true&_=1585458178215`
@@ -18,19 +24,23 @@ const headers = {
 };
 
 
+console.log('000')
 
+const requestOnePage = (page, albumTitle)=> {
 request({
     method: 'GET',
-    url,
+    url: getPageUrl(page),
     headers,
     timeout: 3000,
 }, (error, response, html) => {
     if (!error) {
         const res = JSON.parse(response.body);
-        const { data } = res; 
-        const {tracks} = data;
+        const { data} = res; 
+        const {tracks, trackTotalCount,  pageSize, pageNum} = data;
+        const haveNextPage = (trackTotalCount - pageSize* pageNum)  > 0;
         const tracksClone = tracks.slice();
-        
+        console.log(tracksClone);
+        return;
         const track = tracksClone.shift(); 
         
         let getTrack = (track) => {
@@ -45,24 +55,73 @@ request({
                     const res = JSON.parse(response.body);
                     console.log('res', res)
                     const w4a = decode(res);
-                    console.log(w4a)
-                    download(w4a,res.title);
-                    if(tracksClone.length>0) {
-                        const currentTrack = tracksClone.shift(); 
-                        getTrack(currentTrack);    
-                    } else {
-                        console.log('finished')
-                    }
+                    const folderPath =Path.resolve(basePath, albumTitle)
+
+                    mkdirp(folderPath, function(err) { 
+                        if(err) {
+                            console.log(err);
+                        } else {
+                          download(w4a,res.title, albumTitle);
+                          if(tracksClone.length>0) {
+                            const currentTrack = tracksClone.shift(); 
+                            getTrack(currentTrack);    
+                        } else {
+                            if(haveNextPage) {
+                                requestOnePage(page+1, albumTitle)
+                            } else {
+                                console.log('finished');
+                                return;
+                            }
+                        }
+                        }
+                    });
                 } else {
-                console.log(error,'333')
+                console.log(error,'333');
+                getTrack(track)
                 }
             })
         } 
 
         getTrack(track)
+    } else {
+        console.log('request album page failed');
+        console.log(error)
+        requestOnePage(page);
     }
 });
 
+}
+
+
+const getAlbumTitle = (albumId, callback)=> {
+    const getAlubmTitleUrl = (albumId)=> `https://www.ximalaya.com/revision/album?albumId=${albumId}`
+    request({
+        method: 'GET',
+        url: getAlubmTitleUrl(albumId),
+        headers,
+        timeout: 3000,
+    }, (error, response, html) => {
+        const res = JSON.parse(response.body);
+        const title =res.data.recommendKw.sourceKw.split('')[0]
+        callback(title);
+    });
+}
 
 
 
+init();
+
+function init() {
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    })
+    rl.question('输入专辑号:\n', function(albumId) {
+        const getPageUrlHof = (albumId) =>  (page)=> `https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=${albumId}&pageNum=${page}`;
+        getPageUrl = getPageUrlHof(albumId); 
+        console.log(getPageUrl(1));
+        rl.question('输入页码:\n', function(currentPage) {
+             getAlbumTitle(albumId, (albumTitle)=>requestOnePage(currentPage, albumTitle))
+        });
+    });
+}
