@@ -37,7 +37,7 @@ async function init(uploadPath, playListIdSign) {
   const splited = uploadPath.split('/');
   let playList = splited[splited.length-1];
   const playListArr = playList.split('-')
-  const playListName = playList[0];
+  const playListName = playListArr[0];
   let playListId = playListArr.length > 1 ? playList.slice(playListArr[0].length+1): playListIdSign;
   const needUploadFiles = getFiles(uploadPath);
   logger.info(`共有${needUploadFiles.length}个视频需要上传`);

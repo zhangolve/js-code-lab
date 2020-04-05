@@ -4224,3 +4224,64 @@ Downloading 美女向孟非提问题，引全场哄笑，老郭在旁“神补�
   }
 }
 [2020-04-05T11:01:07.758] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-04-05T12:49:32.469] [INFO] billbill_upload - 共有1313个视频需要上传
+[2020-04-05T12:49:32.552] [ERROR] billbill_upload - FetchError: request to https://oauth2.googleapis.com/token failed, reason: Client network socket disconnected before secure TLS connection was established
+    at ClientRequest.<anonymous> (/home/zhangolve/github/js-code-lab/node/crawler/billbill-hot/node_modules/node-fetch/lib/index.js:1455:11)
+    at ClientRequest.emit (events.js:210:5)
+    at TLSSocket.socketErrorListener (_http_client.js:406:9)
+    at TLSSocket.emit (events.js:210:5)
+    at emitErrorNT (internal/streams/destroy.js:92:8)
+    at emitErrorAndCloseNT (internal/streams/destroy.js:60:3)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21) {
+  message: 'request to https://oauth2.googleapis.com/token failed, reason: Client network socket disconnected before secure TLS connection was established',
+  type: 'system',
+  errno: 'ECONNRESET',
+  code: 'ECONNRESET',
+  config: {
+    method: 'POST',
+    url: 'https://oauth2.googleapis.com/token',
+    data: 'refresh_token=1%2F%2F0ewAgp4GikqKQCgYIARAAGA4SNwF-L9Irsi4QLfFmKNIAg1GJD-ty69Rw7iTpy2MLF87sqCFu3-ss_h23cbjvEdhPTB5qBV8Dl3k&client_id=1058635243433-um3806d1ls989t8bk0toqus7fca01ij7.apps.googleusercontent.com&client_secret=PZQXqpXeOSu5DK7pVq4oG9Oz&grant_type=refresh_token',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'google-api-nodejs-client/5.10.1',
+      'x-goog-api-client': 'gl-node/12.13.0 auth/5.10.1',
+      Accept: 'application/json'
+    },
+    params: [Object: null prototype] {},
+    paramsSerializer: [Function: paramsSerializer],
+    body: 'refresh_token=1%2F%2F0ewAgp4GikqKQCgYIARAAGA4SNwF-L9Irsi4QLfFmKNIAg1GJD-ty69Rw7iTpy2MLF87sqCFu3-ss_h23cbjvEdhPTB5qBV8Dl3k&client_id=1058635243433-um3806d1ls989t8bk0toqus7fca01ij7.apps.googleusercontent.com&client_secret=PZQXqpXeOSu5DK7pVq4oG9Oz&grant_type=refresh_token',
+    validateStatus: [Function: validateStatus],
+    responseType: 'json'
+  }
+}
+[2020-04-05T12:50:30.248] [INFO] billbill_upload - 共有1313个视频需要上传
+[2020-04-05T12:53:20.090] [INFO] billbill_upload - 共有1313个视频需要上传
+[2020-04-05T12:53:20.134] [ERROR] billbill_upload - FetchError: request to https://oauth2.googleapis.com/token failed, reason: Client network socket disconnected before secure TLS connection was established
+    at ClientRequest.<anonymous> (/home/zhangolve/github/js-code-lab/node/crawler/billbill-hot/node_modules/node-fetch/lib/index.js:1455:11)
+    at ClientRequest.emit (events.js:210:5)
+    at TLSSocket.socketErrorListener (_http_client.js:406:9)
+    at TLSSocket.emit (events.js:210:5)
+    at emitErrorNT (internal/streams/destroy.js:92:8)
+    at emitErrorAndCloseNT (internal/streams/destroy.js:60:3)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21) {
+  message: 'request to https://oauth2.googleapis.com/token failed, reason: Client network socket disconnected before secure TLS connection was established',
+  type: 'system',
+  errno: 'ECONNRESET',
+  code: 'ECONNRESET',
+  config: {
+    method: 'POST',
+    url: 'https://oauth2.googleapis.com/token',
+    data: 'refresh_token=1%2F%2F0ewAgp4GikqKQCgYIARAAGA4SNwF-L9Irsi4QLfFmKNIAg1GJD-ty69Rw7iTpy2MLF87sqCFu3-ss_h23cbjvEdhPTB5qBV8Dl3k&client_id=1058635243433-um3806d1ls989t8bk0toqus7fca01ij7.apps.googleusercontent.com&client_secret=PZQXqpXeOSu5DK7pVq4oG9Oz&grant_type=refresh_token',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'google-api-nodejs-client/5.10.1',
+      'x-goog-api-client': 'gl-node/12.13.0 auth/5.10.1',
+      Accept: 'application/json'
+    },
+    params: [Object: null prototype] {},
+    paramsSerializer: [Function: paramsSerializer],
+    body: 'refresh_token=1%2F%2F0ewAgp4GikqKQCgYIARAAGA4SNwF-L9Irsi4QLfFmKNIAg1GJD-ty69Rw7iTpy2MLF87sqCFu3-ss_h23cbjvEdhPTB5qBV8Dl3k&client_id=1058635243433-um3806d1ls989t8bk0toqus7fca01ij7.apps.googleusercontent.com&client_secret=PZQXqpXeOSu5DK7pVq4oG9Oz&grant_type=refresh_token',
+    validateStatus: [Function: validateStatus],
+    responseType: 'json'
+  }
+}
