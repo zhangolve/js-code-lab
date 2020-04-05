@@ -1,7 +1,7 @@
 
 'use strict'
 
-const Fs = require('fs')  
+const fs = require('fs')  
 const Path = require('path')  
 const Axios = require('axios')
 
@@ -13,7 +13,7 @@ async function download (url, title, albumTitle) {
   }
   
   const path = Path.resolve(basePath, albumTitle, `${title}.m4a`)
-  const writer = Fs.createWriteStream(path)
+  const writer = fs.createWriteStream(path)
 
   const response = await Axios({
     url,
