@@ -7,7 +7,11 @@ const mkdirp = require('mkdirp');
 const Path = require('path')  
 const readline = require('readline')
 
-const basePath = '/mnt/c/Users/13823/Music/audios/'
+let basePath = '/mnt/c/Users/13823/Music/audios/'
+  if (!fs.existsSync('/mnt/c/Users/13823/Music')) {
+    basePath = './audios';
+  }
+  
 // const config = require('./config.js');
 
 let getPageUrl;
