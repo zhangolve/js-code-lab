@@ -7,7 +7,7 @@
     "axios": "^0.18.0",
     "express": "^4.16.3",
     "google-auth-library": "0.12.0",
-    "googleapis": "^36.0.0",
+    "googleapis": "^48.0.0",
     "log4js": "^3.0.6",
     "mkdirp": "^0.5.1",
     "nconf": "^0.10.0",
@@ -17,6 +17,7 @@
     "redis": "^2.8.0",
     "server-destroy": "^1.0.1",
     "uuid": "^3.2.1",
-    "youtube-api": "^2.0.9"
+    "youtube-api": "^2.0.9", 
+    "longjohn":  "0.2.12"
   }
 }

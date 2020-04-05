@@ -39,8 +39,6 @@ request({
         const {tracks, trackTotalCount,  pageSize, pageNum} = data;
         const haveNextPage = (trackTotalCount - pageSize* pageNum)  > 0;
         const tracksClone = tracks.slice();
-        console.log(tracksClone);
-        return;
         const track = tracksClone.shift(); 
         
         let getTrack = (track) => {
@@ -67,6 +65,8 @@ request({
                             getTrack(currentTrack);    
                         } else {
                             if(haveNextPage) {
+                                console.log(page,'page');
+                                console.log(page+1)
                                 requestOnePage(page+1, albumTitle)
                             } else {
                                 console.log('finished');
@@ -76,13 +76,14 @@ request({
                         }
                     });
                 } else {
-                console.log(error,'333');
                 getTrack(track)
                 }
             })
         } 
 
-        getTrack(track)
+        if(track) {
+            getTrack(track)
+        }
     } else {
         console.log('request album page failed');
         console.log(error)
@@ -102,7 +103,7 @@ const getAlbumTitle = (albumId, callback)=> {
         timeout: 3000,
     }, (error, response, html) => {
         const res = JSON.parse(response.body);
-        const title =res.data.recommendKw.sourceKw.split('')[0]
+        const title =res.data.recommendKw.sourceKw
         callback(title);
     });
 }
@@ -121,7 +122,7 @@ function init() {
         getPageUrl = getPageUrlHof(albumId); 
         console.log(getPageUrl(1));
         rl.question('输入页码:\n', function(currentPage) {
-             getAlbumTitle(albumId, (albumTitle)=>requestOnePage(currentPage, albumTitle))
+             getAlbumTitle(albumId, (albumTitle)=>requestOnePage(parseInt(currentPage), albumTitle))
         });
     });
 }

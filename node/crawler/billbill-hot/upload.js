@@ -7,12 +7,6 @@ const {scopes} = require('./const');
 
 const log4js = require('log4js');
 
-const path = require('path');
-
-
-const videoRootPath = path.resolve(__dirname, './videos');
-
-
 log4js.configure({
   appenders: { 
       billbill_upload: { type: 'file', filename: 'billbill.log', maxLogSize: 10485760, backups: 3, compress: true } ,
@@ -28,6 +22,7 @@ const youtube = google.youtube({
   auth: sampleClient.oAuth2Client
 });
 
+
 function getFiles(uploadPath) {
   return fs.readdirSync(uploadPath)
     .filter(f => { 
@@ -39,13 +34,11 @@ function getFiles(uploadPath) {
 }
 
 async function init(uploadPath, playListIdSign) {
-  // const splited = uploadPath.split('/');
-  // let playList = splited[splited.length-1];
-  // const playListArr = playList.split('-')
-  // const playListName = playList[0];
-  // let playListId = playListArr.length > 1 ? playList.slice(playListArr[0].length+1): playListIdSign;
-  let playListName = 'test'
-  let playListId =null;
+  const splited = uploadPath.split('/');
+  let playList = splited[splited.length-1];
+  const playListArr = playList.split('-')
+  const playListName = playList[0];
+  let playListId = playListArr.length > 1 ? playList.slice(playListArr[0].length+1): playListIdSign;
   const needUploadFiles = getFiles(uploadPath);
   logger.info(`共有${needUploadFiles.length}个视频需要上传`);
   try {
@@ -75,8 +68,9 @@ async function init(uploadPath, playListIdSign) {
           }
           
           fs.unlink(file.name, function (err) {            
-            if (err) {
+            if (err) {                                                 
                 logger.error(err);                                    
+
             }
             logger.warn(fileName+ 'File has been Deleted');
             console.clear();                           
@@ -87,9 +81,7 @@ async function init(uploadPath, playListIdSign) {
     }
     await upload();
   } catch(e) {
-    console.log(e)
-    console.log('999')
-    // logger.error(e);
+    logger.error(e);
   }
 }
 
@@ -178,7 +170,7 @@ if (module === require.main) {
     output: process.stdout
   })
 
-  // switchType();
+  switchType();
 
 
   function switchType() {
@@ -195,7 +187,7 @@ if (module === require.main) {
               sampleClient
               .authenticate(scopes)
               .then(() => {init(uploadPath, playListId)})
-              .catch((err)=>{ logger.error(err)});
+              .catch((err)=>{logger.error(err)});
             })
           } else {
             rl.close();
@@ -209,23 +201,8 @@ if (module === require.main) {
   }
 }
 
-
-function doTask (playListPath) {
-  sampleClient
-  .authenticate(scopes)
-  .then(() => {init(playListPath)})
-  .catch((err)=>{
-    logger.error(err);
-    sendMail(err);
-  }
-  );
-}
-
-doTask('./videos')
-
 module.exports = {
   init,
   insertPlayList,
   sampleClient
 };
-

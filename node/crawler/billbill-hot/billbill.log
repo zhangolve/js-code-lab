@@ -4177,3 +4177,50 @@ Downloading 美女向孟非提问题，引全场哄笑，老郭在旁“神补�
 [2020-03-30T21:21:04.009] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
 [2020-03-30T21:23:52.973] [INFO] billbill_upload - 共有1个视频需要上传
 [2020-03-30T21:23:52.977] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-04-01T17:59:50.561] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-04-01T18:02:37.597] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-04-01T18:02:38.899] [INFO] billbill_upload - 创建播放列表成功，播放列表id为: PLmwPg467-tmuyALmxf5bt1T99BNoia0m3
+[2020-04-01T18:02:38.900] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-04-01T18:03:05.566] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-04-01T18:03:07.742] [INFO] billbill_upload - 创建播放列表成功，播放列表id为: PLmwPg467-tmt4eUj7vxhKnSJ8FXoKWUhZ
+[2020-04-01T18:03:07.743] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-04-01T18:20:56.773] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-04-01T18:21:02.058] [INFO] billbill_upload - 创建播放列表成功，播放列表id为: PLmwPg467-tmvetLRYUtC8i7cKR_5N5GFk
+[2020-04-01T18:21:02.059] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-04-01T19:04:59.004] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-04-01T19:05:01.962] [INFO] billbill_upload - 创建播放列表成功，播放列表id为: PLmwPg467-tmuFyYblY0Qvl6Tw4UU4YDou
+[2020-04-01T19:05:01.963] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-04-01T19:10:04.098] [INFO] billbill_upload - 共有1个视频需要上传
+[2020-04-01T19:10:06.548] [INFO] billbill_upload - 创建播放列表成功，播放列表id为: PLmwPg467-tmsJDc5Ck72EG1j3gNljtvfL
+[2020-04-01T19:10:06.550] [INFO] billbill_upload - 开始上传视频./videos/test.mkv
+[2020-04-05T10:54:30.185] [INFO] billbill_upload - 共有0个视频需要上传
+[2020-04-05T10:54:30.242] [ERROR] billbill_upload - FetchError: request to https://oauth2.googleapis.com/token failed, reason: Client network socket disconnected before secure TLS connection was established
+    at ClientRequest.<anonymous> (/home/zhangolve/github/js-code-lab/node/crawler/billbill-hot/node_modules/node-fetch/lib/index.js:1455:11)
+    at ClientRequest.emit (events.js:210:5)
+    at TLSSocket.socketErrorListener (_http_client.js:406:9)
+    at TLSSocket.emit (events.js:210:5)
+    at emitErrorNT (internal/streams/destroy.js:92:8)
+    at emitErrorAndCloseNT (internal/streams/destroy.js:60:3)
+    at processTicksAndRejections (internal/process/task_queues.js:80:21) {
+  message: 'request to https://oauth2.googleapis.com/token failed, reason: Client network socket disconnected before secure TLS connection was established',
+  type: 'system',
+  errno: 'ECONNRESET',
+  code: 'ECONNRESET',
+  config: {
+    method: 'POST',
+    url: 'https://oauth2.googleapis.com/token',
+    data: 'refresh_token=1%2F%2F0ewAgp4GikqKQCgYIARAAGA4SNwF-L9Irsi4QLfFmKNIAg1GJD-ty69Rw7iTpy2MLF87sqCFu3-ss_h23cbjvEdhPTB5qBV8Dl3k&client_id=1058635243433-um3806d1ls989t8bk0toqus7fca01ij7.apps.googleusercontent.com&client_secret=PZQXqpXeOSu5DK7pVq4oG9Oz&grant_type=refresh_token',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'User-Agent': 'google-api-nodejs-client/5.10.1',
+      'x-goog-api-client': 'gl-node/12.13.0 auth/5.10.1',
+      Accept: 'application/json'
+    },
+    params: [Object: null prototype] {},
+    paramsSerializer: [Function: paramsSerializer],
+    body: 'refresh_token=1%2F%2F0ewAgp4GikqKQCgYIARAAGA4SNwF-L9Irsi4QLfFmKNIAg1GJD-ty69Rw7iTpy2MLF87sqCFu3-ss_h23cbjvEdhPTB5qBV8Dl3k&client_id=1058635243433-um3806d1ls989t8bk0toqus7fca01ij7.apps.googleusercontent.com&client_secret=PZQXqpXeOSu5DK7pVq4oG9Oz&grant_type=refresh_token',
+    validateStatus: [Function: validateStatus],
+    responseType: 'json'
+  }
+}
+[2020-04-05T11:01:07.758] [INFO] billbill_upload - 共有1个视频需要上传
