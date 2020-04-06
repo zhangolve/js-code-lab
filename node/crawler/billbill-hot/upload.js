@@ -28,8 +28,9 @@ function getFiles(uploadPath) {
     .filter(f => { 
         const splited = f.split('.')
         const ext = splited[splited.length-1]
-        return ext == 'mp4' ||
-                ext == 'flv' || 'mkv'
+        console.log(ext)
+        return ext === 'mp4' ||
+                ext === 'flv' || ext === 'mkv'
     });
 }
 
@@ -40,6 +41,8 @@ async function init(uploadPath, playListIdSign) {
   const playListName = playListArr[0];
   let playListId = playListArr.length > 1 ? playList.slice(playListArr[0].length+1): playListIdSign;
   const needUploadFiles = getFiles(uploadPath);
+  const fileName = needUploadFiles.pop();
+  console.log(fileName)
   logger.info(`共有${needUploadFiles.length}个视频需要上传`);
   try {
     if(!playListId) {
@@ -52,6 +55,7 @@ async function init(uploadPath, playListIdSign) {
     async function upload() {
       if(needUploadFiles.length>0) {
         const fileName = needUploadFiles.pop();
+        console.log(fileName)
         const playListDes = typeof playListId ==='string' ? `更多同类视频，请浏览播放列表：${playListURL(playListId)}` : '';
         const subscribeDes = '请观看我的频道更新消息。 \n 订阅我： https://www.youtube.com/channel/UCyX0BWvZyyzmbEpy6RMqkNw?sub_confirmation=1';
         const file = {
