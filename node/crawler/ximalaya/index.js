@@ -8,8 +8,12 @@ const Path = require('path')
 const readline = require('readline')
 
 let basePath = '/mnt/c/Users/13823/Music/audios/'
+
+let audioListPath = '/mnt/c/Users/13823/Documents/leidian/Misc/audio_list.txt';
+
   if (!fs.existsSync('/mnt/c/Users/13823/Music')) {
     basePath = './audios';
+    audioListPath = null;
   }
   
 // const config = require('./config.js');
@@ -24,18 +28,17 @@ const headers = {
     Connection: 'keep-alive',
     referer: 'https://www.ximalaya.com/youshengshu/23457286/',
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
-    Cookie: '_xmLog=xm_k8b3uoei76sedy; s&e=5627891a4e18b48347952ec81d1c16cb; device_id=xm_1585369140200_k8b3upk8tmbhai; wb_nickname_1=%E7%BB%A7%E7%BB%AD%E6%B5%B7%E9%98%94%E5%A4%A9%E7%A9%BA; wb_avatar_1=https%3A%2F%2Ftva3.sinaimg.cn%2Fcrop.0.0.179.179.180%2F63a3d9b7gw1ejbtzv50caj2050050wes.jpg%3FKID%3Dimgbed%2Ctva%26Expires%3D1585466883%26ssig%3DvYvskqI%252Bmn; trackType=web; 1&remember_me=y; 1&_token=21484691&D46A0BE345764B5D97B3C9FE66F8DCF8NdV4E95F4A6F7219BE9EA0409A3874C2866DD73AE2AE99D9F086BC7C376FD025A99; 1_l_flag=21484691&D46A0BE345764B5D97B3C9FE66F8DCF8NdV4E95F4A6F7219BE9EA0409A3874C2866DD73AE2AE99D9F086BC7C376FD025A99_2020-03-2912:28:04; x_xmly_traffic=utm_source%253A%2526utm_medium%253A%2526utm_campaign%253A%2526utm_content%253A%2526utm_term%253A%2526utm_from%253A; s&a=OQYXVZJ%02N%0E^[%08WCTNPVVX%06%1C[K%0F^%04_Y%1C%05V[CSBUWRC]_OXWN',
+    Cookie: '_xmLog=xm_k8b3uoei76sedy; device_id=xm_1585369140200_k8b3upk8tmbhai; wb_nickname_1=%E7%BB%A7%E7%BB%AD%E6%B5%B7%E9%98%94%E5%A4%A9%E7%A9%BA; s&e=2eeab31db9c67c34923272e8538212cf; fds_otp=5295144382044308392; wb_avatar_1=https%3A%2F%2Ftva3.sinaimg.cn%2Fcrop.0.0.179.179.180%2F63a3d9b7gw1ejbtzv50caj2050050wes.jpg%3FKID%3Dimgbed%2Ctva%26Expires%3D1586580030%26ssig%3DZ1bZLcQNOH; trackType=web; 1&remember_me=y; 1&_token=21484691&3B9288D839DB4C71A692F44D0A2793AFNdV741D63BF7D02FA4098981975F5AA8402731CF91DE2EC9C2DC0E4F03C16AC72FC; 1_l_flag=21484691&3B9288D839DB4C71A692F44D0A2793AFNdV741D63BF7D02FA4098981975F5AA8402731CF91DE2EC9C2DC0E4F03C16AC72FC_2020-04-1109:40:31; x_xmly_traffic=utm_source%253A%2526utm_medium%253A%2526utm_campaign%253A%2526utm_content%253A%2526utm_term%253A%2526utm_from%253A; s&a=L%0E%0A%02%08TJ%07%1CR%08YU%04LWC]XUUU%1E[O%5CWU_U%1C%09V]CRYOJVVZVU^OBTA',
 };
 
 
-console.log('000')
 
 const requestOnePage = (page, albumTitle)=> {
 request({
     method: 'GET',
     url: getPageUrl(page),
     headers,
-    timeout: 3000,
+    timeout: 30000,
 }, (error, response, html) => {
     if (!error) {
         const res = JSON.parse(response.body);
@@ -73,8 +76,11 @@ request({
                                 console.log(page+1)
                                 requestOnePage(page+1, albumTitle)
                             } else {
-                                console.log('finished');
-                                return;
+                                fs.appendFile(audioListPath, `${albumTitle}\n`, (err) => {
+                                    if (err) throw err;
+                                    console.log('finished');
+                                    return;
+                                  });
                             }
                         }
                         }
@@ -130,3 +136,28 @@ function init() {
         });
     });
 }
+
+
+
+/*
+
+新店开张
+推出优惠活动，一部3元，5元进vip群，免费获取最新最热门音频资源。
+详情： wx:hktkdy001
+柏度云：13823zxw@sina.com 
+
+
+我们的优势：
+
+你还在苦恼没有各种付费课程，小说vip而困恼吗？
+你还在为购买了vip却依然没能听到优质资源而苦恼吗？
+你还在为每月数十元上百元的vip包月价格而发愁吗？
+
+我们的优势是价格低廉，共享资源，云盘发货，随处畅听，不限设备。
+
+店主购买了正规vip，然后分线刚给大家。就是这么简单，就是这么直接！
+
+
+
+
+*/
