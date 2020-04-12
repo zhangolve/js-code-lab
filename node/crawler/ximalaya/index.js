@@ -76,11 +76,15 @@ request({
                                 console.log(page+1)
                                 requestOnePage(page+1, albumTitle)
                             } else {
-                                fs.appendFile(audioListPath, `${albumTitle}\n`, (err) => {
-                                    if (err) throw err;
-                                    console.log('finished');
-                                    return;
-                                  });
+                                if(audioListPath) {
+                                    fs.appendFile(audioListPath, `${albumTitle}\n`, (err) => {
+                                        if (err) throw err;
+                                        console.log('finished');
+                                        return;
+                                    });
+                                } else {
+                                    return ;
+                                }
                             }
                         }
                         }
