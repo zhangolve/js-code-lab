@@ -114,7 +114,7 @@ const getAlbumTitle = (albumId, callback)=> {
         method: 'GET',
         url: getAlubmTitleUrl(albumId),
         headers,
-        timeout: 3000,
+        timeout: 30000,
     }, (error, response, html) => {
         const res = JSON.parse(response.body);
         const title =res.data.recommendKw.sourceKw
@@ -158,9 +158,9 @@ function init() {
 你还在苦恼没有各种付费课程，小说vip而困恼吗？
 你还在为购买了vip却依然没能听到优质资源而苦恼吗？
 你还在为每月数十元上百元的vip包月价格而发愁吗？
+你还在为身处国外，无法听到国内高质量资源，有钱无处花而烦恼吗？
 
 我们的优势是价格低廉，共享资源，云盘发货，随处畅听，不限设备。
-
 店主购买了正规vip，然后分线刚给大家。就是这么简单，就是这么直接！
 
 

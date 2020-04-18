@@ -12,7 +12,7 @@ async function download (url, title, albumTitle) {
     basePath = './audios';
   }
   
-  const path = Path.resolve(basePath, albumTitle, `${title.split('（')[0]}.m4a`)
+  const path = Path.resolve(basePath, albumTitle, `${title}.m4a`)
   const writer = fs.createWriteStream(path)
 
   const response = await Axios({
