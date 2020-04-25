@@ -10,10 +10,11 @@
   "license": "MIT",
   "dependencies": {
     "async": "^2.1.4",
-    "iconv-lite": "latest",
-    "request": "latest",
     "axios": "latest",
-    "mkdirp": "^0.5.1"
+    "filenamify": "^4.1.0",
+    "iconv-lite": "latest",
+    "mkdirp": "^0.5.1",
+    "request": "latest"
   },
   "devDependencies": {
     "eslint": "^3.10.2",

@@ -4,6 +4,8 @@
 const fs = require('fs')  
 const Path = require('path')  
 const Axios = require('axios')
+const filenamify = require('filenamify');
+
 
 async function download (url, title, albumTitle) {  
 
@@ -12,7 +14,7 @@ async function download (url, title, albumTitle) {
     basePath = './audios';
   }
   
-  const path = Path.resolve(basePath, albumTitle, `${title}.m4a`)
+  const path = Path.resolve(basePath, albumTitle, `${filenamify(title)}更多音频加wx:hktkdy001.m4a`)
   const writer = fs.createWriteStream(path)
 
   const response = await Axios({

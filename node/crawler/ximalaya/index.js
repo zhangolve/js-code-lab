@@ -4,125 +4,139 @@ const async = require('async');
 const decode = require('./decode')
 const download = require('./download');
 const mkdirp = require('mkdirp');
-const Path = require('path')  
+const Path = require('path')
 const readline = require('readline')
+
+const axios = require("axios");
 
 let basePath = '/mnt/c/Users/13823/Music/audios/'
 
 let audioListPath = '/mnt/c/Users/13823/Documents/leidian/Misc/audio_list.txt';
 
-  if (!fs.existsSync('/mnt/c/Users/13823/Music')) {
+if (!fs.existsSync('/mnt/c/Users/13823/Music')) {
     basePath = './audios';
     audioListPath = null;
-  }
-  
+}
+
 // const config = require('./config.js');
 
 let getPageUrl;
 
 const getTrackUrl = (trackId) => {
-   return  `https://mpay.ximalaya.com/mobile/track/pay/${trackId}?device=pc&isBackend=true&_=1585458178215`
+    return `https://mpay.ximalaya.com/mobile/track/pay/${trackId}?device=pc&isBackend=true&_=1585458178215`
 }
-const headers = {
-    'xm-sign': '7e499cfb3683131ad64e109acf29059d(30)1585470147433(21)1585470150159',
-    Connection: 'keep-alive',
-    referer: 'https://www.ximalaya.com/youshengshu/23457286/',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36',
-    Cookie: '_xmLog=xm_k8b3uoei76sedy; wb_nickname_1=%E7%BB%A7%E7%BB%AD%E6%B5%B7%E9%98%94%E5%A4%A9%E7%A9%BA; wb_avatar_1=https%3A%2F%2Ftva3.sinaimg.cn%2Fcrop.0.0.179.179.180%2F63a3d9b7gw1ejbtzv50caj2050050wes.jpg%3FKID%3Dimgbed%2Ctva%26Expires%3D1586580030%26ssig%3DZ1bZLcQNOH; 1&remember_me=y; x_xmly_traffic=utm_source%253A%2526utm_medium%253A%2526utm_campaign%253A%2526utm_content%253A%2526utm_term%253A%2526utm_from%253A; fds_otp=4845800322385247866; 1&_token=231300985&B5B3905936D34AD098C09818DA749F52NdVBCDC0EB7DB2971FE4064060E5C9E7AF378642FC45DF1421DE5FF341DADC601B9; 1_l_flag=231300985&B5B3905936D34AD098C09818DA749F52NdVBCDC0EB7DB2971FE4064060E5C9E7AF378642FC45DF1421DE5FF341DADC601B9_2020-04-1711:29:59; login_type=code_mobile',
-};
+const headers = require('./headers');
 
-
-
-const requestOnePage = (page, albumTitle)=> {
-request({
-    method: 'GET',
-    url: getPageUrl(page),
-    headers,
-    timeout: 30000,
-}, (error, response, html) => {
-    if (!error) {
-        const res = JSON.parse(response.body);
-        const { data} = res; 
-        const {tracks, trackTotalCount,  pageSize, pageNum} = data;
-        const haveNextPage = (trackTotalCount - pageSize* pageNum)  > 0;
-        const tracksClone = tracks.slice();
-        const track = tracksClone.shift(); 
-        
-        let getTrack = (track) => {
-            request({
+const downloadTrack = async (trackId, albumTitle) => {
+    try {
+        const trackResponse = await axios.get(getTrackUrl(trackId), {
+            params: {
                 method: 'GET',
-                url: getTrackUrl(track.trackId),
+                gzip: true,
                 headers,
                 timeout: 3000,
-            }, 
-            (error, response, html) => {
-                if(!error) {
-                    const res = JSON.parse(response.body);
-                    console.log('res', res)
-                    const w4a = decode(res);
-                    const folderPath =Path.resolve(basePath, albumTitle)
+            }
+        });
+        const res = trackResponse.data;
+        console.log('res', res)
+        const w4a = decode(res);
+        const folderPath = Path.resolve(basePath, albumTitle)
 
-                    mkdirp(folderPath, function(err) { 
-                        if(err) {
-                            console.log(err);
-                        } else {
-                          download(w4a,res.title, albumTitle);
-                          if(tracksClone.length>0) {
-                            const currentTrack = tracksClone.shift(); 
-                            getTrack(currentTrack);    
-                        } else {
-                            if(haveNextPage) {
-                                console.log(page,'page');
-                                console.log(page+1)
-                                requestOnePage(page+1, albumTitle)
-                            } else {
-                                if(audioListPath) {
-                                    fs.appendFile(audioListPath, `${albumTitle}\n`, (err) => {
-                                        if (err) throw err;
-                                        console.log('finished');
-                                        return;
-                                    });
-                                } else {
-                                    return ;
-                                }
-                            }
-                        }
-                        }
-                    });
-                } else {
-                getTrack(track)
-                }
-            })
-        } 
+        mkdirp(folderPath, function(err) {
+            if (err) {
+                console.log(err);
+            } else {
+                download(w4a, res.title, albumTitle);
 
-        if(track) {
-            getTrack(track)
-        }
-    } else {
-        console.log('request album page failed');
-        console.log(error)
-        requestOnePage(page);
+            }
+        });
+    } catch (e) {
+        console.log(e, 'get track failed');
+        await downloadTrack(trackId, albumTitle)
     }
-});
+}
+
+const requestOnePage = async (page, albumTitle) => {
+    try {
+        const response = await axios.get(getPageUrl(page), {
+            params: {
+                method: 'GET',
+                gzip: true,
+                headers,
+                timeout: 30000,
+            }
+        });
+        const res = response.data;
+        const {
+            data
+        } = res;
+        const {
+            tracks,
+            trackTotalCount,
+            pageSize,
+            pageNum
+        } = data;
+        const haveNextPage = (trackTotalCount - pageSize * pageNum) > 0;
+
+        for (var i = 0; i < tracks.length; i++) {
+            await downloadTrack(tracks[i].trackId, albumTitle);
+        }
+        return haveNextPage;
+    } catch (e) {
+        console.log(e, 'request one page failed');
+        await requestOnePage(page, albumTitle)
+    }
 
 }
 
 
-const getAlbumTitle = (albumId, callback)=> {
-    const getAlubmTitleUrl = (albumId)=> `https://www.ximalaya.com/revision/album?albumId=${albumId}`
-    request({
-        method: 'GET',
-        url: getAlubmTitleUrl(albumId),
-        headers,
-        timeout: 30000,
-    }, (error, response, html) => {
-        const res = JSON.parse(response.body);
-        const title =res.data.recommendKw.sourceKw
-        callback(title);
-    });
+const getAlbumTitle = async (albumId) => {
+    const getAlubmTitleUrl = (albumId) => `https://www.ximalaya.com/revision/album?albumId=${albumId}`
+    try {
+        const response = await axios.get(getAlubmTitleUrl(albumId), {
+            params: {
+                method: 'GET',
+                headers,
+                timeout: 30000,
+            }
+        });
+        const res = response.data;
+        const title = res.data.recommendKw.sourceKw
+        // 不能直接下载精品课程
+        if (res.data.mainInfo.vipType === 0) {
+            return;
+        }
+        return title;
+    } catch (e) {
+        console.log(e, 'get album title');
+        await getAlbumTitle(albumId);
+    }
 }
 
+const downloadAlbum = async (albumId, startPage) => {
+    const getPageUrlHof = (albumId) => (page) => `https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=${albumId}&pageNum=${page}`;
+    getPageUrl = getPageUrlHof(albumId);
+    const title = await getAlbumTitle(albumId);
+    if (!title) {
+        return;
+    }
 
+    let haveNextPage=true;
+    let page = parseInt(startPage);
+    while(haveNextPage) {
+        haveNextPage = await requestOnePage(page, title);
+        page = page +1; 
+    }
+    if (audioListPath) {
+        fs.appendFile(audioListPath, `${title}\n`, (err) => {
+            if (err) throw err;
+            console.log('finished');
+            return;
+        });
+    } else {
+        return;
+    }
+}
 
 init();
 
@@ -132,15 +146,14 @@ function init() {
         output: process.stdout
     })
     rl.question('输入专辑号:\n', function(albumId) {
-        const getPageUrlHof = (albumId) =>  (page)=> `https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=${albumId}&pageNum=${page}`;
-        getPageUrl = getPageUrlHof(albumId); 
-        console.log(getPageUrl(1));
-        rl.question('输入页码:\n', function(currentPage) {
-             getAlbumTitle(albumId, (albumTitle)=>requestOnePage(parseInt(currentPage), albumTitle))
+        rl.question('输入页码:\n', async function(currentPage) {
+            await downloadAlbum(albumId, currentPage)
         });
     });
 }
 
+
+module.exports = download;
 
 
 /*
@@ -170,4 +183,7 @@ function init() {
 
 # todo 图片处理右上角加logo。。二维码微信。。。
 
+
+
+ctrl +shift+p =》 beatutiy
 */
