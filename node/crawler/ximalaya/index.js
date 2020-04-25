@@ -8,12 +8,19 @@ const Path = require('path')
 const readline = require('readline')
 
 const axios = require("axios");
-
 let basePath = '/mnt/c/Users/13823/Music/audios/'
+
 
 let audioListPath = '/mnt/c/Users/13823/Documents/leidian/Misc/audio_list.txt';
 
-if (!fs.existsSync('/mnt/c/Users/13823/Music')) {
+const redis = require("redis"),
+    client = redis.createClient();
+
+const {promisify} = require('util');
+const getAsync = promisify(client.get).bind(client); 
+const smembersAsync = promisify(client.smembers).bind(client);
+
+if (!fs.existsSync(basePath)) {
     basePath = './audios';
     audioListPath = null;
 }
@@ -22,12 +29,21 @@ if (!fs.existsSync('/mnt/c/Users/13823/Music')) {
 
 let getPageUrl;
 
+const sleep = (time) => {
+    return new Promise((resolve, reject)=> {
+        setTimeout(()=> {
+            resolve();
+        }, time*1000)
+    })
+}
+
 const getTrackUrl = (trackId) => {
     return `https://mpay.ximalaya.com/mobile/track/pay/${trackId}?device=pc&isBackend=true&_=1585458178215`
 }
 const headers = require('./headers');
 
-const downloadTrack = async (trackId, albumTitle) => {
+const downloadTrack = async (trackId, albumTitle, basePath) => {
+    let triedTime = 0;
     try {
         const trackResponse = await axios.get(getTrackUrl(trackId), {
             params: {
@@ -46,17 +62,21 @@ const downloadTrack = async (trackId, albumTitle) => {
             if (err) {
                 console.log(err);
             } else {
-                download(w4a, res.title, albumTitle);
-
+                download(w4a, res.title, albumTitle, basePath);
             }
         });
     } catch (e) {
-        console.log(e, 'get track failed');
-        await downloadTrack(trackId, albumTitle)
+        console.log(e, 'get track failed', albumTitle);
+        triedTime++;
+        if(triedTime>3) {
+            return;
+        }
+        await sleep(10);
+        await downloadTrack(trackId, albumTitle, basePath)
     }
 }
 
-const requestOnePage = async (page, albumTitle) => {
+const requestOnePage = async (page, albumTitle, basePath) => {
     try {
         const response = await axios.get(getPageUrl(page), {
             params: {
@@ -77,16 +97,16 @@ const requestOnePage = async (page, albumTitle) => {
             pageNum
         } = data;
         const haveNextPage = (trackTotalCount - pageSize * pageNum) > 0;
-
+        
         for (var i = 0; i < tracks.length; i++) {
-            await downloadTrack(tracks[i].trackId, albumTitle);
+            await sleep(1);
+            await downloadTrack(tracks[i].trackId, albumTitle, basePath);
         }
         return haveNextPage;
     } catch (e) {
         console.log(e, 'request one page failed');
-        await requestOnePage(page, albumTitle)
+        await requestOnePage(page, albumTitle, basePath)
     }
-
 }
 
 
@@ -104,28 +124,57 @@ const getAlbumTitle = async (albumId) => {
         const title = res.data.recommendKw.sourceKw
         // 不能直接下载精品课程
         if (res.data.mainInfo.vipType === 0) {
-            return;
+            return {};
         }
-        return title;
+        // isFinished ==2 完本 
+        const isFinished = res.data.mainInfo.isFinished ;
+        const {crumbs} = res.data.mainInfo;
+        const {categoryTitle} =crumbs;
+
+        if(isFinished!==2) {
+            const {tracksInfo} = res.data;
+            const {trackTotalCount ,pageSize} = tracksInfo;
+            currentMaxPage = parseInt(trackTotalCount/pageSize);
+            
+            const page = parseInt(await getAsync(albumId.toString()) || 1);
+            return {title, page,isFinished, categoryTitle};
+        } else {
+            return {title, page:1,isFinished, categoryTitle};
+        }
     } catch (e) {
         console.log(e, 'get album title');
         await getAlbumTitle(albumId);
     }
 }
 
-const downloadAlbum = async (albumId, startPage) => {
-    const getPageUrlHof = (albumId) => (page) => `https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=${albumId}&pageNum=${page}`;
+const downloadAlbum = async (albumId, startPage=1) => {
+    const finishedAlbumIdKey = 'finishedAlbumId'
+    const finishedAlbumIds = await smembersAsync(finishedAlbumIdKey);
+    if(finishedAlbumIds.includes(albumId.toString())) {
+        return;
+    }
+    const getPageUrlHof = (albumId) => (page) => `https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=${albumId}&pageNum=${page}&sort=0`;
     getPageUrl = getPageUrlHof(albumId);
-    const title = await getAlbumTitle(albumId);
+    let {title,page, isFinished, categoryTitle} = await getAlbumTitle(albumId);
     if (!title) {
         return;
     }
 
     let haveNextPage=true;
-    let page = parseInt(startPage);
+    page = parseInt(page || startPage);
+    const folderPath = Path.resolve(basePath, categoryTitle)
     while(haveNextPage) {
-        haveNextPage = await requestOnePage(page, title);
+        haveNextPage = await requestOnePage(page, title, folderPath);
         page = page +1; 
+    }
+    
+    client.on("error", function (err) {
+        console.log("Error " + err);
+    });
+    if(isFinished!==2) {
+        client.set(albumId, page-1, redis.print); 
+    } else {
+        client.sadd(finishedAlbumIdKey, albumId, redis.print);        
     }
     if (audioListPath) {
         fs.appendFile(audioListPath, `${title}\n`, (err) => {
@@ -138,22 +187,29 @@ const downloadAlbum = async (albumId, startPage) => {
     }
 }
 
-init();
+// init();
 
-function init() {
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    })
-    rl.question('输入专辑号:\n', function(albumId) {
-        rl.question('输入页码:\n', async function(currentPage) {
-            await downloadAlbum(albumId, currentPage)
-        });
-    });
-}
+// function init() {
+//     const rl = readline.createInterface({
+//         input: process.stdin,
+//         output: process.stdout
+//     })
+//     rl.question('输入专辑号:\n', function(albumId) {
+//         rl.question('输入页码:\n', async function(currentPage) {
+//             await downloadAlbum(albumId, currentPage)
+//         });
+//     });
+// }
 
 
-module.exports = download;
+// const chrome = require('chrome-cookies-secure');
+// chrome.getCookies('https://www.ximalaya.com/', function(err, cookies) {
+//     console.log(cookies);
+// });
+
+
+
+module.exports = downloadAlbum;
 
 
 /*

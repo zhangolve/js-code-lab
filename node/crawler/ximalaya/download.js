@@ -7,10 +7,9 @@ const Axios = require('axios')
 const filenamify = require('filenamify');
 
 
-async function download (url, title, albumTitle) {  
+async function download (url, title, albumTitle, basePath) {  
 
-  let basePath = '/mnt/c/Users/13823/Music/audios/'
-  if (!fs.existsSync('/mnt/c/Users/13823/Music')) {
+  if (!fs.existsSync(basePath)) {
     basePath = './audios';
   }
   
