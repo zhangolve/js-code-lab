@@ -3,7 +3,7 @@ events.observeToast();
 
 if( launched) {
     
-    let submitProduct = (order, movie) => {
+    let submitProduct = (count, movie) => {
     
     let enterStart = ()=>{
     var first = [212, 245];
@@ -16,13 +16,19 @@ if( launched) {
 
 
     press(527, 1549, 200)
+
+    for(let order=0;order<count;order++) {
     let i = order % 4 ; 
     let j = Math.floor(order / 4); 
     sleep(2000)
     
     scrollUp()
     sleep(1000)
+    
     press(first[0]+266*i, first[1]+266*j, 200)
+    sleep(1000);
+    }
+    
     textContains('下一步').click();
     sleep(1000)
     text('下一步').click();
@@ -36,7 +42,7 @@ if( launched) {
         let copy =()=> {
             a.click();
             KeyCode("KEYCODE_SPACE")
-            const desc = `脐橙 ${movie} \n脐橙${movie}。脐橙包邮\n脐橙包邮脐橙， 脐橙包邮，看图一!图二！oh，mygod。脐橙包邮！脐橙包邮！脐橙包邮！脐橙包邮！\n精选一级果，产地直销，现摘现发，甜脆多汁，皮薄肉厚，果香浓郁，果园直发，新鲜到家！\n这个脐橙也太好吃了吧。\n答应我，买它！买它！\n感兴趣的给我留言吧！\n感兴趣的给我留言吧！\n本交易仅支持自提、当面交易、邮寄`;
+            const desc = '脐橙  '+ movie+' \n脐橙'+movie+'。音频 脐橙包邮\n脐橙包邮脐橙， 脐橙包邮，看图一!图二！oh，mygod。脐橙包邮！脐橙包邮！脐橙包邮！脐橙包邮！\n精选一级果，产地直销，现摘现发，甜脆多汁，皮薄肉厚，果香浓郁，果园直发，新鲜到家！\n这个脐橙也太好吃了吧。\n答应我，买它！买它！\n感兴趣的给我留言吧！\n感兴趣的给我留言吧！\n本交易仅支持自提、当面交易、邮寄';
             setClip(desc);
             sleep(300);
             a.paste();
@@ -50,13 +56,13 @@ if( launched) {
     let enterPrice = ()=> {
         textContains('开个价').click();
         sleep(500)
-        text('0').click();
-        sleep(200)
-        text('.').click();
-        sleep(200)
-        text('6').click();
-        sleep(200)
-        text('6').click();
+        text('3').click();
+        // sleep(200)
+        // text('.').click();
+        // sleep(200)
+        // text('6').click();
+        // sleep(200)
+        // text('6').click();
         sleep(200)
         text('确定').click();
     }
@@ -127,7 +133,7 @@ let caliangAll = () => {
     if(movieListFile) {
         var movieList =  movieListFile.readlines()
         for(let i=0;i<movieList.length;i++ ) {
-            submitProduct(1, movieList[i])
+            submitProduct(5, movieList[i])
             sleep(2000);
         }
     }
