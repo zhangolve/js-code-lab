@@ -38,7 +38,7 @@ const sleep = (time) => {
 }
 
 const getTrackUrl = (trackId) => {
-    return `https://mpay.ximalaya.com/mobile/track/pay/${trackId}?device=pc&isBackend=true&_=1585458178215`
+    return `https://mpay.ximalaya.com/mobile/track/pay/${trackId}?device=pc&isBackend=true&_=1587856892192`
 }
 const headers = require('./headers');
 
@@ -97,9 +97,8 @@ const requestOnePage = async (page, albumTitle, basePath) => {
             pageNum
         } = data;
         const haveNextPage = (trackTotalCount - pageSize * pageNum) > 0;
-        
         for (var i = 0; i < tracks.length; i++) {
-            await sleep(1);
+            await sleep(0.5);
             await downloadTrack(tracks[i].trackId, albumTitle, basePath);
         }
         return haveNextPage;
@@ -187,19 +186,22 @@ const downloadAlbum = async (albumId, startPage=1) => {
     }
 }
 
-// init();
 
-// function init() {
-//     const rl = readline.createInterface({
-//         input: process.stdin,
-//         output: process.stdout
-//     })
-//     rl.question('输入专辑号:\n', function(albumId) {
-//         rl.question('输入页码:\n', async function(currentPage) {
-//             await downloadAlbum(albumId, currentPage)
-//         });
-//     });
-// }
+
+if (module === require.main) {
+    init();
+    function init() {
+        const rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout
+        })
+        rl.question('输入专辑号:\n', function(albumId) {
+            rl.question('输入页码:\n', async function(currentPage) {
+                await downloadAlbum(albumId, currentPage)
+            });
+        });
+    }
+} 
 
 
 // const chrome = require('chrome-cookies-secure');
@@ -242,4 +244,11 @@ module.exports = downloadAlbum;
 
 
 ctrl +shift+p =》 beatutiy
+
+
+// nodejs excel
+
+albumId 名称 是否完结 基数 分类 
+
+// download 接口错误，异常处理
 */
