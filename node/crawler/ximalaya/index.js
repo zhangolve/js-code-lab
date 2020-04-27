@@ -38,7 +38,8 @@ const sleep = (time) => {
 }
 
 const getTrackUrl = (trackId) => {
-    return `https://mpay.ximalaya.com/mobile/track/pay/${trackId}?device=pc&isBackend=true&_=1587856892192`
+    // _ 这个参数有问题，需要破解。 
+    return `https://mpay.ximalaya.com/mobile/track/pay/${trackId}?device=pc&isBackend=true&_=1588029776116`
 }
 const headers = require('./headers');
 
@@ -54,17 +55,58 @@ const downloadTrack = async (trackId, albumTitle, basePath) => {
             }
         });
         const res = trackResponse.data;
+        /*
+        // preview
+          ret: 0,
+  msg: '0',
+  trackId: 52635311,
+  uid: 1000454,
+  albumId: 10831875,
+  title: '王玥波播讲：雍正剑侠图（第四部）（第二回）',
+  domain: 'http://audiofreepay.xmcdn.com',
+  totalLength: 29270654,
+  sampleDuration: 180,
+  sampleLength: 1784498,
+  isAuthorized: false,
+  apiVersion: '1.0.0',
+  seed: 5315,
+  fileId: '66*62*21*41*63*33*27*0*64*14*27*64*18*27*61*31*27*60*24*66*13*5*33*36*0*28*41*4*6*42*53*29*25*61*43*20*40*9*3*19*62*33*11*64*33*31*20*4*63*62*37*25*40*37*60*4*33*49*54*28*28*14*54*1*10*28*29*',
+  buyKey: 'fe4f133ccbf4b22dfa2a1e704ccbbda8',
+  duration: 3615,
+  ep: 'ixdsaY59SiQC2v0Mb4wd414PUk0i1ibGSddPKQ7mX3e0zO+N3P6NzuwK0/3YhqlgDOZ20nFXK6Iy3vmty1Ad2boPMC1UGqCqXtPIvyNRq0Sk',
+  highestQualityLevel: 1,
+  downloadQualityLevel: 1
+
+
+
+  albumId: 10831875
+apiVersion: "1.0.0"
+authorizedType: 1
+buyKey: "617574686f72697a6564"
+domain: "http://audiopay.cos.xmcdn.com"
+downloadQualityLevel: 1
+duration: 3615
+ep: "20NvOoh6T39X3qwKO4cY5g5bVhg+hHfAS4NJfQqwD3+tmOuJ1fOPzLtc2/iIgqFiWOEm2nQYfKVj3Oz+xg0d270bPy9R"
+fileId: "66*47*33*53*45*10*52*61*35*9*52*35*27*52*46*19*52*64*58*66*55*1*10*40*61*65*53*8*63*18*7*13*21*46*48*56*43*26*49*50*47*10*62*35*10*19*56*28*3*65*13*"
+highestQualityLevel: 1
+isAuthorized: true
+msg: "0"
+ret: 0
+sampleDuration: 180
+sampleLength: 1784498
+seed: 1324
+title: "王玥波播讲：雍正剑侠图（第四部）（第二回）"
+totalLength: 29270654
+trackId: 52635311
+uid: 1000454
+}
+        
+        */
         console.log('res', res)
         const w4a = decode(res);
         const folderPath = Path.resolve(basePath, albumTitle)
-
-        mkdirp(folderPath, function(err) {
-            if (err) {
-                console.log(err);
-            } else {
-                download(w4a, res.title, albumTitle, basePath);
-            }
-        });
+        mkdirp.sync(folderPath)
+        await download(w4a, res.title, albumTitle, basePath);
     } catch (e) {
         console.log(e, 'get track failed', albumTitle);
         triedTime++;
@@ -98,7 +140,8 @@ const requestOnePage = async (page, albumTitle, basePath) => {
         } = data;
         const haveNextPage = (trackTotalCount - pageSize * pageNum) > 0;
         for (var i = 0; i < tracks.length; i++) {
-            await sleep(0.5);
+            await sleep(3);
+            console.log('next')
             await downloadTrack(tracks[i].trackId, albumTitle, basePath);
         }
         return haveNextPage;
@@ -149,9 +192,9 @@ const getAlbumTitle = async (albumId) => {
 const downloadAlbum = async (albumId, startPage=1) => {
     const finishedAlbumIdKey = 'finishedAlbumId'
     const finishedAlbumIds = await smembersAsync(finishedAlbumIdKey);
-    if(finishedAlbumIds.includes(albumId.toString())) {
-        return;
-    }
+    // if(finishedAlbumIds.includes(albumId.toString())) {
+    //     return;
+    // }
     const getPageUrlHof = (albumId) => (page) => `https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=${albumId}&pageNum=${page}&sort=0`;
     getPageUrl = getPageUrlHof(albumId);
     let {title,page, isFinished, categoryTitle} = await getAlbumTitle(albumId);
