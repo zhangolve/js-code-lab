@@ -39,14 +39,17 @@ const sleep = (time) => {
 
 const getTrackUrl = (trackId) => {
     // _ 这个参数有问题，需要破解。 
-    return `https://mpay.ximalaya.com/mobile/track/pay/${trackId}?device=pc&isBackend=true&_=1588029776116`
+    var now= +(new Date())
+    return `https://mpay.ximalaya.com/mobile/track/pay/${trackId}?device=pc&isBackend=true&_=${now}`
 }
 const headers = require('./headers');
 
 const downloadTrack = async (trackId, albumTitle, basePath) => {
     let triedTime = 0;
     try {
-        const trackResponse = await axios.get(getTrackUrl(trackId), {
+        const trackUrl = getTrackUrl(trackId)
+        console.log(trackUrl)
+        const trackResponse = await axios.get(trackUrl, {
             params: {
                 method: 'GET',
                 gzip: true,
@@ -232,18 +235,19 @@ const downloadAlbum = async (albumId, startPage=1) => {
 
 
 if (module === require.main) {
-    init();
-    function init() {
-        const rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout
-        })
-        rl.question('输入专辑号:\n', function(albumId) {
-            rl.question('输入页码:\n', async function(currentPage) {
-                await downloadAlbum(albumId, currentPage)
-            });
-        });
-    }
+    // init();
+    // function init() {
+    //     const rl = readline.createInterface({
+    //         input: process.stdin,
+    //         output: process.stdout
+    //     })
+    //     rl.question('输入专辑号:\n', function(albumId) {
+    //         rl.question('输入页码:\n', async function(currentPage) {
+    //             await downloadAlbum(albumId, currentPage)
+    //         });
+    //     });
+    // }
+    downloadTrack(52635311, 'test','/mnt/c/Users/13823/Music/audios/')
 } 
 
 
