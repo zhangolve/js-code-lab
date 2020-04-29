@@ -1,6 +1,5 @@
 const fs = require('fs');
 const fetch = require('node-fetch');
-const async = require('async');
 const decode = require('./decode')
 const download = require('./download');
 const mkdirp = require('mkdirp');
@@ -8,6 +7,8 @@ const Path = require('path')
 const readline = require('readline')
 
 const axios = require("axios");
+const numberFormat = require('./utils');
+
 let basePath = '/mnt/c/Users/13823/Music/audios/'
 
 
@@ -44,33 +45,21 @@ const getTrackUrl = (trackId) => {
 }
 const headers = require('./headers');
 
-const downloadTrack = async (trackId, albumTitle, basePath) => {
+const downloadTrack = async ({trackId, index}, albumTitle, basePath) => {
     let triedTime = 0;
     try {
-        const res = await fetch(getTrackUrl(trackId), {
+        const response = await fetch(getTrackUrl(trackId), {
             method: 'GET',
             headers,
             timeout: 30000,
         }); 
-        const json = await res.json();
+        const res = await response.json();
 
-        console.log(json)
-        // const trackUrl = getTrackUrl(trackId)
-        // console.log(trackUrl)
-        // const trackResponse = await axios.get(trackUrl, {
-        //     params: {
-        //         method: 'GET',
-        //         headers,
-        //         timeout: 3000,
-        //     }
-        // });
-        // const res = trackResponse.data;
-        
-        // console.log('res', res)
-        // const w4a = decode(res);
-        // const folderPath = Path.resolve(basePath, albumTitle)
-        // mkdirp.sync(folderPath)
-        // await download(w4a, res.title, albumTitle, basePath);
+        console.log('res', res)
+        const w4a = decode(res);
+        const folderPath = Path.resolve(basePath, albumTitle)
+        mkdirp.sync(folderPath)
+        await download(w4a, `${numberFormat(index)}-${res.title}`, albumTitle, basePath);
     } catch (e) {
         console.log(e, 'get track failed', albumTitle);
         triedTime++;
@@ -78,11 +67,11 @@ const downloadTrack = async (trackId, albumTitle, basePath) => {
             return;
         }
         await sleep(10);
-        await downloadTrack(trackId, albumTitle, basePath)
+        await downloadTrack({trackId, index}, albumTitle, basePath)
     }
 }
 
-const requestOnePage = async (page, albumTitle, basePath) => {
+const requestOnePage = async (page, {albumTitle, albumId}, basePath, startIndex) => {
     try {
         const response = await axios.get(getPageUrl(page), {
             params: {
@@ -104,14 +93,15 @@ const requestOnePage = async (page, albumTitle, basePath) => {
         } = data;
         const haveNextPage = (trackTotalCount - pageSize * pageNum) > 0;
         for (var i = 0; i < tracks.length; i++) {
-            await sleep(3);
-            console.log('next')
-            await downloadTrack(tracks[i].trackId, albumTitle, basePath);
+            if(tracks[i].index >= startIndex) {
+                await downloadTrack(tracks[i], albumTitle, basePath);
+                client.set(albumId, tracks[i].index, redis.print); 
+            }
         }
         return haveNextPage;
     } catch (e) {
         console.log(e, 'request one page failed');
-        await requestOnePage(page, albumTitle, basePath)
+        await requestOnePage(page, {albumTitle, albumId}, basePath, startIndex)
     }
 }
 
@@ -136,87 +126,67 @@ const getAlbumTitle = async (albumId) => {
         const isFinished = res.data.mainInfo.isFinished ;
         const {crumbs} = res.data.mainInfo;
         const {categoryTitle} =crumbs;
-
-        if(isFinished!==2) {
-            const {tracksInfo} = res.data;
-            const {trackTotalCount ,pageSize} = tracksInfo;
-            currentMaxPage = parseInt(trackTotalCount/pageSize);
-            
-            const page = parseInt(await getAsync(albumId.toString()) || 1);
-            return {title, page,isFinished, categoryTitle};
-        } else {
-            return {title, page:1,isFinished, categoryTitle};
-        }
+        let index = parseInt(await getAsync(albumId.toString()) || 1);
+        return {title, index,isFinished, categoryTitle};
     } catch (e) {
         console.log(e, 'get album title');
         await getAlbumTitle(albumId);
     }
 }
 
-const downloadAlbum = async (albumId, startPage=1) => {
+const downloadAlbum = async (albumId, startPage) => {
     const finishedAlbumIdKey = 'finishedAlbumId'
     const finishedAlbumIds = await smembersAsync(finishedAlbumIdKey);
-    // if(finishedAlbumIds.includes(albumId.toString())) {
-    //     return;
-    // }
+    if(finishedAlbumIds.includes(albumId.toString())) {
+        return;
+    }
+    let {title,index, isFinished, categoryTitle} = await getAlbumTitle(albumId);
+    page = parseInt(startPage || Math.floor(index/30)+1);
     const getPageUrlHof = (albumId) => (page) => `https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=${albumId}&pageNum=${page}&sort=0`;
     getPageUrl = getPageUrlHof(albumId);
-    let {title,page, isFinished, categoryTitle} = await getAlbumTitle(albumId);
     if (!title) {
         return;
     }
 
     let haveNextPage=true;
-    page = parseInt(page || startPage);
-    const folderPath = Path.resolve(basePath, categoryTitle)
+    const folderPath = Path.resolve(basePath, categoryTitle);
+    let startIndex = index;
+    console.log(startIndex)
     while(haveNextPage) {
-        haveNextPage = await requestOnePage(page, title, folderPath);
+        haveNextPage = await requestOnePage(page, {albumTitle: title, albumId}, folderPath, startIndex);
         page = page +1; 
+        startIndex = 0;
     }
-    
+    console.log('download album successfully', albumId, title)
+    // redis-cli --raw keys "ops-coffee-*" | xargs redis-cli del
     client.on("error", function (err) {
         console.log("Error " + err);
     });
-    if(isFinished!==2) {
-        client.set(albumId, page-1, redis.print); 
-    } else {
+    if(isFinished===2) {
+        if(await getAsync(albumId.toString()) ) {
+            client.del(albumId.toString())
+        }
         client.sadd(finishedAlbumIdKey, albumId, redis.print);        
     }
-    if (audioListPath) {
-        fs.appendFile(audioListPath, `${title}\n`, (err) => {
-            if (err) throw err;
-            console.log('finished');
-            return;
-        });
-    } else {
-        return;
-    }
+    
 }
 
 
 
 if (module === require.main) {
-    // init();
-    // function init() {
-    //     const rl = readline.createInterface({
-    //         input: process.stdin,
-    //         output: process.stdout
-    //     })
-    //     rl.question('输入专辑号:\n', function(albumId) {
-    //         rl.question('输入页码:\n', async function(currentPage) {
-    //             await downloadAlbum(albumId, currentPage)
-    //         });
-    //     });
-    // }
-    downloadTrack(52635311, 'test','/mnt/c/Users/13823/Music/audios/')
+    init();
+    function init() {
+        const rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout
+        })
+        rl.question('输入专辑号:\n', function(albumId) {
+            rl.question('输入页码:\n', async function(currentPage) {
+                await downloadAlbum(albumId, currentPage)
+            });
+        });
+    }
 } 
-
-
-// const chrome = require('chrome-cookies-secure');
-// chrome.getCookies('https://www.ximalaya.com/', function(err, cookies) {
-//     console.log(cookies);
-// });
-
 
 
 module.exports = downloadAlbum;

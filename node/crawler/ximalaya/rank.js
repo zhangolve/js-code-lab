@@ -12,7 +12,7 @@ const albumIds = [20654769,
 ];
 
 const category = {
-    'renwen': '人文',
+    // 'renwen': '人文',
     'jiaoyu': '教育',
     'shangye': '商业',
     'lishi': '历史',
@@ -29,6 +29,7 @@ const cates = Object.keys(category);
 // 目录结构，判断是否已经下载过了。
 
 const getOneRank = async (cate) => {
+    console.log(cate)
     try {
         const response = await axios.get(getRankUrl(cate), {
             params: {
@@ -44,7 +45,7 @@ const getOneRank = async (cate) => {
             ids
         } = rankList;
         for (var id of ids) {
-            await downloadAlbum(id, 1);
+            await downloadAlbum(id);
         }
         return 'finished';
     } catch (e) {
@@ -55,10 +56,8 @@ const getOneRank = async (cate) => {
 
 async function init() {
     for (var cate of cates) {
-        const folderPath = Path.resolve(basePath, category[cate])
-        mkdirp.sync(folderPath)
         // async of sync
-        await getOneRank(cates[0])
+        await getOneRank(cate)
     }
 }
 
