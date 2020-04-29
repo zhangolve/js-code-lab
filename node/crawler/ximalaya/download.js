@@ -43,4 +43,6 @@ if (module === require.main) {
   download(url, title)
 }
 
+
+// https://github.com/node-fetch/node-fetch/issues/375
 module.exports = download;

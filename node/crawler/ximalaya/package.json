@@ -15,6 +15,7 @@
     "filenamify": "^4.1.0",
     "iconv-lite": "latest",
     "mkdirp": "^0.5.1",
+    "node-fetch": "^2.6.0",
     "redis": "^3.0.2",
     "request": "latest"
   },
