@@ -1,7 +1,7 @@
 const fs = require('fs');
 const fetch = require('node-fetch');
 const decode = require('./decode')
-const download = require('./download');
+const download = require('./download3');
 const mkdirp = require('mkdirp');
 const Path = require('path')
 const readline = require('readline')
@@ -93,7 +93,7 @@ const requestOnePage = async (page, {albumTitle, albumId}, basePath, startIndex)
         } = data;
         const haveNextPage = (trackTotalCount - pageSize * pageNum) > 0;
         for (var i = 0; i < tracks.length; i++) {
-            if(tracks[i].index >= startIndex) {
+            if(tracks[i].index > startIndex) {
                 await downloadTrack(tracks[i], albumTitle, basePath);
                 client.set(albumId, tracks[i].index, redis.print); 
             }
@@ -106,7 +106,7 @@ const requestOnePage = async (page, {albumTitle, albumId}, basePath, startIndex)
 }
 
 
-const getAlbumTitle = async (albumId) => {
+const getAlbum = async (albumId) => {
     const getAlubmTitleUrl = (albumId) => `https://www.ximalaya.com/revision/album?albumId=${albumId}`
     try {
         const response = await axios.get(getAlubmTitleUrl(albumId), {
@@ -117,22 +117,29 @@ const getAlbumTitle = async (albumId) => {
             }
         });
         const res = response.data;
-        const title = res.data.recommendKw.sourceKw
-        // 不能直接下载精品课程
-        if (res.data.mainInfo.vipType === 0) {
-            return {};
-        }
-        // isFinished ==2 完本 
-        const isFinished = res.data.mainInfo.isFinished ;
-        const {crumbs} = res.data.mainInfo;
-        const {categoryTitle} =crumbs;
-        let index = parseInt(await getAsync(albumId.toString()) || 1);
-        return {title, index,isFinished, categoryTitle};
+        return res;
     } catch (e) {
         console.log(e, 'get album title');
-        await getAlbumTitle(albumId);
+        await getAlbum(albumId);
     }
 }
+
+const getAlbumInfo =async (res) => {
+    const title = res.data.recommendKw.sourceKw;
+    const albumId = res.data.albumId;
+    // 不能直接下载精品课程
+    if (res.data.mainInfo.vipType === 0) {
+        return {};
+    }
+    // isFinished ==2 完本 
+    const isFinished = res.data.mainInfo.isFinished ;
+    const {crumbs} = res.data.mainInfo;
+    const {categoryTitle} =crumbs;
+    const redisAlbumIndex = await getAsync(albumId.toString()) 
+    let index = parseInt( redisAlbumIndex || 0);
+    return {title, index,isFinished, categoryTitle};
+}
+
 
 const downloadAlbum = async (albumId, startPage) => {
     const finishedAlbumIdKey = 'finishedAlbumId'
@@ -140,7 +147,9 @@ const downloadAlbum = async (albumId, startPage) => {
     if(finishedAlbumIds.includes(albumId.toString())) {
         return;
     }
-    let {title,index, isFinished, categoryTitle} = await getAlbumTitle(albumId);
+
+    const res = await getAlbum(albumId);
+    let {title,index, isFinished, categoryTitle} = await getAlbumInfo(res);
     page = parseInt(startPage || Math.floor(index/30)+1);
     const getPageUrlHof = (albumId) => (page) => `https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=${albumId}&pageNum=${page}&sort=0`;
     getPageUrl = getPageUrlHof(albumId);
@@ -151,7 +160,6 @@ const downloadAlbum = async (albumId, startPage) => {
     let haveNextPage=true;
     const folderPath = Path.resolve(basePath, categoryTitle);
     let startIndex = index;
-    console.log(startIndex)
     while(haveNextPage) {
         haveNextPage = await requestOnePage(page, {albumTitle: title, albumId}, folderPath, startIndex);
         page = page +1; 
@@ -168,7 +176,18 @@ const downloadAlbum = async (albumId, startPage) => {
         }
         client.sadd(finishedAlbumIdKey, albumId, redis.print);        
     }
-    
+
+    // write to note 
+    if (audioListPath) {
+        fs.appendFile(audioListPath, `${title}\n`, (err) => {
+            if (err) throw err;
+            console.log('finished');
+            return;
+        });
+    } else {
+        return;
+    }
+
 }
 
 
@@ -189,7 +208,7 @@ if (module === require.main) {
 } 
 
 
-module.exports = downloadAlbum;
+module.exports = {downloadAlbum, getAlbum};
 
 
 /*

@@ -2,7 +2,7 @@
 const Path = require('path')
 
 const axios = require("axios");
-const downloadAlbum = require('./index');
+const {downloadAlbum} = require('./index');
 let basePath = '/mnt/c/Users/13823/Music/audios/'
 const mkdirp = require('mkdirp');
 const headers = require("./headers");
@@ -46,6 +46,7 @@ const getOneRank = async (cate) => {
         } = rankList;
         for (var id of ids) {
             await downloadAlbum(id);
+
         }
         return 'finished';
     } catch (e) {
@@ -62,4 +63,7 @@ async function init() {
 }
 
 init();
+
+
+
 // 未完结 =》 完结 下载过的文件

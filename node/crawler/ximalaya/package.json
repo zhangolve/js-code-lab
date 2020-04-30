@@ -9,6 +9,7 @@
   "author": "zhangolve",
   "license": "MIT",
   "dependencies": {
+    "@adobe/node-fetch-retry": "^1.0.1",
     "async": "^2.1.4",
     "axios": "latest",
     "chrome-cookies-secure": "^1.3.2",
@@ -17,7 +18,9 @@
     "mkdirp": "^0.5.1",
     "node-fetch": "^2.6.0",
     "redis": "^3.0.2",
-    "request": "latest"
+    "request": "latest",
+    "retry-axios": "^2.1.2",
+    "xlsx": "^0.15.6"
   },
   "devDependencies": {
     "eslint": "^3.10.2",

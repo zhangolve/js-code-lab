@@ -1,49 +1,40 @@
-'use strict'
-
+const util = require('util')
 const fs = require('fs')
-const Path = require('path')
-const Axios = require('axios')
+const streamPipeline = util.promisify(require('stream').pipeline)
+const fetch = require('@adobe/node-fetch-retry');
+// const fetch = require('node-fetch');
+// https://github.com/adobe/node-fetch-retry
 const filenamify = require('filenamify');
+const Path = require('path')
 
-async function download(url, title, albumTitle, basePath) {
-    console.log(url)
-    // url='http://audiofreepay.xmcdn.com/download/1.0.0/group1/M09/0D/A2/wKgJN1nM4u_TQjavAb6ift5r1G0126_preview_1784498.m4a?sign=ee0054d1412da82a1113bb7c48b8e825&buy_key=fe4f133ccbf4b22dfa2a1e704ccbbda8&token=8530&timestamp=1588029556&duration=3615
-    // url='https://audiopay.cos.xmcdn.com/download/1.0.0/group1/M09/0D/A2/wKgJN1nM4u_TQjavAb6ift5r1G0126.m4a?sign=81dd9e9ee9c04b8d525b52f58698bd1c&buy_key=617574686f72697a6564&token=9202&timestamp=1588029120&duration=3615'
+async function download (url, title, albumTitle='', basePath) {
+
     if (!fs.existsSync(basePath)) {
         basePath = './audios';
     }
 
     const path = Path.resolve(basePath, albumTitle, `${filenamify(title)}更多音频加wx:hktkdy001.m4a`)
-    console.log(fs.existsSync(path), 'file exist')
-    if (!fs.existsSync(path)) {
 
-        const writer = fs.createWriteStream(path)
 
-        const response = await Axios({
-            url,
-            method: 'GET',
-            responseType: 'stream'
-        })
-
-        response.data.pipe(writer)
-
-        return new Promise((resolve, reject) => {
-            writer.on('finish', function() {
-                    console.log('finished axios');
-                    resolve()
-                }),
-                writer.on('error', function() {
-                    console.log('reject')
-                    reject();
-                })
-        })
-    }
+    try {
+  const response = await fetch(url, {
+    timeout: 100000,
+    retryOptions: {
+        retryMaxDuration: 300000,  // 30s retry max duration
+        retryInitalDelay: 2000,
+        retryBackoff: 3.0, // no backoff
+    }})
+    if (!response.ok) throw new Error(`unexpected response ${response.statusText}`)
+    await streamPipeline(response.body, fs.createWriteStream(path))
+  } 
+  catch (e) {
+    console.log('888')
+    console.log('e',e)
+  }
 }
 
 if (module === require.main) {
-    download(url, title)
+  download('https://github.com/Fndroid/clash_for_windows_pkg/releases/download/0.9.9/Clash.for.Windows-0.9.9-win.7z', 'test.jpg')
 }
 
-
-// https://github.com/node-fetch/node-fetch/issues/375
 module.exports = download;
