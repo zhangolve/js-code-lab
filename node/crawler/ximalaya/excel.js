@@ -134,4 +134,8 @@ console.log(s)
 }
 
 
+// =IF(COUNTIF($A$2:A2,A2)=COUNTIF(A:A,A2),"保留","删除")
+// worksheet.addRow({id: 1, name: 'John Doe', dob: new Date(1970,1,1)});
+
+
 exportReport();

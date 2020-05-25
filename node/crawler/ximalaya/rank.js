@@ -12,7 +12,7 @@ const albumIds = [20654769,
 ];
 
 const category = {
-    // 'renwen': '人文',
+    'renwen': '人文',
     'jiaoyu': '教育',
     'shangye': '商业',
     'lishi': '历史',

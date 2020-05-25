@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rename 's/^\d{4}-//' *
+rename 's/更多音频加wx:hktkdy001//' *
 mkdir "mp4s"
 
 for f in *.m4a;

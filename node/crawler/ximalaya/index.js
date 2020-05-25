@@ -41,7 +41,7 @@ const sleep = (time) => {
 const getTrackUrl = (trackId) => {
     // _ 这个参数有问题，需要破解。 
     var now= +(new Date())
-    return `https://mpay.ximalaya.com/mobile/track/pay/${trackId}?device=pc&isBackend=true&_=${now}`
+    return `https://mpay.ximalaya.com/mobile/track/pay/${trackId}/${now}?device=pc&isBackend=true&_=${now}`
 }
 const headers = require('./headers');
 
@@ -127,7 +127,7 @@ const getAlbum = async (albumId) => {
 const getAlbumInfo =async (res) => {
     const title = res.data.recommendKw.sourceKw;
     const albumId = res.data.albumId;
-    // 不能直接下载精品课程
+    // 不能直接下载精品课程,，应该看看有没有买。
     if (res.data.mainInfo.vipType === 0) {
         return {};
     }
