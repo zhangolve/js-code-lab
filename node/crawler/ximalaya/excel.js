@@ -126,7 +126,8 @@ var wb = {
 
 // 导出 Excel
 const s=XLSX.writeFile(wb, 'output.xlsx', function(err, res) {
-    console.log(err,res)
+    console.log(err,res);
+    process.exit(0)
 });
 console.log(s)
 

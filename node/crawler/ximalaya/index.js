@@ -235,6 +235,7 @@ async function writeRow(res) {
 
 if (module === require.main) {
     init();
+
     function init() {
         const rl = readline.createInterface({
             input: process.stdin,
@@ -243,6 +244,7 @@ if (module === require.main) {
         rl.question('输入专辑号:\n', function(albumId) {
             rl.question('输入页码:\n', async function(currentPage) {
                 await downloadAlbum(albumId, currentPage)
+                process.exit(0);
             });
         });
     }
