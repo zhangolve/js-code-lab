@@ -5,6 +5,7 @@ const download = require('./download3');
 const mkdirp = require('mkdirp');
 const Path = require('path')
 const readline = require('readline')
+const XLSX = require("xlsx");
 
 const axios = require("axios");
 const numberFormat = require('./utils');
@@ -153,7 +154,7 @@ const downloadAlbum = async (albumId, startPage) => {
     page = parseInt(startPage || Math.floor(index/30)+1);
     const getPageUrlHof = (albumId) => (page) => `https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=${albumId}&pageNum=${page}&sort=0`;
     getPageUrl = getPageUrlHof(albumId);
-    if (!title) {
+    if (!title || isFinished) {
         return;
     }
 
@@ -177,6 +178,7 @@ const downloadAlbum = async (albumId, startPage) => {
         client.sadd(finishedAlbumIdKey, albumId, redis.print);        
     }
 
+    writeRow(res)
     // write to note 
     if (audioListPath) {
         fs.appendFile(audioListPath, `${title}\n`, (err) => {
@@ -191,6 +193,45 @@ const downloadAlbum = async (albumId, startPage) => {
 }
 
 
+async function writeRow(res) {
+    const {data} = res;
+    const isFinished = data.mainInfo.isFinished ===2 ? '是' : '否';
+    const isJingPin = data.mainInfo.vipType === 0 ? '是' :'否';
+    const {crumbs} = res.data.mainInfo;
+    const {categoryTitle} =crumbs;
+    // albumId 名称 是否完结 基数 分类 是否精品
+    const {albumId} = data;
+    const trackTotalCount = data.tracksInfo.trackTotalCount;
+    const title = data.recommendKw.sourceKw
+
+    const row = Object.values({
+        'id': albumId,
+            '专辑名':title , 
+            '是否完结':isFinished , 
+            '集数':trackTotalCount ,
+            '分类': categoryTitle,
+            '是否是精品': isJingPin 
+    })
+
+    var workbook = XLSX.readFile('output.xlsx');
+    var worksheet = workbook.Sheets['mySheet'];
+    XLSX.utils.sheet_add_aoa(worksheet, [
+        row
+      ], {origin: -1});
+      var wb = {
+        SheetNames: ['mySheet'],
+        Sheets: {
+            'mySheet': worksheet
+        }
+    };
+      XLSX.writeFile(wb, 'output.xlsx', function(err, res) {
+        if(!err) {
+            console.log('write to excel successfully')
+        }
+    });   
+}
+
+// writeRow();
 
 if (module === require.main) {
     init();

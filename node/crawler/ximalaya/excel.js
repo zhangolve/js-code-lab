@@ -4,7 +4,7 @@ const axios = require("axios");
 const {getAlbum} = require('./index');
 let basePath = '/mnt/c/Users/13823/Music/audios/'
 const mkdirp = require('mkdirp');
-XLSX = require("xlsx");
+const XLSX = require("xlsx");
 const headers = require("./headers");
 
 const category = {
@@ -62,7 +62,6 @@ const getOneRank = async (cate) => {
                   '分类': categoryTitle,
                   '是否是精品': isJingPin 
             })
-            console.log(_data.length)
         }
         return 'finished';
     } catch (e) {
@@ -132,10 +131,5 @@ const s=XLSX.writeFile(wb, 'output.xlsx', function(err, res) {
 console.log(s)
 
 }
-
-
-// =IF(COUNTIF($A$2:A2,A2)=COUNTIF(A:A,A2),"保留","删除")
-// worksheet.addRow({id: 1, name: 'John Doe', dob: new Date(1970,1,1)});
-
 
 exportReport();
