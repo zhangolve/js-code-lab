@@ -154,7 +154,7 @@ const downloadAlbum = async (albumId, startPage) => {
     page = parseInt(startPage || Math.floor(index/30)+1);
     const getPageUrlHof = (albumId) => (page) => `https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=${albumId}&pageNum=${page}&sort=0`;
     getPageUrl = getPageUrlHof(albumId);
-    if (!title || isFinished) {
+    if (!title) {
         return;
     }
 
@@ -194,6 +194,7 @@ const downloadAlbum = async (albumId, startPage) => {
 
 
 async function writeRow(res) {
+    // =IF(COUNTIF(A$1:A2,A2)=COUNTIF(A:A,A2),"Yes","")
     const {data} = res;
     const isFinished = data.mainInfo.isFinished ===2 ? '是' : '否';
     const isJingPin = data.mainInfo.vipType === 0 ? '是' :'否';

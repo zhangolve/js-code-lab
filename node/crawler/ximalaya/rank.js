@@ -12,11 +12,11 @@ const albumIds = [20654769,
 ];
 
 const category = {
-    'youshengshu': '有声书',
-    'renwen': '人文',
-    'jiaoyu': '教育',
-    'shangye': '商业',
-    'lishi': '历史',
+    // 'youshengshu': '有声书',
+    // 'renwen': '人文',
+    // 'jiaoyu': '教育',
+    // 'shangye': '商业',
+    // 'lishi': '历史',
     'ertong': '儿童',
     'xiangsheng': '相声评书',
     'gongqingtuan': '艺术',
