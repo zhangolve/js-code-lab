@@ -1128,7 +1128,7 @@ bind call apply 这些操作方法的作用都是为了改变一个函数的执�
 当然，我们也可以给他们传值，仍然是上面的这个例子：
 
 	var x=3;
-	function foo(y,z){
+	function foo(y,z=0){
 		console.log(this.x+y+z);
 	}
 	var bar={

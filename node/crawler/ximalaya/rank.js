@@ -16,11 +16,11 @@ const category = {
     // 'renwen': '人文',
     // 'jiaoyu': '教育',
     // 'shangye': '商业',
-    // 'lishi': '历史',
+    'lishi': '历史',
     'ertong': '儿童',
-    'xiangsheng': '相声评书',
-    'gongqingtuan': '艺术',
-    'youshengshu': '有声书',
+    // 'xiangsheng': '相声评书',
+    // 'gongqingtuan': '艺术',
+    // 'youshengshu': '有声书',
 };
 
 const getRankUrl = (cate) => `https://www.ximalaya.com/revision/rank/v2/element/code?typeCode=paid&clusterCode=${cate}`

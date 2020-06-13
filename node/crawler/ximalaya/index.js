@@ -150,6 +150,10 @@ const downloadAlbum = async (albumId, startPage) => {
     }
 
     const res = await getAlbum(albumId);
+    if(res.ret!==200) {
+        console.log('album failed')
+        return ;
+    }
     let {title,index, isFinished, categoryTitle} = await getAlbumInfo(res);
     page = parseInt(startPage || Math.floor(index/30)+1);
     const getPageUrlHof = (albumId) => (page) => `https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=${albumId}&pageNum=${page}&sort=0`;
