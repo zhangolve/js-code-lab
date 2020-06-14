@@ -1,4 +1,6 @@
-const fs = require('fs');
+// const fs = require('fs');
+const fs = require('fs')
+
 const fetch = require('node-fetch');
 const decode = require('./decode')
 const download = require('./download3');
@@ -6,6 +8,9 @@ const mkdirp = require('mkdirp');
 const Path = require('path')
 const readline = require('readline')
 const XLSX = require("xlsx");
+const {promisify} = require('util');
+
+const appendFileAsync = promisify(fs.appendFile)
 
 const axios = require("axios");
 const numberFormat = require('./utils');
@@ -18,7 +23,6 @@ let audioListPath = '/mnt/c/Users/13823/Documents/leidian/Misc/audio_list.txt';
 const redis = require("redis"),
     client = redis.createClient();
 
-const {promisify} = require('util');
 const getAsync = promisify(client.get).bind(client); 
 const smembersAsync = promisify(client.smembers).bind(client);
 
@@ -182,18 +186,16 @@ const downloadAlbum = async (albumId, startPage) => {
         client.sadd(finishedAlbumIdKey, albumId, redis.print);        
     }
 
-    writeRow(res)
+    await writeRow(res);
     // write to note 
     if (audioListPath) {
-        fs.appendFile(audioListPath, `${title}\n`, (err) => {
-            if (err) throw err;
-            console.log('finished');
-            return;
-        });
-    } else {
-        return;
+        try {
+            await appendFileAsync(audioListPath, `${title}\n` );
+            console.log('finished append');
+        } catch(err) {
+            console.log('unable append',err);
+        } 
     }
-
 }
 
 
@@ -230,6 +232,7 @@ async function writeRow(res) {
         }
     };
       XLSX.writeFile(wb, 'output.xlsx', function(err, res) {
+        console.log('8888',err,res)
         if(!err) {
             console.log('write to excel successfully')
         }
