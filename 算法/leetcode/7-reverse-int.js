@@ -145,4 +145,5 @@ var reverse3 = function(x) {
  1暂时还没有String.prototype.reverse,但是有Array.prototype.reverse,所以在前两种方法里，需要这两种类型的相互转化。
  2. 可以尝试ts
  3.这种问题，通常可以考虑通过循环while来解决。
+ 
  */
