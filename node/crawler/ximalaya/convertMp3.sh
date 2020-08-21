@@ -1,15 +1,16 @@
 #!/bin/bash
 # rename 's/$/jelline/' *
-rename 's/^\d{4}-//' *
-rename 's/更多音频加wx:hktkdy001//' *
-mkdir "mp4s"
+# rename 's/^\d{4}-//' *
+# rename 's/更多音频加wx:hktkdy001//' *
+# mkdir "mp3s"
 
-for f in *.m4a;
-do
-    new_filename=$(echo "${f}" | sed 's/.m4a$/.mp4/g')
-    ffmpeg -loop 1 -framerate 1 -i qrcode.jpg -i "${f}"  -c:v libx264 -preset veryslow -crf 0 -c:a copy -shortest "mp4s/${new_filename}"
+mkdir newfiles
+for f in *.m4a; do ffmpeg -i "$f" -codec:v copy -codec:a libmp3lame -q:a 2 newfiles/"${f%.m4a}.mp3"; done
 
-done
+
+
+
+
 
 # for f in *.m4a;
 # do
