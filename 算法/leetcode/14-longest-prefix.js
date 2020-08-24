@@ -120,3 +120,38 @@ console.log(longestCommonPrefix3(["aaa","aa","aaa"]))
 
 // 这个思路是按最大长度，截取匹配字符串。
 
+
+
+
+
+var longestCommonPrefix = function(strs) {
+    var maxStr=strs[0];
+
+    if(!maxStr) {
+        return '';
+    }
+    var maxCount= maxStr.length;
+    while(maxCount>0) {
+        for(var i=0;i<strs.length;i++) {
+            const str=maxStr.substr(0, maxCount);
+            if(strs[i].indexOf(str) !==0) {
+                //need break
+                maxCount--;
+                break;
+            }
+            if(i==strs.length-1) {
+                return maxStr.substr(0,maxCount);
+            }
+        }
+    }
+    return ''
+}
+
+/*
+
+maxStr    10, 9 ,8,7
+
+以上这个方案，就是我自己手写的一个，按照上面这种思想。
+
+
+*/
