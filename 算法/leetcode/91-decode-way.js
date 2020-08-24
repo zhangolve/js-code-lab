@@ -61,12 +61,20 @@ Explanation: It could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
 2
 
 
-1207
+12070
 
 1 2
 
 1 2 6
 
+1 10
+
+1 F
+1  1 1 0 
+
+110  3  1
+
+1 110
 */
 
 /**
@@ -78,12 +86,15 @@ var numDecodings = function(s) {
     var temp='';
     var end=''
     var base = 1;
-   if(s==='0' || !s) {
-       return 0;
-   }
     while(arr.length>0) {
         var c= arr.shift();
+        if(temp.length===0&& c==='0') {
+            return 0;
+        }
         if(c==='1' || c==='2' ) {
+            temp+=c;
+            end=c;
+        } else if ( (end==='1' ||end==='2') && parseInt(c)=== 0) {
             temp+=c;
             end=c;
         } else if (end==='2' && parseInt(c)< 7) {
@@ -92,9 +103,15 @@ var numDecodings = function(s) {
         }  else if (end==='1') {
             temp+=c;
             end=c;
-        }
-        if(parseInt(end)>2 || arr.length===0) {
-            base*=temp.lengthb || 1;
+        } 
+        
+        if(parseInt(end)===0) {
+            base*=temp.length -2 || 1;
+            temp='';
+            end='';  
+        } else if(parseInt(end)>2 || arr.length===0) {
+            console.log(end, temp)
+            base*=temp.length || 1;
             temp='';
             end='';
         }
@@ -102,8 +119,8 @@ var numDecodings = function(s) {
     return base;
 };
 
-console.log(numDecodings("12"));
-
+console.log(numDecodings("2839"));
+// 这个场景还是有问题。
 
 /*
 
