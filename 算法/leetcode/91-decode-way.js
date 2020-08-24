@@ -130,3 +130,27 @@ console.log(numDecodings("2839"));
 
 */
 // "10"
+
+
+
+var numDecodings = function (s) {
+    if (s.length <= 0) {
+        return 0;
+    }
+    count = 0;
+    const backtrack = (str, i) => {
+        if (i > str.length - 1) {
+            count++;
+            return;
+        }
+        if (s[i] === '0') {
+            return;
+        }
+        if (i + 1 <= str.length - 1 && s[i] + s[i + 1] <= '26') {
+            backtrack(str, i + 2);
+        }
+        backtrack(str, i + 1);
+    }
+    backtrack(s, 0);
+    return count;
+};
