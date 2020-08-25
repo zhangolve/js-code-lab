@@ -26,8 +26,11 @@ var maxSubArray = function(nums) {
 
 /*
 Input: [-2,1,-3,4,-1,2,1,-5,4],
+
 Output: 6
 Explanation: [4,-1,2,1] has the largest sum = 6.
+
+Input: [-2,1,-3,4,-1,2,1,-5,4,3],
 
 动态规划
 
@@ -52,12 +55,63 @@ var maxSubArray = function(nums) {
             return b;
         }
     }
-    let res = Number.MIN_SAFE_INTEGER, curSum = 0;
+    // 注意这里一定要是safe interger，不然比较大小的时候是有问题的。
+    let res = Number.MIN_SAFE_INTEGER, curSum = 0;  
     for (var num of  nums) {
         curSum = max(curSum + num, num);
         res = max(res, curSum);
     }
     return res;
 }
+
+/*
+
+拿例子走一遍
+
+ [-2,1,-3,4,-1,2,1,-5,4]
+
+ res=-safe-interger
+
+ curSum=0;
+
+ -2 进来
+
+ curSum = -2
+ res= -2
+
+ 1 进来
+
+ curSum = 1
+ res = 1
+
+ 这个时候，数组中相当于是只有[1] 的。
+
+ -3进来
+
+ curSum=-2
+
+ res=-2
+
+ 4进来
+
+ curSum=2
+ res = 2
+
+ ...
+
+ curSum = 6
+ res=6
+
+ -5进来
+
+ curSum = max(1,-5)  1 (这里相当于不把这个新的值加进来)
+ res = max(6,1) 
+
+
+
+ 
+
+*/
+
 
 console.log(maxSubArray([-1]))
