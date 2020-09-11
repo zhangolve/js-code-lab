@@ -14,13 +14,13 @@ const albumIds = [20654769,
     // 'shangye': '商业',
 
 const category = {
-    // 'youshengshu': '有声书',
+    'youshengshu': '有声书',
     'renwen': '人文',
     'jiaoyu': '教育',
     'ertong': '儿童',
     // 'xiangsheng': '相声评书',
     'gongqingtuan': '艺术',
-    'youshengshu': '有声书',
+    // 'youshengshu': '有声书',
 };
 
 const getRankUrl = (cate) => `https://www.ximalaya.com/revision/rank/v2/element/code?typeCode=paid&clusterCode=${cate}`
@@ -47,7 +47,6 @@ const getOneRank = async (cate) => {
         } = rankList;
         for (var id of ids) {
             await downloadAlbum(id);
-
         }
         return 'finished';
     } catch (e) {
