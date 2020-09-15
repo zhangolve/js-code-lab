@@ -1,0 +1,13 @@
+{
+  "name": "mock-with-hotel-and-json-server",
+  "version": "0.0.1",
+  "description": "mock with json-server",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "json-server": "^0.16.1"
+  }
+}
