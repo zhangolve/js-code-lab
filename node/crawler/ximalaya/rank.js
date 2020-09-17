@@ -14,7 +14,7 @@ const albumIds = [20654769,
     // 'shangye': '商业',
 
 const category = {
-    'youshengshu': '有声书',
+    // 'youshengshu': '有声书',
     'renwen': '人文',
     'jiaoyu': '教育',
     'ertong': '儿童',
