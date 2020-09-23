@@ -15,12 +15,12 @@ const albumIds = [20654769,
 
 const category = {
     // 'youshengshu': '有声书',
-    'renwen': '人文',
-    'jiaoyu': '教育',
-    'ertong': '儿童',
+    // 'renwen': '人文',
+    // 'jiaoyu': '教育',
+    // 'ertong': '儿童',
     // 'xiangsheng': '相声评书',
-    'gongqingtuan': '艺术',
-    // 'youshengshu': '有声书',
+    // 'gongqingtuan': '艺术',
+    'youshengshu': '有声书',
 };
 
 const getRankUrl = (cate) => `https://www.ximalaya.com/revision/rank/v2/element/code?typeCode=paid&clusterCode=${cate}`
