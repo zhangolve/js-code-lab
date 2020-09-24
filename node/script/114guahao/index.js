@@ -58,4 +58,4 @@ async function execuate() {
 
 setInterval(()=>{
   execuate();
-},1000);
+},1000*60*20);
