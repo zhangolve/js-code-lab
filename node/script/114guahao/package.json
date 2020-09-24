@@ -9,7 +9,8 @@
   "author": "zhangolve",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.20.0"
+    "axios": "^0.20.0",
+    "log4js": "^6.3.0"
   },
   "devDependencies": {
     "eslint": "^3.10.2",
