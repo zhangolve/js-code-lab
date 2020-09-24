@@ -64,6 +64,12 @@ export default {
 
 random background
 
+https://cn.vuejs.org/v2/guide/instance.html
+
+生命周期 
+
+
+
 */
 </script>
 
