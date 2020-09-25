@@ -1,6 +1,11 @@
 const axios = require("axios");
 const headers = require('./headers')
+
+
+const cron = require('node-cron');
+
 const url = 'https://www.114yygh.com/web/product/list';
+
 
 const log4js = require('log4js');
 log4js.configure({
@@ -56,6 +61,13 @@ async function execuate() {
     }
 }
 
-setInterval(()=>{
+// 每10分钟去查一次
+const task = cron.schedule('*/10 * * * *', () =>  {
+  logger.info('execute')
   execuate();
-},1000*60*20);
+}, {
+  scheduled: true
+});
+
+task.start();
+
