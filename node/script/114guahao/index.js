@@ -71,3 +71,16 @@ const task = cron.schedule('*/10 * * * *', () =>  {
 
 task.start();
 
+
+/*
+
+&#xf594 代表5
+
+&#xf62b; 代表0
+
+&#xf42c 随机的
+
+https://zhuanlan.zhihu.com/p/37838586
+
+*/
+
