@@ -48,7 +48,8 @@ async function execuate() {
           //{ dutyDate: '2020-09-29', weekDesc: '周二', status: 'SOLD_OUT' }
           // { dutyDate: '2020-09-30', weekDesc: '周三', status: 'SOLD_OUT' }
           const calendar = calendars[i];
-          if( (calendar==='2020-09-29' || calendar==='2020-09-30' ) &&  (status !== 'SOLD_OUT' || status !=='NO_INVENTORY' ) ) {
+          const {dutyDate, status} = calendar;
+          if( (dutyDate==='2020-09-29' || dutyDate==='2020-09-30' ) &&  (status !== 'SOLD_OUT' || status !=='NO_INVENTORY' ) ) {
             axios.get('https://sc.ftqq.com/SCU114867T88e5ff605254c1d9b7937eac8c596fd45f6c9299aed6e.send?text=youhaola');
           }
         }

@@ -99,6 +99,7 @@ const requestOnePage = async (page, {albumTitle, albumId}, basePath, startIndex)
         const haveNextPage = (trackTotalCount - pageSize * pageNum) > 0;
         for (var i = 0; i < tracks.length; i++) {
             if(tracks[i].index > startIndex) {
+                sleep(30);   
                 await downloadTrack(tracks[i], albumTitle, basePath);
                 client.set(albumId, tracks[i].index, redis.print); 
             }
