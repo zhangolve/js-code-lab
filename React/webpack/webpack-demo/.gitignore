@@ -16,3 +16,4 @@ src/ljmall/website/vendor_operator/frontend/node_modules
 src/ljmall/website/vendor_operator/frontend/dist
 npm-debug.log
 yarn-error.log
+.npmrc

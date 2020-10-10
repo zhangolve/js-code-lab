@@ -1,10 +1,8 @@
-function foo() {
-    console.log('fooooooooooooooooooooooooooooooooooooo')
-}
 
 function bar() {
     console.log('barrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr')
 }
 
-export {foo, bar }
+export {bar };
+export {default as foo} from './foo.js';
 
