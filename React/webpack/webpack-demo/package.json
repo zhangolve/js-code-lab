@@ -7,7 +7,7 @@
   "dependencies": {
     "@eb/ui-components": "^0.0.17",
     "css-loader": "^4.3.0",
-    "react": "^16.13.1",
+    "react": "^16.14.0",
     "react-dom": "^16.13.1",
     "style-loader": "^2.0.0"
   },
@@ -25,14 +25,14 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.6.0",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-loader": "^7.1.4",
+    "babel-loader": "^7.1.5",
     "babel-plugin-dynamic-import-node-babel-7": "^2.0.7",
     "babel-preset-env": "^1.7.0",
     "uglifyjs-webpack-plugin": "1.2.5",
-    "webpack": "4.8.3",
-    "webpack-cli": "2.1.2"
+    "webpack": "^4.40.2",
+    "webpack-cli": "^4.1.0"
   },
   "scripts": {
-    "build": "webpack -p --profile --progress --env=prod"
+    "build": "webpack --config ./script.js"
   }
 }
