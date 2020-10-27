@@ -1,7 +1,11 @@
 
-import React from 'react';
+// import React from 'react';
+
 import {bar,foo} from './vendor.js';
-import { Button } from '@eb/ui-components'
+// import { Button } from '@eb/ui-components'
+import { Button } from 'reactstrap'; // 4.7k ...you know..
+
+// import { isNumber } from 'lodash';
 
 foo();
 let a= 10;
