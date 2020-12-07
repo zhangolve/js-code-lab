@@ -68,10 +68,10 @@ const downloadTrack = async ({trackId, index}, albumTitle, basePath) => {
     } catch (e) {
         console.log(e, 'get track failed', albumTitle);
         triedTime++;
-        if(triedTime>3) {
-            return;
-        }
-        await sleep(10);
+        // if(triedTime>3) {
+        //     return;
+        // }
+        await sleep(120**triedTime);
         await downloadTrack({trackId, index}, albumTitle, basePath)
     }
 }
