@@ -43,28 +43,45 @@ const sleep = (time) => {
     })
 }
 
-const getTrackUrl = (trackId) => {
+const getVipTrackUrl = (trackId) => {
     // _ 这个参数有问题，需要破解。 
     var now= +(new Date())
     return `https://mpay.ximalaya.com/mobile/track/pay/${trackId}/${now}?device=pc&isBackend=true&_=${now}`
 }
+
+const getFreeTrackUrl = (trackId) => {
+    return `https://www.ximalaya.com/revision/play/v1/audio?id=${trackId}&ptype=1`
+}
+
 const headers = require('./headers');
 
-const downloadTrack = async ({trackId, index}, albumTitle, basePath) => {
+const downloadTrack = async ({trackId, index, title}, albumTitle, basePath, isFree) => {
     let triedTime = 0;
+    let w4a = null;
     try {
-        const response = await fetch(getTrackUrl(trackId), {
-            method: 'GET',
-            headers,
-            timeout: 30000,
-        }); 
-        const res = await response.json();
-
-        console.log('res', res)
-        const w4a = decode(res);
+        if(isFree) {
+            const response = await fetch(getFreeTrackUrl(trackId), {
+                method: 'GET',
+                headers,
+                timeout: 30000,
+            }); 
+            const res = await response.json();
+            console.log(res)
+            w4a = res.data.src;
+        } else {
+            const response = await fetch(getVipTrackUrl(trackId), {
+                method: 'GET',
+                headers,
+                timeout: 30000,
+            }); 
+            const res = await response.json();
+            console.log(res)
+            w4a = decode(res);
+            title = res.title;
+        }
         const folderPath = Path.resolve(basePath, albumTitle)
         mkdirp.sync(folderPath)
-        await download(w4a, `${numberFormat(index)}-${res.title}`, albumTitle, basePath);
+        await download(w4a, `${numberFormat(index)}-${title}`, albumTitle, basePath);
     } catch (e) {
         console.log(e, 'get track failed', albumTitle);
         triedTime++;
@@ -72,11 +89,11 @@ const downloadTrack = async ({trackId, index}, albumTitle, basePath) => {
         //     return;
         // }
         await sleep(120**triedTime);
-        await downloadTrack({trackId, index}, albumTitle, basePath)
+        await downloadTrack({trackId, index}, albumTitle, basePath, isFree)
     }
 }
 
-const requestOnePage = async (page, {albumTitle, albumId}, basePath, startIndex) => {
+const requestOnePage = async (page, {albumTitle, albumId, isFree}, basePath, startIndex) => {
     try {
         const response = await axios.get(getPageUrl(page), {
             params: {
@@ -99,7 +116,7 @@ const requestOnePage = async (page, {albumTitle, albumId}, basePath, startIndex)
         const haveNextPage = (trackTotalCount - pageSize * pageNum) > 0;
         for (var i = 0; i < tracks.length; i++) {
             if(tracks[i].index > startIndex) {
-                await downloadTrack(tracks[i], albumTitle, basePath);
+                await downloadTrack(tracks[i], albumTitle, basePath, isFree);
                 client.set(albumId, tracks[i].index, redis.print); 
             }
         }
@@ -132,17 +149,19 @@ const getAlbum = async (albumId) => {
 const getAlbumInfo =async (res) => {
     const title = res.data.recommendKw.sourceKw;
     const albumId = res.data.albumId;
+    const isFree = !res.data.mainInfo.priceOp;
+    console.log(res,'res')
     // 不能直接下载精品课程,，应该看看有没有买。
-    if (res.data.mainInfo.vipType === 0) {
-        return {};
-    }
+    // if (res.data.mainInfo.vipType === 0) {
+    //     return {};
+    // }
     // isFinished ==2 完本 
     const isFinished = res.data.mainInfo.isFinished ;
     const {crumbs} = res.data.mainInfo;
     const {categoryTitle} =crumbs;
     const redisAlbumIndex = await getAsync(albumId.toString()) 
     let index = parseInt( redisAlbumIndex || 0);
-    return {title, index,isFinished, categoryTitle};
+    return {title, index,isFinished, categoryTitle, isFree};
 }
 
 
@@ -152,13 +171,12 @@ const downloadAlbum = async (albumId, startPage) => {
     if(finishedAlbumIds.includes(albumId.toString())) {
         return;
     }
-
     const res = await getAlbum(albumId);
     if(res.ret!==200) {
         console.log('album failed')
         return ;
     }
-    let {title,index, isFinished, categoryTitle} = await getAlbumInfo(res);
+    let {title,index, isFinished, categoryTitle, isFree} = await getAlbumInfo(res);
     page = parseInt(startPage || Math.floor(index/30)+1);
     const getPageUrlHof = (albumId) => (page) => `https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=${albumId}&pageNum=${page}&sort=0`;
     getPageUrl = getPageUrlHof(albumId);
@@ -170,7 +188,7 @@ const downloadAlbum = async (albumId, startPage) => {
     const folderPath = Path.resolve(basePath, categoryTitle);
     let startIndex = index;
     while(haveNextPage) {
-        haveNextPage = await requestOnePage(page, {albumTitle: title, albumId}, folderPath, startIndex);
+        haveNextPage = await requestOnePage(page, {albumTitle: title, albumId, isFree}, folderPath, startIndex);
         page = page +1; 
         startIndex = 0;
     }
