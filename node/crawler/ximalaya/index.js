@@ -129,7 +129,7 @@ const requestOnePage = async (page, {albumTitle, albumId, isFree}, basePath, sta
 
 
 const getAlbum = async (albumId) => {
-    const getAlubmTitleUrl = (albumId) => `https://www.ximalaya.com/revision/album?albumId=${albumId}`
+    const getAlubmTitleUrl = (albumId) => `https://www.ximalaya.com/revision/album/v1/simple?albumId=${albumId}`
     try {
         const response = await axios.get(getAlubmTitleUrl(albumId), {
             params: {
@@ -146,19 +146,36 @@ const getAlbum = async (albumId) => {
     }
 }
 
+const getAlbumCategory = async (albumId) => {
+    const getAlbumCategoryUrl = (albumId) => `https://www.ximalaya.com/revision/category/queryProductCategory?ptype=1&id=${albumId}`;
+    try {
+        const response = await axios.get(getAlbumCategoryUrl(albumId), {
+            params: {
+                method: 'GET',
+                headers,
+                timeout: 30000,
+            }
+        });
+        console.log(response.data);
+        const res = response.data.data.category.categoryTitle;
+        return res;
+    } catch (e) {
+        console.log(e, 'get album category error');
+        await getAlbumCategory(albumId);
+    }
+}
+
 const getAlbumInfo =async (res) => {
-    const title = res.data.recommendKw.sourceKw;
+    const title = res.data.albumPageMainInfo.albumTitle;
     const albumId = res.data.albumId;
-    const isFree = !res.data.mainInfo.priceOp;
-    console.log(res,'res')
+    const isFree = !res.data.albumPageMainInfo.priceOp;
     // 不能直接下载精品课程,，应该看看有没有买。
-    // if (res.data.mainInfo.vipType === 0) {
-    //     return {};
-    // }
+    if (res.data.albumPageMainInfo.vipType === 0) {
+        return {};
+    }
     // isFinished ==2 完本 
-    const isFinished = res.data.mainInfo.isFinished ;
-    const {crumbs} = res.data.mainInfo;
-    const {categoryTitle} =crumbs;
+    const isFinished = res.data.albumPageMainInfo.isFinished ;
+    const categoryTitle=await getAlbumCategory(albumId);
     const redisAlbumIndex = await getAsync(albumId.toString()) 
     let index = parseInt( redisAlbumIndex || 0);
     return {title, index,isFinished, categoryTitle, isFree};
@@ -172,12 +189,14 @@ const downloadAlbum = async (albumId, startPage) => {
         return;
     }
     const res = await getAlbum(albumId);
+    console.log(res)
     if(res.ret!==200) {
         console.log('album failed')
         return ;
     }
     let {title,index, isFinished, categoryTitle, isFree} = await getAlbumInfo(res);
     page = parseInt(startPage || Math.floor(index/30)+1);
+    // getPageUrl   https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=
     const getPageUrlHof = (albumId) => (page) => `https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=${albumId}&pageNum=${page}&sort=0`;
     getPageUrl = getPageUrlHof(albumId);
     if (!title) {
