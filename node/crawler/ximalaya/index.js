@@ -3,6 +3,7 @@ const fs = require('fs')
 
 const fetch = require('node-fetch');
 const decode = require('./decode')
+const getSign = require('./getSign')
 const download = require('./download3');
 const mkdirp = require('mkdirp');
 const Path = require('path')
@@ -95,15 +96,23 @@ const downloadTrack = async ({trackId, index, title}, albumTitle, basePath, isFr
 
 const requestOnePage = async (page, {albumTitle, albumId, isFree}, basePath, startIndex) => {
     try {
+        var sign = getSign();
+        console.log('sign',sign)
+        const newHeaders  = {
+            ...headers,
+            'xm-sign': sign
+        };
+        console.log(newHeaders)
         const response = await axios.get(getPageUrl(page), {
             params: {
                 method: 'GET',
                 gzip: true,
-                headers,
+                headers: newHeaders,
                 timeout: 30000,
             }
         });
         const res = response.data;
+        console.log('onepage', res)
         const {
             data
         } = res;
@@ -123,7 +132,7 @@ const requestOnePage = async (page, {albumTitle, albumId, isFree}, basePath, sta
         return haveNextPage;
     } catch (e) {
         console.log(e, 'request one page failed');
-        await requestOnePage(page, {albumTitle, albumId}, basePath, startIndex)
+        // await requestOnePage(page, {albumTitle, albumId}, basePath, startIndex)
     }
 }
 
