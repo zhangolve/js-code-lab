@@ -22,7 +22,7 @@
 //         , d = "".concat(h, "?").concat(stringfy(f));
 //     return d;
 // }
-
+console.log('8888')
 function ee(t) {
     var e = t,
         r = t;

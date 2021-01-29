@@ -44,10 +44,12 @@ const sleep = (time) => {
     })
 }
 
-const getVipTrackUrl = (trackId) => {
-    // _ 这个参数有问题，需要破解。 
-    var now= +(new Date())
-    return `https://mpay.ximalaya.com/mobile/track/pay/${trackId}/${now}?device=pc&isBackend=true&_=${now}`
+const getVipTrackUrl = (trackId, e) => {
+    var re = "https://mpay.".concat("ximalaya.com");
+    var r = "video" === e ? "video/" : "";
+    var url = "".concat(re, "/mobile/track/pay/").concat(r).concat(trackId, "/ts-").concat(Date.now()).concat('?trackQualityLevel=1&device=pc&th_engine=encrypt&isBackend=false')
+    console.log(url);
+    return url
 }
 
 const getFreeTrackUrl = (trackId) => {
@@ -67,7 +69,6 @@ const downloadTrack = async ({trackId, index, title}, albumTitle, basePath, isFr
                 timeout: 30000,
             }); 
             const res = await response.json();
-            console.log(res)
             w4a = res.data.src;
         } else {
             const response = await fetch(getVipTrackUrl(trackId), {
@@ -76,8 +77,9 @@ const downloadTrack = async ({trackId, index, title}, albumTitle, basePath, isFr
                 timeout: 30000,
             }); 
             const res = await response.json();
-            console.log(res)
+            console.log(res,'res')
             w4a = decode(res);
+            console.log(w4a,'w4a')
             title = res.title;
         }
         const folderPath = Path.resolve(basePath, albumTitle)
@@ -102,17 +104,12 @@ const requestOnePage = async (page, {albumTitle, albumId, isFree}, basePath, sta
             ...headers,
             'xm-sign': sign
         };
-        console.log(newHeaders)
+        // console.log(newHeaders)
         const response = await axios.get(getPageUrl(page), {
-            params: {
-                method: 'GET',
-                gzip: true,
-                headers: newHeaders,
-                timeout: 30000,
-            }
+            timeout: 30000,
+            headers: newHeaders,
         });
         const res = response.data;
-        console.log('onepage', res)
         const {
             data
         } = res;
@@ -220,6 +217,7 @@ const downloadAlbum = async (albumId, startPage) => {
         page = page +1; 
         startIndex = 0;
     }
+    return;
     console.log('download album successfully', albumId, title)
     // redis-cli --raw keys "ops-coffee-*" | xargs redis-cli del
     client.on("error", function (err) {

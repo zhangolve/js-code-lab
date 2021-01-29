@@ -534,5 +534,5 @@ var U = new(l((function(t, e) {
     }, "object" !== s("0x0") ? t[s("0x1")] = a() : (o = o || self).xmSign = a()
 })));
 
-// console.log(U.getSign())
+console.log(U.getSign())
 module.exports = U.getSign; 
