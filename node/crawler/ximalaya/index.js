@@ -48,7 +48,6 @@ const getVipTrackUrl = (trackId, e) => {
     var re = "https://mpay.".concat("ximalaya.com");
     var r = "video" === e ? "video/" : "";
     var url = "".concat(re, "/mobile/track/pay/").concat(r).concat(trackId, "/ts-").concat(Date.now()).concat('?trackQualityLevel=1&device=pc&th_engine=encrypt&isBackend=false')
-    console.log(url);
     return url
 }
 
@@ -77,9 +76,7 @@ const downloadTrack = async ({trackId, index, title}, albumTitle, basePath, isFr
                 timeout: 30000,
             }); 
             const res = await response.json();
-            console.log(res,'res')
-            w4a = decode(res);
-            console.log(w4a,'w4a')
+            w4a = await decode(res);
             title = res.title;
         }
         const folderPath = Path.resolve(basePath, albumTitle)
@@ -99,12 +96,10 @@ const downloadTrack = async ({trackId, index, title}, albumTitle, basePath, isFr
 const requestOnePage = async (page, {albumTitle, albumId, isFree}, basePath, startIndex) => {
     try {
         var sign = getSign();
-        console.log('sign',sign)
         const newHeaders  = {
             ...headers,
             'xm-sign': sign
         };
-        // console.log(newHeaders)
         const response = await axios.get(getPageUrl(page), {
             timeout: 30000,
             headers: newHeaders,
@@ -162,7 +157,6 @@ const getAlbumCategory = async (albumId) => {
                 timeout: 30000,
             }
         });
-        console.log(response.data);
         const res = response.data.data.category.categoryTitle;
         return res;
     } catch (e) {
@@ -195,7 +189,6 @@ const downloadAlbum = async (albumId, startPage) => {
         return;
     }
     const res = await getAlbum(albumId);
-    console.log(res)
     if(res.ret!==200) {
         console.log('album failed')
         return ;
