@@ -6210,7 +6210,6 @@ var award_c4d81 = function(t) {
 
                 function F(t, e) {
                     var result= e >>> 0 >= o[(t + 8 | 0) >> 2] >>> 0;
-                    console.log(t, e);
                     // return result;
                     return a[(o[(t + 4 | 0) >> 2] + e | 0) >> 0];
                 }
@@ -6643,18 +6642,23 @@ var award_c4d81 = function(t) {
                 for (var e, r, n, i = "", o = 0; o < t.length;) e = It.indexOf(t.charAt(o++)) << 18 | It.indexOf(t.charAt(o++)) << 12 | (r = It.indexOf(t.charAt(o++))) << 6 | (n = It.indexOf(t.charAt(o++))), i += 64 === r ? String.fromCharCode(e >> 16 & 255) : 64 === n ? String.fromCharCode(e >> 16 & 255, e >> 8 & 255) : String.fromCharCode(e >> 16 & 255, e >> 8 & 255, 255 & e);
                 return i
             });
-            var Bt = new ArrayBuffer(65536),
-                Dt = function(t) {
+            var Bt = new ArrayBuffer(65536);
+            var abcde = Bt.slice();
+            console.log(Bt, abcde, 'BTTTTTTTT')
+             var Dt = function(t) {
                     var e = new Uint8Array(t);
                     return function(t, r) {
                         var i;
                         if (void 0 === n) {
                             i = Rt.atob(r);
                             for (var o = 0; o < i.length; o++) e[t + o] = i.charCodeAt(o)
-                        } else
+                        } else{
                             for (i = n.from(r, "base64"), o = 0; o < i.length; o++) e[t + o] = i[o]
+                        }
                     }
                 }(Bt);
+                console.log(Bt, 'BTTTTTTTT')
+            window.Bt = Bt;
             Dt(8, "HgAAAAEAAAABAAAAHgAAAH4AbABpAGIALwByAHQALwB0AGwAcwBmAC4AdABz"), Dt(56, "KAAAAAEAAAABAAAAKAAAAGEAbABsAG8AYwBhAHQAaQBvAG4AIAB0AG8AbwAgAGwAYQByAGcAZQ=="), Dt(112, "HgAAAAEAAAABAAAAHgAAAH4AbABpAGIALwByAHQALwBwAHUAcgBlAC4AdABz"), Dt(160, "JAAAAAEAAAABAAAAJAAAAEkAbgBkAGUAeAAgAG8AdQB0ACAAbwBmACAAcgBhAG4AZwBl"), Dt(216, "FAAAAAEAAAABAAAAFAAAAH4AbABpAGIALwByAHQALgB0AHM="), Dt(257, "AgAAAQ=="), Dt(269, "AgAA/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////z4AAAD///////////////8/AAAANAAAADUAAAA2AAAANwAAADgAAAA5AAAAOgAAADsAAAA8AAAAPQAAAP////////////////////////////////////8AAAAAAQAAAAIAAAADAAAABAAAAAUAAAAGAAAABwAAAAgAAAAJAAAACgAAAAsAAAAMAAAADQAAAA4AAAAPAAAAEAAAABEAAAASAAAAEwAAABQAAAAVAAAAFgAAABcAAAAYAAAAGQAAAP///////////////////////////////xoAAAAbAAAAHAAAAB0AAAAeAAAAHwAAACAAAAAhAAAAIgAAACMAAAAkAAAAJQAAACYAAAAnAAAAKAAAACkAAAAqAAAAKwAAACwAAAAtAAAALgAAAC8AAAAwAAAAMQAAADIAAAAzAAAA//////////////////////////8="), Dt(784, "EAAAAAEAAAADAAAAEAAAABABAAAQAQAAAAIAAIA="), Dt(817, "AQAAAQ=="), Dt(829, "AQAAY3x3e/Jrb8UwAWcr/terdsqCyX36WUfwrdSir5ykcsC3/ZMmNj/3zDSl5fFx2DEVBMcjwxiWBZoHEoDi6yeydQmDLBobblqgUjvWsynjL4RT0QDtIPyxW2rLvjlKTFjP0O+q+0NNM4VF+QJ/UDyfqFGjQI+SnTj1vLbaIRD/89LNDBPsX5dEF8Snfj1kXRlzYIFP3CIqkIhG7rgU3l4L2+AyOgpJBiRcwtOsYpGV5HnnyDdtjdVOqWxW9Opleq4IunglLhymtMbo3XQfS72LinA+tWZIA/YOYTVXuYbBHZ7h+JgRadmOlJseh+nOVSjfjKGJDb/mQmhBmS0PsFS7Fg=="), Dt(1088, "EAAAAAEAAAAEAAAAEAAAAEADAABAAwAAAAEAAAAB"), Dt(1121, "AQAAAQ=="), Dt(1133, "AQAAUglq1TA2pTi/QKOegfPX+3zjOYKbL/+HNI5DRMTe6ctUe5QypsIjPe5MlQtC+sNOCC6hZijZJLJ2W6JJbYvRJXL49mSGaJgW1KRczF1ltpJscEhQ/e252l4VRlenjZ2EkNirAIy80wr35FgFuLNFBtAsHo/KPw8Cwa+9AwETims6kRFBT2fc6pfyz87wtOZzlqx0IuetNYXi+TfoHHXfbkfxGnEdKcWJb7diDqoYvhv8Vj5LxtJ5IJrbwP54zVr0H92oM4gHxzGxEhBZJ4DsX2BRf6kZtUoNLeV6n5PJnO+g4DtNrir1sMjruzyDU5lhFysEfrp31ibhaRRjVSEMfQ=="), Dt(1392, "EAAAAAEAAAAEAAAAEAAAAHAEAABwBAAAAAEAAAAB"), Dt(1424, "CwAAAAEAAAAAAAAACwAAAI0BAgQIECBAgBs2"), Dt(1456, "EAAAAAEAAAAEAAAAEAAAAKAFAACgBQAACwAAAAs="), Dt(1489, "AQAAAQ=="), Dt(1501, "AQAAAAkSGyQtNj9IQVpTbGV+d5CZgou0vaav2NHKw/z17uc7MikgHxYNBHN6YWhXXkVMq6K5sI+GnZTj6vH4x87V3HZ/ZG1SW0BJPjcsJRoTCAHm7/T9wsvQ2a6nvLWKg5iRTURfVmlge3IFDBceISgzOt3Uz8b58OvilZyHjrG4o6rs5f73yMHa06Sttr+AiZKbfHVuZ1hRSkM0PSYvEBkCC9fexczz+uHon5aNhLuyqaBHTlVcY2pxeA8GHRQrIjkwmpOIgb63rKXS28DJ9v/k7QoDGBEuJzw1QktQWWZvdH2hqLO6hYyXnung+/LNxN/WMTgjKhUcBw55cGtiXVRPRg=="), Dt(1760, "EAAAAAEAAAAEAAAAEAAAAOAFAADgBQAAAAEAAAAB"), Dt(1793, "AQAAAQ=="), Dt(1805, "AQAAAAsWHSwnOjFYU05FdH9iabC7pq2cl4qB6OP+9cTP0tl7cG1mV1xBSiMoNT4PBBkSy8Dd1ufs8fqTmIWOv7Spovb94Ova0czHrqW4s4KJlJ9GTVBbamF8dx4VCAMyOSQvjYabkKGqt7zV3sPI+fLv5D02KyARGgcMZW5zeElCX1T3/OHq29DNxq+kubKDiJWeR0xRWmtgfXYfFAkCMzglLoyHmpGgq7a91N/Cyfjz7uU8NyohEBsGDWRvcnlIQ15VAQoXHC0mOzBZUk9EdX5jaLG6p6ydlouA6eL/9MXO09h6cWxnVl1ASyIpND8OBRgTysHc1+bt8PuSmYSPvrWoow=="), Dt(2064, "EAAAAAEAAAAEAAAAEAAAABAHAAAQBwAAAAEAAAAB"), Dt(2097, "AQAAAQ=="), Dt(2109, "AQAAAA0aFzQ5LiNoZXJ/XFFGS9Ddysfk6f7zuLWir4yBlpu7tqGsj4KVmNPeycTn6v3wa2ZxfF9SRUgDDhkUNzotIG1gd3pZVENOBQgfEjE8Kya9sKeqiYSTntXYz8Lh7Pv21tvMweLv+PW+s6SpioeQnQYLHBEyPyglbmN0eVpXQE3a18DN7uP0+bK/qKWGi5yRCgcQHT4zJClib3h1VltMQWFse3ZVWE9CCQQTHj0wJyqxvKumhYifktnUw87t4Pf6t7qtoIOOmZTf0sXI6+bx/GdqfXBTXklEDwIVGDs2ISwMARYbODUiL2RpfnNQXUpH3NHGy+jl8v+0ua6jgI2alw=="), Dt(2368, "EAAAAAEAAAAEAAAAEAAAAEAIAABACAAAAAEAAAAB"), Dt(2401, "AQAAAQ=="), Dt(2413, "AQAAAA4cEjg2JCpwfmxiSEZUWuDu/PLY1sTKkJ6MgqimtLrb1cfJ4+3/8ault7mTnY+BOzUnKQMNHxFLRVdZc31vYa2jsb+Vm4mH3dPBz+Xr+fdNQ1FfdXtpZz0zIS8FCxkXdnhqZE5AUlwGCBoUPjAiLJaYioSuoLK85uj69N7QwsxBT11TeXdlazE/LSMJBxUboa+9s5mXhYvR383D6ef1+5qUhoiirL6w6uT2+NLczsB6dGZoQkxeUAoEFhgyPC4g7OLw/tTayMackoCOpKq4tgwCEB40OigmfHJgbkRKWFY3OSslDwETHUdJW1V/cWNt19nLxe/h8/2nqbu1n5GDjQ=="), Dt(2672, "EAAAAAEAAAAEAAAAEAAAAHAJAABwCQAAAAEAAAAB"), Dt(2704, "EAAAAAEAAAAAAAAAEAAAAGQ0MWQ4Y2Q5OGYwMGIyMDQ="), Dt(2736, "EAAAAAEAAAAEAAAAEAAAAKAKAACgCgAAEAAAABA="), Dt(2772, "AQ=="), Dt(2788, "AQ=="), Dt(2800, "GgAAAAEAAAABAAAAGgAAAH4AbABpAGIALwBhAHIAcgBhAHkALgB0AHM="), Dt(2848, "HAAAAAEAAAABAAAAHAAAAEkAbgB2AGEAbABpAGQAIABsAGUAbgBnAHQAaA=="), Dt(2896, "QAAAAAEAAAAAAAAAQAAAAGUAAAA5AAAAOAAAADAAAAAwAAAAOQAAADkAAAA4AAAAZQAAAGMAAABmAAAAOAAAADQAAAAyAAAANwAAAGU="), Dt(2976, "EAAAAAEAAAADAAAAEAAAAGALAABgCwAAQAAAABA="), Dt(3008, "kAAAAAEAAAAAAAAAkAAAABMAAAABAAAABAAAAAcAAAAeAAAADgAAABwAAAAIAAAAGAAAABEAAAAGAAAAIwAAACIAAAAQAAAACQAAAAoAAAANAAAAFgAAACAAAAAdAAAAHwAAABUAAAASAAAAAwAAAAIAAAAXAAAAGQAAABsAAAALAAAAFAAAAAUAAAAPAAAADAAAAAAAAAAhAAAAGg=="), Dt(3168, "EAAAAAEAAAADAAAAEAAAANALAADQCwAAkAAAACQ="), Dt(3204, "AQAAAAE="), Dt(3216, "CAAAAAEAAAABAAAACAAAAG4AdQBsAGw="), Dt(3244, "AQ=="), Dt(3256, "XgAAAAEAAAABAAAAXgAAAEUAbABlAG0AZQBuAHQAIAB0AHkAcABlACAAbQB1AHMAdAAgAGIAZQAgAG4AdQBsAGwAYQBiAGwAZQAgAGkAZgAgAGEAcgByAGEAeQAgAGkAcwAgAGgAbwBsAGUAeQ=="), Dt(3372, "AQ=="), Dt(3388, "AQ=="), Dt(3404, "AQ=="), Dt(3416, "BgAAABAAAAAAAAAAEAAAAAAAAAAQAAAAAAAAAJMEAAACAAAAMwAAAAIAAACTIAAAAg==");
             var Lt = Pt({
                     Math: Math,
@@ -6718,7 +6722,7 @@ var award_c4d81 = function(t) {
                 }();
 
             function jt() {
-                return Qt ? (t = {
+                return !Qt ? (t = {
                     env: {
                         memory: new WebAssembly.Memory({
                             initial: 1
@@ -7018,7 +7022,6 @@ var award_c4d81 = function(t) {
                     }, {
                         key: "parse",
                         value: function(t) {
-                            console.log(t,'t')
                             if (ie === Kt) return "";
                             var e = this.options.linkProtectorCDN,
                                 r = t.fileId,
@@ -18650,7 +18653,7 @@ var award_c4d81 = function(t) {
     }
 
     function it(t) {
-        et ? rt ? rt.push(t) : rt = [t] : et = t
+        et ? rt ? rt.push(t) : rt = [t] : et = tW
     }
 
     function ot() {
@@ -26786,7 +26789,7 @@ var award_c4d81 = function(t) {
         var n = r(291),
             i = r(292),
             o = r(293);
-
+        console.log(i, 'iiiiiiiiiiiiiiiii');
         function a() {
             return u.TYPED_ARRAY_SUPPORT ? 2147483647 : 1073741823
         }
@@ -27451,13 +27454,18 @@ var award_c4d81 = function(t) {
         }
 
         function j(t) {
-            return n.toByteArray(function(t) {
+            var F = /[^+\/0-9A-Za-z-_]/g;
+            var abc = function(t) {
                 if ((t = function(t) {
                         return t.trim ? t.trim() : t.replace(/^\s+|\s+$/g, "")
                     }(t).replace(F, "")).length < 2) return "";
                 for (; t.length % 4 != 0;) t += "=";
                 return t
-            }(t))
+            }(t);
+            console.log(abc,'abcccc')
+            var cde = n.toByteArray(abc);
+            console.log(cde,'cdeeeeee')
+            return cde;
         }
 
         function H(t, e, r, n) {
@@ -27467,7 +27475,7 @@ var award_c4d81 = function(t) {
     }).call(this, r(16))
 }, function(t, e, r) {
     "use strict";
-    e.byteLength = function(t) {
+        e.byteLength = function(t) {
         var e = l(t),
             r = e[0],
             n = e[1];
@@ -27481,6 +27489,7 @@ var award_c4d81 = function(t) {
             }(0, a, s)),
             c = 0,
             f = s > 0 ? a - 4 : a;
+            console.log(i,'iiiiiiiiiiiiiiiiiiii')
         for (r = 0; r < f; r += 4) e = i[t.charCodeAt(r)] << 18 | i[t.charCodeAt(r + 1)] << 12 | i[t.charCodeAt(r + 2)] << 6 | i[t.charCodeAt(r + 3)], u[c++] = e >> 16 & 255, u[c++] = e >> 8 & 255, u[c++] = 255 & e;
         2 === s && (e = i[t.charCodeAt(r)] << 2 | i[t.charCodeAt(r + 1)] >> 4, u[c++] = 255 & e);
         1 === s && (e = i[t.charCodeAt(r)] << 10 | i[t.charCodeAt(r + 1)] << 4 | i[t.charCodeAt(r + 2)] >> 2, u[c++] = e >> 8 & 255, u[c++] = 255 & e);

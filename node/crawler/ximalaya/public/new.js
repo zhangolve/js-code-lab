@@ -385,12 +385,14 @@ function Pt(t, e, r) {
 
     function R(t) {
         var e, r;
+        
         r = 268435455 & (e = o[(t + 4 | 0) >> 2]) | 0, 1 & o[t >> 2] | 0 && (d(0, 128, 115, 13), f()), 1 == (0 | r) ? (ot(t + 16 | 0, 1), -2147483648 & e | 0 ? o[(t + 4 | 0) >> 2] = -2147483648 : _(h, t)) : (r >>> 0 <= 0 && (d(0, 128, 124, 15), f()), 16 & function(t) {
-            return t >>> 0 > o[854] >>> 0 && (d(176, 232, 22, 27), f()), o[(3420 + (t << 3 | 0) | 0) >> 2]
+            return t >>> 0 > o[854] >>> 0 , o[(3420 + (t << 3 | 0) | 0) >> 2]
         }(o[(t + 8 | 0) >> 2]) | 0 ? o[(t + 4 | 0) >> 2] = r - 1 | 0 | -268435456 & e | 0 : (o[(t + 4 | 0) >> 2] = r - 1 | 0 | -1342177280 | 0, -2147483648 & e | 0 || function(t) {
             var e = 0;
             (e = p) >>> 0 >= g >>> 0 && (O(), e = p), o[e >> 2] = t, p = e + 4 | 0
-        }(t)))
+        }(t)));
+
     }
 
     function P(t) {
@@ -423,8 +425,6 @@ function Pt(t, e, r) {
 
     function F(t, e) {
         var result= e >>> 0 >= o[(t + 8 | 0) >> 2] >>> 0;
-        console.log(t, e);
-        // return result;
         return a[(o[(t + 4 | 0) >> 2] + e | 0) >> 0];
     }
 
@@ -876,13 +876,138 @@ function Pu(t, e) {
     }, r.sibling = t.sibling, r.index = t.index, r.ref = t.ref, r
 }
 
-function i(t, e, r) {
-    return (t = Pu(t, e)).index = 0, t.sibling = null, t
+// function i(t, e, r) {
+//     return (t = Pu(t, e)).index = 0, t.sibling = null, t
+// }
+
+function j(t) {
+    var F = /[^+\/0-9A-Za-z-_]/g;
+    var abc = function(t) {
+        if ((t = function(t) {
+                return t.trim ? t.trim() : t.replace(/^\s+|\s+$/g, "")
+            }(t).replace(F, "")).length < 2) return "";
+        for (; t.length % 4 != 0;) t += "=";
+        return t
+    }(t);
+    console.log(abc,'abcccc')
+    var cde = u.toByteArray(abc);
+    console.log(cde,'cdeeeeee')
+    return cde;
+}
+
+function p(t, e) {
+    if (u.isBuffer(t)) return t.length;
+    if ("undefined" != typeof ArrayBuffer && "function" == typeof ArrayBuffer.isView && (ArrayBuffer.isView(t) || t instanceof ArrayBuffer)) return t.byteLength;
+    "string" != typeof t && (t = "" + t);
+    var r = t.length;
+    if (0 === r) return 0;
+    for (var n = !1;;) switch (e) {
+        case "ascii":
+        case "latin1":
+        case "binary":
+            return r;
+        case "utf8":
+        case "utf-8":
+        case void 0:
+            return Q(t).length;
+        case "ucs2":
+        case "ucs-2":
+        case "utf16le":
+        case "utf-16le":
+            return 2 * r;
+        case "hex":
+            return r >>> 1;
+        case "base64":
+            return j(t).length;
+        default:
+            if (n) return Q(t).length;
+            e = ("" + e).toLowerCase(), n = !0
+    }
+}
+
+function a() {
+    return u.TYPED_ARRAY_SUPPORT ? 2147483647 : 1073741823
+}
+
+function s(t, e) {
+    if (a() < e) throw new RangeError("Invalid typed array length");
+    return u.TYPED_ARRAY_SUPPORT ? (t = new Uint8Array(e)).__proto__ = u.prototype : (null === t && (t = new u(e)), t.length = e), t
 }
 
 
 function l(t, e, r, n) {
-    return null !== e && e.elementType === r.type ? ((n = i(e, r.props)).ref = Oo(t, e, r), n.return = t, n) : ((n = Bu(r.type, r.key, r.props, null, t.mode, n)).ref = Oo(t, e, r), n.return = t, n)
+    if ("number" == typeof e) throw new TypeError('"value" argument must not be a number');
+    return "undefined" != typeof ArrayBuffer && e instanceof ArrayBuffer ? function(t, e, r, n) {
+        if (e.byteLength, r < 0 || e.byteLength < r) throw new RangeError("'offset' is out of bounds");
+        if (e.byteLength < r + (n || 0)) throw new RangeError("'length' is out of bounds");
+        e = void 0 === r && void 0 === n ? new Uint8Array(e) : void 0 === n ? new Uint8Array(e, r) : new Uint8Array(e, r, n);
+        u.TYPED_ARRAY_SUPPORT ? (t = e).__proto__ = u.prototype : t = d(t, e);
+        return t
+    }(t, e, r, n) : "string" == typeof e ? function(t, e, r) {
+        "string" == typeof r && "" !== r || (r = "utf8");
+        if (!u.isEncoding(r)) throw new TypeError('"encoding" must be a valid string encoding');
+        var n = 0 | p(e, r);
+        var  i = (t = s(t, n)).write(e, r);
+        i !== n && (t = t.slice(0, i));
+        return t
+    }(t, e, r) : function(t, e) {
+        if (u.isBuffer(e)) {
+            var r = 0 | h(e.length);
+            return 0 === (t = s(t, r)).length || e.copy(t, 0, 0, r), t
+        }
+        if (e) {
+            if ("undefined" != typeof ArrayBuffer && e.buffer instanceof ArrayBuffer || "length" in e) return "number" != typeof e.length || (n = e.length) != n ? s(t, 0) : d(t, e);
+            if ("Buffer" === e.type && o(e.data)) return d(t, e.data)
+        }
+        var n;
+        throw new TypeError("First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.")
+    }(t, e)
+}
+
+
+function c(t) {
+    if ("number" != typeof t) throw new TypeError('"size" argument must be a number');
+    if (t < 0) throw new RangeError('"size" argument must not be negative')
+}
+
+function f(t, e) {
+    if (c(e), t = s(t, e < 0 ? 0 : 0 | h(e)), !u.TYPED_ARRAY_SUPPORT)
+        for (var r = 0; r < e; ++r) t[r] = 0;
+    return t
+}
+
+function d(t, e) {
+    var r = e.length < 0 ? 0 : 0 | h(e.length);
+    t = s(t, r);
+    for (var n = 0; n < r; n += 1) t[n] = 255 & e[n];
+    return t
+}
+
+function h(t) {
+    if (t >= a()) throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x" + a().toString(16) + " bytes");
+    return 0 | t
+}
+
+function H(t, e, r, n) {
+    for (var i = 0; i < n && !(i + r >= e.length || i >= t.length); ++i) e[i + r] = t[i];
+    return i
+}
+
+// function j(t) {
+//     return n.toByteArray(function(t) {
+//         if ((t = function(t) {
+//                 return t.trim ? t.trim() : t.replace(/^\s+|\s+$/g, "")
+//             }(t).replace(F, "")).length < 2) return "";
+//         for (; t.length % 4 != 0;) t += "=";
+//         return t
+//     }(t))
+// }
+
+function T(t, e, r, n) {
+    console.log(H(j(e), t, r, n));
+    console.log(j(e))
+    console.log('888888888888888')
+    return H(j(e), t, r, n)
 }
 
 function u(t, e, r) {
@@ -893,6 +1018,7 @@ function u(t, e, r) {
     }
     return l(this, t, e, r)
 }
+u.TYPED_ARRAY_SUPPORT=true,
 u._augment = function(t) {
     return t.__proto__ = u.prototype, t
 }, u.from = function(t, e, r) {
@@ -1031,21 +1157,67 @@ u._augment = function(t) {
         type: "Buffer",
         data: Array.prototype.slice.call(this._arr || this, 0)
     }
+},
+u.byteLength = function(t) {
+    function l(t) {
+        var e = t.length;
+        if (e % 4 > 0) throw new Error("Invalid string. Length must be a multiple of 4");
+        var r = t.indexOf("=");
+        return -1 === r && (r = e), [r, r === e ? 0 : 4 - r % 4]
+    }
+    var e = l(t),
+        r = e[0],
+        n = e[1];
+    return 3 * (r + n) / 4 - n
+}, u.toByteArray = function(t) {
+    function l(t) {
+        var e = t.length;
+        if (e % 4 > 0) throw new Error("Invalid string. Length must be a multiple of 4");
+        var r = t.indexOf("=");
+        return -1 === r && (r = e), [r, r === e ? 0 : 4 - r % 4]
+    }
+    var  o =Uint8Array;
+    var e, r, n = l(t),
+        a = n[0],
+        s = n[1],
+        u = new o(function(t, e, r) {
+            return 3 * (e + r) / 4 - r
+        }(0, a, s)),
+        c = 0,
+        f = s > 0 ? a - 4 : a;
+    console.log(i,'iiiiiiiiiiiiiiiiiiiiiiiiiiii')
+    for (r = 0; r < f; r += 4) e = i[t.charCodeAt(r)] << 18 | i[t.charCodeAt(r + 1)] << 12 | i[t.charCodeAt(r + 2)] << 6 | i[t.charCodeAt(r + 3)], u[c++] = e >> 16 & 255, u[c++] = e >> 8 & 255, u[c++] = 255 & e;
+    2 === s && (e = i[t.charCodeAt(r)] << 2 | i[t.charCodeAt(r + 1)] >> 4, u[c++] = 255 & e);
+    1 === s && (e = i[t.charCodeAt(r)] << 10 | i[t.charCodeAt(r + 1)] << 4 | i[t.charCodeAt(r + 2)] >> 2, u[c++] = e >> 8 & 255, u[c++] = 255 & e);
+    return u
+}, u.fromByteArray = function(t) {
+    var  o =Uint8Array;
+    for (var e, r = t.length, i = r % 3, o = [], a = 0, s = r - i; a < s; a += 16383) o.push(c(t, a, a + 16383 > s ? s : a + 16383));
+    1 === i ? (e = t[r - 1], o.push(n[e >> 2] + n[e << 4 & 63] + "==")) : 2 === i && (e = (t[r - 2] << 8) + t[r - 1], o.push(n[e >> 10] + n[e >> 4 & 63] + n[e << 2 & 63] + "="));
+    return o.join("")
 };
+
+// very important
+for (var nabc = [], i = [], o = "undefined" != typeof Uint8Array ? Uint8Array : Array, aabc = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/", sabc = 0, uabc = aabc.length; sabc < uabc; ++sabc) nabc[sabc] = a[sabc], i[aabc.charCodeAt(sabc)] = sabc;
+
 var n=u;
 var Bt = new ArrayBuffer(65536);
-    // Dt = function(t) {
-    //     var e = new Uint8Array(t);
-    //     return function(t, r) {
-    //         var i;
-    //         if (void 0 === n) {
-    //             i = Rt.atob(r);
-    //             for (var o = 0; o < i.length; o++) e[t + o] = i.charCodeAt(o)
-    //         } else
-    //             for (i = n.from(r, "base64"), o = 0; o < i.length; o++) e[t + o] = i[o]
-    //     }
-    // }(Bt);
-// Dt(8, "HgAAAAEAAAABAAAAHgAAAH4AbABpAGIALwByAHQALwB0AGwAcwBmAC4AdABz"), Dt(56, "KAAAAAEAAAABAAAAKAAAAGEAbABsAG8AYwBhAHQAaQBvAG4AIAB0AG8AbwAgAGwAYQByAGcAZQ=="), Dt(112, "HgAAAAEAAAABAAAAHgAAAH4AbABpAGIALwByAHQALwBwAHUAcgBlAC4AdABz"), Dt(160, "JAAAAAEAAAABAAAAJAAAAEkAbgBkAGUAeAAgAG8AdQB0ACAAbwBmACAAcgBhAG4AZwBl"), Dt(216, "FAAAAAEAAAABAAAAFAAAAH4AbABpAGIALwByAHQALgB0AHM="), Dt(257, "AgAAAQ=="), Dt(269, "AgAA/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////z4AAAD///////////////8/AAAANAAAADUAAAA2AAAANwAAADgAAAA5AAAAOgAAADsAAAA8AAAAPQAAAP////////////////////////////////////8AAAAAAQAAAAIAAAADAAAABAAAAAUAAAAGAAAABwAAAAgAAAAJAAAACgAAAAsAAAAMAAAADQAAAA4AAAAPAAAAEAAAABEAAAASAAAAEwAAABQAAAAVAAAAFgAAABcAAAAYAAAAGQAAAP///////////////////////////////xoAAAAbAAAAHAAAAB0AAAAeAAAAHwAAACAAAAAhAAAAIgAAACMAAAAkAAAAJQAAACYAAAAnAAAAKAAAACkAAAAqAAAAKwAAACwAAAAtAAAALgAAAC8AAAAwAAAAMQAAADIAAAAzAAAA//////////////////////////8="), Dt(784, "EAAAAAEAAAADAAAAEAAAABABAAAQAQAAAAIAAIA="), Dt(817, "AQAAAQ=="), Dt(829, "AQAAY3x3e/Jrb8UwAWcr/terdsqCyX36WUfwrdSir5ykcsC3/ZMmNj/3zDSl5fFx2DEVBMcjwxiWBZoHEoDi6yeydQmDLBobblqgUjvWsynjL4RT0QDtIPyxW2rLvjlKTFjP0O+q+0NNM4VF+QJ/UDyfqFGjQI+SnTj1vLbaIRD/89LNDBPsX5dEF8Snfj1kXRlzYIFP3CIqkIhG7rgU3l4L2+AyOgpJBiRcwtOsYpGV5HnnyDdtjdVOqWxW9Opleq4IunglLhymtMbo3XQfS72LinA+tWZIA/YOYTVXuYbBHZ7h+JgRadmOlJseh+nOVSjfjKGJDb/mQmhBmS0PsFS7Fg=="), Dt(1088, "EAAAAAEAAAAEAAAAEAAAAEADAABAAwAAAAEAAAAB"), Dt(1121, "AQAAAQ=="), Dt(1133, "AQAAUglq1TA2pTi/QKOegfPX+3zjOYKbL/+HNI5DRMTe6ctUe5QypsIjPe5MlQtC+sNOCC6hZijZJLJ2W6JJbYvRJXL49mSGaJgW1KRczF1ltpJscEhQ/e252l4VRlenjZ2EkNirAIy80wr35FgFuLNFBtAsHo/KPw8Cwa+9AwETims6kRFBT2fc6pfyz87wtOZzlqx0IuetNYXi+TfoHHXfbkfxGnEdKcWJb7diDqoYvhv8Vj5LxtJ5IJrbwP54zVr0H92oM4gHxzGxEhBZJ4DsX2BRf6kZtUoNLeV6n5PJnO+g4DtNrir1sMjruzyDU5lhFysEfrp31ibhaRRjVSEMfQ=="), Dt(1392, "EAAAAAEAAAAEAAAAEAAAAHAEAABwBAAAAAEAAAAB"), Dt(1424, "CwAAAAEAAAAAAAAACwAAAI0BAgQIECBAgBs2"), Dt(1456, "EAAAAAEAAAAEAAAAEAAAAKAFAACgBQAACwAAAAs="), Dt(1489, "AQAAAQ=="), Dt(1501, "AQAAAAkSGyQtNj9IQVpTbGV+d5CZgou0vaav2NHKw/z17uc7MikgHxYNBHN6YWhXXkVMq6K5sI+GnZTj6vH4x87V3HZ/ZG1SW0BJPjcsJRoTCAHm7/T9wsvQ2a6nvLWKg5iRTURfVmlge3IFDBceISgzOt3Uz8b58OvilZyHjrG4o6rs5f73yMHa06Sttr+AiZKbfHVuZ1hRSkM0PSYvEBkCC9fexczz+uHon5aNhLuyqaBHTlVcY2pxeA8GHRQrIjkwmpOIgb63rKXS28DJ9v/k7QoDGBEuJzw1QktQWWZvdH2hqLO6hYyXnung+/LNxN/WMTgjKhUcBw55cGtiXVRPRg=="), Dt(1760, "EAAAAAEAAAAEAAAAEAAAAOAFAADgBQAAAAEAAAAB"), Dt(1793, "AQAAAQ=="), Dt(1805, "AQAAAAsWHSwnOjFYU05FdH9iabC7pq2cl4qB6OP+9cTP0tl7cG1mV1xBSiMoNT4PBBkSy8Dd1ufs8fqTmIWOv7Spovb94Ova0czHrqW4s4KJlJ9GTVBbamF8dx4VCAMyOSQvjYabkKGqt7zV3sPI+fLv5D02KyARGgcMZW5zeElCX1T3/OHq29DNxq+kubKDiJWeR0xRWmtgfXYfFAkCMzglLoyHmpGgq7a91N/Cyfjz7uU8NyohEBsGDWRvcnlIQ15VAQoXHC0mOzBZUk9EdX5jaLG6p6ydlouA6eL/9MXO09h6cWxnVl1ASyIpND8OBRgTysHc1+bt8PuSmYSPvrWoow=="), Dt(2064, "EAAAAAEAAAAEAAAAEAAAABAHAAAQBwAAAAEAAAAB"), Dt(2097, "AQAAAQ=="), Dt(2109, "AQAAAA0aFzQ5LiNoZXJ/XFFGS9Ddysfk6f7zuLWir4yBlpu7tqGsj4KVmNPeycTn6v3wa2ZxfF9SRUgDDhkUNzotIG1gd3pZVENOBQgfEjE8Kya9sKeqiYSTntXYz8Lh7Pv21tvMweLv+PW+s6SpioeQnQYLHBEyPyglbmN0eVpXQE3a18DN7uP0+bK/qKWGi5yRCgcQHT4zJClib3h1VltMQWFse3ZVWE9CCQQTHj0wJyqxvKumhYifktnUw87t4Pf6t7qtoIOOmZTf0sXI6+bx/GdqfXBTXklEDwIVGDs2ISwMARYbODUiL2RpfnNQXUpH3NHGy+jl8v+0ua6jgI2alw=="), Dt(2368, "EAAAAAEAAAAEAAAAEAAAAEAIAABACAAAAAEAAAAB"), Dt(2401, "AQAAAQ=="), Dt(2413, "AQAAAA4cEjg2JCpwfmxiSEZUWuDu/PLY1sTKkJ6MgqimtLrb1cfJ4+3/8ault7mTnY+BOzUnKQMNHxFLRVdZc31vYa2jsb+Vm4mH3dPBz+Xr+fdNQ1FfdXtpZz0zIS8FCxkXdnhqZE5AUlwGCBoUPjAiLJaYioSuoLK85uj69N7QwsxBT11TeXdlazE/LSMJBxUboa+9s5mXhYvR383D6ef1+5qUhoiirL6w6uT2+NLczsB6dGZoQkxeUAoEFhgyPC4g7OLw/tTayMackoCOpKq4tgwCEB40OigmfHJgbkRKWFY3OSslDwETHUdJW1V/cWNt19nLxe/h8/2nqbu1n5GDjQ=="), Dt(2672, "EAAAAAEAAAAEAAAAEAAAAHAJAABwCQAAAAEAAAAB"), Dt(2704, "EAAAAAEAAAAAAAAAEAAAAGQ0MWQ4Y2Q5OGYwMGIyMDQ="), Dt(2736, "EAAAAAEAAAAEAAAAEAAAAKAKAACgCgAAEAAAABA="), Dt(2772, "AQ=="), Dt(2788, "AQ=="), Dt(2800, "GgAAAAEAAAABAAAAGgAAAH4AbABpAGIALwBhAHIAcgBhAHkALgB0AHM="), Dt(2848, "HAAAAAEAAAABAAAAHAAAAEkAbgB2AGEAbABpAGQAIABsAGUAbgBnAHQAaA=="), Dt(2896, "QAAAAAEAAAAAAAAAQAAAAGUAAAA5AAAAOAAAADAAAAAwAAAAOQAAADkAAAA4AAAAZQAAAGMAAABmAAAAOAAAADQAAAAyAAAANwAAAGU="), Dt(2976, "EAAAAAEAAAADAAAAEAAAAGALAABgCwAAQAAAABA="), Dt(3008, "kAAAAAEAAAAAAAAAkAAAABMAAAABAAAABAAAAAcAAAAeAAAADgAAABwAAAAIAAAAGAAAABEAAAAGAAAAIwAAACIAAAAQAAAACQAAAAoAAAANAAAAFgAAACAAAAAdAAAAHwAAABUAAAASAAAAAwAAAAIAAAAXAAAAGQAAABsAAAALAAAAFAAAAAUAAAAPAAAADAAAAAAAAAAhAAAAGg=="), Dt(3168, "EAAAAAEAAAADAAAAEAAAANALAADQCwAAkAAAACQ="), Dt(3204, "AQAAAAE="), Dt(3216, "CAAAAAEAAAABAAAACAAAAG4AdQBsAGw="), Dt(3244, "AQ=="), Dt(3256, "XgAAAAEAAAABAAAAXgAAAEUAbABlAG0AZQBuAHQAIAB0AHkAcABlACAAbQB1AHMAdAAgAGIAZQAgAG4AdQBsAGwAYQBiAGwAZQAgAGkAZgAgAGEAcgByAGEAeQAgAGkAcwAgAGgAbwBsAGUAeQ=="), Dt(3372, "AQ=="), Dt(3388, "AQ=="), Dt(3404, "AQ=="), Dt(3416, "BgAAABAAAAAAAAAAEAAAAAAAAAAQAAAAAAAAAJMEAAACAAAAMwAAAAIAAACTIAAAAg==");
+    Dt = function(t) {
+        var e = new Uint8Array(t);
+        return function(t, r) {
+            var i;
+            if (void 0 === n) {
+                i = Rt.atob(r);
+                for (var o = 0; o < i.length; o++) e[t + o] = i.charCodeAt(o)
+            } else
+                for (i = n.from(r, "base64"), o = 0; o < i.length; o++) {
+                    // console.log(i[o],'ioooooooooooooo', i)
+                    e[t + o] = i[o]
+                }
+        }
+    }(Bt);
+console.log(Bt, 'ttttttttttttttt')
+Dt(8, "HgAAAAEAAAABAAAAHgAAAH4AbABpAGIALwByAHQALwB0AGwAcwBmAC4AdABz"), Dt(56, "KAAAAAEAAAABAAAAKAAAAGEAbABsAG8AYwBhAHQAaQBvAG4AIAB0AG8AbwAgAGwAYQByAGcAZQ=="), Dt(112, "HgAAAAEAAAABAAAAHgAAAH4AbABpAGIALwByAHQALwBwAHUAcgBlAC4AdABz"), Dt(160, "JAAAAAEAAAABAAAAJAAAAEkAbgBkAGUAeAAgAG8AdQB0ACAAbwBmACAAcgBhAG4AZwBl"), Dt(216, "FAAAAAEAAAABAAAAFAAAAH4AbABpAGIALwByAHQALgB0AHM="), Dt(257, "AgAAAQ=="), Dt(269, "AgAA/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////z4AAAD///////////////8/AAAANAAAADUAAAA2AAAANwAAADgAAAA5AAAAOgAAADsAAAA8AAAAPQAAAP////////////////////////////////////8AAAAAAQAAAAIAAAADAAAABAAAAAUAAAAGAAAABwAAAAgAAAAJAAAACgAAAAsAAAAMAAAADQAAAA4AAAAPAAAAEAAAABEAAAASAAAAEwAAABQAAAAVAAAAFgAAABcAAAAYAAAAGQAAAP///////////////////////////////xoAAAAbAAAAHAAAAB0AAAAeAAAAHwAAACAAAAAhAAAAIgAAACMAAAAkAAAAJQAAACYAAAAnAAAAKAAAACkAAAAqAAAAKwAAACwAAAAtAAAALgAAAC8AAAAwAAAAMQAAADIAAAAzAAAA//////////////////////////8="), Dt(784, "EAAAAAEAAAADAAAAEAAAABABAAAQAQAAAAIAAIA="), Dt(817, "AQAAAQ=="), Dt(829, "AQAAY3x3e/Jrb8UwAWcr/terdsqCyX36WUfwrdSir5ykcsC3/ZMmNj/3zDSl5fFx2DEVBMcjwxiWBZoHEoDi6yeydQmDLBobblqgUjvWsynjL4RT0QDtIPyxW2rLvjlKTFjP0O+q+0NNM4VF+QJ/UDyfqFGjQI+SnTj1vLbaIRD/89LNDBPsX5dEF8Snfj1kXRlzYIFP3CIqkIhG7rgU3l4L2+AyOgpJBiRcwtOsYpGV5HnnyDdtjdVOqWxW9Opleq4IunglLhymtMbo3XQfS72LinA+tWZIA/YOYTVXuYbBHZ7h+JgRadmOlJseh+nOVSjfjKGJDb/mQmhBmS0PsFS7Fg=="), Dt(1088, "EAAAAAEAAAAEAAAAEAAAAEADAABAAwAAAAEAAAAB"), Dt(1121, "AQAAAQ=="), Dt(1133, "AQAAUglq1TA2pTi/QKOegfPX+3zjOYKbL/+HNI5DRMTe6ctUe5QypsIjPe5MlQtC+sNOCC6hZijZJLJ2W6JJbYvRJXL49mSGaJgW1KRczF1ltpJscEhQ/e252l4VRlenjZ2EkNirAIy80wr35FgFuLNFBtAsHo/KPw8Cwa+9AwETims6kRFBT2fc6pfyz87wtOZzlqx0IuetNYXi+TfoHHXfbkfxGnEdKcWJb7diDqoYvhv8Vj5LxtJ5IJrbwP54zVr0H92oM4gHxzGxEhBZJ4DsX2BRf6kZtUoNLeV6n5PJnO+g4DtNrir1sMjruzyDU5lhFysEfrp31ibhaRRjVSEMfQ=="), Dt(1392, "EAAAAAEAAAAEAAAAEAAAAHAEAABwBAAAAAEAAAAB"), Dt(1424, "CwAAAAEAAAAAAAAACwAAAI0BAgQIECBAgBs2"), Dt(1456, "EAAAAAEAAAAEAAAAEAAAAKAFAACgBQAACwAAAAs="), Dt(1489, "AQAAAQ=="), Dt(1501, "AQAAAAkSGyQtNj9IQVpTbGV+d5CZgou0vaav2NHKw/z17uc7MikgHxYNBHN6YWhXXkVMq6K5sI+GnZTj6vH4x87V3HZ/ZG1SW0BJPjcsJRoTCAHm7/T9wsvQ2a6nvLWKg5iRTURfVmlge3IFDBceISgzOt3Uz8b58OvilZyHjrG4o6rs5f73yMHa06Sttr+AiZKbfHVuZ1hRSkM0PSYvEBkCC9fexczz+uHon5aNhLuyqaBHTlVcY2pxeA8GHRQrIjkwmpOIgb63rKXS28DJ9v/k7QoDGBEuJzw1QktQWWZvdH2hqLO6hYyXnung+/LNxN/WMTgjKhUcBw55cGtiXVRPRg=="), Dt(1760, "EAAAAAEAAAAEAAAAEAAAAOAFAADgBQAAAAEAAAAB"), Dt(1793, "AQAAAQ=="), Dt(1805, "AQAAAAsWHSwnOjFYU05FdH9iabC7pq2cl4qB6OP+9cTP0tl7cG1mV1xBSiMoNT4PBBkSy8Dd1ufs8fqTmIWOv7Spovb94Ova0czHrqW4s4KJlJ9GTVBbamF8dx4VCAMyOSQvjYabkKGqt7zV3sPI+fLv5D02KyARGgcMZW5zeElCX1T3/OHq29DNxq+kubKDiJWeR0xRWmtgfXYfFAkCMzglLoyHmpGgq7a91N/Cyfjz7uU8NyohEBsGDWRvcnlIQ15VAQoXHC0mOzBZUk9EdX5jaLG6p6ydlouA6eL/9MXO09h6cWxnVl1ASyIpND8OBRgTysHc1+bt8PuSmYSPvrWoow=="), Dt(2064, "EAAAAAEAAAAEAAAAEAAAABAHAAAQBwAAAAEAAAAB"), Dt(2097, "AQAAAQ=="), Dt(2109, "AQAAAA0aFzQ5LiNoZXJ/XFFGS9Ddysfk6f7zuLWir4yBlpu7tqGsj4KVmNPeycTn6v3wa2ZxfF9SRUgDDhkUNzotIG1gd3pZVENOBQgfEjE8Kya9sKeqiYSTntXYz8Lh7Pv21tvMweLv+PW+s6SpioeQnQYLHBEyPyglbmN0eVpXQE3a18DN7uP0+bK/qKWGi5yRCgcQHT4zJClib3h1VltMQWFse3ZVWE9CCQQTHj0wJyqxvKumhYifktnUw87t4Pf6t7qtoIOOmZTf0sXI6+bx/GdqfXBTXklEDwIVGDs2ISwMARYbODUiL2RpfnNQXUpH3NHGy+jl8v+0ua6jgI2alw=="), Dt(2368, "EAAAAAEAAAAEAAAAEAAAAEAIAABACAAAAAEAAAAB"), Dt(2401, "AQAAAQ=="), Dt(2413, "AQAAAA4cEjg2JCpwfmxiSEZUWuDu/PLY1sTKkJ6MgqimtLrb1cfJ4+3/8ault7mTnY+BOzUnKQMNHxFLRVdZc31vYa2jsb+Vm4mH3dPBz+Xr+fdNQ1FfdXtpZz0zIS8FCxkXdnhqZE5AUlwGCBoUPjAiLJaYioSuoLK85uj69N7QwsxBT11TeXdlazE/LSMJBxUboa+9s5mXhYvR383D6ef1+5qUhoiirL6w6uT2+NLczsB6dGZoQkxeUAoEFhgyPC4g7OLw/tTayMackoCOpKq4tgwCEB40OigmfHJgbkRKWFY3OSslDwETHUdJW1V/cWNt19nLxe/h8/2nqbu1n5GDjQ=="), Dt(2672, "EAAAAAEAAAAEAAAAEAAAAHAJAABwCQAAAAEAAAAB"), Dt(2704, "EAAAAAEAAAAAAAAAEAAAAGQ0MWQ4Y2Q5OGYwMGIyMDQ="), Dt(2736, "EAAAAAEAAAAEAAAAEAAAAKAKAACgCgAAEAAAABA="), Dt(2772, "AQ=="), Dt(2788, "AQ=="), Dt(2800, "GgAAAAEAAAABAAAAGgAAAH4AbABpAGIALwBhAHIAcgBhAHkALgB0AHM="), Dt(2848, "HAAAAAEAAAABAAAAHAAAAEkAbgB2AGEAbABpAGQAIABsAGUAbgBnAHQAaA=="), Dt(2896, "QAAAAAEAAAAAAAAAQAAAAGUAAAA5AAAAOAAAADAAAAAwAAAAOQAAADkAAAA4AAAAZQAAAGMAAABmAAAAOAAAADQAAAAyAAAANwAAAGU="), Dt(2976, "EAAAAAEAAAADAAAAEAAAAGALAABgCwAAQAAAABA="), Dt(3008, "kAAAAAEAAAAAAAAAkAAAABMAAAABAAAABAAAAAcAAAAeAAAADgAAABwAAAAIAAAAGAAAABEAAAAGAAAAIwAAACIAAAAQAAAACQAAAAoAAAANAAAAFgAAACAAAAAdAAAAHwAAABUAAAASAAAAAwAAAAIAAAAXAAAAGQAAABsAAAALAAAAFAAAAAUAAAAPAAAADAAAAAAAAAAhAAAAGg=="), Dt(3168, "EAAAAAEAAAADAAAAEAAAANALAADQCwAAkAAAACQ="), Dt(3204, "AQAAAAE="), Dt(3216, "CAAAAAEAAAABAAAACAAAAG4AdQBsAGw="), Dt(3244, "AQ=="), Dt(3256, "XgAAAAEAAAABAAAAXgAAAEUAbABlAG0AZQBuAHQAIAB0AHkAcABlACAAbQB1AHMAdAAgAGIAZQAgAG4AdQBsAGwAYQBiAGwAZQAgAGkAZgAgAGEAcgByAGEAeQAgAGkAcwAgAGgAbwBsAGUAeQ=="), Dt(3372, "AQ=="), Dt(3388, "AQ=="), Dt(3404, "AQ=="), Dt(3416, "BgAAABAAAAAAAAAAEAAAAAAAAAAQAAAAAAAAAJMEAAACAAAAMwAAAAIAAACTIAAAAg==");
 var Lt = Pt({
         Math: Math,
         Int8Array: Int8Array,
@@ -1081,7 +1253,6 @@ var Lt = Pt({
         return Promise.resolve(t)
     }
 
-console.log(Mt)
 
 t=Mt;
 
@@ -1110,9 +1281,7 @@ Nt().then((function(t) {
     }
 })).then((function(t) {
     ie = t.getFileName, oe = t.getFileParams;
-    console.log(ie, oe,'ieoe')
     // fileId: ,
-    console.log(ie('i4YRgi+dy0PmHKoyQ3TSY9cbMQq7XZnVpdxbYC9J6DzCpCufEjMtsNB9fbEG+eAhFKyQ0BDatTs6GyrWGOqptw=='),'ieeee')
 })).catch((function(t) {
     throw new Error(t)
 }));
@@ -1147,38 +1316,61 @@ var decode = function(t) {
             timestamp: u.timestamp,
             duration: i
         });
-        console.log(s,'filename',c)
     return "".concat(l, "/download/").concat(a, "/").concat(s, "?").concat(c)
 }
 
 setTimeout(()=>{
     console.log(decode(res))
 }, 1000)
-var res= {
+// var res= {
+//     ret: 0,
+//     msg: '0',
+//     trackId: 286253638,
+//     uid: 69149360,
+//     albumId: 35822288,
+//     title: '01 小径分岔的花园（上）：博尔赫斯最著名作品，穿越时空的庞大花园迷宫',
+//     domain: 'http://audiopay.cos.tx.xmcdn.com',
+//     totalLength: 10636759,
+//     sampleDuration: 180,
+//     sampleLength: 1676467,
+//     isAuthorized: true,
+//     apiVersion: '1.0.0',
+//     seed: 6555,
+//     k1: '',
+//     k2: '',
+//     fileId: 'i4YRgi+dy0PmHKoyQ3TSY9cbMQq7XZnVpdxbYC9J6DzCpCufEjMtsNB9fbEG+eAhFKyQ0BDatTs6GyrWGOqptw==',
+//     buyKey: '143289152',
+//     duration: 1300,
+//     ep: 'KFRXhx+UTkwBo6Tfd47xCOzcurTIPAKL4wM9Diaq621wZEfGxAZB6xZEMSHAgq3B+J7kXbX6+rKsjg==',
+//     highestQualityLevel: 2,
+//     downloadQualityLevel: 1,
+//     authorizedType: 1,
+//     volumeGain: 2.1999999999999993
+//   }
+
+  var res = {
+  albumId: 35822288,
+    apiVersion: "1.0.0",
+    authorizedType: 1,
+    buyKey: "143289152",
+    domain: "http://audiopay.cos.tx.xmcdn.com",
+    downloadQualityLevel: 1,
+    duration: 1300,
+    ep: "KFRXhx+UTkwBo6zVJoD2VOyPu7eYOQaI5gc+VCX6sz5xPxTHk1ZD7xIUMSHGg6nB+J7kXrb88LSqhw==",
+    fileId: "i4YRgi+dy0PmHKoyQ3TSY9cbMQq7XZnVpdxbYC9J6DzCpCufEjMtsNB9fbEG+eAhFKyQ0BDatTs6GyrWGOqptw==",
+    highestQualityLevel: 2,
+    isAuthorized: true,
+    k1: "",
+    k2: "",
+    msg: "0",
     ret: 0,
-    msg: '0',
-    trackId: 286253638,
-    uid: 69149360,
-    albumId: 35822288,
-    title: '01 小径分岔的花园（上）：博尔赫斯最著名作品，穿越时空的庞大花园迷宫',
-    domain: 'http://audiopay.cos.tx.xmcdn.com',
-    totalLength: 10636759,
     sampleDuration: 180,
     sampleLength: 1676467,
-    isAuthorized: true,
-    apiVersion: '1.0.0',
-    seed: 6555,
-    k1: '',
-    k2: '',
-    fileId: 'i4YRgi+dy0PmHKoyQ3TSY9cbMQq7XZnVpdxbYC9J6DzCpCufEjMtsNB9fbEG+eAhFKyQ0BDatTs6GyrWGOqptw==',
-    buyKey: '143289152',
-    duration: 1300,
-    ep: 'KFRXhx+UTkwBo6Tfd47xCOzcurTIPAKL4wM9Diaq621wZEfGxAZB6xZEMSHAgq3B+J7kXbX6+rKsjg==',
-    highestQualityLevel: 2,
-    downloadQualityLevel: 1,
-    authorizedType: 1,
+    seed: 1936,
+    title: "01 小径分岔的花园（上）：博尔赫斯最著名作品，穿越时空的庞大花园迷宫",
+    totalLength: 10636759,
+    trackId: 286253638,
+    uid: 69149360,
     volumeGain: 2.1999999999999993
   }
-
-//   console.log(decode(res))
 module.exports = decode; 
