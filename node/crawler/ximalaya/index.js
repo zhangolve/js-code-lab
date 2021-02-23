@@ -144,7 +144,7 @@ const getAlbum = async (albumId) => {
         const res = response.data;
         return res;
     } catch (e) {
-        console.log(e, 'get album title');
+        console.log(e, 'get album title',  albumId);
         await getAlbum(albumId);
     }
 }
@@ -203,7 +203,6 @@ const downloadAlbum = async (albumId, startPage) => {
     if (!title) {
         return;
     }
-    console.log(777)
     let haveNextPage=true;
     const folderPath = Path.resolve(basePath, categoryTitle);
     let startIndex = index;
