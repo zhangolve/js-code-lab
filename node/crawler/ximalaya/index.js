@@ -68,6 +68,7 @@ const downloadTrack = async ({trackId, index, title}, albumTitle, basePath, isFr
                 timeout: 30000,
             }); 
             const res = await response.json();
+            console.log(res, 'res');
             w4a = res.data.src;
         } else {
             const response = await fetch(getVipTrackUrl(trackId), {
@@ -76,6 +77,7 @@ const downloadTrack = async ({trackId, index, title}, albumTitle, basePath, isFr
                 timeout: 30000,
             }); 
             const res = await response.json();
+            console.log(res, 'res');
             w4a = await decode(res);
             title = res.title;
         }
@@ -170,7 +172,7 @@ const getAlbumInfo =async (res) => {
     const albumId = res.data.albumId;
     const isFree = !res.data.albumPageMainInfo.priceOp;
     // 不能直接下载精品课程,，应该看看有没有买。
-    if (res.data.albumPageMainInfo.vipType === 0) {
+    if (res.data.albumPageMainInfo.vipType === 0 && !isFree) {
         return {};
     }
     // isFinished ==2 完本 
@@ -201,7 +203,7 @@ const downloadAlbum = async (albumId, startPage) => {
     if (!title) {
         return;
     }
-
+    console.log(777)
     let haveNextPage=true;
     const folderPath = Path.resolve(basePath, categoryTitle);
     let startIndex = index;
