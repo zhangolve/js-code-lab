@@ -24,11 +24,11 @@ const opn = require('opn');
 const destroyer = require('server-destroy');
 const fs = require('fs');
 const path = require('path');
-const CREDS = 'client_secrets.json'
+const CREDS = 'client_secret.json'
 var TOKEN_PATH = 'google-apis-nodejs-quickstart.json'
 const {getNewToken} = require('./newToken');
 
-const keyPath = path.join(__dirname, 'client_secrets.json');
+const keyPath = path.join(__dirname, 'client_secret.json');
 let keys = {
   redirect_uris: ['http://localhost:3000/oauth2callback'],
 };
@@ -78,6 +78,7 @@ class SampleClient {
   
   async authenticate(scopes) {
     return new Promise((resolve, reject) => {    
+      console.log('3333')
       fs.readFile(TOKEN_PATH, (err, token)=> {
         console.log('err',err)
           if (err) {

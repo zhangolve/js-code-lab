@@ -14,6 +14,7 @@ log4js.configure({
   categories: { default: { appenders: ['youtube_insert','console'], level: 'all' } } // appender 决定了每一行日志前缀是啥
 });
 const logger = log4js.getLogger('youtube_insert');
+const CREDS = 'client_secrets.json'
 
 // initialize the Youtube API library
 const youtube = google.youtube({
@@ -21,18 +22,31 @@ const youtube = google.youtube({
   auth: sampleClient.oAuth2Client
 });
 
-console.log(youtube,'youtube')
+const scopes = [
+  'https://www.googleapis.com/auth/youtube.upload',
+  'https://www.googleapis.com/auth/youtube',
+];
 
 async function init() {
-    const res = await youtube.subscriptions.list(
-        {
-            part: 'contentDetails',
-            channelId: 'UCI16EkG5qG7h76VjUCnXngg'
-        }
-    )
-    console.log(res);
+//     fs.readFile(CREDS, (err, cont) => {
+//       if (err) {
+//           console.log('Error loading client secret file: \n', err)
+//           return
+//       }
+//     authorize(JSON.parse(cont), null, null)
+// });
+sampleClient
+.authenticate(scopes)
+.then(async ()=> {
+  const res = await youtube.subscriptions.list(
+    {
+        part: 'contentDetails',
+        channelId: 'UCI16EkG5qG7h76VjUCnXngg'
+    }
+  )
+  console.log(res);
+})
 }
-
 
 init();
 

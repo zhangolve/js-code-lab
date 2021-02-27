@@ -16,7 +16,7 @@ var googleAuth = require('google-auth-library')
 const SCOPES = ['https://www.googleapis.com/auth/youtube.force-ssl',
                 'https://www.googleapis.com/auth/youtubepartner',
                 'https://www.googleapis.com/auth/youtube'];
-const CREDS = 'client_secrets.json'
+const CREDS = 'client_secret.json'
 var TOKEN_PATH = 'google-apis-nodejs-quickstart.json'
   
 function storeToken(token) {
