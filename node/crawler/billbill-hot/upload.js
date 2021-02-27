@@ -94,17 +94,10 @@ async function init(uploadPath, playListIdSign) {
 async function insertPlayList(playListName) {
   const res = await youtube.playlists.insert(
     {
-      part: 'snippet,status',
-      requestBody: {
-        snippet: {
-          title: playListName,
-          description: '更多精彩视频，欢迎订阅浏览'
-        },
-        status: {
-          privacyStatus: 'public'
-        }
+      part: 'contentDetails',
+      channelId: ''
       }
-    });
+    );
     return res.data;
 }
 
