@@ -1,20 +1,10 @@
 const fs = require('fs');
-const readline = require('readline');
 const {google} = require('googleapis');
 const sampleClient = require('./sampleclient');
-// const {scopes} = require('./const');
+const util = require('util');
 
-const log4js = require('log4js');
-
-log4js.configure({
-  appenders: { 
-      youtube_insert: { type: 'file', filename: 'youtube.log', maxLogSize: 10485760, backups: 3, compress: true } ,
-      console: { type: 'console' }
-    }, // 日志的名称
-  categories: { default: { appenders: ['youtube_insert','console'], level: 'all' } } // appender 决定了每一行日志前缀是啥
-});
-const logger = log4js.getLogger('youtube_insert');
-const CREDS = 'client_secrets.json'
+// Convert fs.readFile into Promise version of same    
+const readFile = util.promisify(fs.readFile);
 
 // initialize the Youtube API library
 const youtube = google.youtube({
@@ -27,24 +17,53 @@ const scopes = [
   'https://www.googleapis.com/auth/youtube',
 ];
 
-async function init() {
-//     fs.readFile(CREDS, (err, cont) => {
-//       if (err) {
-//           console.log('Error loading client secret file: \n', err)
-//           return
-//       }
-//     authorize(JSON.parse(cont), null, null)
-// });
-sampleClient
-.authenticate(scopes)
-.then(async ()=> {
+
+async function getCurrentSubs () {
   const res = await youtube.subscriptions.list(
     {
-        part: 'contentDetails',
-        channelId: 'UCI16EkG5qG7h76VjUCnXngg'
+        part: 'snippet',
+        mine: true
     }
   )
-  console.log(res);
+  return res.data;
+}
+
+async function insertSub(resourceId) {
+  console.log(resourceId,'resourceId')
+  res = await youtube.subscriptions.insert({
+    part: ['snippet'],
+    resource: {
+    snippet: {
+      resourceId
+    }
+  }
+  })
+  console.log(res, 'res')
+}
+
+function getNotSubedSources(resourceIds, subedResourceIds) {
+  var needResources = [];
+  var subedChannelIds = subedResourceIds.map((({channelId})=>channelId))
+  resourceIds.forEach(resouceId=> {
+    if(!subedChannelIds.includes(resouceId.channelId)) {
+      needResources.push(resouceId);
+    }
+  })
+  return needResources;
+}
+
+async function init() {
+await sampleClient.authenticate(scopes)
+subs =await getCurrentSubs();
+const subedResourceIds = subs.items.map(({snippet})=>snippet.resourceId)
+
+const subscriptionsDumb = await readFile('subscriptions.json')
+subscriptions = JSON.parse(subscriptionsDumb)
+const resourceIds = subscriptions.map( ({snippet})=>snippet.resourceId);
+
+needResourceIds = getNotSubedSources(resourceIds, subedResourceIds)
+needResourceIds.forEach(async (needResourceId)=> {
+  await insertSub(needResourceId);
 })
 }
 
