@@ -195,7 +195,6 @@ const downloadAlbum = async (albumId, startPage) => {
         console.log('album failed')
         return ;
     }
-    console.log(await getAlbumInfo(res),'8888')
     let {title,index, isFinished, categoryTitle, isFree} = await getAlbumInfo(res);
     page = parseInt(startPage || Math.floor(index/30)+1);
     // getPageUrl   https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=
