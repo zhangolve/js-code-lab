@@ -195,6 +195,7 @@ const downloadAlbum = async (albumId, startPage) => {
         console.log('album failed')
         return ;
     }
+    console.log(await getAlbumInfo(res),'8888')
     let {title,index, isFinished, categoryTitle, isFree} = await getAlbumInfo(res);
     page = parseInt(startPage || Math.floor(index/30)+1);
     // getPageUrl   https://www.ximalaya.com/revision/album/v1/getTracksList?albumId=
@@ -211,12 +212,13 @@ const downloadAlbum = async (albumId, startPage) => {
         page = page +1; 
         startIndex = 0;
     }
-    return;
     console.log('download album successfully', albumId, title)
     // redis-cli --raw keys "ops-coffee-*" | xargs redis-cli del
     client.on("error", function (err) {
         console.log("Error " + err);
     });
+
+    await writeRow({...res, categoryTitle});
     if(isFinished===2) {
         if(await getAsync(albumId.toString()) ) {
             client.del(albumId.toString())
@@ -224,7 +226,6 @@ const downloadAlbum = async (albumId, startPage) => {
         client.sadd(finishedAlbumIdKey, albumId, redis.print);        
     }
 
-    await writeRow(res);
     // write to note 
     if (audioListPath) {
         try {
@@ -240,15 +241,14 @@ const downloadAlbum = async (albumId, startPage) => {
 async function writeRow(res) {
     // =IF(COUNTIF(A$1:A2,A2)=COUNTIF(A:A,A2),"Yes","")
     const {data} = res;
-    const isFinished = data.mainInfo.isFinished ===2 ? '是' : '否';
-    const isJingPin = data.mainInfo.vipType === 0 ? '是' :'否';
-    const {crumbs} = res.data.mainInfo;
-    const {categoryTitle} =crumbs;
+    const isFinished = data.albumPageMainInfo.isFinished ===2 ? '是' : '否';
+    const isJingPin = data.albumPageMainInfo.vipType === 0 ? '是' :'否';
+    const {categoryTitle} =res;
     // albumId 名称 是否完结 基数 分类 是否精品
     const {albumId} = data;
-    const trackTotalCount = data.tracksInfo.trackTotalCount;
-    const title = data.recommendKw.sourceKw
-
+    const trackTotalCount = await getAsync(albumId.toString())
+    console.log(trackTotalCount,'8888')
+    const title = data.albumPageMainInfo.albumTitle
     const row = Object.values({
         'id': albumId,
             '专辑名':title , 
