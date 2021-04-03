@@ -42,6 +42,7 @@ class YouTubeUploader:
         if not self.metadata_dict[Constant.VIDEO_DESCRIPTION]:
             self.logger.warning("The video description was not found in a metadata file")
 
+# selenium.common.exceptions.WebDriverException: Message: Reached error page: about:neterror?e=nssFailure2&u=https%3A//www.youtube.com/&c=UTF-8&d=%E8%BD%BD%E5%85%A5%E9%A1%B5%E9%9D%A2%E6%97%B6%E4%B8%8E%20www.youtube.com%20%E7%9A%84%E8%BF%9E%E6%8E%A5%E4%B8%AD%E6%96%AD%E3%80%82
     def upload(self):
         try:
             self.__login()
@@ -122,7 +123,11 @@ class YouTubeUploader:
         self.logger.debug('Clicked {}'.format(Constant.NEXT_BUTTON))
 
         self.browser.find(By.ID, Constant.NEXT_BUTTON).click()
-        self.logger.debug('Clicked another {}'.format(Constant.NEXT_BUTTON))
+        self.logger.debug('Clicked element another {}'.format(Constant.NEXT_BUTTON))
+
+
+        self.browser.find(By.ID, Constant.NEXT_BUTTON).click()
+        self.logger.debug('Clicked checking another {}'.format(Constant.NEXT_BUTTON))
 
         public_main_button = self.browser.find(By.NAME, Constant.PUBLIC_BUTTON)
         self.browser.find(By.ID, Constant.RADIO_LABEL, public_main_button).click()
