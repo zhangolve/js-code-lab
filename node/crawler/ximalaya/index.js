@@ -78,8 +78,13 @@ const downloadTrack = async ({trackId, index, title}, albumTitle, basePath, isFr
             }); 
             const res = await response.json();
             console.log(res, 'res');
-            w4a = await decode(res);
-            title = res.title;
+            if(res.ret===0) {
+                w4a = await decode(res);
+                title = res.title;
+            } else {
+                throw res.msg;
+            }
+            
         }
         const folderPath = Path.resolve(basePath, albumTitle)
         mkdirp.sync(folderPath)
