@@ -86,6 +86,7 @@ const downloadTrack = async ({trackId, index, title}, albumTitle, basePath, isFr
             }
             
         }
+        
         const folderPath = Path.resolve(basePath, albumTitle)
         mkdirp.sync(folderPath)
         await download(w4a, `${numberFormat(index)}-${title}`, albumTitle, basePath);
