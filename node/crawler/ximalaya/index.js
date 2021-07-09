@@ -60,22 +60,29 @@ const headers = require('./headers');
 const downloadTrack = async ({trackId, index, title}, albumTitle, basePath, isFree) => {
     let triedTime = 0;
     let w4a = null;
+    var sign = getSign();
+    const newHeaders  = {
+        ...headers,
+        'xm-sign': sign
+    };
     try {
         if(isFree) {
             const response = await fetch(getFreeTrackUrl(trackId), {
                 method: 'GET',
-                headers,
+                headers: newHeaders,
                 timeout: 30000,
             }); 
             const res = await response.json();
+            // console.log('find error by ', response.text())
             console.log(res, 'res');
             w4a = res.data.src;
         } else {
             const response = await fetch(getVipTrackUrl(trackId), {
                 method: 'GET',
-                headers,
+                headers: newHeaders,
                 timeout: 30000,
             }); 
+            console.log(response, 'response')
             const res = await response.json();
             console.log(res, 'res');
             if(res.ret===0) {
